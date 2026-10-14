@@ -605,3 +605,4 @@ body { background: var(--white-warm); }
 .hood-head { margin-bottom: 1rem; }
 .hood-icon { margin-top: 0; }
 .hood h3 { font-size: 1.35rem; line-height: 1.25; }
+.hood-label { font-size: 0.95rem; padding: 0.35rem 0.75rem; border-radius: 0.35rem; }

@@ -606,3 +606,54 @@ body { background: var(--white-warm); }
 .hood-icon { margin-top: 0; }
 .hood h3 { font-size: 1.35rem; line-height: 1.25; }
 .hood-label { font-size: 0.95rem; padding: 0.35rem 0.75rem; border-radius: 0.35rem; }
+
+/* Icons: same-size round badge, centered on the teal label */
+.hood-head { align-items: center; }
+.hood-head .hood-label { margin-bottom: 0; }
+.hood-icon {
+  width: 4.5rem; height: 4.5rem; margin: 0; padding: 0.5rem; box-sizing: border-box;
+  background: #fbe39b; border: 3px solid var(--ink); border-radius: 50%; overflow: visible;
+}
+.hood-head { flex-wrap: wrap; row-gap: 0.75rem; }
+
+/* Icon badge sits beside the label and heading, like a logo next to a title */
+.hood-head { display: flex; flex-wrap: nowrap; align-items: center; justify-content: flex-start; gap: 1rem; margin-bottom: 0.9rem; }
+.hood-titles { min-width: 0; }
+.hood-titles .hood-label { margin: 0 0 0.45rem; }
+.hood-titles h3 { margin: 0; }
+.hood-icon { width: 4.25rem; height: 4.25rem; }
+@media (max-width: 24em) { .hood-head { flex-wrap: wrap; } }
+.hood-titles .hood-label { display: inline-block; }
+
+/* Card top: teal band with the label, round icon centered on the band's bottom edge */
+.hood { padding-top: 0; }
+.hood-band {
+  margin: 0 -1.5rem; padding: 0.55rem 1rem 1.7rem; text-align: center;
+  background: var(--teal-dark); border-radius: calc(var(--radius) - 3px) calc(var(--radius) - 3px) 0 0;
+}
+.hood-band .hood-label { display: inline-block; margin: 0; padding: 0; background: none; color: var(--white-warm); font-size: 0.95rem; }
+.hood > .hood-icon { display: block; width: 4.25rem; height: 4.25rem; margin: -1.5rem auto 0.8rem; position: relative; }
+.hood > h3 { text-align: center; }
+
+/* Refinements: slim band with centered label, badge hangs from the band, no mid-card gaps */
+.hood-band { padding: 0.6rem 1rem; }
+.hood > .hood-icon { margin: -0.4rem auto 0.8rem; }
+.hood-why { margin-top: 0; }
+/* Wide last card: header on the left, text on the right */
+@media (min-width: 52em) {
+  .hood:last-child:nth-child(odd) {
+    display: grid; grid-template-columns: minmax(0, 16rem) minmax(0, 1fr); column-gap: 2rem; align-items: start;
+    padding-top: 0;
+  }
+  .hood:last-child:nth-child(odd) > .hood-band { grid-column: 1 / -1; }
+  /* icon and heading share the left cell, stacked, so the heading stays with its icon */
+  .hood:last-child:nth-child(odd) > .hood-icon { grid-column: 1; grid-row: 2 / span 2; align-self: start; }
+  .hood:last-child:nth-child(odd) > h3 { grid-column: 1; grid-row: 2 / span 2; align-self: start; margin: 4.75rem 0 1rem; }
+  .hood:last-child:nth-child(odd) > p { grid-column: 2; grid-row: 2; margin-top: 1.25rem; }
+  .hood:last-child:nth-child(odd) > p.hood-why { grid-row: 3 / span 2; margin-top: 0; border-top: 2px dashed var(--ink); }
+}
+/* Icon evenly spaced between the teal band and the heading */
+.hood > .hood-icon { margin: 1.1rem auto 1.1rem; }
+@media (min-width: 52em) {
+  .hood:last-child:nth-child(odd) > h3 { margin-top: 6.45rem; }
+}

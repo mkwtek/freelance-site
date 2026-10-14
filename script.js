@@ -2,9 +2,10 @@
 // The page works fully without this file.
 (function () {
   'use strict';
-  document.documentElement.classList.add('js');
+  var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var saveData = navigator.connection && navigator.connection.saveData;
 
-  // Mobile menu
+  // ---- Mobile menu ----
   var toggle = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
   if (toggle && nav) {
@@ -26,7 +27,7 @@
     });
   }
 
-  // "Free site check" button preselects that option in the contact form
+  // ---- "Free site check" links preselect that option in the contact form ----
   document.querySelectorAll('[data-need]').forEach(function (link) {
     link.addEventListener('click', function () {
       var select = document.getElementById('f-need');
@@ -34,25 +35,71 @@
     });
   });
 
-  // Meter needles swing up when the test pattern scrolls into view
+  // ---- Meter needles swing up once the gauges are mostly on screen ----
+  // A high threshold so on phones (stacked layout) it happens while you're looking at them.
   var meters = document.querySelector('.meters');
-  var reveals = document.querySelectorAll('.channel, .hood, .case, .mini-case, .tuner li, .quote');
-  reveals.forEach(function (el) { el.classList.add('reveal'); });
-
-  if (!('IntersectionObserver' in window)) {
-    if (meters) meters.classList.add('is-on');
-    reveals.forEach(function (el) { el.classList.add('is-visible'); });
-    return;
+  if (meters) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      meters.classList.add('is-on');
+    } else {
+      new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { meters.classList.add('is-on'); obs.disconnect(); }
+        });
+      }, { threshold: 0.6 }).observe(meters);
+    }
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add(entry.target === meters ? 'is-on' : 'is-visible');
-      io.unobserve(entry.target);
-    });
-  }, { rootMargin: '0px 0px -10% 0px' });
+  // ---- Scroll-in reveal: blocks fade up once as they come into view ----
+  // Only blocks that start below the fold are hidden, so nothing on screen ever flickers.
+  // Skipped with reduced motion and data saver.
+  if (reduceMotion || saveData) return;
+  var SELECTORS = '.section .eyebrow, .section h2, .section-lede, .channel, .site-check, .hood, ' +
+    '.compare-wrap, .ask-box, .how-copy, .meters, .pull-quote, .case, .sub-title, .mini-case, ' +
+    '.tuner li, .quote, .about-photo, .about-copy, .contact-copy, .contact-form';
+  var pending = [].slice.call(document.querySelectorAll(SELECTORS)).filter(function (el) {
+    return el.getBoundingClientRect().top > window.innerHeight;
+  });
+  if (!pending.length) return;
+  pending.forEach(function (el) { el.classList.add('rv'); });
+  document.documentElement.classList.add('reveal-on');
 
-  if (meters) io.observe(meters);
-  reveals.forEach(function (el) { io.observe(el); });
+  function done(el) { el.classList.remove('rv', 'rv-in'); el.style.removeProperty('--rv-delay'); }
+  function reveal(el, order) {
+    var i = pending.indexOf(el);
+    if (i < 0) return;
+    pending.splice(i, 1);
+    el.style.setProperty('--rv-delay', Math.min(order * 0.08, 0.32) + 's');   // a row arrives one after another
+    el.classList.add('rv-in');
+    el.addEventListener('transitionend', function end(ev) {
+      if (ev.propertyName !== 'opacity') return;
+      el.removeEventListener('transitionend', end);
+      done(el);
+    });
+    setTimeout(function () { if (el.classList.contains('rv-in')) done(el); }, 1400);   // safety net
+  }
+
+  // Two triggers call the same reveal, so a block can never stay hidden if one misfires
+  function check() {
+    var limit = window.innerHeight * 0.94, n = 0;
+    pending.slice().forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < limit && r.bottom > 0) reveal(el, n++);
+    });
+    if (!pending.length) {
+      window.removeEventListener('scroll', check);
+      window.removeEventListener('resize', check);
+    }
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      var n = 0;
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { io.unobserve(e.target); reveal(e.target, n++); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    pending.forEach(function (el) { io.observe(el); });
+  }
 })();

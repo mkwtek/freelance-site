@@ -42,7 +42,10 @@ Space Mono (labels).
 - No background-color or color fades on buttons. Swap colors instantly; transform and shadow can animate.
 - Respect `prefers-reduced-motion`.
 - Target WCAG 2.1 AA at minimum, AAA contrast where practical. Process language only, never claim certification.
-- Test at 440px and 375px phone widths plus desktop, and at browser font sizes 16, 20 and 24.
+- Test at 440px and 375px phone widths plus desktop, and at browser font sizes 16, 20 and 24
+  (Chrome's real font-size setting, not just zoom). Big display type gets a px cap inside clamp();
+  grid columns use minmax(0, 1fr) so content can't push them wider than the screen. Background:
+  /Users/Shared/Atomic-Afterlife-FONT-SIZE-RENDERING-SUMMARY.txt
 - Bump the `?v=` tag in `index.html` on every CSS or JS change.
 - Git: new commits only (never amend or rebase), plain commit messages with no AI or co-author lines,
   never change git config. The developer commits and pushes through GitHub Desktop.

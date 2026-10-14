@@ -334,8 +334,8 @@ a:hover { text-decoration-thickness: 2px; }
   .compare tbody tr:last-child { border-bottom: 0; }
   .compare tbody th, .compare td { padding: 0.2rem 0; border: 0; }
   .compare td::before { display: block; font: 700 0.72rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
-  .compare td:nth-child(2)::before { content: "Typical builder site"; color: var(--muted); }
-  .compare td:nth-child(3)::before { content: "Built here"; color: var(--red-text); margin-top: 0.4rem; }
+  .compare td:nth-child(2)::before { content: "Left on its defaults"; color: var(--muted); }
+  .compare td:nth-child(3)::before { content: "Built and tuned with care"; color: var(--red-text); margin-top: 0.4rem; }
 }
 .fine-print { margin-top: 1rem; font-size: 0.95rem; color: var(--muted); font-style: italic; }
 
@@ -657,3 +657,20 @@ body { background: var(--white-warm); }
 @media (min-width: 52em) {
   .hood:last-child:nth-child(odd) > h3 { margin-top: 6.45rem; }
 }
+
+/* ---------- Audit round (2026-10-14) ---------- */
+/* 1: hero tag on two centered lines */
+.eyebrow-stack { text-align: center; }
+.eyebrow-stack > span { display: block; }
+/* 2: hero intro easier to read */
+.lede { font-weight: 600; }
+/* 4: section label tags larger */
+.eyebrow, .hero .eyebrow, .section-alt .eyebrow, .section-dark .eyebrow { font-size: 1rem; padding: 0.4rem 0.8rem; }
+/* 5: card labels larger */
+.hood-band .hood-label { font-size: 1.05rem; }
+/* 18: comparison caption needs room on phones */
+@media (max-width: 40em) { .compare caption { padding: 1rem 1rem 0.5rem; } }
+/* 23: center the portrait on phones */
+@media (max-width: 52em) { .about-photo { margin-inline: auto; } }
+/* source links inside cards and callout */
+.hood a, .legal-box a { color: var(--teal-dark); font-weight: 600; }

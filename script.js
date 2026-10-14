@@ -55,7 +55,7 @@
   // Skipped with reduced motion and data saver.
   if (reduceMotion || saveData) return;
   var SELECTORS = '.section .eyebrow, .section h2, .section-lede, .channel, .site-check, .hood, ' +
-    '.compare-wrap, .ask-box, .how-copy, .meters, .pull-quote, .case, .sub-title, .mini-case, ' +
+    '.compare-wrap, .legal-box, .ask-box, .how-copy, .meters, .pull-quote, .case, .sub-title, .mini-case, ' +
     '.tuner li, .quote, .about-photo, .about-copy, .contact-copy, .contact-form';
   var pending = [].slice.call(document.querySelectorAll(SELECTORS)).filter(function (el) {
     return el.getBoundingClientRect().top > window.innerHeight;

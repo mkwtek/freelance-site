@@ -585,3 +585,23 @@ body { background: var(--white-warm); }
 .compare thead th:last-child { background: var(--red-text); }
 .btn-ghost:hover { background: #fbe39b; }
 .ask-list li::before { background: #fbe39b; }
+
+/* Legal callout in "What you don't see" */
+.legal-box {
+  margin-top: 3rem; padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--white-warm); border: 3px solid var(--ink); border-top: 0.6rem solid var(--red-text);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.legal-box h3 { font-size: clamp(1.3rem, 3vw, 1.6rem); line-height: 1.25; }
+.legal-list { margin: 1rem 0 1.25rem; padding-left: 1.25rem; display: grid; gap: 0.6rem; }
+.legal-list li::marker { color: var(--red-text); }
+.legal-note { margin: 0; font-size: 0.95rem; color: var(--ink-soft); font-style: italic; }
+
+/* Under-the-hood cards: icon beside the label, brick red headings */
+.hood-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.hood-head .hood-label { margin-bottom: 0.5rem; }
+.hood-icon { width: 4rem; height: 4rem; flex: none; overflow: visible; margin-top: -0.25rem; }
+.hood h3 { color: var(--red-text); }
+.hood-head { margin-bottom: 1rem; }
+.hood-icon { margin-top: 0; }
+.hood h3 { font-size: 1.35rem; line-height: 1.25; }

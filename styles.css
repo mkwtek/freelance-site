@@ -364,7 +364,7 @@ a:hover { text-decoration-thickness: 2px; }
 .check-list li { position: relative; padding-left: 1.75rem; margin-bottom: 0.75rem; }
 .check-list li::before { content: "✦"; position: absolute; left: 0; color: var(--yellow-on-ink); }
 .meters { margin: 0; padding: 1.5rem; background: #2c2823; border: 3px solid var(--paper); border-radius: var(--radius); }
-.meter-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(7.5rem, 100%), 1fr)); gap: 1.25rem; }
+.meter-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
 .meter { text-align: center; }
 .meter svg { width: 100%; max-width: 10rem; margin-inline: auto; }
 .meter p { margin: 0.25rem 0 0; font-size: 0.95rem; }
@@ -524,8 +524,9 @@ a:hover { text-decoration-thickness: 2px; }
   --teal: #6cc4bf;          /* hero; ink text on it 8:1 */
   --teal-dark: #14595a;     /* dark sections; cream text on it 7.6:1 */
   --teal-deep: #0e4546;
-  --pink: #f27aa6;          /* accent fills only */
-  --pink-text: #a3285b;     /* pink text on light backgrounds */
+  --pink: #f27aa6;          /* hero highlight stripe; ink text on it 6.3:1 */
+  --pink-text: #a3285b;     /* buttons and pink text on light backgrounds */
+  --magenta: #9c1a74;       /* section label tags; cream text on it 7.0:1 */
   --white-warm: #fff7f0;
 }
 body { background: var(--white-warm); }
@@ -538,7 +539,7 @@ body { background: var(--white-warm); }
 .eyebrow { color: var(--pink-text); }
 .section-alt { background: #f4cf5c; }
 .section-dark { background: var(--teal-dark); }
-.section-dark .eyebrow, .pull-quote, .how-sub { color: #ffc0d6; }
+.pull-quote, .how-sub { color: #f4cf5c; }
 .section-dark .check-list li::before { color: #f4c94f; }
 .meters { background: var(--teal-deep); }
 .channel, .hood, .case, .mini-case, .quote, .compare, .ask-box { background-color: var(--white-warm); }
@@ -551,3 +552,31 @@ body { background: var(--white-warm); }
   .nav-toggle { padding: 0.4rem 0.7rem; }
   .brand-name { font-size: 1.15rem; }
 }
+
+/* ---------- Readable labels: bold tags instead of thin small caps ---------- */
+/* Section labels: magenta tags. Text sits on the color, so contrast is 7:1 on every background. */
+.eyebrow, .hero .eyebrow, .section-alt .eyebrow, .section-dark .eyebrow {
+  display: inline-block; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.3;
+  padding: 0.3rem 0.65rem; margin-bottom: 0.9rem; border-radius: 0.3rem;
+  background: var(--magenta); color: var(--white-warm);          /* 7.0:1 */
+}
+.hood-label { font-size: 0.8125rem; }
+.case-tags { font-size: 0.875rem; color: var(--ink-soft); }
+.hero-badges li { font-size: 0.875rem; font-weight: 700; }
+.compare thead th { font-size: 0.875rem; }
+.channel-num { font-size: 0.9rem; }
+.section-alt .section-lede, .section-alt .fine-print { color: var(--ink-soft); }
+/* Display font is for short headings only; sentences use the body font */
+.pull-quote { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.45; letter-spacing: 0; }
+/* Labels use the body font (bold caps); the monospace font stays only on numbers and the TV screen */
+.eyebrow, .hood-label, .case-tags, .hero-badges li, .compare thead th, .compare td::before {
+  font-family: var(--font-body); font-weight: 700; letter-spacing: 0.06em;
+}
+.hero-badges li { letter-spacing: 0.02em; }
+/* Softer yellows: a pale butter section background so cards stand out, a lighter site check box */
+.section-alt { background: #fcf0c4; }
+.site-check { background: #fbe39b; }
+/* Subtle retro section backgrounds: oatmeal and faded mint */
+:root { --oatmeal: #efe6d3; --mint-faded: #dcebe6; }
+#why, #about { background: var(--oatmeal); }
+#process { background: var(--mint-faded); }

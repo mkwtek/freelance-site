@@ -27,6 +27,21 @@ gauge meters, a tattoo-flash quarter spiderweb in the hero corner, a cartoon gho
 Related to Atomic Afterlife's retro feel but not a copy. Fonts: Shrikhand (display), DM Sans (body),
 Space Mono (labels).
 
+## Color palette (each color has one job)
+
+- Base: warm white #fff7f0, oatmeal #efe6d3, ink #221f1b
+- Primary, teal: bright teal #6cc4bf (hero), dark teal #14595a (links, card labels), faded mint
+  #dcebe6 (alt section)
+- Dark sections and footer: ink #221f1b (gauge panel #2c2823)
+- Accent, brick red #a63a24: buttons, section labels, quote marks, step numbers, "Why it matters",
+  "Built here" header. Cream text on it 6.1:1.
+- Hero pink #f27aa6: headline highlight stripe only
+- Highlight, yellow: #fbe39b / #f4cf5c, small callouts only (site check box, scores, pull quote)
+- Color-bar rainbow: only inside the TV illustration, never in the interface
+- Rejected (don't bring back): bright/hot pink, purple-leaning magenta, wine, portfolio magenta
+  #a10171 (too bright), light pink backgrounds, heavy yellow section backgrounds.
+- Don't add a new color without giving it a role here.
+
 ## Privacy rules
 
 - Atomic Afterlife is described only as "a small-business client". Never describe its owner.

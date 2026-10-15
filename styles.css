@@ -1113,3 +1113,25 @@ body { background: var(--white-warm); }
 .ticket-no { font-size: 0.85rem; border-top: 2px dashed var(--ink); padding-top: 0.1rem; }
 .case--film:nth-child(even) .ticket { transform: rotate(3deg); }
 .case--film .case-head { margin-bottom: 0.6rem; }
+
+/* Agency builds as record sleeves: screenshot is the cover, a record peeks out the top */
+.mini-case--lp .lp-sleeve {
+  position: relative; padding: 5.5rem 1rem 1rem; border-bottom: 3px solid var(--ink); margin-bottom: 1rem;
+}
+.lp-1 { background: var(--teal); }
+.lp-2 { background: var(--gold); }
+.lp-3 { background: var(--red-text); }
+.mini-case--lp img {
+  position: relative; z-index: 1; display: block; width: 100%; height: auto; margin: 0;
+  border: 3px solid var(--ink); border-radius: 3px; box-shadow: 4px 4px 0 var(--ink);
+}
+.peek-record {
+  position: absolute; z-index: 0; top: 0.75rem; right: 1.25rem; width: 9.5rem; max-width: 52%; height: auto;
+  transition: transform 0.6s ease;
+}
+.mini-case--lp:hover .peek-record, .mini-case--lp:focus-within .peek-record { transform: translateY(-0.4rem) rotate(50deg); }
+.lp-1 .peek-label { fill: var(--red-text); }
+.lp-2 .peek-label { fill: var(--teal-dark); }
+.lp-3 .peek-label { fill: var(--gold); }
+.peek-label-ring { fill: none; stroke: rgba(255, 247, 240, .5); stroke-width: 2; }
+@media (prefers-reduced-motion: reduce) { .peek-record { transition: none; } }

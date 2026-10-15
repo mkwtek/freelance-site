@@ -836,3 +836,6 @@ body { background: var(--white-warm); }
 /* Marquee bulbs ring the teal arrow in harvest gold */
 .bulb { fill: #ebbd4e; stroke: #fff3c4; stroke-width: 1.2; }
 @keyframes chase { 0% { fill: #fff3c4; } 50% { fill: #c99a2e; } }
+
+.score-line { margin: 1.25rem 0 0.5rem; text-align: center; line-height: 1.7; }
+.score-line strong { color: var(--yellow-on-ink); }

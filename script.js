@@ -35,6 +35,26 @@
     });
   });
 
+  // ---- Channel dial: turn the knob and light up the matching service card ----
+  var dial = document.querySelector('.dial');
+  if (dial) {
+    var dialButtons = dial.querySelectorAll('.dial-ch');
+    dialButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        dial.style.setProperty('--angle', btn.getAttribute('data-angle') + 'deg');
+        dialButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+        document.querySelectorAll('.channel.is-tuned').forEach(function (c) { c.classList.remove('is-tuned'); });
+        var card = document.getElementById(btn.getAttribute('aria-controls'));
+        if (!card) return;
+        card.classList.add('is-tuned');
+        var r = card.getBoundingClientRect();
+        if (r.top < 0 || r.bottom > window.innerHeight) {
+          card.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+      });
+    });
+  }
+
   // ---- Meter needles swing up once the gauges are mostly on screen ----
   // A high threshold so on phones (stacked layout) it happens while you're looking at them.
   var meters = document.querySelector('.meters');

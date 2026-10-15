@@ -839,3 +839,48 @@ body { background: var(--white-warm); }
 
 .score-line { margin: 1.25rem 0 0.5rem; text-align: center; line-height: 1.7; }
 .score-line strong { color: var(--yellow-on-ink); }
+
+/* ---------- Channel dial (services) ---------- */
+.services-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem 3rem; }
+.dial { position: relative; width: 15rem; aspect-ratio: 1; }
+.dial-face { position: absolute; inset: 1.75rem; width: calc(100% - 3.5rem); height: auto; overflow: visible; }
+.dial-knob { transform-box: view-box; transform-origin: 100px 100px; transform: rotate(var(--angle)); transition: transform 0.6s cubic-bezier(.3, 1.4, .5, 1); }
+.dial-ch {
+  position: absolute; left: 50%; top: 50%; width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem;
+  transform: rotate(var(--a)) translateY(-6.6rem) rotate(calc(var(--a) * -1));
+  display: grid; place-items: center; padding: 0; cursor: pointer;
+  font: 700 1rem var(--font-mono); color: var(--ink);
+  background: var(--white-warm); border: 2.5px solid var(--ink); border-radius: 50%;
+}
+.dial-ch:hover { background: #fbe39b; }
+.dial-ch[aria-pressed="true"] { background: var(--gold); box-shadow: 2px 2px 0 var(--ink); }
+.channel { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.channel.is-tuned { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ink); outline: 4px solid var(--gold); outline-offset: 3px; }
+@media (max-width: 52em) {
+  .services-head { grid-template-columns: 1fr; justify-items: center; }
+  .services-head > div { justify-self: stretch; }
+  .dial { width: 13.5rem; }
+  .dial-ch { transform: rotate(var(--a)) translateY(-5.9rem) rotate(calc(var(--a) * -1)); }
+}
+/* Free site check box: a touch more muted so the sign and button pop */
+.site-check { background: #f6e6b8; }
+/* Dial sizing: scales with its own width (container units), never wider than the screen */
+.dial { width: 18rem; container-type: inline-size; }
+.dial-face { inset: 15.3%; width: 69.4%; }
+.dial-ch { transform: rotate(var(--a)) translateY(-41.8cqi) rotate(calc(var(--a) * -1)); }
+@media (max-width: 52em) {
+  .dial { width: min(15.5rem, 100%); justify-self: center; margin-inline: auto; }
+}
+
+/* ---------- Authentic VHF dial: printed 2-13 + U on a dark bezel, chrome knob with a bar handle ---------- */
+.dial-face { inset: 0; width: 100%; }
+.dial-print { pointer-events: none; }
+.dial-ch {
+  width: 2.3rem; height: 2.3rem; margin: -1.15rem 0 0 -1.15rem;
+  transform: rotate(var(--a)) translateY(-38cqi) rotate(calc(var(--a) * -1));
+  background: transparent; border: 0; color: #f4ebd9; font-size: 1.05rem; text-shadow: 0 1px 0 #000;
+}
+.dial-ch:hover { background: rgba(244, 235, 217, 0.15); color: #fff; }
+.dial-ch[aria-pressed="true"] { background: transparent; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
+.dial-ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
+.dial-ch { font-size: 7.5cqi; }

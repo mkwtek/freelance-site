@@ -1061,3 +1061,23 @@ body { background: var(--white-warm); }
   }
   .site-header:has(.site-nav.is-open)::after { display: none; }
 }
+
+/* ---------- Night sky (test): faint crescent moon and twinkle stars in the dark sections ---------- */
+.section-dark { position: relative; overflow: hidden; }
+.section-dark > .wrap { position: relative; z-index: 1; }
+.night-sky { position: absolute; width: min(24rem, 60%); height: auto; pointer-events: none; }
+.night-sky--right { top: 1.25rem; right: 0; }
+.night-sky--left { bottom: 1rem; left: 0; }
+.sky-moon { fill: var(--gold); opacity: .55; }
+.sky-star { fill: #fbe39b; opacity: .45; }
+.sky-dot { fill: var(--paper); opacity: .35; }
+@media (prefers-reduced-motion: no-preference) {
+  .sky-star { animation: sky-twinkle 4.5s ease-in-out infinite; transform-box: fill-box; }
+  .sky-star.tw1 { animation-delay: 1.5s; }
+  .sky-star.tw2 { animation-delay: 3s; }
+}
+@keyframes sky-twinkle { 0%, 100% { opacity: .45; } 50% { opacity: .12; } }
+@media (max-width: 37.5em) { .night-sky { width: 70%; } .night-sky--left { display: none; } }
+.night-sky--contact { bottom: 3rem; }
+@media (max-width: 37.5em) { .night-sky--contact { display: block; width: 55%; bottom: 0.5rem; opacity: .8; } }
+@media (max-width: 37.5em) { #how .night-sky--right { width: 50%; top: 0.75rem; } }

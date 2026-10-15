@@ -55,6 +55,38 @@
     });
   }
 
+  // ---- FM tuning band: the pointer slides to the step you hover, focus or tap ----
+  var band = document.querySelector('.tuning-band');
+  if (band) {
+    var steps = document.querySelectorAll('.tuner li');
+    var tuneTo = function (i) {
+      var badge = steps[i] && steps[i].querySelector('.tuner-freq');
+      if (!badge) return;
+      var b = band.getBoundingClientRect(), r = badge.getBoundingClientRect();
+      var oneRow = steps[0].getBoundingClientRect().top === steps[steps.length - 1].getBoundingClientRect().top;
+      // One row: sit right above the step number. Stacked on phones: spread the five steps across the band.
+      var x = oneRow ? r.left + r.width / 2 - b.left : b.width * (i + 0.5) / steps.length;
+      band.style.setProperty('--tb', x + 'px');
+      steps.forEach(function (li, k) { li.classList.toggle('is-tuned', k === i); });
+    };
+    steps.forEach(function (li, j) { li.classList.toggle('is-tuned', j === i); });
+    };
+    steps.forEach(function (li, i) {
+      li.addEventListener('mouseenter', function () { tuneTo(i); });
+      li.addEventListener('click', function () { tuneTo(i); });
+    });
+    // Sweep to the first station once the band is on screen
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries, obs) {
+        if (entries[0].isIntersecting) { tuneTo(0); obs.disconnect(); }
+      }, { threshold: 0.8 }).observe(band);
+    } else { tuneTo(0); }
+    window.addEventListener('resize', function () {
+      var on = document.querySelector('.tuner li.is-tuned');
+      if (on) tuneTo([].indexOf.call(steps, on));
+    });
+  }
+
   // ---- Meter needles swing up once the gauges are mostly on screen ----
   // A high threshold so on phones (stacked layout) it happens while you're looking at them.
   var meters = document.querySelector('.meters');

@@ -889,3 +889,114 @@ body { background: var(--white-warm); }
 
 /* Hero TV, slight 3D: ghost origin follows its shifted position */
 .ghost { transform-origin: 323px 236px; }
+
+/* ==========================================================================
+   Analog set (test): VU meters, record sleeves, cassette tapes, FM tuning band
+   ========================================================================== */
+
+/* VU meters: amber backlit face, needle pivots below the face */
+.meter svg.vu { max-width: 11.5rem; }
+.vu-bezel { fill: #14110e; }
+.vu-face { fill: #efcf7e; }
+.vu-glow { fill: #fff3c4; opacity: .55; }
+.vu-arc { fill: none; stroke: var(--ink); stroke-width: 1.4; }
+.vu-band { fill: none; stroke: var(--red-text); stroke-width: 5; }
+.vu-ticks { fill: none; stroke: var(--ink); stroke-width: 1.3; }
+.vu-nums { font: 700 7.5px var(--font-mono); fill: var(--ink); text-anchor: middle; }
+.vu-word { font: 700 8px var(--font-mono); letter-spacing: 2px; fill: var(--ink-soft); text-anchor: middle; }
+.vu-needle {
+  fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round;
+  transform-box: view-box; transform-origin: 70px 104px; transform: rotate(-44deg);
+  transition: transform 1.6s cubic-bezier(.3, 1.35, .5, 1);
+}
+.meters.is-on .vu-needle { transform: rotate(var(--a)); }
+.vu-plate { fill: #2c2823; }
+.vu-screw { fill: #8f8676; stroke: #14110e; stroke-width: 1; }
+@media (prefers-reduced-motion: reduce) { .vu-needle { transform: rotate(var(--a)) !important; } }
+
+/* Record sleeves: a colored sleeve frames the screenshot; a small record badge sits by the tags */
+.sleeve { display: grid; align-items: center; padding: clamp(0.75rem, 2vw, 1.25rem); border-right: 3px solid var(--ink); }
+.sleeve--a { background: var(--teal); }
+.sleeve--b { background: var(--gold); }
+.case--album img, .case--album:nth-child(even) img {
+  order: 0; width: 100%; height: auto; border: 3px solid var(--ink); border-radius: 4px; box-shadow: 4px 4px 0 var(--ink);
+}
+.case--album:nth-child(even) .sleeve { order: 2; border-right: 0; border-left: 3px solid var(--ink); }
+.case-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; }
+.case-head .case-tags { margin: 0; }
+.rec-badge { flex: none; width: 3.5rem; height: 3.5rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .rec-badge { transition: transform 0.8s ease; }
+  .case--album:hover .rec-badge, .case--album:focus-within .rec-badge { transform: rotate(200deg); }
+}
+.rec-disc { fill: #14110e; }
+.rec-grooves circle { fill: none; stroke: #4a433b; stroke-width: 2; }
+.rec-shine { fill: none; stroke: #8f8676; stroke-width: 6; stroke-linecap: round; opacity: .55; }
+.sleeve--a + .case-body .rec-label { fill: var(--red-text); }
+.sleeve--b + .case-body .rec-label { fill: var(--teal-dark); }
+.rec-side { font: 700 13px var(--font-mono); letter-spacing: 1px; fill: var(--white-warm); text-anchor: middle; }
+.rec-side-big { font-size: 22px; }
+.rec-hole { fill: var(--paper); }
+@media (max-width: 52em) {
+  .sleeve, .case--album:nth-child(even) .sleeve { order: 0; border: 0; border-bottom: 3px solid var(--ink); }
+}
+
+/* Cassette tapes: dark shell with corner screws, paper label, reels at the bottom */
+.quote--tape {
+  display: flex; flex-direction: column; padding: 0.7rem 0.7rem 0.4rem;
+  background:
+    radial-gradient(circle at 0.4rem 0.75rem, #8f8676 0 0.14rem, transparent 0.18rem),
+    radial-gradient(circle at calc(100% - 0.4rem) 0.75rem, #8f8676 0 0.14rem, transparent 0.18rem),
+    radial-gradient(circle at 0.4rem calc(100% - 0.4rem), #8f8676 0 0.14rem, transparent 0.18rem),
+    radial-gradient(circle at calc(100% - 0.4rem) calc(100% - 0.4rem), #8f8676 0 0.14rem, transparent 0.18rem),
+    #2c2823;
+}
+.quote--tape::before { content: none; }
+.tape-label {
+  position: relative; flex: 1; padding: 2.75rem 1.5rem 1.25rem;
+  background: var(--bars) top / 100% 0.6rem no-repeat, var(--white-warm);
+  border: 2px solid var(--ink); border-radius: 0.5rem;
+}
+.tape-label::before {
+  content: "\201C"; position: absolute; top: 0.85rem; left: 1rem;
+  font: 400 3.5rem/1 var(--font-display); color: var(--red-text);
+}
+.tape-label footer { margin: 0; }
+.tape-reels { display: block; width: min(100%, 12rem); height: auto; margin: 0.4rem auto 0; }
+.tape-bridge { fill: #3a342e; stroke: var(--ink); stroke-width: 2; }
+.tape-window { fill: #14110e; stroke: #8f8676; stroke-width: 1.5; }
+.tape-ribbon { fill: none; stroke: #4a2a18; stroke-width: 3; }
+.reel { transform-box: fill-box; transform-origin: center; }
+.reel-pack { fill: #4a2a18; }
+.reel-hub { fill: var(--white-warm); }
+.reel-teeth { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
+.tape-hole { fill: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .quote--tape:hover .reel, .quote--tape:focus-within .reel { animation: reel-spin 2.4s linear infinite; }
+}
+@keyframes reel-spin { to { transform: rotate(-360deg); } }
+
+/* FM tuning band: slim backlit receiver strip, pointer moves to the step you're reading */
+.tuning-band {
+  position: relative; overflow: hidden; margin-top: 1.75rem; padding: 0.35rem 1rem 0.45rem;
+  background: #221f1b; border: 3px solid var(--ink); border-radius: 0.6rem;
+  box-shadow: 4px 4px 0 var(--ink), inset 0 0 1.25rem rgba(235, 189, 78, .28);
+  font: 700 0.75rem/1.2 var(--font-mono); color: var(--yellow-on-ink);
+}
+.tb-scale { display: flex; justify-content: space-between; gap: 0.25rem; }
+.tb-ticks {
+  height: 0.55rem; margin-top: 0.2rem;
+  background:
+    repeating-linear-gradient(90deg, var(--yellow-on-ink) 0 2px, transparent 2px 2.5rem) 0 0 / 100% 100%,
+    repeating-linear-gradient(90deg, var(--yellow-on-ink) 0 1px, transparent 1px 0.5rem) 0 100% / 100% 50% no-repeat;
+  opacity: .7;
+}
+.tb-pointer {
+  position: absolute; top: 0.2rem; bottom: 0.2rem; left: var(--tb, 1rem); width: 3px; margin-left: -1px;
+  background: var(--bar-red); box-shadow: 0 0 6px 1px rgba(201, 73, 47, .8); border-radius: 2px;
+  transition: left 0.9s cubic-bezier(.4, 1.3, .5, 1);
+}
+@media (min-width: 60em) { .tuner { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.tuner li.is-tuned .tuner-freq { box-shadow: 0 0 0 3px var(--white-warm), 0 0 0 6px var(--ink); }
+@media (max-width: 30em) { .tb-scale span:first-child, .tb-scale span:last-child { display: none; } }
+.tuning-band + .tuner { margin-top: 1.25rem; }

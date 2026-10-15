@@ -38,21 +38,60 @@
   // ---- Channel dial: turn the knob and light up the matching service card ----
   var dial = document.querySelector('.dial');
   if (dial) {
-    var dialButtons = dial.querySelectorAll('.dial-ch');
+    var dialButtons = [].slice.call(dial.querySelectorAll('.dial-ch'));
+    var tune = function (btn, fromUser) {
+      dial.style.setProperty('--angle', btn.getAttribute('data-angle') + 'deg');
+      dialButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      document.querySelectorAll('.channel.is-tuned').forEach(function (c) { c.classList.remove('is-tuned'); });
+      var card = document.getElementById(btn.getAttribute('aria-controls'));
+      if (!card) return;
+      card.classList.add('is-tuned');
+      if (!fromUser) return;
+      var r = card.getBoundingClientRect();
+      if (r.top < 0 || r.bottom > window.innerHeight) {
+        card.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+      }
+    };
+
+    // Channel surfing: while the dial is on screen it flips channels in time with the hero TV,
+    // turning right as the TV glitches between the color bars and "Please stand by".
+    // Pauses on hover or focus, stops for good once you pick a channel, and stops after a few turns.
+    var surf = null, hops = 0, inView = false, held = false, surfDone = reduceMotion;
+    var LOOP = 14000, GLITCHES = [0.395 * LOOP, 0.87 * LOOP];   // matches the tv-glitch keyframes
+    var glitchAnim = function () {
+      var g = document.querySelector('.tv-glitch');
+      return g && g.getAnimations ? g.getAnimations()[0] : null;
+    };
+    var msToNextGlitch = function () {
+      var anim = glitchAnim();
+      if (!anim || anim.currentTime == null) return 7000;
+      var t = anim.currentTime % LOOP;
+      var next = GLITCHES.filter(function (g) { return g > t + 50; })[0];
+      return (next === undefined ? GLITCHES[0] + LOOP : next) - t;
+    };
+    var stopSurf = function () { clearTimeout(surf); surf = null; };
+    var startSurf = function () {
+      if (surfDone || surf || !inView || held) return;
+      surf = setTimeout(function () {
+        surf = null;
+        var current = dial.querySelector('[aria-pressed="true"]');
+        var others = dialButtons.filter(function (b) { return b !== current; });
+        tune(others[Math.floor(Math.random() * others.length)], false);
+        if (++hops >= 8) { surfDone = true; return; }
+        startSurf();
+      }, msToNextGlitch());
+    };
     dialButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        dial.style.setProperty('--angle', btn.getAttribute('data-angle') + 'deg');
-        dialButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
-        document.querySelectorAll('.channel.is-tuned').forEach(function (c) { c.classList.remove('is-tuned'); });
-        var card = document.getElementById(btn.getAttribute('aria-controls'));
-        if (!card) return;
-        card.classList.add('is-tuned');
-        var r = card.getBoundingClientRect();
-        if (r.top < 0 || r.bottom > window.innerHeight) {
-          card.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
-        }
-      });
+      btn.addEventListener('click', function () { surfDone = true; stopSurf(); tune(btn, true); });
     });
+    ['mouseenter', 'focusin'].forEach(function (ev) { dial.addEventListener(ev, function () { held = true; stopSurf(); }); });
+    ['mouseleave', 'focusout'].forEach(function (ev) { dial.addEventListener(ev, function () { held = false; startSurf(); }); });
+    if (!surfDone && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        inView = entries[0].isIntersecting;
+        if (inView) { startSurf(); } else { stopSurf(); }
+      }, { threshold: 0.5 }).observe(dial);
+    }
   }
 
   // ---- FM tuning band: the pointer slides to the step you hover, focus or tap ----
@@ -68,8 +107,6 @@
       var x = oneRow ? r.left + r.width / 2 - b.left : b.width * (i + 0.5) / steps.length;
       band.style.setProperty('--tb', x + 'px');
       steps.forEach(function (li, k) { li.classList.toggle('is-tuned', k === i); });
-    };
-    steps.forEach(function (li, j) { li.classList.toggle('is-tuned', j === i); });
     };
     steps.forEach(function (li, i) {
       li.addEventListener('mouseenter', function () { tuneTo(i); });

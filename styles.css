@@ -865,11 +865,11 @@ body { background: var(--white-warm); }
 /* Free site check box: a touch more muted so the sign and button pop */
 .site-check { background: #f6e6b8; }
 /* Dial sizing: scales with its own width (container units), never wider than the screen */
-.dial { width: 18rem; container-type: inline-size; }
+.dial { width: 13.5rem; container-type: inline-size; }
 .dial-face { inset: 15.3%; width: 69.4%; }
 .dial-ch { transform: rotate(var(--a)) translateY(-41.8cqi) rotate(calc(var(--a) * -1)); }
 @media (max-width: 52em) {
-  .dial { width: min(15.5rem, 100%); justify-self: center; margin-inline: auto; }
+  .dial { width: min(12.5rem, 100%); justify-self: center; margin-inline: auto; }
 }
 
 /* ---------- Authentic VHF dial: printed 2-13 + U on a dark bezel, chrome knob with a bar handle ---------- */
@@ -1000,3 +1000,4 @@ body { background: var(--white-warm); }
 .tuner li.is-tuned .tuner-freq { box-shadow: 0 0 0 3px var(--white-warm), 0 0 0 6px var(--ink); }
 @media (max-width: 30em) { .tb-scale span:first-child, .tb-scale span:last-child { display: none; } }
 .tuning-band + .tuner { margin-top: 1.25rem; }
+.check-note { margin-top: 0.5rem; font-size: 0.875rem; font-style: normal; color: var(--ink-soft); }

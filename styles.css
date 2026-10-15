@@ -1236,3 +1236,66 @@ body { background: var(--white-warm); }
 .night-sky--contact { bottom: 3rem; }
 @media (max-width: 37.5em) { .night-sky--contact { display: block; width: 55%; bottom: 0.5rem; opacity: .8; } }
 @media (max-width: 37.5em) { #how .night-sky--right { width: 50%; top: 0.75rem; } }
+
+/* Agency builds: a 1950s suitcase record player beside the heading; tonearm drops onto the record on hover */
+.sub-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2.5rem; margin-top: 3.5rem; }
+.sub-head > div { flex: 1 1 28rem; min-width: 0; }
+.sub-head .sub-title { margin-top: 0; }
+.sub-head .section-lede { margin-bottom: 0; }
+.turntable { width: min(15rem, 100%); height: auto; flex: none; }
+.tt-lid { fill: var(--red-text); stroke: var(--ink); stroke-width: 3.5; }
+.tt-lid-panel { fill: #efe6d3; stroke: var(--ink); stroke-width: 2; }
+.tt-hinge { stroke: var(--ink); stroke-width: 3; }
+.tt-deck { fill: #efe6d3; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.tt-platter { fill: #8f8676; stroke: var(--ink); stroke-width: 2; }
+.tt-disc { fill: #14110e; }
+.tt-grooves ellipse { fill: none; stroke: #3a342e; stroke-width: 1; }
+.tt-label { fill: var(--gold); }
+.tt-spindle { fill: var(--white-warm); }
+.tt-arm-bar { fill: none; stroke: #cfc6b6; stroke-width: 4; stroke-linecap: round; }
+.tt-head { fill: var(--ink); }
+.tt-pivot { fill: var(--ink); }
+.tt-pivot-cap { fill: var(--gold); }
+.tt-arm { transform-box: view-box; transform: rotate(-14deg); transition: transform 1s cubic-bezier(.4, 1.2, .5, 1); }
+#work .sub-head:hover .tt-arm, .mini-case-grid:hover ~ * .tt-arm { transform: none; }
+.tt-case { fill: var(--teal-dark); stroke: var(--ink); stroke-width: 3.5; }
+.tt-band { stroke: var(--white-warm); stroke-width: 2.5; opacity: .7; }
+.tt-grille { fill: #efe6d3; stroke: var(--ink); stroke-width: 2; }
+.tt-grille-lines { stroke: var(--gold); stroke-width: 3; stroke-linecap: round; }
+.tt-knob { fill: var(--ink); stroke: var(--gold); stroke-width: 2.5; }
+.tt-latch { fill: var(--gold); stroke: var(--ink); stroke-width: 1.5; }
+.tt-foot { fill: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .tt-arm { transition: none; transform: none; } }
+@media (max-width: 40em) { .turntable { width: min(11rem, 60%); } }
+/* Letter tiles size to their letter (wide W and M included) with room on every side */
+.tile { width: auto; min-width: 1.35em; height: 1.55em; padding: 0 0.16em; box-sizing: border-box; line-height: 1; }
+.tile-word { gap: 0.16em; }
+/* Cinerama coloring: letters alternate red and blue, each tile's 3D edge in the opposite color */
+.tile:nth-child(even) { color: var(--bar-blue); box-shadow: 0.14em 0.1em 0 var(--red-text), 0.14em 0.1em 0 3px var(--ink); }
+/* Filled tiles: red and blue alternate, cream letters, each 3D edge in the opposite color */
+.tile { background: var(--red-text); color: var(--white-warm); box-shadow: 0.14em 0.1em 0 var(--bar-blue), 0.14em 0.1em 0 3px var(--ink); }
+.tile:nth-child(even) { background: var(--bar-blue); color: var(--white-warm); box-shadow: 0.14em 0.1em 0 var(--red-text), 0.14em 0.1em 0 3px var(--ink); }
+/* True to the Cinerama signs: cream tiles, letters alternate red and blue, each tile framed and
+   extruded in the opposite color (red letter = blue frame and side, blue letter = red frame and side) */
+.tile {
+  background: var(--white-warm); color: var(--red-text);
+  border: 0.11em solid var(--bar-blue); border-radius: 0.06em;
+  box-shadow: 0.13em 0.09em 0 #233d6b;
+}
+.tile:nth-child(even) {
+  background: var(--white-warm); color: var(--bar-blue);
+  border-color: var(--red-text);
+  box-shadow: 0.13em 0.09em 0 #6e2617;
+}
+/* Like the classic Cinerama sign: solid red and blue panels alternate, bold white letters, a white
+   edge on every panel, panels touching in one zigzag strip, soft shadow behind the whole sign */
+.tile-word { gap: 0; filter: drop-shadow(0.06em 0.08em 0.06em rgba(34, 31, 27, .35)); }
+.tile {
+  min-width: 1.3em; height: 1.6em; padding: 0 0.14em;
+  font: 700 1em/1 var(--font-body); letter-spacing: 0;
+  background: var(--bar-red); color: #fff;
+  border: 0.09em solid #fff; border-radius: 0.04em; box-shadow: none;
+}
+.tile:nth-child(even) { background: var(--bar-blue); color: #fff; border-color: #fff; box-shadow: none; }
+.tiles { font-size: min(2.6rem, 8.5vw); gap: 0.4em 0.7em; }
+.tile { font-size: 1.25em; min-width: 1.05em; height: 1.4em; padding: 0 0.1em; border-width: 0.07em; }

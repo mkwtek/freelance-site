@@ -1114,22 +1114,24 @@ body { background: var(--white-warm); }
 .case--film:nth-child(even) .ticket { transform: rotate(3deg); }
 .case--film .case-head { margin-bottom: 0.6rem; }
 
-/* Agency builds as record sleeves: screenshot is the cover, a record peeks out the top */
-.mini-case--lp .lp-sleeve {
-  position: relative; padding: 5.5rem 1rem 1rem; border-bottom: 3px solid var(--ink); margin-bottom: 1rem;
+/* Agency builds as LP covers: square cover (screenshot on top, title block below, like a classic
+   jazz LP), with a full-size record sliding out of the top of the sleeve */
+.mini-case--lp .lp-sleeve { position: relative; overflow: hidden; padding: 3.75rem 1rem 1rem; margin-bottom: 1rem; background: var(--paper); border-bottom: 3px solid var(--ink); }
+.lp-cover {
+  position: relative; z-index: 1; display: flex; flex-direction: column; aspect-ratio: 1;
+  border: 3px solid var(--ink); border-radius: 3px; box-shadow: 4px 4px 0 var(--ink); overflow: hidden;
 }
-.lp-1 { background: var(--teal); }
-.lp-2 { background: var(--gold); }
-.lp-3 { background: var(--red-text); }
-.mini-case--lp img {
-  position: relative; z-index: 1; display: block; width: 100%; height: auto; margin: 0;
-  border: 3px solid var(--ink); border-radius: 3px; box-shadow: 4px 4px 0 var(--ink);
-}
+.lp-1 .lp-cover { background: var(--teal); }
+.lp-2 .lp-cover { background: var(--gold); }
+.lp-3 .lp-cover { background: var(--red-text); }
+.mini-case--lp .lp-cover img { display: block; width: 100%; height: auto; margin: 0; border: 0; border-bottom: 3px solid var(--ink); }
+.mini-case .lp-title { margin: auto 0 0; padding: 0.75rem 1rem 0.9rem; font: 400 clamp(1.2rem, 2.2vw, 1.45rem)/1.15 var(--font-display); color: var(--ink); }
+.lp-3 .lp-title { color: var(--white-warm); }
 .peek-record {
-  position: absolute; z-index: 0; top: 0.75rem; right: 1.25rem; width: 9.5rem; max-width: 52%; height: auto;
+  position: absolute; z-index: 0; top: 0.75rem; left: calc(1rem + 3%); width: calc(94% - 2rem); height: auto;
   transition: transform 0.6s ease;
 }
-.mini-case--lp:hover .peek-record, .mini-case--lp:focus-within .peek-record { transform: translateY(-0.4rem) rotate(50deg); }
+.mini-case--lp:hover .peek-record, .mini-case--lp:focus-within .peek-record { transform: translateY(-0.5rem) rotate(25deg); }
 .lp-1 .peek-label { fill: var(--red-text); }
 .lp-2 .peek-label { fill: var(--teal-dark); }
 .lp-3 .peek-label { fill: var(--gold); }

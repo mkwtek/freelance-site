@@ -493,15 +493,15 @@ a:hover { text-decoration-thickness: 2px; }
 .footer-brand { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 0.25rem; }
 .footer-small { font-size: 0.875rem; color: #cfc6b6; margin: 0; }
 
-/* Scroll-in reveal. Only active when script.js adds .reveal-on to <html>, so nothing is ever hidden
+/* Scroll-in reveal (uses translate, not transform, so tilted or skewed elements keep their own transform). Only active when script.js adds .reveal-on to <html>, so nothing is ever hidden
    if the script doesn't run. Skipped with reduced motion and data saver. Classes are removed after
    the fade so hover effects work normally. */
 @media (prefers-reduced-motion: no-preference) {
-  .reveal-on .rv { opacity: 0; transform: translateY(1.25rem); transition: opacity .55s ease-out, transform .55s ease-out; transition-delay: var(--rv-delay, 0s); }
-  .reveal-on .rv.rv-in { opacity: 1; transform: none; }
+  .reveal-on .rv { opacity: 0; translate: 0 1.25rem; transition: opacity .55s ease-out, translate .55s ease-out; transition-delay: var(--rv-delay, 0s); }
+  .reveal-on .rv.rv-in { opacity: 1; translate: none; }
 }
 @media (prefers-reduced-motion: no-preference) and (max-width: 37.5em) {
-  .reveal-on .rv { transform: translateY(.75rem); transition-duration: .4s; }   /* phones: shorter and quicker */
+  .reveal-on .rv { translate: 0 .75rem; transition-duration: .4s; }   /* phones: shorter and quicker */
 }
 
 /* Spider: drops from the corner web on its thread, hangs and bobs, then climbs back up.
@@ -1335,3 +1335,37 @@ body { background: var(--white-warm); }
 .mb-big-stamp { fill: var(--teal); stroke: var(--ink); stroke-width: 1.5; }
 .mb-big-lines { stroke: #a39a8c; stroke-width: 2; stroke-linecap: round; }
 .mailbox .mb-door { fill: #d9d5cd; }
+/* Mailbox sits a bit lower so its top lines up closer to the "Kind words" label */
+@media (min-width: 40.01em) { .mailbox { width: min(12rem, 100%); position: relative; top: 1.5rem; } }
+
+/* Wrench (step icon in About) */
+.wr-steel { fill: #c9c4bb; stroke: var(--ink); stroke-width: 5; }
+.wr-shine { stroke: #f4f2ee; stroke-width: 4; stroke-linecap: round; opacity: .8; }
+.diag-icon .wr-steel { stroke-width: 9; }
+.diag-icon .wr-shine { stroke-width: 7; }
+
+/* About: one-color shop badge under the photo (ink silhouettes with cream cut lines, brick spark) */
+.shop-badge { display: block; width: min(13rem, 70%); height: auto; margin: 2rem auto 0; }
+.bd-face { fill: var(--white-warm); stroke: var(--ink); stroke-width: 4; }
+.bd-ring { fill: none; stroke: var(--ink); stroke-width: 2; }
+.bd-ring--in { stroke-width: 2.5; }
+.bd-text { font: 400 15px 'Alfa Slab One', Rockwell, serif; letter-spacing: 2.5px; fill: var(--ink); text-anchor: middle; }
+.bd-rays { stroke: var(--ink); stroke-width: 1.4; opacity: .35; }
+.bd-ink { fill: var(--ink); }
+.bd-ink-line { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; }
+.bd-cut { fill: none; stroke: var(--white-warm); stroke-width: 2.4; stroke-linecap: round; }
+.bd-cut--thin { stroke-width: 1.6; }
+.bd-star { fill: var(--red-text); }
+.bd-spark path { fill: var(--red-text); }
+@media (prefers-reduced-motion: no-preference) {
+  .bd-spark { animation: bd-fire 3.4s steps(1) infinite; }
+}
+@keyframes bd-fire { 0%, 82% { opacity: 1; } 84% { opacity: .15; } 86% { opacity: 1; } 88% { opacity: .15; } 90%, 100% { opacity: 1; } }
+@media (max-width: 52em) { .shop-badge { width: min(10rem, 55%); margin-top: 1.5rem; } }
+/* Fan Mail: a short note is written larger, so it fills its card the way a short postcard message would */
+.quote--short .pc-msg p:first-child { font-size: clamp(1.15rem, 2vw, 1.35rem); line-height: 1.5; }
+.quote--short .pc-msg .pc-sign { font-size: 2.2rem; margin-top: 0.6rem; }
+.pc-mark text { font-size: 7px; }
+.pc-city { margin: 0; padding-bottom: 0.2rem; border-bottom: 2px solid #b8ab92; font-size: 0.95rem; color: var(--ink-soft); }
+.pc-mark { width: 9rem; right: 2.4rem; }
+.pc-mark text { font-size: 7.5px; }

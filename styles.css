@@ -1369,3 +1369,43 @@ body { background: var(--white-warm); }
 .pc-city { margin: 0; padding-bottom: 0.2rem; border-bottom: 2px solid #b8ab92; font-size: 0.95rem; color: var(--ink-soft); }
 .pc-mark { width: 9rem; right: 2.4rem; }
 .pc-mark text { font-size: 7.5px; }
+/* Badge, second pass: solid ink ring with cream lettering, cream face with a two-tone sunburst,
+   bold silhouettes keylined in cream so the plug separates from the wrenches */
+.shop-badge { width: min(15rem, 75%); }
+.bd-band { fill: var(--ink); stroke: none; }
+.bd-band-line { fill: none; stroke: var(--white-warm); stroke-width: 1.5; }
+.bd-face { fill: var(--white-warm); stroke: var(--white-warm); stroke-width: 3; }
+.bd-rays { fill: #efe2c4; opacity: 1; stroke: none; }
+.bd-text { font: 400 16px 'Alfa Slab One', Rockwell, serif; letter-spacing: 2px; fill: var(--white-warm); }
+.bd-star { fill: var(--gold); }
+.bd-keyline > * { stroke: var(--white-warm); stroke-width: 3; paint-order: stroke; }
+.bd-cut { stroke-width: 2.6; }
+.bd-spark path { fill: var(--red-text); stroke: var(--white-warm); stroke-width: 2; paint-order: stroke; }
+@media (max-width: 52em) { .shop-badge { width: min(12rem, 60%); } }
+/* Badge, third pass: browser window (the website half) behind a crossed wrench and screwdriver,
+   upright spark plug, yellow spark that fires */
+.bd-keyline-solo { stroke: var(--white-warm); stroke-width: 3; paint-order: stroke; }
+.bd-win-screen { fill: var(--teal); }
+.bd-dot { fill: var(--white-warm); }
+.bd-code { font: 700 13px var(--font-mono); fill: var(--ink); text-anchor: middle; }
+.bd-spark path { fill: var(--gold); stroke: var(--ink); stroke-width: 1.5; paint-order: normal; }
+.bd-spark { transform-box: fill-box; transform-origin: 50% 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .bd-spark { animation: bd-zap 2.6s ease-out infinite; }
+}
+@keyframes bd-zap {
+  0%, 60% { opacity: 0; transform: scale(.4); }
+  64% { opacity: 1; transform: scale(1.15); }
+  70% { opacity: .35; transform: scale(.95); }
+  74% { opacity: 1; transform: scale(1.05); }
+  86%, 100% { opacity: 0; transform: scale(.9); }
+}
+.bd-lines { stroke: var(--white-warm); stroke-width: 3; stroke-linecap: round; }
+.bd-code { font-size: 15px; fill: var(--white-warm); text-anchor: middle; }
+.bd-text { font-size: 14.5px; letter-spacing: 1.6px; }
+/* Laptop and code in the badge */
+.bd-code { font: 700 7.5px var(--font-mono); fill: var(--ink); text-anchor: start; }
+.bd-code--css { fill: var(--white-warm); }
+.bd-snip { font: 700 9px var(--font-mono); fill: var(--ink); opacity: .22; text-anchor: middle; }
+.bd-spark { transform-origin: 50% 100%; }
+.bd-spark { transform-origin: 50% 0; }

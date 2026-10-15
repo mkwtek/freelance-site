@@ -7,6 +7,22 @@
 
 /* Self-hosted fonts (Latin subset from Google Fonts, SIL Open Font License) */
 @font-face {
+  font-family: 'Alfa Slab One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/alfa-slab-one-normal-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Yellowtail';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/yellowtail-normal-400.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
   font-family: 'DM Sans';
   font-style: italic;
   font-weight: 400;
@@ -674,3 +690,141 @@ body { background: var(--white-warm); }
 @media (max-width: 52em) { .about-photo { margin-inline: auto; } }
 /* source links inside cards and callout */
 .hood a, .legal-box a { color: var(--teal-dark); font-weight: 600; }
+
+/* ---------- Harvest gold accent (2026-10-14) ----------
+   Gold = fills, always with a black outline. Brick red = text accents (headings, "Why it matters",
+   quote marks, list markers), because gold fails contrast as text on light backgrounds. */
+:root {
+  --gold: #ebbd4e;   /* ink text on it 9.3:1 */
+  --bars: linear-gradient(90deg, #d8d1c3 0 14.2857%, #e8c547 0 28.5714%, #58b6b1 0 42.8571%, #82a64f 0 57.1428%, #b65a93 0 71.4285%, #c9492f 0 85.7142%, #34589a 0);
+}
+.eyebrow, .hero .eyebrow, .section-alt .eyebrow, .section-dark .eyebrow {
+  background: var(--gold); color: var(--ink);
+  border: 2.5px solid var(--ink); box-shadow: 3px 3px 0 var(--ink);
+}
+.section-dark .eyebrow { box-shadow: 3px 3px 0 #000; }
+.btn-primary { background: var(--gold); color: var(--ink); }
+.site-nav .nav-cta:hover { background: var(--gold); color: var(--ink); }
+.tuner-freq { background: var(--gold); color: var(--ink); }
+.compare thead th:last-child { background: var(--gold); color: var(--ink); }
+.m-hub { fill: var(--gold); }
+.legal-box { border-top-color: var(--gold); }
+
+/* Color-bar stripe (same colors and order as the TV), under the header and atop dark sections */
+.site-header { border-bottom: 0; }
+.site-header::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 0.5rem;
+  background: var(--bars); border-block: 2px solid var(--ink);
+}
+.hero { padding-top: calc(clamp(2.5rem, 6vw, 5rem) + 0.75rem); }
+.section-dark { position: relative; }
+.section-dark::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 0.5rem;
+  background: var(--bars); border-bottom: 2px solid #000;
+}
+
+/* ---------- TV channel loop: color bars, glitch, circle test card, glitch, bars ----------
+   14s loop. Reduced motion: the global rule stops all animation, leaving the color bars showing. */
+.tv-circle, .tv-glitch { opacity: 0; }
+.tv-bars, .tv-circle, .tv-glitch { transform-box: view-box; transform-origin: 130px 173px; }
+@media (prefers-reduced-motion: no-preference) {
+  .tv-bars { animation: tv-bars 14s steps(1) infinite; }
+  .tv-circle { animation: tv-circle 14s steps(1) infinite; }
+  .tv-glitch { animation: tv-glitch 14s steps(1) infinite; }
+  .tv-noise { animation: tv-noise 0.14s steps(1) infinite; }
+  .tv-tear { animation: tv-tear 0.22s steps(1) infinite; }
+}
+@keyframes tv-bars {
+  0% { opacity: 1; transform: none; }
+  40% { opacity: 1; transform: translateX(5px) skewX(-8deg); }
+  41% { opacity: 1; transform: translateX(-4px); }
+  42% { opacity: 0; }
+  90% { opacity: 1; transform: translateX(-6px) skewX(6deg); }
+  91.5% { opacity: 1; transform: none; }
+}
+@keyframes tv-circle {
+  0% { opacity: 0; }
+  43.5% { opacity: 1; transform: translateX(6px) skewX(7deg); }
+  44.5% { opacity: 1; transform: none; }
+  87.5% { opacity: 1; transform: translateX(-5px) skewX(-6deg); }
+  88.5% { opacity: 0; }
+}
+@keyframes tv-glitch {
+  0% { opacity: 0; }
+  39.5% { opacity: 1; }
+  44.5% { opacity: 0; }
+  87% { opacity: 1; }
+  92% { opacity: 0; }
+}
+@keyframes tv-noise { 0% { transform: translate(0, 0); } 33% { transform: translate(-7px, 3px); } 66% { transform: translate(5px, -4px); } }
+@keyframes tv-tear { 0% { transform: translateX(0); } 50% { transform: translateX(-14px); } }
+
+/* ---------- Marquee sign (free site check) and Puget Sound badge (footer) ---------- */
+
+.site-check--sign { display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 1fr) auto; align-items: center; gap: 1.5rem 2rem; }
+.site-check--sign > div { flex: initial; }
+.marquee-sign { width: 100%; height: auto; overflow: visible; }
+.bulb { fill: #ebbd4e; stroke: #221f1b; stroke-width: 1.5; }
+@media (prefers-reduced-motion: no-preference) {
+  .bulb.b0 { animation: chase 1.2s steps(1) infinite; }
+  .bulb.b1 { animation: chase 1.2s steps(1) infinite 0.6s; }
+}
+@keyframes chase { 0% { fill: #fff3c4; } 50% { fill: #b8860b; } }
+@media (max-width: 52em) { .site-check--sign { grid-template-columns: 1fr; justify-items: start; } .marquee-sign { max-width: 22rem; } }
+.pnw-badge { display: block; width: 12rem; height: auto; margin: 0 auto 1rem; }
+
+/* Ferry crosses the Sound; holds still mid-water for reduced motion */
+.ferry { transform-box: view-box; transform: translateX(100px); }
+@media (prefers-reduced-motion: no-preference) {
+  .ferry { animation: ferry-cross 22s linear infinite; }
+}
+@keyframes ferry-cross { from { transform: translateX(-90px); } to { transform: translateX(250px); } }
+
+
+/* One 22s weather cycle per ferry crossing (right to left):
+   sun out -> sun sinks and fades, clouds roll in, sky dims -> rain -> rain stops, clouds leave, sun returns.
+   Reduced motion: ferry mid-Sound, sun out, no storm. */
+.ferry, .sun, .sun-rays, .cloud, .rain, .sky-dim { transform-box: view-box; }
+.ferry { transform: translateX(100px); }
+.sun-rays { transform-origin: 52px 50px; }
+.rain { opacity: 0; }
+.sky-dim { opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .ferry { animation: ferry-cross 22s linear infinite; }
+  .sun { animation: sun-cycle 22s ease-in-out infinite; }
+  .sun-rays { animation: sun-spin 18s linear infinite; }
+  .cloud-a { animation: cloud-a-move 22s ease-in-out infinite; }
+  .cloud-a .cloud-fill { animation: cloud-a-color 22s ease-in-out infinite; }
+  .cloud-b { animation: cloud-b-move 22s ease-in-out infinite; }
+  .rain-wrap { animation: rain-cycle 22s linear infinite; }
+  .rain { opacity: 1; animation: rain-fall 0.7s linear infinite; }
+  .sky-dim { animation: sky-cycle 22s ease-in-out infinite; }
+}
+@keyframes ferry-cross { from { transform: translateX(250px); } to { transform: translateX(-90px); } }
+@keyframes sun-spin { to { transform: rotate(360deg); } }
+@keyframes sun-cycle {
+  0%, 30% { opacity: 1; transform: none; }
+  50%, 84% { opacity: 0; transform: translateY(26px); }
+  96%, 100% { opacity: 1; transform: none; }
+}
+@keyframes rain-cycle { 0%, 48% { opacity: 0; } 55%, 82% { opacity: 1; } 90%, 100% { opacity: 0; } }
+@keyframes sky-cycle { 0%, 28% { opacity: 0; } 52%, 82% { opacity: .35; } 96%, 100% { opacity: 0; } }
+@keyframes rain-fall { from { transform: translateY(-8px); } to { transform: translateY(8px); } }
+
+/* Cloud A: white fair-weather cloud that darkens into a rain cloud, then lightens again */
+.cloud-a .cloud-fill { fill: #fff7f0; }
+.cloud-b { opacity: 0; }
+.rain-wrap { opacity: 0; }
+@keyframes cloud-a-move { 0% { transform: translateX(20px); opacity: 0; } 5% { opacity: 1; } 55% { transform: translateX(-6px); } 92% { opacity: 1; } 100% { transform: translateX(-30px); opacity: 0; } }
+@keyframes cloud-a-color { 0%, 28% { fill: #fff7f0; } 50%, 84% { fill: #8f9a9d; } 96%, 100% { fill: #fff7f0; } }
+@keyframes cloud-b-move { 0%, 26% { opacity: 0; transform: translateX(60px); } 48% { opacity: 1; transform: translateX(-6px); } 84% { opacity: 1; transform: translateX(-24px); } 97%, 100% { opacity: 0; transform: translateX(-90px); } }
+
+.site-footer--pnw { position: relative; border-top: 0; padding-top: 3.25rem; }
+.site-footer--pnw::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 0.5rem;
+  background: var(--bars); border-bottom: 2px solid #000;
+}
+
+/* Marquee sign colors follow the reference: warm bulbs on an orange arrow */
+.bulb { fill: #ffe08a; stroke: #8a3d14; stroke-width: 1.2; }
+@keyframes chase { 0% { fill: #fff6cf; } 50% { fill: #d9a43a; } }

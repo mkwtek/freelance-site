@@ -33,8 +33,10 @@ Space Mono (labels).
 - Primary, teal: bright teal #6cc4bf (hero), dark teal #14595a (links, card labels), faded mint
   #dcebe6 (alt section)
 - Dark sections and footer: ink #221f1b (gauge panel #2c2823)
-- Accent, brick red #a63a24: buttons, section labels, quote marks, step numbers, "Why it matters",
-  "Built here" header. Cream text on it 6.1:1.
+- Accent fills, harvest gold #ebbd4e, ALWAYS with a black outline (tags, primary buttons, step numbers,
+  "Built and tuned" header, legal box top bar). Ink text on gold 9.3:1. Never gold text on light backgrounds.
+- Accent text, brick red #a63a24: card headings, "Why it matters", quote marks, list markers.
+- Color-bar stripe: the TV's exact bar colors and order, 0.5rem tall, under the header and atop dark sections.
 - Hero pink #f27aa6: headline highlight stripe only
 - Highlight, yellow: #fbe39b / #f4cf5c, small callouts only (site check box, scores, pull quote)
 - Color-bar rainbow: only inside the TV illustration, never in the interface

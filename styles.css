@@ -1061,3 +1061,68 @@ body { background: var(--white-warm); }
   }
   .site-header:has(.site-nav.is-open)::after { display: none; }
 }
+
+/* Cassette, true to life: the label covers the shell, the reel window sits in the label's lower
+   middle across a colored stripe band, and the bottom edge is the raised head ridge with drive holes */
+.tape-label { padding-bottom: 0.9rem; }
+.tape-stripe {
+  margin: 1rem -1.5rem 0; padding: 0.35rem 0;
+  background: linear-gradient(var(--gold) 0 50%, var(--red-text) 50% 100%);
+  border-block: 2px solid var(--ink);
+}
+.tape-window { display: block; width: min(100%, 15rem); height: auto; margin-inline: auto; }
+.tw-glass { fill: #2c2823; }
+.tw-frame { fill: none; stroke: var(--ink); stroke-width: 3; }
+.tw-tape { stroke: #4a2a18; stroke-width: 3; }
+.tw-mid { fill: rgba(244, 235, 217, .18); stroke: rgba(244, 235, 217, .35); stroke-width: 1; }
+.reel-pack { fill: #5a3520; }
+.reel-hub { fill: var(--white-warm); stroke: var(--ink); stroke-width: 1.5; }
+.reel-teeth { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; }
+.reel-core { fill: #2c2823; }
+.tw-side { font: 400 22px 'Alfa Slab One', Rockwell, serif; fill: var(--ink); text-anchor: middle; }
+.tape-bottom { display: block; width: min(100%, 17rem); height: auto; margin: 0.35rem auto 0; }
+.tb-ridge { fill: #3a342e; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+.tb-hole { fill: #14110e; }
+@media (prefers-reduced-motion: no-preference) {
+  .quote--tape:hover .reel, .quote--tape:focus-within .reel { animation: reel-spin 2.4s linear infinite; }
+}
+.tape-label { display: flex; flex-direction: column; }
+.tape-stripe { margin-top: auto; }
+.tape-label footer { margin-bottom: 1rem; }
+/* Cassette label, after classic retro tapes: plain cream label, bold stripe band through the window,
+   boxed side letter and tape length */
+.quote--tape .tape-label { background: var(--white-warm); padding-top: 2.6rem; }
+.tape-label::before { top: 0.6rem; }
+.tape-stripe {
+  padding: 0.5rem 0;
+  background: linear-gradient(var(--gold) 0 30%, var(--white-warm) 30% 35%, var(--red-text) 35% 65%, var(--white-warm) 65% 70%, var(--teal) 70% 100%);
+}
+.tape-window { width: min(100%, 17rem); }
+.tw-side-box { fill: var(--ink); }
+.tw-side { font: 400 17px 'Alfa Slab One', Rockwell, serif; fill: var(--white-warm); text-anchor: middle; }
+.tw-len { font: 400 17px 'Alfa Slab One', Rockwell, serif; fill: var(--ink); text-anchor: middle; paint-order: stroke; stroke: var(--white-warm); stroke-width: 3; }
+.reel-pack { fill: #4a2a18; }
+.reel-hub { fill: var(--white-warm); stroke: var(--ink); stroke-width: 2; }
+
+/* Testimonials: a 1950s tabletop tube radio beside the heading; the dial needle drifts while you hover */
+.kw-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; }
+.kw-head h2 { margin-bottom: 0; }
+.radio50 { width: min(15rem, 100%); height: auto; flex: none; }
+.r-body { fill: var(--teal); stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+.r-trim { fill: none; stroke: var(--white-warm); stroke-width: 3; opacity: .6; }
+.r-grille { fill: #efe6d3; stroke: var(--ink); stroke-width: 3; }
+.r-slats path { stroke: var(--gold); stroke-width: 5; stroke-linecap: round; }
+.r-slats { filter: drop-shadow(0 1.5px 0 var(--ink)); }
+.r-dial-ring { fill: var(--gold); stroke: var(--ink); stroke-width: 3; }
+.r-dial { fill: #fbf3e0; stroke: var(--ink); stroke-width: 2; }
+.r-ticks { stroke: var(--ink); stroke-width: 1.2; }
+.r-nums { font: 700 6px var(--font-mono); fill: var(--ink); text-anchor: middle; }
+.r-needle path { stroke: var(--bar-red); stroke-width: 2; stroke-linecap: round; }
+.r-needle { transform-box: view-box; transform: rotate(-40deg); transition: transform 1.2s cubic-bezier(.4, 1.3, .5, 1); }
+.r-hub { fill: var(--ink); }
+.r-knob { fill: var(--ink); stroke: var(--gold); stroke-width: 2.5; }
+.r-knob-dot { fill: var(--gold); }
+.r-foot { fill: var(--ink); }
+#kind-words:hover .r-needle, #kind-words:focus-within .r-needle { transform: rotate(55deg); }
+@media (prefers-reduced-motion: reduce) { .r-needle { transition: none; } }
+@media (max-width: 40em) { .radio50 { width: min(11rem, 60%); } }

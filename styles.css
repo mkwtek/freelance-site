@@ -1137,3 +1137,15 @@ body { background: var(--white-warm); }
 .lp-3 .peek-label { fill: var(--gold); }
 .peek-label-ring { fill: none; stroke: rgba(255, 247, 240, .5); stroke-width: 2; }
 @media (prefers-reduced-motion: reduce) { .peek-record { transition: none; } }
+/* Records pulled about halfway out so the center label shows; grooves, sheen and rim read as vinyl */
+.mini-case--lp .lp-sleeve { padding-top: calc(48% + 0.5rem); }
+.peek-record { top: 0.6rem; }
+.rec-grooves circle { fill: none; stroke: #2e2925; stroke-width: 0.9; }
+.rec-sheen { fill: #fff7f0; opacity: .13; }
+.rec-rim { fill: none; stroke: #3a342e; stroke-width: 2; }
+.peek-label-ring { fill: none; stroke: rgba(255, 247, 240, .55); stroke-width: 1.5; }
+.peek-rpm { font: 700 10px var(--font-mono); fill: var(--white-warm); text-anchor: middle; }
+.lp-3 .peek-rpm { fill: var(--ink); }
+.peek-label-line { stroke: rgba(255, 247, 240, .6); stroke-width: 2; stroke-linecap: round; }
+.lp-3 .peek-label-line { stroke: rgba(34, 31, 27, .55); }
+.mini-case--lp:hover .peek-record, .mini-case--lp:focus-within .peek-record { transform: translateY(-0.6rem) rotate(30deg); }

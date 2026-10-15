@@ -46,7 +46,10 @@
       var card = document.getElementById(btn.getAttribute('aria-controls'));
       if (!card) return;
       if (!fromUser) return;
-      if (byKeyboard) card.classList.add('is-tuned');   // outline only for keyboard users
+      // You picked it: its channel badge turns gold to match the dial; keyboard users also get an outline
+      document.querySelectorAll('.channel.is-picked').forEach(function (c) { c.classList.remove('is-picked'); });
+      card.classList.add('is-picked');
+      if (byKeyboard) card.classList.add('is-tuned');
       var r = card.getBoundingClientRect();
       if (r.top < 0 || r.bottom > window.innerHeight) {
         card.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });

@@ -853,7 +853,7 @@ body { background: var(--white-warm); }
   background: var(--white-warm); border: 2.5px solid var(--ink); border-radius: 50%;
 }
 .dial-ch:hover { background: #fbe39b; }
-.dial-ch[aria-pressed="true"] { background: var(--gold); box-shadow: 2px 2px 0 var(--ink); }
+.dial-ch[aria-checked="true"] { background: var(--gold); box-shadow: 2px 2px 0 var(--ink); }
 .channel { transition: transform 0.3s ease, box-shadow 0.3s ease; }
 /* Card picked with the keyboard on the dial: gold outline so keyboard users can see where they landed */
 .channel.is-tuned { outline: 4px solid var(--gold); outline-offset: 3px; }
@@ -882,7 +882,7 @@ body { background: var(--white-warm); }
   background: transparent; border: 0; color: #f4ebd9; font-size: 1.05rem; text-shadow: 0 1px 0 #000;
 }
 .dial-ch:hover { background: rgba(244, 235, 217, 0.15); color: #fff; }
-.dial-ch[aria-pressed="true"] { background: transparent; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
+.dial-ch[aria-checked="true"] { background: transparent; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
 .dial-ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
 .dial-ch { font-size: 7.5cqi; }
 
@@ -892,7 +892,7 @@ body { background: var(--white-warm); }
 .ghost { transform-origin: 323px 236px; }
 
 /* ==========================================================================
-   Analog set (test): VU meters, record sleeves, cassette tapes, FM tuning band
+   Analog set: VU meters, record sleeves, FM tuning band
    ========================================================================== */
 
 /* VU meters: amber backlit face, needle pivots below the face */
@@ -941,41 +941,6 @@ body { background: var(--white-warm); }
 @media (max-width: 52em) {
   .sleeve, .case--album:nth-child(even) .sleeve { order: 0; border: 0; border-bottom: 3px solid var(--ink); }
 }
-
-/* Cassette tapes: dark shell with corner screws, paper label, reels at the bottom */
-.quote--tape {
-  display: flex; flex-direction: column; padding: 0.7rem 0.7rem 0.4rem;
-  background:
-    radial-gradient(circle at 0.4rem 0.75rem, #8f8676 0 0.14rem, transparent 0.18rem),
-    radial-gradient(circle at calc(100% - 0.4rem) 0.75rem, #8f8676 0 0.14rem, transparent 0.18rem),
-    radial-gradient(circle at 0.4rem calc(100% - 0.4rem), #8f8676 0 0.14rem, transparent 0.18rem),
-    radial-gradient(circle at calc(100% - 0.4rem) calc(100% - 0.4rem), #8f8676 0 0.14rem, transparent 0.18rem),
-    #2c2823;
-}
-.quote--tape::before { content: none; }
-.tape-label {
-  position: relative; flex: 1; padding: 2.75rem 1.5rem 1.25rem;
-  background: var(--bars) top / 100% 0.6rem no-repeat, var(--white-warm);
-  border: 2px solid var(--ink); border-radius: 0.5rem;
-}
-.tape-label::before {
-  content: "\201C"; position: absolute; top: 0.85rem; left: 1rem;
-  font: 400 3.5rem/1 var(--font-display); color: var(--red-text);
-}
-.tape-label footer { margin: 0; }
-.tape-reels { display: block; width: min(100%, 12rem); height: auto; margin: 0.4rem auto 0; }
-.tape-bridge { fill: #3a342e; stroke: var(--ink); stroke-width: 2; }
-.tape-window { fill: #14110e; stroke: #8f8676; stroke-width: 1.5; }
-.tape-ribbon { fill: none; stroke: #4a2a18; stroke-width: 3; }
-.reel { transform-box: fill-box; transform-origin: center; }
-.reel-pack { fill: #4a2a18; }
-.reel-hub { fill: var(--white-warm); }
-.reel-teeth { fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; }
-.tape-hole { fill: var(--ink); }
-@media (prefers-reduced-motion: no-preference) {
-  .quote--tape:hover .reel, .quote--tape:focus-within .reel { animation: reel-spin 2.4s linear infinite; }
-}
-@keyframes reel-spin { to { transform: rotate(-360deg); } }
 
 /* FM tuning band: slim backlit receiver strip, pointer moves to the step you're reading */
 .tuning-band {
@@ -1062,49 +1027,8 @@ body { background: var(--white-warm); }
   .site-header:has(.site-nav.is-open)::after { display: none; }
 }
 
-/* Cassette, true to life: the label covers the shell, the reel window sits in the label's lower
-   middle across a colored stripe band, and the bottom edge is the raised head ridge with drive holes */
-.tape-label { padding-bottom: 0.9rem; }
-.tape-stripe {
-  margin: 1rem -1.5rem 0; padding: 0.35rem 0;
-  background: linear-gradient(var(--gold) 0 50%, var(--red-text) 50% 100%);
-  border-block: 2px solid var(--ink);
-}
-.tape-window { display: block; width: min(100%, 15rem); height: auto; margin-inline: auto; }
-.tw-glass { fill: #2c2823; }
-.tw-frame { fill: none; stroke: var(--ink); stroke-width: 3; }
-.tw-tape { stroke: #4a2a18; stroke-width: 3; }
-.tw-mid { fill: rgba(244, 235, 217, .18); stroke: rgba(244, 235, 217, .35); stroke-width: 1; }
-.reel-pack { fill: #5a3520; }
-.reel-hub { fill: var(--white-warm); stroke: var(--ink); stroke-width: 1.5; }
-.reel-teeth { fill: none; stroke: var(--ink); stroke-width: 2.5; stroke-linecap: round; }
-.reel-core { fill: #2c2823; }
-.tw-side { font: 400 22px 'Alfa Slab One', Rockwell, serif; fill: var(--ink); text-anchor: middle; }
-.tape-bottom { display: block; width: min(100%, 17rem); height: auto; margin: 0.35rem auto 0; }
-.tb-ridge { fill: #3a342e; stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
-.tb-hole { fill: #14110e; }
-@media (prefers-reduced-motion: no-preference) {
-  .quote--tape:hover .reel, .quote--tape:focus-within .reel { animation: reel-spin 2.4s linear infinite; }
-}
-.tape-label { display: flex; flex-direction: column; }
-.tape-stripe { margin-top: auto; }
-.tape-label footer { margin-bottom: 1rem; }
-/* Cassette label, after classic retro tapes: plain cream label, bold stripe band through the window,
-   boxed side letter and tape length */
-.quote--tape .tape-label { background: var(--white-warm); padding-top: 2.6rem; }
-.tape-label::before { top: 0.6rem; }
-.tape-stripe {
-  padding: 0.5rem 0;
-  background: linear-gradient(var(--gold) 0 30%, var(--white-warm) 30% 35%, var(--red-text) 35% 65%, var(--white-warm) 65% 70%, var(--teal) 70% 100%);
-}
-.tape-window { width: min(100%, 17rem); }
-.tw-side-box { fill: var(--ink); }
-.tw-side { font: 400 17px 'Alfa Slab One', Rockwell, serif; fill: var(--white-warm); text-anchor: middle; }
-.tw-len { font: 400 17px 'Alfa Slab One', Rockwell, serif; fill: var(--ink); text-anchor: middle; paint-order: stroke; stroke: var(--white-warm); stroke-width: 3; }
-.reel-pack { fill: #4a2a18; }
-.reel-hub { fill: var(--white-warm); stroke: var(--ink); stroke-width: 2; }
 
-/* Testimonials: a 1950s tabletop tube radio beside the heading; the dial needle drifts while you hover */
+/* Section heads with an illustration beside the heading; the 1950s tube radio's needle drifts while you hover the process section */
 .kw-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; }
 .kw-head h2 { margin-bottom: 0; }
 .radio50 { width: min(15rem, 100%); height: auto; flex: none; }
@@ -1123,7 +1047,7 @@ body { background: var(--white-warm); }
 .r-knob { fill: var(--ink); stroke: var(--gold); stroke-width: 2.5; }
 .r-knob-dot { fill: var(--gold); }
 .r-foot { fill: var(--ink); }
-#kind-words:hover .r-needle, #kind-words:focus-within .r-needle { transform: rotate(55deg); }
+#process:hover .r-needle, #process:focus-within .r-needle { transform: rotate(55deg); }
 @media (prefers-reduced-motion: reduce) { .r-needle { transition: none; } }
 @media (max-width: 40em) { .radio50 { width: min(11rem, 60%); } }
 
@@ -1299,3 +1223,115 @@ body { background: var(--white-warm); }
 .tile:nth-child(even) { background: var(--bar-blue); color: #fff; border-color: #fff; box-shadow: none; }
 .tiles { font-size: min(2.6rem, 8.5vw); gap: 0.4em 0.7em; }
 .tile { font-size: 1.25em; min-width: 1.05em; height: 1.4em; padding: 0 0.1em; border-width: 0.07em; }
+
+/* ---------- Fan Mail: postcards with an airmail border, stamp and Seattle postmark ---------- */
+.quote--postcard {
+  padding: 0.55rem; border-radius: 0; background-color: transparent;
+  background: repeating-linear-gradient(-45deg, var(--red-text) 0 1rem, #f6ecd6 1rem 1.5rem, var(--bar-blue) 1.5rem 2.5rem, #f6ecd6 2.5rem 3rem);
+}
+.quote--postcard::before { content: none; }
+.pc-in {
+  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.25rem; height: 100%; padding: 1.3rem;
+  background:
+    repeating-linear-gradient(0deg, rgba(90, 80, 72, .06) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90, 80, 72, .06) 0 1px, transparent 1px 3px), #f6ecd6;
+}
+.pc-msg { border-right: 2px solid #b8ab92; padding-right: 1.25rem; }
+.pc-msg p { font-size: 1.05rem; margin: 0 0 0.5rem; }
+.pc-sign { font: 400 1.8rem/1.1 Yellowtail, cursive; color: #2e3f6b; }
+.pc-addr { position: relative; display: flex; flex-direction: column; gap: 0.9rem; padding-top: 6rem; }
+.pc-stamp { position: absolute; top: 0; right: 0; width: 4.2rem; transform: rotate(3deg); }
+.pc-mark { position: absolute; top: 1.2rem; right: 2.6rem; width: 8rem; opacity: .8; }
+.pc-addr footer { color: var(--ink-soft); font-size: 0.95rem; }
+.pc-line { display: block; height: 1.2rem; border-bottom: 2px solid #b8ab92; }
+@media (max-width: 36em) {
+  .pc-in { grid-template-columns: minmax(0, 1fr); }
+  .pc-msg { border-right: 0; border-bottom: 2px solid #b8ab92; padding: 0 0 1rem; }
+}
+
+/* Roadside mailbox beside the heading; its red flag swings up once the section comes into view */
+.mailbox { width: min(11rem, 100%); height: auto; flex: none; overflow: visible; }
+.mb-post { fill: var(--walnut); stroke: var(--ink); stroke-width: 3; }
+.mb-grain { stroke: #5a3520; stroke-width: 2; }
+.mb-arm { fill: var(--walnut-light); stroke: var(--ink); stroke-width: 3; }
+.mb-body { fill: #cfc6b6; stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+.mb-shine { stroke: #fff; stroke-width: 4; stroke-linecap: round; opacity: .6; }
+.mb-rib { stroke: #8f8676; stroke-width: 2; }
+.mb-door { fill: none; stroke: var(--ink); stroke-width: 4; }
+.mb-latch { fill: var(--ink); }
+.mb-name { font: 400 13px 'Alfa Slab One', Rockwell, serif; fill: var(--teal-dark); text-anchor: middle; letter-spacing: 1px; }
+.mb-flag-arm, .mb-flag-plate { fill: var(--bar-red); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.mb-pivot { fill: var(--ink); }
+.mb-flag { transform-box: view-box; transform: rotate(90deg); }
+.mailbox.is-up .mb-flag { transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .mailbox.is-up .mb-flag { animation: mb-flag-up 0.9s cubic-bezier(.3, 1.6, .5, 1) both; }
+}
+@keyframes mb-flag-up { from { transform: rotate(90deg); } to { transform: none; } }
+@media (max-width: 40em) { .mailbox { width: min(8.5rem, 50%); } }
+.pc-msg .pc-sign { font: 400 1.9rem/1.1 Yellowtail, cursive; color: #2e3f6b; margin: 0.2rem 0 0; }
+.mailbox { width: min(13.5rem, 100%); }
+@media (max-width: 40em) { .mailbox { width: min(9.5rem, 50%); } }
+/* 3D roadside mailbox, door dropped open on the left with a postcard sliding out */
+.mb-body { fill: #cfc6b6; stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+.mb-rib { fill: none; stroke: #8f8676; stroke-width: 2; }
+.mb-inside { fill: #2c2823; stroke: var(--ink); stroke-width: 4; }
+.mb-card { fill: #f6ecd6; stroke: var(--ink); stroke-width: 2; }
+.mb-air { stroke: var(--red-text); stroke-width: 3; stroke-dasharray: 4 3; }
+.mb-door { fill: #b8b0a2; stroke: var(--ink); stroke-width: 4; stroke-linejoin: round; }
+.mb-door-edge { stroke: var(--ink); stroke-width: 4; }
+.mb-tab { fill: var(--ink); }
+.mb-arm { fill: var(--walnut-light); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.mb-name { font: 400 12px 'Alfa Slab One', Rockwell, serif; fill: var(--teal-dark); text-anchor: middle; letter-spacing: 1px; }
+
+/* Postcards look tossed down: each tilted and offset a little differently */
+.quote--postcard { transform: rotate(-2deg) translateY(0.4rem); }
+.quote--postcard:nth-child(2) { transform: rotate(1.6deg) translate(0.3rem, -0.5rem); }
+@media (max-width: 40em) {
+  .quote--postcard { transform: rotate(-1.2deg); }
+  .quote--postcard:nth-child(2) { transform: rotate(1deg) translateX(0.2rem); }
+}
+.mb-name { font-size: 11px; }
+/* Mailbox after the classic three-quarter view: blue body, front open with the door flat out to the left */
+.mailbox .mb-body { fill: var(--bar-blue); stroke: var(--ink); stroke-width: 3.5; }
+.mb-shade { fill: #233d6b; }
+.mailbox .mb-shine { stroke: #8fb0e6; stroke-width: 5; opacity: .7; }
+.mailbox .mb-rib { fill: none; stroke: #233d6b; stroke-width: 3; }
+.mb-rim { fill: #5b7fc0; stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; }
+.mb-inside { fill: #1c2f52; }
+.mb-backwall { fill: #2a4475; }
+.mailbox .mb-door { fill: #5b7fc0; stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; }
+.mailbox .mb-door-edge { fill: #233d6b; stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; }
+.mailbox .mb-post { fill: #233d6b; stroke: var(--ink); stroke-width: 3; }
+.mailbox .mb-pivot { fill: var(--bar-red); stroke: var(--ink); stroke-width: 2.5; }
+.mailbox .mb-flag-arm { fill: #e8e3da; stroke: var(--ink); stroke-width: 2; }
+.mb-bottom { stroke: var(--ink); stroke-width: 3.5; stroke-linecap: round; }
+/* Letters waiting inside the mailbox, one lying on the open door */
+.mb-env { fill: #fff7f0; stroke: var(--ink); stroke-width: 1.8; stroke-linejoin: round; }
+.mb-env-flap { fill: none; stroke: #8f8676; stroke-width: 1.5; stroke-linejoin: round; }
+.mb-air-card { fill: var(--red-text); stroke: var(--ink); stroke-width: 1.8; }
+.mb-air-in { fill: #f6ecd6; }
+.mb-stamp { fill: var(--teal); }
+/* 1950s finish: galvanized steel body, wooden post, name hand-painted on the side */
+.mailbox .mb-body { fill: #b9b4ab; }
+.mb-shade { fill: #8a857c; }
+.mailbox .mb-shine { stroke: #f4f2ee; opacity: .8; }
+.mailbox .mb-rib { stroke: #8a857c; }
+.mb-rim { fill: #d3cfc7; }
+.mb-inside { fill: #3a3632; }
+.mb-backwall { fill: #4f4a44; }
+.mailbox .mb-door { fill: #cdc8bf; }
+.mailbox .mb-door-edge { fill: #8a857c; }
+.mailbox .mb-post { fill: var(--walnut); stroke: var(--ink); stroke-width: 3; }
+.mailbox .mb-grain { stroke: #5a3520; stroke-width: 2; }
+.mailbox .mb-arm { fill: var(--walnut-light); stroke: var(--ink); stroke-width: 3; }
+.mb-paint { font: 400 17px Yellowtail, cursive; fill: var(--ink); text-anchor: middle; }
+.mb-paint { font-size: 14px; }
+/* Mail sticking out of the open mailbox, over the rim and onto the door */
+.mb-big-env { fill: #fffaf2; stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.mb-big-flap { fill: none; stroke: #a39a8c; stroke-width: 2; stroke-linejoin: round; }
+.mb-big-air { fill: #fffaf2; stroke: var(--ink); stroke-width: 2.5; stroke-dasharray: none; }
+.mb-big-air-in { fill: none; stroke: var(--red-text); stroke-width: 3; stroke-dasharray: 6 4; }
+.mb-big-stamp { fill: var(--teal); stroke: var(--ink); stroke-width: 1.5; }
+.mb-big-lines { stroke: #a39a8c; stroke-width: 2; stroke-linecap: round; }
+.mailbox .mb-door { fill: #d9d5cd; }

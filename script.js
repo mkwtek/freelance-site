@@ -41,7 +41,10 @@
     var dialButtons = [].slice.call(dial.querySelectorAll('.dial-ch'));
     var tune = function (btn, fromUser, byKeyboard) {
       dial.style.setProperty('--angle', btn.getAttribute('data-angle') + 'deg');
-      dialButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
+      dialButtons.forEach(function (b) {
+        b.setAttribute('aria-checked', String(b === btn));
+        b.tabIndex = b === btn ? 0 : -1;   // one Tab stop: the dial lands on the current channel
+      });
       document.querySelectorAll('.channel.is-tuned').forEach(function (c) { c.classList.remove('is-tuned'); });
       var card = document.getElementById(btn.getAttribute('aria-controls'));
       if (!card) return;
@@ -50,6 +53,7 @@
       document.querySelectorAll('.channel.is-picked').forEach(function (c) { c.classList.remove('is-picked'); });
       card.classList.add('is-picked');
       if (byKeyboard) card.classList.add('is-tuned');
+      if (byKeyboard) return;   // arrow keys keep you on the dial; the page doesn't jump
       var r = card.getBoundingClientRect();
       if (r.top < 0 || r.bottom > window.innerHeight) {
         card.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -77,15 +81,28 @@
       if (surfDone || surf || !inView || held) return;
       surf = setTimeout(function () {
         surf = null;
-        var current = dial.querySelector('[aria-pressed="true"]');
+        var current = dial.querySelector('[aria-checked="true"]');
         var others = dialButtons.filter(function (b) { return b !== current; });
         tune(others[Math.floor(Math.random() * others.length)], false);
         if (++hops >= 8) { surfDone = true; return; }
         startSurf();
       }, msToNextGlitch());
     };
-    dialButtons.forEach(function (btn) {
+    dialButtons.forEach(function (btn, i) {
       btn.addEventListener('click', function (e) { surfDone = true; stopSurf(); tune(btn, true, e.detail === 0); });
+      // Radio-group keys: arrows turn the knob one channel at a time (wrapping), Home and End jump to the ends
+      btn.addEventListener('keydown', function (e) {
+        var n = dialButtons.length, next = null;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % n;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + n) % n;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = n - 1;
+        if (next === null) return;
+        e.preventDefault();
+        surfDone = true; stopSurf();
+        tune(dialButtons[next], true, true);
+        dialButtons[next].focus();
+      });
     });
     ['mouseenter', 'focusin'].forEach(function (ev) { dial.addEventListener(ev, function () { held = true; stopSurf(); }); });
     ['mouseleave', 'focusout'].forEach(function (ev) { dial.addEventListener(ev, function () { held = false; startSurf(); }); });
@@ -125,6 +142,18 @@
       var on = document.querySelector('.tuner li.is-tuned');
       if (on) tuneTo([].indexOf.call(steps, on));
     });
+  }
+
+  // ---- Mailbox flag swings up once the Fan Mail section comes into view ----
+  var mailbox = document.querySelector('.mailbox');
+  if (mailbox) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      mailbox.classList.add('is-up');
+    } else {
+      new IntersectionObserver(function (entries, obs) {
+        if (entries[0].isIntersecting) { mailbox.classList.add('is-up'); obs.disconnect(); }
+      }, { threshold: 0.8 }).observe(mailbox);
+    }
   }
 
   // ---- Meter needles swing up once the gauges are mostly on screen ----

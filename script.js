@@ -39,14 +39,14 @@
   var dial = document.querySelector('.dial');
   if (dial) {
     var dialButtons = [].slice.call(dial.querySelectorAll('.dial-ch'));
-    var tune = function (btn, fromUser) {
+    var tune = function (btn, fromUser, byKeyboard) {
       dial.style.setProperty('--angle', btn.getAttribute('data-angle') + 'deg');
       dialButtons.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
       document.querySelectorAll('.channel.is-tuned').forEach(function (c) { c.classList.remove('is-tuned'); });
       var card = document.getElementById(btn.getAttribute('aria-controls'));
       if (!card) return;
-      card.classList.add('is-tuned');
       if (!fromUser) return;
+      if (byKeyboard) card.classList.add('is-tuned');   // outline only for keyboard users
       var r = card.getBoundingClientRect();
       if (r.top < 0 || r.bottom > window.innerHeight) {
         card.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -82,7 +82,7 @@
       }, msToNextGlitch());
     };
     dialButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () { surfDone = true; stopSurf(); tune(btn, true); });
+      btn.addEventListener('click', function (e) { surfDone = true; stopSurf(); tune(btn, true, e.detail === 0); });
     });
     ['mouseenter', 'focusin'].forEach(function (ev) { dial.addEventListener(ev, function () { held = true; stopSurf(); }); });
     ['mouseleave', 'focusout'].forEach(function (ev) { dial.addEventListener(ev, function () { held = false; startSurf(); }); });

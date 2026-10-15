@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=60">
+  <link rel="stylesheet" href="styles.css?v=63">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -101,6 +101,8 @@
             <circle cx="98.5" cy="10.8" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
             <circle cx="220.5" cy="6.8" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
             <path d="M134.5 74.8a22 22 0 0 1 44 0z" fill="var(--ink)"/>
+            <!-- soft floor shadow under the set -->
+            <ellipse cx="158" cy="300" rx="134" ry="7" fill="rgba(0, 0, 0, .2)"/>
             <!-- back legs and depth (slight 3D) -->
             <g stroke="var(--ink)" stroke-width="8" stroke-linecap="round"><path d="M71.0 259.5 61.0 289.5"/><path d="M259.0 259.5 271.0 289.5"/></g><rect x="29.0" y="69.5" width="276" height="194" rx="28" fill="#4a2a18" stroke="var(--ink)" stroke-width="5"/><rect x="29.0" y="69.5" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="27.9" y="70.0" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="26.8" y="70.6" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="25.8" y="71.1" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="24.7" y="71.7" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="23.6" y="72.2" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="22.5" y="72.8" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="21.4" y="73.3" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="20.3" y="73.8" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="19.2" y="74.4" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="18.2" y="74.9" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="17.1" y="75.5" width="276" height="194" rx="28" fill="#4a2a18"/><path d="M31.5 79.0L44.5 72.5M276.5 267.0L289.5 260.5" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
             <!-- shading on the visible top and side -->
@@ -295,11 +297,15 @@
         </ul>
 
         <div class="legal-box">
-          <h3>Accessibility isn't a nice-to-have. It's a legal issue.</h3>
-          <p>Under the Americans with Disabilities Act, businesses open to the public are expected to serve people with disabilities, and courts increasingly apply that to websites. Most owners don't find out until a demand letter arrives.</p>
+          <div class="legal-head">
+            <svg class="hood-icon legal-icon" viewBox="0 6 64 52" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 16V51"/><path d="M19 53H45"/><path d="M10 20Q32 14 54 20"/><path d="M10 20 3 39M10 20l7 19M54 20l-7 19M54 20l7 19"/><path d="M1.5 39h17a8.5 7 0 0 1-17 0z" fill="var(--ink)"/><path d="M45.5 39h17a8.5 7 0 0 1-17 0z" fill="var(--ink)"/></g><circle cx="32" cy="13.5" r="4" fill="var(--red-text)" stroke="var(--ink)" stroke-width="2.5"/></svg>
+            <h3>Accessibility isn't a nice-to-have. It's a legal issue.</h3>
+          </div>
+          <p>It's not only a government issue. Everyday businesses and nonprofits get caught in the net too, usually in one of three ways. The standard that keeps coming up is <strong>WCAG 2.1 AA</strong>: the Web Content Accessibility Guidelines, the international standard for accessible websites. AA is the level most laws and courts point to.</p>
           <ul class="legal-list">
-            <li>More than 3,000 ADA website lawsuits were filed in federal court in 2025, up 27% from the year before (<a href="https://www.jdsupra.com/legalnews/federal-court-website-accessibility-1182174/" target="_blank" rel="noopener">Seyfarth Shaw<span class="visually-hidden"> (opens in a new tab)</span></a>). Small businesses and online stores are frequent targets.</li>
-            <li>New federal rules require state and local government websites to meet WCAG 2.1 AA, including sites built for them by contractors (<a href="https://www.ada.gov/resources/2024-03-08-web-rule/" target="_blank" rel="noopener">ADA.gov<span class="visually-hidden"> (opens in a new tab)</span></a>). That matters for nonprofits and vendors who work with public agencies.</li>
+            <li><strong>You're open to the public.</strong> The Americans with Disabilities Act (ADA) covers businesses open to the public, and the U.S. Department of Justice says that includes the goods and services they offer on the web (<a href="https://www.ada.gov/resources/web-guidance/" target="_blank" rel="noopener">ADA.gov<span class="visually-hidden"> (opens in a new tab)</span></a>). More than 3,000 ADA website lawsuits were filed in federal court in 2025, up 27% from the year before (<a href="https://www.jdsupra.com/legalnews/federal-court-website-accessibility-1182174/" target="_blank" rel="noopener">Seyfarth Shaw<span class="visually-hidden"> (opens in a new tab)</span></a>). Small businesses and online stores are frequent targets.</li>
+            <li><strong>You build or run something for a state or local government.</strong> A 2024 federal rule requires state and local government websites and apps to meet WCAG 2.1 AA, and that includes content provided by contractors and outside partners, like a county web page built by a private design firm. Deadlines begin in April 2027 (<a href="https://www.ada.gov/resources/2024-03-08-web-rule/" target="_blank" rel="noopener">ADA.gov<span class="visually-hidden"> (opens in a new tab)</span></a>).</li>
+            <li><strong>You receive federal funding.</strong> Section 504 of the Rehabilitation Act bars disability discrimination by any organization that receives federal financial assistance. The U.S. Department of Health and Human Services now spells it out for the organizations it funds, such as clinics and social service nonprofits: their websites and apps must meet WCAG 2.1 AA by May 2027, or May 2028 for those with fewer than 15 employees (<a href="https://www.federalregister.gov/documents/2026/05/11/2026-09266/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web" target="_blank" rel="noopener">Federal Register<span class="visually-hidden"> (opens in a new tab)</span></a>).</li>
             <li>Accessibility overlay widgets don't prevent lawsuits. Sites using them were named in more than 1,400 lawsuits in 2025 (<a href="https://silktide.com/s/overlays-got-1416-sites-sued-in-2025/" target="_blank" rel="noopener">Silktide<span class="visually-hidden"> (opens in a new tab)</span></a>, <a href="https://overlayfactsheet.com/" target="_blank" rel="noopener">Overlay Fact Sheet<span class="visually-hidden"> (opens in a new tab)</span></a>).</li>
             <li>Fixing problems before launch costs far less than responding to a claim and rebuilding afterward.</li>
           </ul>
@@ -307,27 +313,29 @@
         </div>
 
         <div class="compare-wrap">
+          <h3 class="compare-title">Same platform, two very different websites</h3>
+          <p class="compare-intro">Most small business websites run on a <strong>CMS</strong> (content management system) such as WordPress, Shopify, Squarespace or Wix. It lets you update your own pages in a <strong>WYSIWYG</strong> editor, short for "what you see is what you get," without touching code. That's a good thing. But the platform doesn't make a site fast, accessible or easy to use on its own. Here's what changes when the same kind of site is set up on the platform's defaults versus designed and built by me.</p>
           <table class="compare" role="table">
-            <caption>Side by side</caption>
+            <caption class="visually-hidden">The same kind of website, left on platform defaults versus designed and built by me</caption>
             <thead role="rowgroup">
               <tr role="row">
                 <th scope="col" role="columnheader"><span class="visually-hidden">What's compared</span></th>
-                <th scope="col" role="columnheader">Any platform, left on its defaults</th>
-                <th scope="col" role="columnheader">Any platform, built and tuned with care</th>
+                <th scope="col" role="columnheader">Left on the platform's defaults</th>
+                <th scope="col" role="columnheader">Designed and built by me</th>
               </tr>
             </thead>
             <tbody role="rowgroup">
-              <tr role="row"><th scope="row" role="rowheader">Code</th><td role="cell">Whatever the theme and plugins generate</td><td role="cell">Only what the site needs, with custom code where it helps</td></tr>
-              <tr role="row"><th scope="row" role="rowheader">Speed on a phone</th><td role="cell">Often slow on cellular connections</td><td role="cell">Tuned and tested on phone and desktop</td></tr>
-              <tr role="row"><th scope="row" role="rowheader">Accessibility</th><td role="cell">Assumed, rarely tested, sometimes "fixed" with an overlay</td><td role="cell">Tested against WCAG 2.1 with tools and by hand</td></tr>
-              <tr role="row"><th scope="row" role="rowheader">Screen sizes</th><td role="cell">Checked at desktop and one phone size</td><td role="cell">Checked across widths, tablets and browser text sizes</td></tr>
-              <tr role="row"><th scope="row" role="rowheader">Search</th><td role="cell">An SEO plugin and hope</td><td role="cell">Semantic structure, honest metadata, sitemap</td></tr>
-              <tr role="row"><th scope="row" role="rowheader">Upkeep</th><td role="cell">A pile of plugins nobody wants to update</td><td role="cell">Only the plugins your site truly needs, kept updated</td></tr>
-              <tr role="row"><th scope="row" role="rowheader">Proof</th><td role="cell">"Trust us"</td><td role="cell">Audit results shared with you before launch</td></tr>
+              <tr role="row"><th scope="row" role="rowheader">Code behind the pages</th><td role="cell">Whatever the template and add-ons (plugins) produce, often far more than the page needs</td><td role="cell">Only what your site needs, with custom code where it helps</td></tr>
+              <tr role="row"><th scope="row" role="rowheader">Speed on a phone</th><td role="cell">Often slow on cellular connections</td><td role="cell">Tuned and tested on phones and desktops</td></tr>
+              <tr role="row"><th scope="row" role="rowheader">Accessibility</th><td role="cell">Assumed, rarely tested, sometimes "fixed" with an overlay widget</td><td role="cell">Tested against WCAG 2.1 AA with automated tools and by hand, using a keyboard and a screen reader</td></tr>
+              <tr role="row"><th scope="row" role="rowheader">Screen sizes</th><td role="cell">Checked on a desktop and maybe one phone</td><td role="cell">Checked on phones, tablets and desktops, and with larger text settings</td></tr>
+              <tr role="row"><th scope="row" role="rowheader">Search (SEO)</th><td role="cell">A search engine optimization add-on and hope</td><td role="cell">Clear page structure, accurate search descriptions and a sitemap</td></tr>
+              <tr role="row"><th scope="row" role="rowheader">Upkeep</th><td role="cell">A pile of add-ons nobody wants to update</td><td role="cell">Only the add-ons your site truly needs, kept updated</td></tr>
+              <tr role="row"><th scope="row" role="rowheader">Proof</th><td role="cell">"Trust us"</td><td role="cell">Test results shared with you before launch</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="fine-print">This isn't custom code versus a CMS. WordPress, Shopify, ExpressionEngine and other platforms are the right choice for many organizations, especially teams that update their own content. The difference is whether someone knows how to set them up for speed and accessibility, because none of it happens automatically.</p>
+        <p class="fine-print">What's possible depends on the platform. Some, like WordPress, give full control over the code, while hosted builders like Squarespace and Wix limit how much anyone can change under the hood. Either way, I design, build and code with purpose, knowing the pitfalls that developers and graphic designers often overlook. Missed, they lead to poor usability at best and legal risk at worst.</p>
 
         <div class="ask-box">
           <h3>Questions to ask any web developer before you hire</h3>
@@ -538,9 +546,9 @@
         <div class="about-copy">
           <p class="eyebrow">About</p>
           <h2 id="about-title">From wrenches to websites</h2>
-          <p>Hi, I'm Matt. Before web development, I spent close to two decades in the automotive world: first in parts inventory, then more than 15 years as a technician, and finally leading vehicle safety inspections for a rideshare company.</p>
+          <p>Hi, I'm Matt. Before web development, I spent close to two decades in the automotive world, including more than 15 years as a technician.</p>
           <p>Modern cars are computers on wheels. Fixing them meant reading live sensor data, tracing wiring diagrams, reprogramming control modules, working safely on high-voltage hybrid and electric systems, and hunting down the one bad wire behind a dead battery. Guessing gets expensive fast, so you learn to test, prove the cause, fix it properly and confirm the fix.</p>
-          <p>That's exactly how I work on websites. Reproduce the problem, find the real cause, fix it instead of patching over it, and prove it works. Since then I've built and supported websites for more than a dozen nonprofits at a web agency, led a remote web team for a global nonprofit, and run my own small online business, so I know what owners are juggling.</p>
+          <p>That's exactly how I work on websites. Reproduce the problem, find the real cause, fix it instead of patching over it, and prove it works. I've since built and supported websites for more than a dozen nonprofits at a web agency, led a remote web team for a global nonprofit, and run my own small online business, so I know what owners are juggling.</p>
           <p>I'm based in the Greater Seattle area and happy to work remotely.</p>
         </div>
       </div>
@@ -639,6 +647,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=10" defer></script>
+  <script src="script.js?v=11" defer></script>
 </body>
 </html>

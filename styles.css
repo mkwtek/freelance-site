@@ -350,8 +350,8 @@ a:hover { text-decoration-thickness: 2px; }
   .compare tbody tr:last-child { border-bottom: 0; }
   .compare tbody th, .compare td { padding: 0.2rem 0; border: 0; }
   .compare td::before { display: block; font: 700 0.72rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
-  .compare td:nth-child(2)::before { content: "Left on its defaults"; color: var(--muted); }
-  .compare td:nth-child(3)::before { content: "Built and tuned with care"; color: var(--red-text); margin-top: 0.4rem; }
+  .compare td:nth-child(2)::before { content: "Platform defaults"; color: var(--muted); }
+  .compare td:nth-child(3)::before { content: "Designed and built by me"; color: var(--red-text); margin-top: 0.4rem; }
 }
 .fine-print { margin-top: 1rem; font-size: 0.95rem; color: var(--muted); font-style: italic; }
 
@@ -855,7 +855,8 @@ body { background: var(--white-warm); }
 .dial-ch:hover { background: #fbe39b; }
 .dial-ch[aria-pressed="true"] { background: var(--gold); box-shadow: 2px 2px 0 var(--ink); }
 .channel { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.channel.is-tuned { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ink); outline: 4px solid var(--gold); outline-offset: 3px; }
+/* Card picked with the keyboard on the dial: gold outline so keyboard users can see where they landed */
+.channel.is-tuned { outline: 4px solid var(--gold); outline-offset: 3px; }
 @media (max-width: 52em) {
   .services-head { grid-template-columns: 1fr; justify-items: center; }
   .services-head > div { justify-self: stretch; }
@@ -1001,3 +1002,12 @@ body { background: var(--white-warm); }
 @media (max-width: 30em) { .tb-scale span:first-child, .tb-scale span:last-child { display: none; } }
 .tuning-band + .tuner { margin-top: 1.25rem; }
 .check-note { margin-top: 0.5rem; font-size: 0.875rem; font-style: normal; color: var(--ink-soft); }
+/* Legal callout: scales-of-justice badge beside the heading, same badge style as the hood cards */
+.legal-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+.legal-head h3 { margin: 0; }
+.legal-box .legal-icon { flex: none; width: 5rem; height: 5rem; padding: 0.85rem 0.6rem 0.95rem; }
+@media (max-width: 30em) { .legal-box .legal-icon { width: 3.75rem; height: 3.75rem; padding: 0.4rem; } }
+/* Comparison: plain-language title and intro above the table */
+.compare-title { font-size: clamp(1.3rem, 3vw, 1.6rem); margin: 0 0 0.6rem; }
+.compare-intro { max-width: 48rem; margin: 0 0 1.25rem; }
+.compare caption.visually-hidden { padding: 0; }

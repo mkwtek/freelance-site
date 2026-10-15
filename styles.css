@@ -1011,3 +1011,41 @@ body { background: var(--white-warm); }
 .compare-title { font-size: clamp(1.3rem, 3vw, 1.6rem); margin: 0 0 0.6rem; }
 .compare-intro { max-width: 48rem; margin: 0 0 1.25rem; }
 .compare caption.visually-hidden { padding: 0; }
+/* "Under the hood" cards are problems to avoid: flag them as such */
+.hood-flag { color: var(--yellow-on-ink); }
+/* Bold lead-in line centered above the comparison table and the problem cards */
+.compare-lead { margin: 1.5rem auto 1rem; max-width: 40rem; text-align: center; font-weight: 700; font-size: clamp(1.1rem, 2.2vw, 1.25rem); line-height: 1.4; }
+.hood-lead { margin-top: 2rem; }
+
+/* VU needles: swing up, overshoot, wobble back and forth like a real meter, then settle.
+   Plays each time the meters come back into view. */
+.vu-needle { transition: none; }
+.meters.is-on .vu-needle { transform: rotate(var(--a)); }
+@media (prefers-reduced-motion: no-preference) {
+  .meters.is-on .vu-needle { animation: vu-settle 2.6s ease-out both; }
+  .meters.is-on .meter:nth-child(2) .vu-needle { animation-delay: .12s; }
+  .meters.is-on .meter:nth-child(3) .vu-needle { animation-delay: .24s; }
+  .meters.is-on .meter:nth-child(4) .vu-needle { animation-delay: .36s; }
+}
+@keyframes vu-settle {
+  0%   { transform: rotate(-44deg); }
+  22%  { transform: rotate(calc(var(--a) + 6deg)); }
+  36%  { transform: rotate(calc(var(--a) - 14deg)); }
+  50%  { transform: rotate(calc(var(--a) + 3deg)); }
+  62%  { transform: rotate(calc(var(--a) - 7deg)); }
+  74%  { transform: rotate(calc(var(--a) + 1deg)); }
+  86%  { transform: rotate(calc(var(--a) - 2.5deg)); }
+  100% { transform: rotate(var(--a)); }
+}
+/* About: the four diagnostic steps shared by car repair and web work, as icon badges */
+.diag-steps { list-style: none; padding: 0; margin: 1.25rem 0 1.5rem; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem 0.75rem; counter-reset: diag; }
+.diag-steps li { position: relative; display: grid; justify-items: center; align-content: start; gap: 0.5rem; text-align: center; font: 700 0.8rem/1.3 var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.diag-steps .diag-icon { width: 4.25rem; height: 4.25rem; padding: 0.5rem; margin: 0; }
+.diag-steps li:not(:last-child)::after {
+  content: ""; position: absolute; top: 2.05rem; left: calc(50% + 2.6rem); right: calc(-50% + 2.6rem);
+  border-top: 3px dotted var(--ink);
+}
+@media (max-width: 36em) {
+  .diag-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .diag-steps li::after { display: none; }
+}

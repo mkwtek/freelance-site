@@ -131,11 +131,13 @@
     if (reduceMotion || !('IntersectionObserver' in window)) {
       meters.classList.add('is-on');
     } else {
-      new IntersectionObserver(function (entries, obs) {
+      // Replays whenever the meters come back on screen; resets once they're fully out of view
+      new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
-          if (e.isIntersecting) { meters.classList.add('is-on'); obs.disconnect(); }
+          if (e.intersectionRatio >= 0.6) meters.classList.add('is-on');
+          else if (!e.isIntersecting) meters.classList.remove('is-on');
         });
-      }, { threshold: 0.6 }).observe(meters);
+      }, { threshold: [0, 0.6] }).observe(meters);
     }
   }
 

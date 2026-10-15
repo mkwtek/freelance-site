@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=63">
+  <link rel="stylesheet" href="styles.css?v=65">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -244,51 +244,52 @@
         <h2 id="why-title">What you don't see, and why it matters</h2>
         <p class="section-lede">Two websites can look identical in a screenshot and behave completely differently for your customers. Most of what separates a good site from a bad one is invisible, right up until it costs you a customer.</p>
 
+        <p class="compare-lead hood-lead">Seven common problems hiding in many websites, and what to watch out for:</p>
         <ul class="hood-grid">
           <li class="hood">
-            <div class="hood-band"><p class="hood-label">Page weight</p></div>
+            <div class="hood-band"><p class="hood-label"><span class="hood-flag">Problem:</span> Page weight</p></div>
             <svg class="hood-icon" viewBox="4 4 56 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="13" r="6"/><path d="M8 58l9-38h30l9 38z" fill="var(--ink)"/><text x="32" y="47" text-anchor="middle" font-family="Shrikhand, Georgia, serif" font-size="15" fill="var(--white-warm)" stroke="none">TON</text></g></svg>
             <h3>Dozens of files before a single word appears</h3>
             <p>Template and page-builder sites often load dozens of stylesheets, scripts and several font families just to show the home page, most of it for features the page doesn't even use.</p>
             <p class="hood-why"><strong>Why it matters:</strong> on a phone with a so-so signal, visitors wait. Many leave before your page finishes loading, and Google factors page speed into search rankings, so a slow site hurts your SEO.</p>
           </li>
           <li class="hood">
-            <div class="hood-band"><p class="hood-label">Accessibility</p></div>
+            <div class="hood-band"><p class="hood-label"><span class="hood-flag">Problem:</span> Accessibility</p></div>
             <svg class="hood-icon" viewBox="9 8 46 46" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="16" r="4" fill="var(--ink)"/><path d="M17 25l15 3 15-3M32 28v12M32 40l-7 13M32 40l7 13"/></g></svg>
             <h3>Barriers you'd never notice with a mouse</h3>
             <p>Buttons that people who navigate by keyboard instead of a mouse can't reach. Forms missing the labels screen readers read aloud to people who can't see the screen. Low-contrast text that's hard to read with low vision. Menus a screen reader can't even open. <a href="https://webaim.org/projects/million/" target="_blank" rel="noopener">WebAIM's 2026 analysis<span class="visually-hidden"> (opens in a new tab)</span></a> found detectable accessibility failures on roughly 96% of the top one million home pages.</p>
             <p class="hood-why"><strong>Why it matters:</strong> about <a href="https://www.cdc.gov/disability-and-health/articles-documents/disabilities-health-care-access.html" target="_blank" rel="noopener">one in four U.S. adults has a disability<span class="visually-hidden"> (opens in a new tab)</span></a>. Those are customers you're turning away. It's also a legal issue: thousands of ADA website lawsuits are filed every year.</p>
           </li>
           <li class="hood">
-            <div class="hood-band"><p class="hood-label">Quick fixes</p></div>
+            <div class="hood-band"><p class="hood-label"><span class="hood-flag">Problem:</span> Quick fixes</p></div>
             <svg class="hood-icon" viewBox="4 4 56 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(-35 32 32)"><rect x="6" y="22" width="52" height="20" rx="10" fill="var(--pink)"/><rect x="23" y="24" width="18" height="16" rx="2" fill="var(--white-warm)" stroke-width="2.5"/><circle cx="13" cy="32" r="1" fill="var(--ink)"/><circle cx="51" cy="32" r="1" fill="var(--ink)"/></g></g></svg>
             <h3>The "one line of code" accessibility widget</h3>
             <p>Overlay plugins promise instant compliance. They paint over problems without fixing the code underneath, and they can make sites harder to use for the people they claim to help.</p>
             <p class="hood-why"><strong>Why it matters:</strong> you pay a monthly fee and still carry the risk. I diagnose and fix the actual problems instead.</p>
           </li>
           <li class="hood">
-            <div class="hood-band"><p class="hood-label">Mobile layout</p></div>
+            <div class="hood-band"><p class="hood-label"><span class="hood-flag">Problem:</span> Mobile layout</p></div>
             <svg class="hood-icon" viewBox="3 4 58 58" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="38" height="27" rx="3" fill="var(--teal)"/><path d="M23 37v8M14 47h18"/><rect x="40" y="22" width="20" height="34" rx="4" fill="#fbe39b"/><path d="M47 51h6"/></g></svg>
             <h3>Built twice, tested at two sizes</h3>
             <p>Many builders hide the desktop version on phones and show a separate copy of the content instead. Both copies still load, and the layout is only checked at a couple of screen sizes.</p>
-            <p class="hood-why"><strong>Why it matters:</strong> real visitors use tablets, folding phones, landscape mode and larger text settings in their browsers. In-between sizes are where layouts quietly break. I build responsive layouts that work at any screen width and test every width and text size. On some CMS platforms, layout control is more limited unless the theme is custom-coded, and I'll tell you up front.</p>
+            <p class="hood-why"><strong>Why it matters:</strong> real visitors use tablets, folding phones, landscape mode and larger text settings in their browsers. In-between sizes are where layouts quietly break. I build responsive layouts that work at any screen width and test every width and text size. On some CMS platforms, layout control is more limited unless the theme is custom-coded.</p>
           </li>
           <li class="hood">
-            <div class="hood-band"><p class="hood-label">Search</p></div>
+            <div class="hood-band"><p class="hood-label"><span class="hood-flag">Problem:</span> Search</p></div>
             <svg class="hood-icon" viewBox="6 6 52 52" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="27" r="18" fill="var(--white-warm)"/><path d="M40 40l16 16" stroke-width="6"/><path d="M21 22l-5 5 5 5M33 22l5 5-5 5M29 19l-4 16" stroke-width="2.5"/></g></svg>
             <h3>Google reads the code, not the design</h3>
             <p>Messy code, headings picked for looks instead of meaningful (semantic) structure, and image descriptions stuffed with keywords to try to game search results.</p>
             <p class="hood-why"><strong>Why it matters:</strong> clean, honest structure and organic SEO are what search engines and screen readers both rely on. Keyword stuffing can actually hurt your rankings, and it makes your site worse for blind visitors.</p>
           </li>
           <li class="hood">
-            <div class="hood-band"><p class="hood-label">Upkeep</p></div>
+            <div class="hood-band"><p class="hood-label"><span class="hood-flag">Problem:</span> Upkeep</p></div>
             <svg class="hood-icon" viewBox="4 6 56 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M25 22V8M39 22V8"/><rect x="16" y="22" width="32" height="20" rx="5" fill="var(--red-text)"/><path d="M32 42c0 10 10 8 12 18"/><path d="M24 32h16" stroke="var(--white-warm)" stroke-width="2.5"/></g></svg>
             <h3>Plugin piles and lock&#8209;in</h3>
             <p>Every plugin needs updates, adds weight, and is one more door for hackers. Plugins also fall out of date or get abandoned, and because they lean on each other, updating one can break another. Sites end up frozen like a house of cards, too risky to touch. Sites built in proprietary page builders are also hard to move if you ever change developers.</p>
             <p class="hood-why"><strong>Why it matters:</strong> lower monthly costs, fewer surprises and a site you actually own. When a CMS is the right call, I set it up lean, and I'm upfront about what that platform can and can't do.</p>
           </li>
           <li class="hood">
-            <div class="hood-band"><p class="hood-label">Effects</p></div>
+            <div class="hood-band"><p class="hood-label"><span class="hood-flag">Problem:</span> Effects</p></div>
             <svg class="hood-icon" viewBox="2 2 60 60" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="14" width="56" height="36" rx="5" fill="var(--ink)"/><path d="M10 19h4M20 19h4M30 19h4M40 19h4M50 19h4M10 45h4M20 45h4M30 45h4M40 45h4M50 45h4" stroke="var(--white-warm)" stroke-width="2.5"/><path d="M27 25v14l12-7z" fill="#fbe39b" stroke="#fbe39b"/></g></svg>
             <h3>Motion that costs more than it's worth</h3>
             <p>Animation and carousels can be great. The trouble is how most templates do them: auto-playing background videos, sliders that load every image up front, and effects on every element, all downloaded before visitors see a thing.</p>
@@ -308,13 +309,15 @@
             <li><strong>You receive federal funding.</strong> Section 504 of the Rehabilitation Act bars disability discrimination by any organization that receives federal financial assistance. The U.S. Department of Health and Human Services now spells it out for the organizations it funds, such as clinics and social service nonprofits: their websites and apps must meet WCAG 2.1 AA by May 2027, or May 2028 for those with fewer than 15 employees (<a href="https://www.federalregister.gov/documents/2026/05/11/2026-09266/extension-of-compliance-dates-for-nondiscrimination-on-the-basis-of-disability-accessibility-of-web" target="_blank" rel="noopener">Federal Register<span class="visually-hidden"> (opens in a new tab)</span></a>).</li>
             <li>Accessibility overlay widgets don't prevent lawsuits. Sites using them were named in more than 1,400 lawsuits in 2025 (<a href="https://silktide.com/s/overlays-got-1416-sites-sued-in-2025/" target="_blank" rel="noopener">Silktide<span class="visually-hidden"> (opens in a new tab)</span></a>, <a href="https://overlayfactsheet.com/" target="_blank" rel="noopener">Overlay Fact Sheet<span class="visually-hidden"> (opens in a new tab)</span></a>).</li>
             <li>Fixing problems before launch costs far less than responding to a claim and rebuilding afterward.</li>
+            <li><strong>No guarantees.</strong> Careful design, building and testing lower the risk, but no one, including me, can promise that a website will never face a complaint or lawsuit.</li>
           </ul>
           <p class="legal-note">I build and test to WCAG 2.1 AA as standard practice. For the U.S. Department of Justice's own guidance, see <a href="https://www.ada.gov/resources/web-guidance/" target="_blank" rel="noopener">ADA.gov web accessibility guidance<span class="visually-hidden"> (opens in a new tab)</span></a>. I'm not a lawyer and this isn't legal advice. If you've already received a demand letter, talk to an attorney first.</p>
         </div>
 
         <div class="compare-wrap">
           <h3 class="compare-title">Same platform, two very different websites</h3>
-          <p class="compare-intro">Most small business websites run on a <strong>CMS</strong> (content management system) such as WordPress, Shopify, Squarespace or Wix. It lets you update your own pages in a <strong>WYSIWYG</strong> editor, short for "what you see is what you get," without touching code. That's a good thing. But the platform doesn't make a site fast, accessible or easy to use on its own. Here's what changes when the same kind of site is set up on the platform's defaults versus designed and built by me.</p>
+          <p class="compare-intro">Most small business websites run on a <strong>CMS</strong> (content management system) such as WordPress, Shopify, Squarespace or Wix. It lets you update your own pages in a <strong>WYSIWYG</strong> editor, short for "what you see is what you get," without touching code. While the intent is to make visual design easier, the platform doesn't make a site fast, accessible or easy to use on its own.</p>
+          <p class="compare-lead">Here's what changes when the same kind of site is left on the platform's defaults versus designed and built by me:</p>
           <table class="compare" role="table">
             <caption class="visually-hidden">The same kind of website, left on platform defaults versus designed and built by me</caption>
             <thead role="rowgroup">
@@ -548,6 +551,12 @@
           <h2 id="about-title">From wrenches to websites</h2>
           <p>Hi, I'm Matt. Before web development, I spent close to two decades in the automotive world, including more than 15 years as a technician.</p>
           <p>Modern cars are computers on wheels. Fixing them meant reading live sensor data, tracing wiring diagrams, reprogramming control modules, working safely on high-voltage hybrid and electric systems, and hunting down the one bad wire behind a dead battery. Guessing gets expensive fast, so you learn to test, prove the cause, fix it properly and confirm the fix.</p>
+          <ol class="diag-steps" aria-label="How I work, under the hood or on the web">
+            <li><svg class="hood-icon diag-icon" viewBox="5 4 54 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="17" y="6" width="30" height="52" rx="5"/><rect x="22" y="12" width="20" height="12" rx="2" fill="var(--ink)"/><circle cx="32" cy="40" r="8"/><path d="M32 40l5-5"/><circle cx="23" cy="53" r="1.5" fill="var(--ink)"/><circle cx="41" cy="53" r="1.5" fill="var(--ink)"/></g></svg><span>Test</span></li>
+            <li><svg class="hood-icon diag-icon" viewBox="5 4 54 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="27" cy="27" r="14"/><path d="M38 38l15 15" stroke-width="7"/><path d="M20 24a8 8 0 0 1 7-6"/></g></svg><span>Find the real cause</span></li>
+            <li><svg class="hood-icon diag-icon" viewBox="5 4 54 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 52l24-24" stroke-width="9"/><path d="M35 15a13 13 0 1 0 14 14l-8 7-8-2-3-8z" fill="var(--ink)"/><circle cx="13" cy="51" r="2.2" fill="#fbe39b" stroke="none"/></g></svg><span>Fix it properly</span></li>
+            <li><svg class="hood-icon diag-icon" viewBox="5 4 54 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="23"/><path d="M21 33l8 8 15-17" stroke-width="5"/></g></svg><span>Prove it works</span></li>
+          </ol>
           <p>That's exactly how I work on websites. Reproduce the problem, find the real cause, fix it instead of patching over it, and prove it works. I've since built and supported websites for more than a dozen nonprofits at a web agency, led a remote web team for a global nonprofit, and run my own small online business, so I know what owners are juggling.</p>
           <p>I'm based in the Greater Seattle area and happy to work remotely.</p>
         </div>
@@ -647,6 +656,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11" defer></script>
+  <script src="script.js?v=12" defer></script>
 </body>
 </html>

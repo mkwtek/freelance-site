@@ -1149,3 +1149,5 @@ body { background: var(--white-warm); }
 .peek-label-line { stroke: rgba(255, 247, 240, .6); stroke-width: 2; stroke-linecap: round; }
 .lp-3 .peek-label-line { stroke: rgba(34, 31, 27, .55); }
 .mini-case--lp:hover .peek-record, .mini-case--lp:focus-within .peek-record { transform: translateY(-0.6rem) rotate(30deg); }
+/* Shorter peek: just past the edge of the center label */
+.mini-case--lp .lp-sleeve { padding-top: calc(34% + 0.5rem); }

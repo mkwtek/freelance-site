@@ -884,3 +884,8 @@ body { background: var(--white-warm); }
 .dial-ch[aria-pressed="true"] { background: transparent; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
 .dial-ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
 .dial-ch { font-size: 7.5cqi; }
+
+
+
+/* Hero TV, slight 3D: ghost origin follows its shifted position */
+.ghost { transform-origin: 323px 236px; }

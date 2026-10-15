@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=53">
+  <link rel="stylesheet" href="styles.css?v=56">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -84,23 +84,27 @@
         </div>
 
         <div class="hero-art">
-          <svg class="tv" viewBox="0 0 360 310" role="img" aria-labelledby="tv-title">
-            <title id="tv-title">A 1950s television set showing color test bars, with a cartoon ghost peeking out from behind it</title>
+          <svg class="tv" viewBox="0 0 380 310" role="img" aria-labelledby="tv-title">
+            <title id="tv-title">A 1950s television set, drawn slightly in three dimensions, showing color test bars, with a cartoon ghost peeking out from behind it</title>
             <!-- ghost peeking from behind the set -->
-            <g class="ghost">
+            <g class="ghost"><g transform="translate(13 0)">
               <path d="M276 236V150a34 34 0 0 1 68 0v86l-11-9-11 9-12-9-11 9-12-9z" fill="var(--ghost)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
               <ellipse cx="300" cy="150" rx="6" ry="9" fill="var(--ink)"/>
               <ellipse cx="322" cy="150" rx="6" ry="9" fill="var(--ink)"/>
               <path d="M303 174q8 7 16 0" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
-            </g>
+            </g></g>
             <!-- antenna -->
             <g stroke="var(--ink)" stroke-width="5" stroke-linecap="round">
-              <path d="M150 74 92 14"/>
-              <path d="M150 74 214 10"/>
+              <path d="M156.5 70.8 98.5 10.8"/>
+              <path d="M156.5 70.8 220.5 6.8"/>
             </g>
-            <circle cx="92" cy="14" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
-            <circle cx="214" cy="10" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
-            <path d="M128 78a22 22 0 0 1 44 0z" fill="var(--ink)"/>
+            <circle cx="98.5" cy="10.8" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
+            <circle cx="220.5" cy="6.8" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
+            <path d="M134.5 74.8a22 22 0 0 1 44 0z" fill="var(--ink)"/>
+            <!-- back legs and depth (slight 3D) -->
+            <g stroke="var(--ink)" stroke-width="8" stroke-linecap="round"><path d="M71.0 259.5 61.0 289.5"/><path d="M259.0 259.5 271.0 289.5"/></g><rect x="29.0" y="69.5" width="276" height="194" rx="28" fill="#4a2a18" stroke="var(--ink)" stroke-width="5"/><rect x="29.0" y="69.5" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="27.9" y="70.0" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="26.8" y="70.6" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="25.8" y="71.1" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="24.7" y="71.7" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="23.6" y="72.2" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="22.5" y="72.8" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="21.4" y="73.3" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="20.3" y="73.8" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="19.2" y="74.4" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="18.2" y="74.9" width="276" height="194" rx="28" fill="#4a2a18"/><rect x="17.1" y="75.5" width="276" height="194" rx="28" fill="#4a2a18"/><path d="M31.5 79.0L44.5 72.5M276.5 267.0L289.5 260.5" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+            <!-- shading on the visible top and side -->
+            <g class="tv-hatch" stroke="#1e110a" stroke-width="2" stroke-linecap="round" opacity=".85"><path d="M293.5 244.5l10.0 -5.0"/><path d="M293.5 239.5l10.0 -5.0"/><path d="M293.5 233.5l10.0 -5.0"/><path d="M293.5 226.3l10.0 -5.0"/><path d="M293.5 217.7l10.0 -5.0"/><path d="M293.5 207.3l10.0 -5.0"/><path d="M293.5 194.9l10.0 -5.0"/><path d="M293.5 179.9l10.0 -5.0"/><path d="M293.5 162.0l10.0 -5.0"/><path d="M293.5 140.5l10.0 -5.0"/><path d="M293.5 114.7l10.0 -5.0"/><path d="M65.5 74.5l10.0 -5.0"/><path d="M99.5 74.5l10.0 -5.0"/><path d="M133.5 74.5l10.0 -5.0"/><path d="M167.5 74.5l10.0 -5.0"/><path d="M201.5 74.5l10.0 -5.0"/><path d="M235.5 74.5l10.0 -5.0"/></g><path d="M57.0 72.0H277.0" stroke="#9c6644" stroke-width="2" stroke-linecap="round" opacity=".7"/>
             <!-- legs -->
             <g stroke="var(--ink)" stroke-width="8" stroke-linecap="round">
               <path d="M58 266 44 300"/>

@@ -1061,3 +1061,55 @@ body { background: var(--white-warm); }
   }
   .site-header:has(.site-nav.is-open)::after { display: none; }
 }
+
+/* ---------- Cinema (test): Cinerama-style letter tiles, filmstrip frames, ticket stubs ---------- */
+/* Heading: each letter on its own tilted tile with a blue 3D edge, alternating lean like a 1960s theater sign */
+.marquee-title { margin: 0.25rem 0 0.5rem; }
+.tiles { display: flex; flex-wrap: wrap; gap: 0.4em 0.9em; font: 400 min(2.4rem, 8vw)/1 'Alfa Slab One', Rockwell, serif; }
+.tile-word { display: inline-flex; gap: 0.12em; }
+.tile {
+  display: inline-grid; place-items: center; width: 1.25em; height: 1.45em;
+  background: var(--white-warm); color: var(--red-text);
+  border: 3px solid var(--ink); border-radius: 3px;
+  box-shadow: 0.14em 0.1em 0 var(--bar-blue), 0.14em 0.1em 0 3px var(--ink);
+  transform: skewY(-7deg);
+}
+.tile:nth-child(even) { transform: skewY(7deg); }
+
+/* Projects: screenshot framed as a strip of film with sprocket holes */
+.case--film .filmstrip {
+  position: relative; display: grid; align-items: center;
+  padding: 1.6rem 0.9rem; background: var(--ink); border-right: 3px solid var(--ink);
+}
+.filmstrip::before, .filmstrip::after {
+  content: ""; position: absolute; left: 0.5rem; right: 0.5rem; height: 0.6rem;
+  background: repeating-linear-gradient(90deg, var(--paper) 0 0.75rem, transparent 0.75rem 1.5rem);
+  border-radius: 2px;
+}
+.filmstrip::before { top: 0.5rem; }
+.filmstrip::after { bottom: 0.5rem; }
+.case--film img, .case--film:nth-child(even) img {
+  order: 0; width: 100%; height: auto; border: 0; border-radius: 3px;
+}
+.case--film { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.case--film:nth-child(even) .filmstrip { order: 2; border-right: 0; border-left: 3px solid var(--ink); }
+@media (max-width: 52em) {
+  .case--film { grid-template-columns: minmax(0, 1fr); }
+  .case--film .filmstrip, .case--film:nth-child(even) .filmstrip { order: 0; border: 0; border-bottom: 3px solid var(--ink); }
+}
+
+/* Ticket stub beside the tags: gold, notched ends, perforation line */
+.ticket {
+  flex: none; position: relative; display: grid; justify-items: center; gap: 0.1rem;
+  padding: 0.35rem 1rem; background: var(--gold); color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 4px;
+  font: 700 0.7rem/1.1 var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em;
+  transform: rotate(-4deg);
+  -webkit-mask: radial-gradient(circle at 0 50%, transparent 0.4rem, #000 0.42rem) left / 51% 100% no-repeat,
+                radial-gradient(circle at 100% 50%, transparent 0.4rem, #000 0.42rem) right / 51% 100% no-repeat;
+          mask: radial-gradient(circle at 0 50%, transparent 0.4rem, #000 0.42rem) left / 51% 100% no-repeat,
+                radial-gradient(circle at 100% 50%, transparent 0.4rem, #000 0.42rem) right / 51% 100% no-repeat;
+}
+.ticket-no { font-size: 0.85rem; border-top: 2px dashed var(--ink); padding-top: 0.1rem; }
+.case--film:nth-child(even) .ticket { transform: rotate(3deg); }
+.case--film .case-head { margin-bottom: 0.6rem; }

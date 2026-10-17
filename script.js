@@ -27,6 +27,24 @@
     });
   }
 
+  // ---- Pause / play all animations; remembered in this browser ----
+  var motionBtn = document.querySelector('.motion-toggle');
+  var isPaused = function () { return document.documentElement.classList.contains('motion-paused'); };
+  var showMotionState = function () {
+    if (!motionBtn) return;
+    motionBtn.classList.toggle('is-paused', isPaused());   // both labels are in the button; CSS shows one
+  };
+  if (motionBtn) {
+    showMotionState();
+    motionBtn.addEventListener('click', function () {
+      var paused = !isPaused();
+      document.documentElement.classList.toggle('motion-paused', paused);
+      try { localStorage.setItem('motion', paused ? 'paused' : 'on'); } catch (e) {}
+      showMotionState();
+      document.dispatchEvent(new CustomEvent('motionchange', { detail: { paused: paused } }));
+    });
+  }
+
   // ---- Keep section links out of the address bar ----
   // A menu link leaves "#about" in the address, so a refresh later would jump back to that
   // section instead of staying where you are. Clear it right after the jump.
@@ -77,7 +95,7 @@
     // turning right as the TV glitches between the color bars and "Please stand by".
     // Pauses on hover or focus, stops for good once you pick a channel, and stops after a few turns.
     var surf = null, hops = 0, inView = false, held = false, surfDone = reduceMotion;
-    var LOOP = 14000, GLITCHES = [0.395 * LOOP, 0.87 * LOOP];   // matches the tv-glitch keyframes
+    var LOOP = 36400, GLITCHES = [0.2069 * LOOP, 0.3560 * LOOP, 0.4995 * LOOP, 0.9588 * LOOP];   // matches the tv-glitch keyframes
     var glitchAnim = function () {
       var g = document.querySelector('.tv-glitch');
       return g && g.getAnimations ? g.getAnimations()[0] : null;
@@ -91,7 +109,7 @@
     };
     var stopSurf = function () { clearTimeout(surf); surf = null; };
     var startSurf = function () {
-      if (surfDone || surf || !inView || held) return;
+      if (surfDone || surf || !inView || held || motionHeld) return;
       surf = setTimeout(function () {
         surf = null;
         var current = dial.querySelector('[aria-checked="true"]');
@@ -118,6 +136,8 @@
       });
     });
     ['mouseenter', 'focusin'].forEach(function (ev) { dial.addEventListener(ev, function () { held = true; stopSurf(); }); });
+    var motionHeld = isPaused();
+    document.addEventListener('motionchange', function (e) { motionHeld = e.detail.paused; if (motionHeld) { stopSurf(); } else { startSurf(); } });
     ['mouseleave', 'focusout'].forEach(function (ev) { dial.addEventListener(ev, function () { held = false; startSurf(); }); });
     if (!surfDone && 'IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
@@ -238,4 +258,112 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     pending.forEach(function (el) { io.observe(el); });
   }
+})();
+
+// ---- Room lights, timed to the TV: on its first peek the ghost tugs the lamp's pull chain and the room
+// lights up. It dims the room just as the PSA comes on, and turns the lights back on right as the PSA's
+// star blooms into its flash. The ghost peeks seven times per TV loop (5.2s each, see .ghost in the CSS),
+// so its peeks land on those moments. Reduced motion: the room just stays lit. ----
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var startLit = !root.classList.contains('room-intro');   // loaded paused: lit until Play
+  var ghost = document.querySelector('.ghost');
+  var anim = ghost && ghost.getAnimations ? ghost.getAnimations()[0] : null;
+  if (!anim || anim.currentTime == null) { root.classList.remove('room-intro'); return; }
+  var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
+  var TV = 36400, OFF_PEAK = 18030, ON_PEAK = 33630;  // TV loop; peeks just as the PSA comes on, and at the star's flash
+  var tv = document.querySelector('.tv-bars');
+  var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;
+  var untilTv = function (at, lead) {                 // ms until the TV loop reaches `at`, at least `lead` ms away
+    if (!tvAnim || tvAnim.currentTime == null) return untilPeak(lead);
+    var w = at - (tvAnim.currentTime % TV);
+    while (w < lead) w += TV;
+    return w;
+  };
+  var untilPeak = function (lead) {                 // ms to the next peek at least `lead` ms away
+    var w = PEAK - (anim.currentTime % LOOP);
+    while (w < lead) w += LOOP;
+    return w;
+  };
+  var lamp = document.querySelector('.floor-lamp');
+  var hasLamp = function () { return lamp && getComputedStyle(lamp).display !== 'none'; };
+  var chain = lamp && lamp.querySelector('.lamp-chain');
+  var arm = document.querySelector('.ghost-arm');
+  var paths = arm ? arm.querySelectorAll('path') : [], hand = arm && arm.querySelector('.arm-hand');
+  var timers = [];
+  var later = function (fn, ms) { timers.push(setTimeout(fn, ms)); };
+  var setDash = function (v) { [].forEach.call(paths, function (el) { el.style.strokeDashoffset = v; }); };
+
+  var reach = function () {
+    var bob = chain.querySelector('.chain-pull'), bb = bob.getBBox();       // aim for the pull, wherever it hangs
+    var p = lamp.createSVGPoint(); p.x = bb.x + bb.width / 2; p.y = bb.y + bb.height * 0.6;
+    var local = p.matrixTransform(bob.getScreenCTM()).matrixTransform(arm.getScreenCTM().inverse());
+    var hx = local.x, hy = local.y + 7;
+    // shoulder high on the side, so the arm is short
+    var d = 'M340 162Q' + (hx + 12).toFixed(1) + ' ' + ((162 + hy) / 2).toFixed(1) + ' ' + hx.toFixed(1) + ' ' + hy.toFixed(1);
+    [].forEach.call(paths, function (el) { el.setAttribute('d', d); el.style.transition = 'none'; });
+    hand.setAttribute('cx', hx.toFixed(1)); hand.setAttribute('cy', hy.toFixed(1));
+    var len = paths[0].getTotalLength();
+    [].forEach.call(paths, function (el) { el.style.strokeDasharray = len; });
+    setDash(len); hand.style.opacity = 0; arm.style.opacity = 1;
+    paths[0].getBoundingClientRect();                                        // apply the start state, then animate
+    [].forEach.call(paths, function (el) { el.style.transition = ''; });
+    setDash(0);
+    later(function () { hand.style.opacity = 1; }, 260);
+    return len;
+  };
+  var tugThen = function (len, flip) {
+    later(function () { chain.classList.add('is-tug'); arm.setAttribute('transform', 'translate(0 5)'); }, 420);
+    later(function () {
+      chain.classList.remove('is-tug'); arm.removeAttribute('transform');
+      flip();
+      hand.style.opacity = 0; setDash(len);
+      later(function () { arm.style.opacity = 0; }, 300);
+    }, 620);
+  };
+
+  var lightsOn = function () {
+    root.classList.add('room-glow');
+    root.classList.remove('room-intro');
+    later(function () { root.classList.remove('room-glow'); }, 900);
+  };
+  var lightsOff = function () {
+    root.classList.add('room-intro');                                        // lamp fades, rug rolls up; chain still hangs
+    later(function () {                                                 // then the chain goes, bottom link first
+      root.classList.add('chain-out'); root.classList.remove('chain-in');
+      later(function () { root.classList.remove('chain-out'); }, 700);
+    }, 700);
+  };
+
+  var turnOn = function (first) {
+    var w = first ? untilPeak(1200) : untilTv(ON_PEAK, 1200);
+    if (!hasLamp()) {                                                        // phones: the rug alone, on the peek
+      later(function () { lightsOn(); scheduleOff(); }, w);
+      return;
+    }
+    later(function () { root.classList.add('chain-in'); }, w - 900);         // chain comes in link by link
+    later(function () { tugThen(reach(), function () { lightsOn(); scheduleOff(); }); }, w);
+  };
+  var scheduleOff = function () {
+    var w = untilTv(OFF_PEAK, 1200);                                          // lights down for the PSA
+    later(function () {
+      if (!hasLamp()) { lightsOff(); turnOn(false); return; }
+      tugThen(reach(), function () { lightsOff(); turnOn(false); });
+    }, w);
+  };
+  // Pause: stop the cycle and leave the room lit. Play: carry on from lit.
+  document.addEventListener('motionchange', function (e) {
+    timers.forEach(clearTimeout); timers = [];
+    if (e.detail.paused) {
+      root.classList.remove('room-intro', 'chain-out', 'room-glow');
+      root.classList.add('chain-in');
+      if (chain) chain.classList.remove('is-tug');
+      if (arm) { arm.style.opacity = 0; arm.removeAttribute('transform'); }
+    } else {
+      scheduleOff();
+    }
+  });
+  if (!startLit) turnOn(true);
 })();

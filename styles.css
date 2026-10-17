@@ -1762,5 +1762,10 @@ body { background: var(--white-warm); }
 .hero h1 .old { font-family: 'Pirata One', 'Shrikhand', Georgia, serif; font-weight: 400; font-size: 1.12em; letter-spacing: 0.01em;
   color: var(--ink); text-shadow: 3px 3px 0 #ebbd4e; filter: url(#letterpress); }
 
-/* the headline as two balanced pairs: "Old-school / craft." and "New-school / code.", the blackletter sized to match the script */
-.hero h1 .old { font-size: 1.32em; line-height: 0.92; }
+/* the headline as two balanced lines: each phrase stays on one line and the size scales with the text column.
+   The blackletter is width-matched to "New-school code." (its gold shadow included). */
+@media (min-width: 52.01em) { .hero-grid { grid-template-columns: 1.4fr 1fr; gap: clamp(1rem, 2.5vw, 2.5rem); } }
+.hero-copy { container-type: inline-size; }
+.hero h1 { font-size: min(70px, 100cqi / 9.8); }
+.hero h1 .old, .hero h1 .accent { white-space: nowrap; }
+.hero h1 .old { font-size: 1.57em; line-height: 1; }

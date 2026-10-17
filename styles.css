@@ -1413,3 +1413,4 @@ body { background: var(--white-warm); }
 /* Contact: a 1950s portable typewriter under the email line */
 .typewriter50 { display: block; width: min(16rem, 70%); height: auto; margin-top: 1.5rem; position: relative; z-index: 1; }
 @media (max-width: 52em) { .typewriter50 { width: min(12rem, 56%); margin-top: 1.25rem; } }
+@media (min-width: 52.01em) { .typewriter50 { margin: 4.5rem 0 0 auto; } }

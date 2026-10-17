@@ -189,6 +189,17 @@
     }
   }
 
+  // ---- The marker underline under "It's a legal issue." draws itself once it's on screen ----
+  var markerLine = document.querySelector('.marker-wipe');
+  if (markerLine && !reduceMotion) {
+    if (!('IntersectionObserver' in window)) { markerLine.classList.add('is-drawn'); }
+    else {
+      new IntersectionObserver(function (entries, obs) {
+        if (entries[0].isIntersecting) { markerLine.classList.add('is-drawn'); obs.disconnect(); }
+      }, { threshold: 0.5, rootMargin: '0px 0px -15% 0px' }).observe(markerLine);
+    }
+  }
+
   // ---- Meter needles swing up once the gauges are mostly on screen ----
   // A high threshold so on phones (stacked layout) it happens while you're looking at them.
   var meters = document.querySelector('.meters');

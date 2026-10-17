@@ -13,10 +13,12 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=98">
+  <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=100">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
+  <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false"><filter id="letterpress" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.75" result="speck"/><feComposite in="SourceGraphic" in2="speck" operator="in" result="inked"/><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3" result="w"/><feDisplacementMap in="inked" in2="w" scale="2.6" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
@@ -71,7 +73,7 @@
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="eyebrow eyebrow-stack"><span>Web development &amp; consulting</span> <span><span aria-hidden="true">✦</span> Greater Seattle <span aria-hidden="true">✦</span></span></p>
-          <h1 id="hero-title">Old-school craft.<br><span class="accent">New-school code.</span></h1>
+          <h1 id="hero-title"><span class="old">Old-school craft.</span><br><span class="accent"><span class="hl hl-1">New-school </span><span class="hl hl-2">code.</span></span></h1>
           <p class="lede">Fast, accessible websites for small businesses and nonprofits. Custom-built, tested on real phones, and explained in plain English.</p>
           <p class="hero-tagline"><span aria-hidden="true">✦</span> Analog soul, digital solutions <span aria-hidden="true">✦</span></p>
           <div class="hero-actions">
@@ -98,6 +100,7 @@
               <path d="M303 174q8 7 16 0" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
             </g></g></g>
             <!-- antenna -->
+            <g class="tv-antenna">
             <g stroke="var(--ink)" stroke-width="5" stroke-linecap="round">
               <path d="M156.5 70.8 98.5 10.8"/>
               <path d="M156.5 70.8 220.5 6.8"/>
@@ -105,6 +108,7 @@
             <circle cx="98.5" cy="10.8" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
             <circle cx="220.5" cy="6.8" r="7" fill="var(--bar-red)" stroke="var(--ink)" stroke-width="4"/>
             <path d="M134.5 74.8a22 22 0 0 1 44 0z" fill="var(--ink)"/>
+            </g>
             <!-- soft floor shadow under the set -->
             <ellipse cx="158" cy="300" rx="134" ry="7" fill="rgba(0, 0, 0, .2)"/>
             <!-- back legs and depth (slight 3D) -->
@@ -173,6 +177,7 @@
                 <g class="tv-tear"><rect x="40" y="128" width="190" height="9" fill="#58b6b1" opacity=".85"/><rect x="30" y="170" width="190" height="6" fill="#b65a93" opacity=".85"/><rect x="50" y="206" width="190" height="11" fill="#e8c547" opacity=".8"/></g>
               </g>
               <rect class="tv-scan" x="38" y="98" width="182" height="150" fill="url(#scanlines)"/>
+              <g class="crt-on"><rect x="38" y="98" width="182" height="150" fill="#0b0a09"/><rect class="crt-beam" x="38" y="171" width="182" height="4" fill="#fffbe8"/></g>
             </g>
             <rect x="38" y="98" width="182" height="150" rx="24" fill="none" stroke="var(--ink)" stroke-width="5"/>
             <path d="M54 112q30-8 60-6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
@@ -339,7 +344,7 @@
         <div class="legal-box">
           <div class="legal-head">
             <svg class="hood-icon legal-icon" viewBox="0 6 64 52" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M32 16V51"/><path d="M19 53H45"/><path d="M10 20Q32 14 54 20"/><path d="M10 20 3 39M10 20l7 19M54 20l-7 19M54 20l7 19"/><path d="M1.5 39h17a8.5 7 0 0 1-17 0z" fill="var(--ink)"/><path d="M45.5 39h17a8.5 7 0 0 1-17 0z" fill="var(--ink)"/></g><circle cx="32" cy="13.5" r="4" fill="var(--red-text)" stroke="var(--ink)" stroke-width="2.5"/></svg>
-            <h3>Accessibility isn't a nice-to-have. It's a legal issue.</h3>
+            <h3>Accessibility isn't a nice-to-have. <span class="marker">It's a legal issue.<span class="marker-wipe" aria-hidden="true"><svg class="marker-svg" viewBox="0 0 200 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 9.5C42 5 96 4.2 150 5.4 170 5.9 186 6.8 197 8.6"/><path d="M18 11.6C70 8.4 130 8.1 182 10.2" class="marker-2"/></svg></span></span></h3>
           </div>
           <p>It's not only a government issue. Everyday businesses and nonprofits get caught in the net too, usually in one of three ways. The standard that keeps coming up is <strong>WCAG 2.1 AA</strong>: the Web Content Accessibility Guidelines, the international standard for accessible websites. AA is the level most laws and courts point to.</p>
           <ul class="legal-list">
@@ -718,6 +723,6 @@
     </div>
   </footer>
 
-  <script src="script.js?v=18" defer></script>
+  <script src="script.js?v=19" defer></script>
 </body>
 </html>

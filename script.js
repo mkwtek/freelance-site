@@ -260,7 +260,7 @@
   }
 })();
 
-// ---- Room lights, timed to the TV: on its first peek the ghost tugs the lamp's pull chain and the room
+// ---- Room lights, timed to the TV: on its second peek (as the TV first changes channel) the ghost tugs the lamp's pull chain and the room
 // lights up. It dims the room just as the PSA comes on, and turns the lights back on right as the PSA's
 // star blooms into its flash. The ghost peeks seven times per TV loop (5.2s each, see .ghost in the CSS),
 // so its peeks land on those moments. Reduced motion: the room just stays lit. ----
@@ -274,6 +274,7 @@
   if (!anim || anim.currentTime == null) { root.classList.remove('room-intro'); return; }
   var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
   var TV = 36400, OFF_PEAK = 18030, ON_PEAK = 33630;  // TV loop; peeks just as the PSA comes on, and at the star's flash
+  var FIRST_PEAK = 7630;                             // first lights-on: the second peek, as the TV changes to its first channel
   var tv = document.querySelector('.tv-bars');
   var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;
   var untilTv = function (at, lead) {                 // ms until the TV loop reaches `at`, at least `lead` ms away
@@ -338,7 +339,7 @@
   };
 
   var turnOn = function (first) {
-    var w = first ? untilPeak(1200) : untilTv(ON_PEAK, 1200);
+    var w = first ? untilTv(FIRST_PEAK, 1200) : untilTv(ON_PEAK, 1200);
     if (!hasLamp()) {                                                        // phones: the rug alone, on the peek
       later(function () { lightsOn(); scheduleOff(); }, w);
       return;

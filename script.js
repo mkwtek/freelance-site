@@ -27,6 +27,19 @@
     });
   }
 
+  // ---- Keep section links out of the address bar ----
+  // A menu link leaves "#about" in the address, so a refresh later would jump back to that
+  // section instead of staying where you are. Clear it right after the jump.
+  var clearHash = function () {
+    if (location.hash && history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+  };
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href^="#"]');
+    if (link && link.getAttribute('href').length > 1) setTimeout(clearHash, 0);
+  });
+  // A shared link like /#contact still lands on its section; the hash is cleared after that
+  window.addEventListener('load', function () { setTimeout(clearHash, 0); });
+
   // ---- "Free site check" links preselect that option in the contact form ----
   document.querySelectorAll('[data-need]').forEach(function (link) {
     link.addEventListener('click', function () {

@@ -1409,3 +1409,7 @@ body { background: var(--white-warm); }
 .bd-snip { font: 700 9px var(--font-mono); fill: var(--ink); opacity: .22; text-anchor: middle; }
 .bd-spark { transform-origin: 50% 100%; }
 .bd-spark { transform-origin: 50% 0; }
+
+/* Contact: a 1950s portable typewriter under the email line */
+.typewriter50 { display: block; width: min(16rem, 70%); height: auto; margin-top: 1.5rem; position: relative; z-index: 1; }
+@media (max-width: 52em) { .typewriter50 { width: min(12rem, 56%); margin-top: 1.25rem; } }

@@ -1761,3 +1761,6 @@ body { background: var(--white-warm); }
 .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .hero h1 .old { font-family: 'Pirata One', 'Shrikhand', Georgia, serif; font-weight: 400; font-size: 1.12em; letter-spacing: 0.01em;
   color: var(--ink); text-shadow: 3px 3px 0 #ebbd4e; filter: url(#letterpress); }
+
+/* the headline as two balanced pairs: "Old-school / craft." and "New-school / code.", the blackletter sized to match the script */
+.hero h1 .old { font-size: 1.32em; line-height: 0.92; }

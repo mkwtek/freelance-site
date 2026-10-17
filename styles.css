@@ -746,13 +746,15 @@ body { background: var(--white-warm); }
   0% { opacity: 0; }
   43.5% { opacity: 1; transform: translateX(6px) skewX(7deg); }
   44.5% { opacity: 1; transform: none; }
-  87.5% { opacity: 1; transform: translateX(-5px) skewX(-6deg); }
-  88.5% { opacity: 0; }
+  64.5% { opacity: 1; transform: translateX(-5px) skewX(-6deg); }
+  65.5% { opacity: 0; }
 }
 @keyframes tv-glitch {
   0% { opacity: 0; }
   39.5% { opacity: 1; }
   44.5% { opacity: 0; }
+  64% { opacity: 1; }
+  67% { opacity: 0; }
   87% { opacity: 1; }
   92% { opacity: 0; }
 }
@@ -1413,4 +1415,25 @@ body { background: var(--white-warm); }
 /* Contact: a 1950s portable typewriter under the email line */
 .typewriter50 { display: block; width: min(16rem, 70%); height: auto; margin-top: 1.5rem; position: relative; z-index: 1; }
 @media (max-width: 52em) { .typewriter50 { width: min(12rem, 56%); margin-top: 1.25rem; } }
-@media (min-width: 52.01em) { .typewriter50 { margin: 4.5rem 0 0 auto; } }
+@media (min-width: 52.01em) {
+  .contact-grid { align-items: stretch; }
+  .contact-copy { display: flex; flex-direction: column; }
+  .contact-copy .eyebrow { align-self: flex-start; }
+  .typewriter50 { margin: auto; padding-bottom: 8.5rem; }   /* lines its middle up with the "Current website" field */
+}
+
+/* Tagline: a title card on the hero TV (bars, stand by, tagline), a line above the hero buttons, and the footer */
+.tv-title { opacity: 0; transform-box: view-box; transform-origin: 130px 173px; }
+@media (prefers-reduced-motion: no-preference) { .tv-title { animation: tv-title 14s steps(1) infinite; } }
+@keyframes tv-title {
+  0% { opacity: 0; }
+  66% { opacity: 1; transform: translateX(6px) skewX(7deg); }
+  67% { opacity: 1; transform: none; }
+  87.5% { opacity: 1; transform: translateX(-5px) skewX(-6deg); }
+  88.5% { opacity: 0; }
+}
+.tv-tag { font: 700 13px var(--font-mono); fill: var(--paper); letter-spacing: 0.06em; }
+.tv-tag-sm { font-size: 11.5px; fill: #e8c547; }
+/* Yellow on the teal hero would be unreadable, so the yellow text sits on an ink strip (about 11:1) */
+.hero-tagline { display: inline-block; font: 700 clamp(0.78rem, 3.5vw, 1rem) var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--yellow-on-ink); background: var(--ink); padding: 0.35em 0.75em; border-radius: 0.4rem; margin: 0.25rem 0 1.5rem; }
+.footer-tagline { font-style: italic; color: #e8c547; }

@@ -13,7 +13,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=94">
+  <link rel="stylesheet" href="styles.css?v=96">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -72,6 +72,7 @@
           <p class="eyebrow eyebrow-stack"><span>Web development &amp; consulting</span> <span><span aria-hidden="true">✦</span> Greater Seattle <span aria-hidden="true">✦</span></span></p>
           <h1 id="hero-title">Old-school craft.<br><span class="accent">New-school code.</span></h1>
           <p class="lede">Fast, accessible websites for small businesses and nonprofits. Custom-built, tested on real phones, and explained in plain English.</p>
+          <p class="hero-tagline"><span aria-hidden="true">✦</span> Analog soul, digital solutions <span aria-hidden="true">✦</span></p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contact">Start a project</a>
             <a class="btn btn-ghost" href="#work">See the work</a>
@@ -85,7 +86,7 @@
 
         <div class="hero-art">
           <svg class="tv" viewBox="0 0 380 310" role="img" aria-labelledby="tv-title">
-            <title id="tv-title">A 1950s television set, drawn slightly in three dimensions, showing color test bars, with a cartoon ghost peeking out from behind it</title>
+            <title id="tv-title">A 1950s television set, drawn slightly in three dimensions, showing color test bars and a title card reading "Analog soul, digital solutions", with a cartoon ghost peeking out from behind it</title>
             <!-- ghost peeking from behind the set -->
             <g class="ghost"><g transform="translate(13 0)">
               <path d="M276 236V150a34 34 0 0 1 68 0v86l-11-9-11 9-12-9-11 9-12-9z" fill="var(--ghost)" stroke="var(--ink)" stroke-width="5" stroke-linejoin="round"/>
@@ -145,6 +146,13 @@
                 <path d="M74 166H186M130 110V222" stroke="#221f1b" stroke-width="1.6"/>
                 <rect x="74" y="157" width="112" height="18" rx="3" fill="#221f1b"/>
                 <text x="130" y="169.5" text-anchor="middle" class="tv-standby" style="font-size:8.5px;letter-spacing:.08em">PLEASE STAND BY</text></g>
+              </g>
+              <g class="tv-ch tv-title">
+                <rect x="46" y="106" width="168" height="134" fill="#141210"/>
+                <rect x="58" y="128" width="144" height="90" rx="6" fill="none" stroke="#e8c547" stroke-width="2"/>
+                <text x="130" y="162" text-anchor="middle" class="tv-tag">ANALOG SOUL,</text>
+                <text x="130" y="182" text-anchor="middle" class="tv-tag tv-tag-sm">DIGITAL SOLUTIONS</text>
+                <path d="M130 194l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#e8c547"/>
               </g>
               <g class="tv-glitch">
                 <rect x="46" y="106" width="168" height="134" fill="#3a342e" opacity=".55"/>
@@ -688,7 +696,7 @@
   <text x="120" y="238" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="13" letter-spacing="3" fill="#221f1b">WASHINGTON</text>
 </svg>
       <p class="footer-brand">Business Name</p>
-      <p>Web development &amp; consulting<br><span aria-hidden="true">✦</span> Greater Seattle, WA <span aria-hidden="true">✦</span></p>
+      <p>Web development &amp; consulting<br><span class="footer-tagline">Analog soul, digital solutions.</span><br><span aria-hidden="true">✦</span> Greater Seattle, WA <span aria-hidden="true">✦</span></p>
       <p class="footer-small">Custom-built. Tested on real devices. &copy; 2026 Business Name</p>
     </div>
   </footer>

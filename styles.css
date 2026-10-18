@@ -2019,3 +2019,8 @@ body { background: var(--white-warm); }
   .motion-toggle { font-size: 0.95rem; padding: 0.55rem 1.1rem; }
 }
 @media (max-width: 52em) { .hero-haunt { margin-bottom: 0.4rem; } }   /* even gaps down the stack */
+
+/* footer logo: the divider sits midway between "Analog soul" (allowing for its gold shadow) and "DIGITAL SOLUTIONS" */
+.fl-rule { position: relative; top: 0.4em; }
+/* an open FAQ question keeps rounded corners on top only, so its highlight joins the answer below */
+.faq[open] summary { border-radius: 0.7rem 0.7rem 0 0; }

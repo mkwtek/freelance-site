@@ -1797,41 +1797,62 @@ body { background: var(--white-warm); }
 .hero h1 .old, .hero h1 .accent { white-space: nowrap; }
 .hero h1 .old { font-size: 1.57em; line-height: 1; }
 
-/* ---------- "That's good to know" in the classic PSA sing-song: "That's" and "good" step in quickly,
-   "toooo" stretches and rises, then "know" lands on top and everything settles onto one line along the tail.
-   Timed inside the 36.4s TV loop (words 28.75s to 32.3s, they leave at 33.4s). Static: the line at rest. ---------- */
-.gk { transform-box: fill-box; transform-origin: 0% 100%; }
+/* ---------- "That's good to know" as a sing-along: a bouncing ball with a fading tail hops word to word
+   and each word lights up as the ball lands, with a longer hang before "know". Everything then holds on one line
+   along the comet tail for about 3 seconds before leaving with the star's flash.
+   Timed inside the 36.4s TV loop: comet arrives 28.6s, words 28.9s to 30.8s, leave 34.0s. Static: the line at rest. ---------- */
+.gk { transform-box: fill-box; transform-origin: 50% 100%; }
+.sing-ball .sb { fill: #e8c547; opacity: 0; transform-box: view-box; }
+.sing-ball .sb0 { stroke: #141210; stroke-width: 1; paint-order: stroke; }
 @media (prefers-reduced-motion: no-preference) {
   .cmt-words { animation-name: cmt-words-sing; }
+  .cmt-trail { animation-name: cmt-trail-sing; }
+  .cmt-star { animation-name: cmt-star-sing; }
   .gk1 { animation: gk1 36.4s linear infinite; }
   .gk2 { animation: gk2 36.4s linear infinite; }
   .gk3 { animation: gk3 36.4s linear infinite; }
   .gk4 { animation: gk4 36.4s linear infinite; }
-  .cmt-star { animation-name: cmt-star-sing; }
+  .sing-ball .sb { animation: sing-ball 36.4s linear infinite; }
+  .sing-ball .sb1 { animation-name: sing-tail1; animation-delay: 0.05s; }
+  .sing-ball .sb2 { animation-name: sing-tail2; animation-delay: 0.1s; }
+  .sing-ball .sb3 { animation-name: sing-tail3; animation-delay: 0.15s; }
 }
-@keyframes cmt-words-sing { 0%, 91.76% { opacity: 1; transform: none; } 93.68%, 100% { opacity: 0; transform: translate(-70px, -48px); } }
-@keyframes gk1 { 0%, 78.98% { opacity: 0; transform: translateY(3px) scale(.75); } 80.22%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
-@keyframes gk2 { 0%, 80.22% { opacity: 0; transform: translateY(3px) scale(.75); } 81.46%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
-@keyframes gk3 {
-  0%, 81.46% { opacity: 0; transform: translateY(3px) scale(.75); }
-  82.28% { opacity: 1; transform: none; }
-  86.95% { opacity: 1; transform: translateY(-4px) scaleX(1.65); }
-  87.91%, 97% { opacity: 1; transform: none; }
-  97.01%, 100% { opacity: 0; }
+@keyframes cmt-trail-sing {
+  0%, 75.7% { clip-path: inset(0 100% 0 0); opacity: 1; transform: none; }
+  78.6% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
+  93.4% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
+  95.2%, 100% { clip-path: inset(0 0 0 0); opacity: 0; transform: translate(-30px, -14px); }
 }
-@keyframes gk4 {
-  0%, 86.95% { opacity: 0; transform: translateY(-14px) scale(1.8); }
-  87.8% { opacity: 1; transform: translateY(1px) scale(.96); }
-  88.6%, 97% { opacity: 1; transform: none; }
-  97.01%, 100% { opacity: 0; }
+@keyframes cmt-words-sing { 0%, 93.4% { opacity: 1; transform: none; } 95.2%, 100% { opacity: 0; transform: translate(-40px, -28px); } }
+/* each word pops in as the ball lands on it */
+@keyframes gk1 { 0%, 79% { opacity: 0; transform: scale(.8); } 79.5% { opacity: 1; transform: scale(1.08); } 79.9%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk2 { 0%, 80.4% { opacity: 0; transform: scale(.8); } 80.9% { opacity: 1; transform: scale(1.08); } 81.3%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk3 { 0%, 81.9% { opacity: 0; transform: scale(.8); } 82.4% { opacity: 1; transform: scale(1.08); } 82.8%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk4 { 0%, 84.2% { opacity: 0; transform: scale(.8); } 84.7% { opacity: 1; transform: scale(1.14); } 85.3%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+/* the ball: lands on That's, good, to, then a long high hang before know, a little settle bounce, then fades */
+@keyframes sing-ball {
+  0%, 78.6% { opacity: 0; transform: translate(69px, 178px); }
+  79.3% { opacity: 1; transform: translate(69px, 186px); animation-timing-function: ease-out; }
+  80% { transform: translate(87px, 179px); animation-timing-function: ease-in; }
+  80.7% { transform: translate(105px, 186px); animation-timing-function: ease-out; }
+  81.45% { transform: translate(118px, 180px); animation-timing-function: ease-in; }
+  82.2% { transform: translate(131px, 186px); animation-timing-function: ease-out; }
+  83.35% { transform: translate(144px, 177px); animation-timing-function: ease-in; }
+  84.5% { transform: translate(157px, 186px); animation-timing-function: ease-out; }
+  85.1% { transform: translate(157px, 181px); animation-timing-function: ease-in; }
+  85.7% { opacity: 1; transform: translate(157px, 186px); }
+  87%, 100% { opacity: 0; transform: translate(157px, 186px); }
 }
-/* the star flashes as "know" lands */
+@keyframes sing-tail1 { 0%, 78.6% { opacity: 0; transform: translate(69px, 178px); } 79.3% { opacity: .55; transform: translate(69px, 186px); animation-timing-function: ease-out; } 80% { transform: translate(87px, 179px); animation-timing-function: ease-in; } 80.7% { transform: translate(105px, 186px); animation-timing-function: ease-out; } 81.45% { transform: translate(118px, 180px); animation-timing-function: ease-in; } 82.2% { transform: translate(131px, 186px); animation-timing-function: ease-out; } 83.35% { transform: translate(144px, 177px); animation-timing-function: ease-in; } 84.5% { opacity: .55; transform: translate(157px, 186px); } 85.2%, 100% { opacity: 0; transform: translate(157px, 186px); } }
+@keyframes sing-tail2 { 0%, 78.6% { opacity: 0; transform: translate(69px, 178px); } 79.3% { opacity: .32; transform: translate(69px, 186px); animation-timing-function: ease-out; } 80% { transform: translate(87px, 179px); animation-timing-function: ease-in; } 80.7% { transform: translate(105px, 186px); animation-timing-function: ease-out; } 81.45% { transform: translate(118px, 180px); animation-timing-function: ease-in; } 82.2% { transform: translate(131px, 186px); animation-timing-function: ease-out; } 83.35% { transform: translate(144px, 177px); animation-timing-function: ease-in; } 84.5% { opacity: .32; transform: translate(157px, 186px); } 85.2%, 100% { opacity: 0; transform: translate(157px, 186px); } }
+@keyframes sing-tail3 { 0%, 78.6% { opacity: 0; transform: translate(69px, 178px); } 79.3% { opacity: .16; transform: translate(69px, 186px); animation-timing-function: ease-out; } 80% { transform: translate(87px, 179px); animation-timing-function: ease-in; } 80.7% { transform: translate(105px, 186px); animation-timing-function: ease-out; } 81.45% { transform: translate(118px, 180px); animation-timing-function: ease-in; } 82.2% { transform: translate(131px, 186px); animation-timing-function: ease-out; } 83.35% { transform: translate(144px, 177px); animation-timing-function: ease-in; } 84.5% { opacity: .16; transform: translate(157px, 186px); } 85.2%, 100% { opacity: 0; transform: translate(157px, 186px); } }
+/* the comet arrives a little sooner; its star flashes as "know" lands, then grows into the bloom as before */
 @keyframes cmt-star-sing {
-  0%, 78.43% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
-  78.71% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
-  81.32%, 87.4% { opacity: 1; transform: translate(192px, 210px) scale(1); }
-  88% { opacity: 1; transform: translate(192px, 210px) scale(1.4); }
-  89.5%, 90.66% { opacity: 1; transform: translate(192px, 210px) scale(1); }
+  0%, 75.7% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
+  76% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
+  78.6%, 84.3% { opacity: 1; transform: translate(192px, 210px) scale(1); }
+  84.9% { opacity: 1; transform: translate(192px, 210px) scale(1.4); }
+  86.4%, 90.66% { opacity: 1; transform: translate(192px, 210px) scale(1); }
   92.31% { opacity: 1; transform: translate(170px, 192px) scale(2.2); }
   93.68% { opacity: 1; transform: translate(140px, 176px) scale(4.2); }
   94.51%, 100% { opacity: 0; transform: translate(132px, 173px) scale(6); }

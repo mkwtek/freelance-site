@@ -1935,3 +1935,19 @@ body { background: var(--white-warm); }
 
 /* menu labels and the brand stay on one line; below 66em the Menu button takes over (the full menu with FAQ needs about 65em) */
 .site-nav a, .brand-name { white-space: nowrap; }
+
+/* ---------- "The test pattern" meter panel: a brushed metal plate held on by four slotted screws,
+   each turned a little differently, like it was put on by hand ---------- */
+.meters { position: relative; background-color: #2c2823;
+  background-image: repeating-linear-gradient(90deg, rgba(255, 247, 240, .025) 0 1px, transparent 1px 3px),
+                    linear-gradient(180deg, rgba(255, 247, 240, .06), transparent 40%, rgba(0, 0, 0, .18));
+  box-shadow: inset 2px 2px 0 rgba(255, 247, 240, .12), inset -3px -3px 0 rgba(0, 0, 0, .45), 6px 6px 0 #000; }
+.panel-screw { position: absolute; width: 1.15rem; height: 1.15rem; pointer-events: none; }
+.panel-screw.tl { top: 0.55rem; left: 0.55rem; }
+.panel-screw.tr { top: 0.55rem; right: 0.55rem; }
+.panel-screw.bl { bottom: 0.55rem; left: 0.55rem; }
+.panel-screw.br { bottom: 0.55rem; right: 0.55rem; }
+.ps-head { fill: url(#ps-steel); stroke: #14110e; stroke-width: 1.6; }
+.ps-shine { fill: none; stroke: rgba(255, 247, 240, .45); stroke-width: 1.2; stroke-dasharray: 9 60; transform: rotate(200deg); }
+.ps-slot path { stroke: #14110e; stroke-width: 2.6; stroke-linecap: round; }
+.meters { padding: 2.2rem 2rem; }   /* room for the corner screws */

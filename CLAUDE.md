@@ -25,7 +25,7 @@ Naming history and rejected names live in Claude's memory, not here.
 Vintage cartoon meets analog tech: a 1950s TV with color bars and rabbit ears, dials and knobs,
 gauge meters, a tattoo-flash quarter spiderweb in the hero corner, a cartoon ghost peeking out.
 Related to Atomic Afterlife's retro feel but not a copy. Fonts: Shrikhand (display), DM Sans (body),
-Space Mono (labels).
+Space Mono (labels), Pirata One (blackletter "Old-school" and "Analog soul"), VT323 (footer "digital solutions").
 
 ## Color palette (each color has one job)
 

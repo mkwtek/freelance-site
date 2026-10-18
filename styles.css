@@ -2148,3 +2148,14 @@ body { background: var(--white-warm); }
 /* the seal grows to match the bigger About column now that the engine sits beside it */
 .shop-badge { width: min(25rem, 92%); margin-top: 2.25rem; }
 @media (max-width: 52em) { .shop-badge { width: min(20rem, 85%); } }
+
+/* ---------- About: the seal is a sticker slapped on the photo's corner, and the engine sits under the photo ---------- */
+#about .photo-wrap { position: relative; }
+#about .about-photo img.seal-sticker { position: absolute; right: -1.75rem; bottom: calc(-2rem - 5px); width: calc(36% - 1px); margin: 0;
+  border: 0; border-radius: 50%; box-shadow: none; transform: rotate(6deg); filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.25)); }
+#about .about-photo img.about-engine { margin: 3rem 0 0; border: 0; border-radius: 0; box-shadow: none; filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.15)); }
+#about { padding-bottom: 4.5rem; }
+@media (max-width: 52em) {
+  #about .about-photo img.seal-sticker { right: -0.75rem; bottom: calc(-1.25rem - 2px); width: calc(36% + 2px); }
+  #about .about-photo img.about-engine { margin-top: 2.75rem; }
+}

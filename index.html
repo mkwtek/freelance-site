@@ -14,7 +14,7 @@
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=138">
+  <link rel="stylesheet" href="styles.css?v=139">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -574,9 +574,12 @@
     <section class="section section-alt" id="about" aria-labelledby="about-title">
       <div class="wrap about-grid">
         <div class="about-photo">
-          <img src="images/about-portrait.webp" width="600" height="600" loading="lazy" decoding="async" alt="Matt smiling on the Puget Sound shoreline with a ferry in the background">
-          <!-- Seal art is a stand-in and may be replaced later -->
-          <img class="shop-badge" src="images/badge-wrenches.webp?v=1" width="480" height="480" loading="lazy" decoding="async" alt="Badge: Wrenches to Websites, Greater Seattle">
+          <div class="photo-wrap">
+            <img src="images/about-portrait.webp" width="600" height="600" loading="lazy" decoding="async" alt="Matt smiling on the Puget Sound shoreline with a ferry in the background">
+            <!-- Seal art is a stand-in and may be replaced later -->
+            <img class="shop-badge seal-sticker" src="images/badge-wrenches.webp?v=1" width="480" height="480" loading="lazy" decoding="async" alt="Badge: Wrenches to Websites, Greater Seattle">
+          </div>
+          <img class="about-engine" src="images/about-engine.webp?v=1" width="960" height="526" loading="lazy" decoding="async" alt="Illustration: a hot rod engine wired to a vintage computer showing code">
         </div>
         <div class="about-copy">
           <p class="eyebrow">About</p>
@@ -589,7 +592,6 @@
             <li><svg class="hood-icon diag-icon" viewBox="5 4 54 56" aria-hidden="true" focusable="false"><g transform="translate(32 32) rotate(45) scale(.36)"><mask id="wr-icon" maskUnits="userSpaceOnUse" x="-40" y="-90" width="80" height="180"><rect x="-40" y="-90" width="80" height="180" fill="#fff"/><rect x="-6.5" y="-90" width="13" height="26" fill="#000"/><circle cx="0" cy="62" r="7" fill="#000"/></mask><g mask="url(#wr-icon)"><circle class="wr-steel" cx="0" cy="-60" r="17"/><rect class="wr-steel" x="-7.5" y="-52" width="15" height="104" rx="5"/><circle class="wr-steel" cx="0" cy="62" r="14"/></g><path class="wr-shine" d="M-2 -40V40"/></g></svg><span>Fix it properly</span></li>
             <li><svg class="hood-icon diag-icon" viewBox="5 4 54 56" aria-hidden="true" focusable="false"><g fill="none" stroke="var(--ink)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="23"/><path d="M21 33l8 8 15-17" stroke-width="5"/></g></svg><span>Prove it works</span></li>
           </ol>
-          <img class="about-engine" src="images/about-engine.webp?v=1" width="960" height="526" loading="lazy" decoding="async" alt="Illustration: a hot rod engine wired to a vintage computer showing code">
           <p>That's exactly how I work on websites. Reproduce the problem, find the real cause, fix it instead of patching over it, and prove it works. I've since built and supported websites for more than a dozen nonprofits at a web agency, led a remote web team for a global nonprofit, and run my own small online business, so I know what owners are juggling.</p>
           <p>I'm based in the Greater Seattle area and happy to work remotely.</p>
         </div>

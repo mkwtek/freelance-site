@@ -1825,10 +1825,10 @@ body { background: var(--white-warm); }
 }
 @keyframes cmt-words-sing { 0%, 93.4% { opacity: 1; transform: none; } 95.2%, 100% { opacity: 0; transform: translate(-40px, -28px); } }
 /* each word pops in as the ball lands on it */
-@keyframes gk1 { 0%, 79% { opacity: 0; transform: scale(.8); } 79.5% { opacity: 1; transform: scale(1.08); } 79.9%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
-@keyframes gk2 { 0%, 80.4% { opacity: 0; transform: scale(.8); } 80.9% { opacity: 1; transform: scale(1.08); } 81.3%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
-@keyframes gk3 { 0%, 81.9% { opacity: 0; transform: scale(.8); } 82.4% { opacity: 1; transform: scale(1.08); } 82.8%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
-@keyframes gk4 { 0%, 84.2% { opacity: 0; transform: scale(.8); } 84.7% { opacity: 1; transform: scale(1.14); } 85.3%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk1 { 0%, 78.8% { opacity: 0; transform: translateY(1.5px) scale(.94); } 80.1%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk2 { 0%, 80.2% { opacity: 0; transform: translateY(1.5px) scale(.94); } 81.5%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk3 { 0%, 81.7% { opacity: 0; transform: translateY(1.5px) scale(.94); } 83.0%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk4 { 0%, 84.0% { opacity: 0; transform: translateY(1.5px) scale(.94); } 85.4%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
 /* the ball: lands on That's, good, to, then a long high hang before know, a little settle bounce, then fades */
 @keyframes sing-ball {
   0%, 78.6% { opacity: 0; transform: translate(69px, 178px); }
@@ -2158,4 +2158,17 @@ body { background: var(--white-warm); }
 @media (max-width: 52em) {
   #about .about-photo img.seal-sticker { right: -0.75rem; bottom: calc(-1.25rem - 2px); width: calc(36% + 2px); }
   #about .about-photo img.about-engine { margin-top: 2.75rem; }
+}
+
+/* the TV words ease in softly (about half a second each) instead of popping */
+.gk1, .gk2, .gk3, .gk4 { animation-timing-function: ease-out; }
+
+/* ---------- Phones: the haunt tagline sits below the TV, so its little ghost waits until the line scrolls into view ---------- */
+@media (max-width: 52em) and (prefers-reduced-motion: no-preference) {
+  .haunt-ghost { animation: haunt-drift-loop 36.4s linear infinite; }
+  .haunt-seen .haunt-ghost { animation: haunt-drift-loop 36.4s linear infinite, haunt-drift 4.4s linear 0.4s 1; }
+}
+@media (max-width: 30em) and (prefers-reduced-motion: no-preference) {
+  .haunt-ghost { animation: haunt-drift-loop-sm 36.4s linear infinite; }
+  .haunt-seen .haunt-ghost { animation: haunt-drift-loop-sm 36.4s linear infinite, haunt-drift-sm 4.4s linear 0.4s 1; }
 }

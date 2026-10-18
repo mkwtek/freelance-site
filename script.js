@@ -203,6 +203,14 @@
     }
   }
 
+  // ---- Phones: the "haunt you" ghost floats out once the tagline is actually on screen ----
+  var haunt = document.querySelector('.hero-haunt');
+  if (haunt && !reduceMotion && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries, obs) {
+      if (entries[0].isIntersecting) { haunt.classList.add('haunt-seen'); obs.disconnect(); }
+    }, { threshold: 0.6 }).observe(haunt);
+  }
+
   // ---- Meter needles swing up once the gauges are mostly on screen ----
   // A high threshold so on phones (stacked layout) it happens while you're looking at them.
   var meters = document.querySelector('.meters');

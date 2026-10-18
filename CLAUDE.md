@@ -65,6 +65,7 @@ Space Mono (labels), Pirata One (blackletter "Old-school" and "Analog soul"), VT
   (Chrome's real font-size setting, not just zoom). Big display type gets a px cap inside clamp();
   grid columns use minmax(0, 1fr) so content can't push them wider than the screen. Background:
   /Users/Shared/Atomic-Afterlife-FONT-SIZE-RENDERING-SUMMARY.txt
+- Main menu: full labels on one line, Menu button below 66em. Adding a menu item means re-measuring that width.
 - Bump the `?v=` tag in `index.html` on every CSS or JS change.
 - Git: new commits only (never amend or rebase), plain commit messages with no AI or co-author lines,
   never change git config. The developer commits and pushes through GitHub Desktop.

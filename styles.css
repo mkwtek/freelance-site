@@ -2096,3 +2096,11 @@ body { background: var(--white-warm); }
   .tv { width: var(--tvw); margin-left: calc((100% - var(--tvw) * 1.05) / 2); }
   .floor-lamp { display: block; right: auto; left: calc((100% - var(--tvw) * 1.05) / 2 + var(--tvw) * 0.76); bottom: calc(var(--tvw) * -0.035); width: calc(var(--tvw) * 0.27); }
 }
+
+/* ---------- Under the hood: a hot rod with its hood popped beside the heading (above it on phones) ---------- */
+.why-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 28rem); gap: 1.5rem 2.5rem; align-items: center; }
+.why-head .hotrod { display: block; width: 100%; height: auto; filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
+@media (max-width: 52em) {
+  .why-head { grid-template-columns: minmax(0, 1fr); }
+  .why-head .hotrod { order: -1; max-width: 26rem; margin-inline: auto; }
+}

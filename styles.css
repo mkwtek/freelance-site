@@ -1970,3 +1970,27 @@ body { background: var(--white-warm); }
 #kind-words { background: var(--oatmeal); }
 #accessibility .legal-box { margin-top: 0.5rem; }
 #faq .ask-box { margin-top: 2rem; }
+
+/* ---------- A little ghost drifts up and to the right out of "you" now and then, then fades away.
+   Once every 15.6s (three of the TV ghost's peeks), visible for about 3s. Hidden with reduced motion. ---------- */
+.haunt-you { position: relative; display: inline-block; }
+.haunt-ghost { position: absolute; left: 80%; bottom: 0.15em; width: 0.95em; height: auto; overflow: visible; pointer-events: none; opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .haunt-ghost { animation: haunt-float 15.6s ease-in-out 3s infinite; }
+}
+@keyframes haunt-float {
+  0%, 2% { opacity: 0; transform: translate(-0.3em, 0.35em) scale(.6) rotate(-8deg); }
+  8% { opacity: 1; transform: translate(0.15em, -0.25em) scale(.9) rotate(4deg); }
+  14% { opacity: 1; transform: translate(0.5em, -0.85em) scale(1) rotate(-4deg); }
+  21% { opacity: 0; transform: translate(0.9em, -1.5em) scale(1) rotate(6deg); }
+  100% { opacity: 0; transform: translate(0.9em, -1.5em) scale(1); }
+}
+/* narrow phones: the line sits near the edge, so the ghost rises more and drifts right less */
+@media (max-width: 30em) and (prefers-reduced-motion: no-preference) { .haunt-ghost { animation-name: haunt-float-sm; } }
+@keyframes haunt-float-sm {
+  0%, 2% { opacity: 0; transform: translate(-0.3em, 0.35em) scale(.6) rotate(-8deg); }
+  8% { opacity: 1; transform: translate(0, -0.3em) scale(.9) rotate(4deg); }
+  14% { opacity: 1; transform: translate(0.15em, -0.95em) scale(1) rotate(-4deg); }
+  21% { opacity: 0; transform: translate(0.3em, -1.7em) scale(1) rotate(6deg); }
+  100% { opacity: 0; transform: translate(0.3em, -1.7em) scale(1); }
+}

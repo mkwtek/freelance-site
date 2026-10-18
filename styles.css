@@ -1963,8 +1963,10 @@ body { background: var(--white-warm); }
 .ps-slot path { stroke: #14110e; stroke-width: 2.6; stroke-linecap: round; }
 .meters { padding: 2.2rem 2rem; }   /* room for the corner screws */
 
-/* ---------- Section order: Services, Projects, Kind words, Under the hood, Accessibility, How I build, Process, About, FAQ, Contact.
+/* ---------- Section order: Services, Projects, Under the hood, Accessibility, How I build, Process, About, FAQ, Fan Mail, Contact.
    Backgrounds alternate so no two neighbors match. ---------- */
 #work { background: var(--oatmeal); }
+#why { background: var(--mint-faded); }
+#kind-words { background: var(--oatmeal); }
 #accessibility .legal-box { margin-top: 0.5rem; }
 #faq .ask-box { margin-top: 2rem; }

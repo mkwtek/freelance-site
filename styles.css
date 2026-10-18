@@ -2104,3 +2104,41 @@ body { background: var(--white-warm); }
   .why-head { grid-template-columns: minmax(0, 1fr); }
   .why-head .hotrod { order: -1; max-width: 26rem; margin-inline: auto; }
 }
+
+/* ---------- Little ghost, take 3: one steady drift up and to the right, then gone before the big ghost moves,
+   so it reads as the same ghost far off, then back behind the TV. Load: 0.9s to 5.3s (big ghost slides out at 5.5s).
+   Each TV loop: 20.5s to 24.9s, while the big ghost is hidden (20.1s to 27.2s). ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .haunt-ghost { animation: haunt-drift-loop 36.4s linear infinite, haunt-drift 4.4s linear 0.9s 1; }
+}
+@media (max-width: 30em) and (prefers-reduced-motion: no-preference) {
+  .haunt-ghost { animation-name: haunt-drift-loop-sm, haunt-drift-sm; }
+}
+@keyframes haunt-drift {
+  0.00% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
+  12.00% { opacity: 1; transform: translate(0.50em, -0.12em) scale(0.95) rotate(4deg); }
+  60.00% { opacity: 0.9; transform: translate(3.00em, -1.56em) scale(1) rotate(-4deg); }
+  100.00% { opacity: 0; transform: translate(5.00em, -2.60em) scale(1) rotate(3deg); }
+}
+@keyframes haunt-drift-sm {
+  0.00% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
+  12.00% { opacity: 1; transform: translate(-0.10em, -0.23em) scale(0.95) rotate(4deg); }
+  60.00% { opacity: 0.9; transform: translate(0.30em, -1.98em) scale(1) rotate(-4deg); }
+  100.00% { opacity: 0; transform: translate(0.50em, -3.30em) scale(1) rotate(3deg); }
+}
+@keyframes haunt-drift-loop {
+  0% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
+  56.32% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
+  57.77% { opacity: 1; transform: translate(0.50em, -0.12em) scale(0.95) rotate(4deg); }
+  63.57% { opacity: 0.9; transform: translate(3.00em, -1.56em) scale(1) rotate(-4deg); }
+  68.41% { opacity: 0; transform: translate(5.00em, -2.60em) scale(1) rotate(3deg); }
+  100% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
+}
+@keyframes haunt-drift-loop-sm {
+  0% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
+  56.32% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
+  57.77% { opacity: 1; transform: translate(-0.10em, -0.23em) scale(0.95) rotate(4deg); }
+  63.57% { opacity: 0.9; transform: translate(0.30em, -1.98em) scale(1) rotate(-4deg); }
+  68.41% { opacity: 0; transform: translate(0.50em, -3.30em) scale(1) rotate(3deg); }
+  100% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
+}

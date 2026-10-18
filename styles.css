@@ -1846,3 +1846,56 @@ body { background: var(--white-warm); }
   .legal-box h3 .marker { background-size: 0% 0.42em; transition: background-size 0.6s cubic-bezier(.4, 0, .2, 1); }
   .legal-box h3 .marker.is-drawn { background-size: 100% 0.42em; }
 }
+
+/* ---------- "Why it matters": the heading sits on a hot-rod show-poster banner (ink, pinstripe bands, white scrollwork
+   with teal and red, heading with a red offset shadow). The section stays light so the cards keep their shadows. ---------- */
+.why-banner { position: relative; overflow: hidden; background: var(--ink); color: var(--paper); border: 3px solid var(--ink); border-radius: 1rem;
+  box-shadow: 6px 6px 0 #a63a24; padding: 3rem clamp(1.25rem, 5vw, 3.5rem) 2.6rem; margin-bottom: 2rem; text-align: center; }
+.why-banner::before, .why-banner::after { content: ""; position: absolute; left: 0; right: 0; height: 1.1rem; pointer-events: none;
+  background: linear-gradient(#fff7f0 0 3px, transparent 3px 6px, #a63a24 6px 12px, transparent 12px 15px, #6cc4bf 15px 18px, transparent 18px); }
+.why-banner::before { top: 0.55rem; }
+.why-banner::after { bottom: 0.55rem; transform: scaleY(-1); }
+.why-banner > :not(.pinstripe) { position: relative; z-index: 1; }
+.why-banner h2 { color: var(--paper); text-shadow: 3px 3px 0 #a63a24; }
+.why-banner .section-lede { color: var(--paper); margin-inline: auto; }
+.why-banner .eyebrow { box-shadow: 3px 3px 0 #000; }
+.pinstripe { position: absolute; top: 1.6rem; width: clamp(7rem, 18vw, 13rem); height: auto; pointer-events: none; overflow: visible; }
+.pinstripe-l { left: 0.4rem; }
+.pinstripe-r { right: 0.4rem; transform: scaleX(-1); }
+.ps-white { stroke: #fff7f0; stroke-width: 2.6; }
+.ps-thin { stroke-width: 1.6; }
+.ps-teal { stroke: #6cc4bf; stroke-width: 2.6; }
+.ps-red { fill: #a63a24; }
+@media (max-width: 52em) { .pinstripe { width: 5.5rem; top: 1.4rem; opacity: .85; } .why-banner { padding-top: 3.6rem; } }
+
+/* ---------- Footer tagline as a logo: blackletter "Analog soul" and script "digital solutions", split by a lightning bolt.
+   The end of "soul" and the start of "digital" tuck behind the bolt. Real text, so it reads as one phrase. ---------- */
+.footer-logo { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; margin: 0.4rem 0 1rem; font-size: clamp(1.1rem, 5vw, 2rem); line-height: 1; white-space: nowrap; }
+.fl-old { font-family: 'Pirata One', Georgia, serif; font-size: 1.25em; color: var(--paper); text-shadow: 2px 2px 0 #ebbd4e; position: relative; z-index: 0; }
+.fl-new { font-family: var(--font-display); color: #e8c547; position: relative; z-index: 0; }
+.fl-mark { position: relative; z-index: 1; width: 1.5em; height: 1.5em; margin: 0 -0.32em; overflow: visible; flex: none; }
+.flm-gold { fill: #e8c547; stroke: var(--ink); stroke-width: 4; paint-order: stroke; }
+
+/* ---------- FAQ: native expand and collapse (keyboard and screen reader friendly), each question with a TV channel knob
+   that clicks round when it opens ---------- */
+.faq-wrap { max-width: 52rem; }
+.faq-list { display: grid; gap: 0.9rem; margin-top: 1.5rem; }
+.faq { background: var(--white-warm); border: 3px solid var(--ink); border-radius: 0.9rem; box-shadow: 5px 5px 0 var(--ink); }
+.faq summary { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.25rem; cursor: pointer;
+  font-weight: 700; font-size: 1.15rem; list-style: none; border-radius: 0.7rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 3px solid var(--ink);
+  background: linear-gradient(var(--red-text), var(--red-text)) 50% 3px / 3px 42% no-repeat, #ebbd4e; transition: transform 0.35s cubic-bezier(.3, 1.4, .5, 1); }
+.faq[open] summary::after { transform: rotate(135deg); }
+.faq summary:hover { background: #fbe39b; }
+.faq summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.faq-a { padding: 0 1.25rem 1.1rem; border-top: 2px dashed var(--ink); margin: 0 1.25rem; padding-inline: 0; padding-top: 0.9rem; }
+.faq-a p, .faq-a li { color: var(--ink-soft); }
+.faq-a ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+.faq-a li::marker { color: var(--red-text); }
+.faq-a p + p { margin-top: 0.75rem; }
+.faq-more { margin-top: 1.5rem; }
+@media (prefers-reduced-motion: reduce) { .faq summary::after { transition: none; } }
+
+/* the seal is round art, not a photo: no frame */
+.about-photo img.shop-badge { border: 0; border-radius: 50%; box-shadow: none; filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.22)); }

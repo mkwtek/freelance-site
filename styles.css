@@ -317,7 +317,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* What you don't see: under-the-hood cards */
 .hood-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  display: grid; grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem; list-style: none; padding: 0; margin: 2rem 0 0;
 }
 .hood {
@@ -325,7 +325,10 @@ a:hover { text-decoration-thickness: 2px; }
   background: var(--paper); padding: 1.5rem;
   border: 3px solid var(--ink); border-radius: var(--radius); box-shadow: var(--shadow);
 }
-.hood:last-child:nth-child(odd) { grid-column: 1 / -1; }
+/* one column on phones, two on tablets, three on wide screens; with 9 cards only the two-column layout has an odd one out */
+@media (min-width: 41.5em) { .hood-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 62em) { .hood-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 41.5em) and (max-width: 61.99em) { .hood:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .hood-label {
   align-self: flex-start;
   font: 700 0.75rem var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase;
@@ -671,8 +674,8 @@ body { background: var(--white-warm); }
 .hood-band { padding: 0.6rem 1rem; }
 .hood > .hood-icon { margin: -0.4rem auto 0.8rem; }
 .hood-why { margin-top: 0; }
-/* Wide last card: header on the left, text on the right */
-@media (min-width: 52em) {
+/* Wide last card (two-column layout only): header on the left, text on the right */
+@media (min-width: 52em) and (max-width: 61.99em) {
   .hood:last-child:nth-child(odd) {
     display: grid; grid-template-columns: minmax(0, 16rem) minmax(0, 1fr); column-gap: 2rem; align-items: start;
     padding-top: 0;
@@ -686,7 +689,7 @@ body { background: var(--white-warm); }
 }
 /* Icon evenly spaced between the teal band and the heading */
 .hood > .hood-icon { margin: 1.1rem auto 1.1rem; }
-@media (min-width: 52em) {
+@media (min-width: 52em) and (max-width: 61.99em) {
   .hood:last-child:nth-child(odd) > h3 { margin-top: 6.45rem; }
 }
 

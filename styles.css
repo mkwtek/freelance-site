@@ -1164,6 +1164,7 @@ body { background: var(--white-warm); }
 .tt-grooves ellipse { fill: none; stroke: #3a342e; stroke-width: 1; }
 .tt-label { fill: var(--gold); }
 .tt-spindle { fill: var(--white-warm); }
+.tt-arm-outline { fill: none; stroke: var(--ink); stroke-width: 7; stroke-linecap: round; }   /* black edge around the silver arm */
 .tt-arm-bar { fill: none; stroke: #cfc6b6; stroke-width: 4; stroke-linecap: round; }
 .tt-head { fill: var(--ink); }
 .tt-pivot { fill: var(--ink); }

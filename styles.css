@@ -1847,27 +1847,6 @@ body { background: var(--white-warm); }
   .legal-box h3 .marker.is-drawn { background-size: 100% 0.42em; }
 }
 
-/* ---------- "Why it matters": the heading sits on a hot-rod show-poster banner (ink, pinstripe bands, white scrollwork
-   with teal and red, heading with a red offset shadow). The section stays light so the cards keep their shadows. ---------- */
-.why-banner { position: relative; overflow: hidden; background: var(--ink); color: var(--paper); border: 3px solid var(--ink); border-radius: 1rem;
-  box-shadow: 6px 6px 0 #a63a24; padding: 3rem clamp(1.25rem, 5vw, 3.5rem) 2.6rem; margin-bottom: 2rem; text-align: center; }
-.why-banner::before, .why-banner::after { content: ""; position: absolute; left: 0; right: 0; height: 1.1rem; pointer-events: none;
-  background: linear-gradient(#fff7f0 0 3px, transparent 3px 6px, #a63a24 6px 12px, transparent 12px 15px, #6cc4bf 15px 18px, transparent 18px); }
-.why-banner::before { top: 0.55rem; }
-.why-banner::after { bottom: 0.55rem; transform: scaleY(-1); }
-.why-banner > :not(.pinstripe) { position: relative; z-index: 1; }
-.why-banner h2 { color: var(--paper); text-shadow: 3px 3px 0 #a63a24; }
-.why-banner .section-lede { color: var(--paper); margin-inline: auto; }
-.why-banner .eyebrow { box-shadow: 3px 3px 0 #000; }
-.pinstripe { position: absolute; top: 1.6rem; width: clamp(7rem, 18vw, 13rem); height: auto; pointer-events: none; overflow: visible; }
-.pinstripe-l { left: 0.4rem; }
-.pinstripe-r { right: 0.4rem; transform: scaleX(-1); }
-.ps-white { stroke: #fff7f0; stroke-width: 2.6; }
-.ps-thin { stroke-width: 1.6; }
-.ps-teal { stroke: #6cc4bf; stroke-width: 2.6; }
-.ps-red { fill: #a63a24; }
-@media (max-width: 52em) { .pinstripe { width: 5.5rem; top: 1.4rem; opacity: .85; } .why-banner { padding-top: 3.6rem; } }
-
 /* ---------- Footer tagline as a stacked logo: blackletter "Analog soul" over script "digital solutions",
    with a gold sparkle rule between. Real text, so it reads as one phrase. ---------- */
 .footer-logo { display: grid; justify-items: center; gap: 0.15em; margin: 0.4rem 0 1.1rem; font-size: clamp(1.3rem, 6vw, 2.2rem); line-height: 1; }

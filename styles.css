@@ -2146,5 +2146,5 @@ body { background: var(--white-warm); }
 /* About: a hot rod engine wired to a computer, the "wrenches to websites" idea, under the four steps and as wide as the text */
 .about-engine { display: block; width: 100%; height: auto; margin: 1.25rem 0 1.5rem; filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.15)); }
 /* the seal grows to match the bigger About column now that the engine sits beside it */
-.shop-badge { width: min(20rem, 80%); margin-top: 2.25rem; }
-@media (max-width: 52em) { .shop-badge { width: min(17rem, 75%); } }
+.shop-badge { width: min(25rem, 92%); margin-top: 2.25rem; }
+@media (max-width: 52em) { .shop-badge { width: min(20rem, 85%); } }

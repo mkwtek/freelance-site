@@ -2024,3 +2024,7 @@ body { background: var(--white-warm); }
 .fl-rule { position: relative; top: 0.4em; }
 /* an open FAQ question keeps rounded corners on top only, so its highlight joins the answer below */
 .faq[open] summary { border-radius: 0.7rem 0.7rem 0 0; }
+
+/* agency build cards: one line about the project, then the scores in the same format on every card */
+.mini-scores { font-size: 0.95rem; margin-top: 0.35rem; }
+.mini-scores strong { color: var(--red-text); }

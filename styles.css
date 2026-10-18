@@ -1172,9 +1172,12 @@ body { background: var(--white-warm); }
 #work .sub-head:hover .tt-arm, .mini-case-grid:hover ~ * .tt-arm { transform: none; }
 .tt-case { fill: var(--teal-dark); stroke: var(--ink); stroke-width: 3.5; }
 .tt-band { stroke: var(--white-warm); stroke-width: 2.5; opacity: .7; }
-.tt-grille { fill: #efe6d3; stroke: var(--ink); stroke-width: 2; }
-.tt-grille-lines { stroke: var(--gold); stroke-width: 3; stroke-linecap: round; }
+/* speaker: woven grille cloth in a gold trim frame; knobs: pointers and dial ticks, set to different positions */
+.tt-grille-trim { fill: var(--gold); stroke: var(--ink); stroke-width: 2; }
+.tt-grille-cloth { fill: url(#tt-weave); stroke: var(--ink); stroke-width: 1.5; }
 .tt-knob { fill: var(--ink); stroke: var(--gold); stroke-width: 2.5; }
+.tt-ticks path { stroke: var(--white-warm); stroke-width: 1.4; stroke-linecap: round; opacity: .85; }
+.tt-pointer { stroke: var(--white-warm); stroke-width: 2.4; stroke-linecap: round; }
 .tt-latch { fill: var(--gold); stroke: var(--ink); stroke-width: 1.5; }
 .tt-foot { fill: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .tt-arm { transition: none; transform: none; } }

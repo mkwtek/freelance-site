@@ -210,7 +210,7 @@ a:hover { text-decoration-thickness: 2px; }
 .nav-toggle-bars::before { top: -6px; }
 .nav-toggle-bars::after { top: 6px; }
 
-@media (max-width: 66em) {
+@media (max-width: 74em) {
   .nav-toggle { display: inline-flex; }
   .site-nav {
     display: none;
@@ -1007,7 +1007,7 @@ body { background: var(--white-warm); }
 .channel.is-picked .channel-num { background: var(--gold) !important; }
 
 /* Phone menu open: the color-bar stripe drops to the bottom of the menu */
-@media (max-width: 66em) {
+@media (max-width: 74em) {
   .site-nav.is-open { border-bottom: 0; }
   .site-nav.is-open::after {
     content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 0.5rem;
@@ -1933,7 +1933,7 @@ body { background: var(--white-warm); }
 .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.75rem; border-top: 3px solid #221f1b;
   background: repeating-conic-gradient(#221f1b 0 25%, #fff7f0 0 50%) 0 0 / 1.75rem 1.75rem; }
 
-/* menu labels and the brand stay on one line; below 66em the Menu button takes over (the full menu with FAQ needs about 65em) */
+/* menu labels and the brand stay on one line; below 74em the Menu button takes over (the full 8-item menu needs about 73em) */
 .site-nav a, .brand-name { white-space: nowrap; }
 
 /* ---------- "The test pattern" meter panel: a brushed metal plate held on by four slotted screws,
@@ -1951,3 +1951,9 @@ body { background: var(--white-warm); }
 .ps-shine { fill: none; stroke: rgba(255, 247, 240, .45); stroke-width: 1.2; stroke-dasharray: 9 60; transform: rotate(200deg); }
 .ps-slot path { stroke: #14110e; stroke-width: 2.6; stroke-linecap: round; }
 .meters { padding: 2.2rem 2rem; }   /* room for the corner screws */
+
+/* ---------- Section order: Services, Projects, Kind words, Under the hood, Accessibility, How I build, Process, About, FAQ, Contact.
+   Backgrounds alternate so no two neighbors match. ---------- */
+#work { background: var(--oatmeal); }
+#accessibility .legal-box { margin-top: 0.5rem; }
+#faq .ask-box { margin-top: 2rem; }

@@ -1858,8 +1858,9 @@ body { background: var(--white-warm); }
 /* ---------- Footer tagline as a stacked logo: blackletter "Analog soul" over script "digital solutions",
    with a gold sparkle rule between. Real text, so it reads as one phrase. ---------- */
 .footer-logo { display: grid; justify-items: center; gap: 0.15em; margin: 0.4rem 0 1.1rem; font-size: clamp(1.3rem, 6vw, 2.2rem); line-height: 1; }
-.fl-old { font-family: 'Pirata One', Georgia, serif; font-size: 1.25em; color: var(--paper); text-shadow: 2px 2px 0 #ebbd4e;
-  -webkit-text-stroke: 1px #000; paint-order: stroke fill; }
+.fl-old { font-family: 'Pirata One', Georgia, serif; font-size: 1.25em; color: var(--paper);
+  -webkit-text-stroke: 2px #000; paint-order: stroke fill;   /* 2px stroke under the fill = a crisp 1px black outline */
+  text-shadow: 1px 1px 0 #000, 3px 3px 0 #ebbd4e; }   /* black line, then the gold shadow */
 .fl-new { font-family: 'VT323', 'Space Mono', monospace; font-size: 0.86em; letter-spacing: 0.03em; text-transform: uppercase; color: #e8c547; }
 /* a terminal cursor that blinks on the ghost's beat (four blinks per 5.2s peek); still with reduced motion or Pause */
 .fl-new::after { content: "_" / ""; margin-left: 0.05em; }

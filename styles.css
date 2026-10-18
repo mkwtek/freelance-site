@@ -1879,3 +1879,6 @@ body { background: var(--white-warm); }
 
 /* the seal is round art, not a photo: no frame */
 .about-photo img.shop-badge { border: 0; border-radius: 50%; box-shadow: none; filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.22)); }
+/* footer order: name, what I do, the tagline logo, where */
+.footer-role { margin: 0 0 0.6rem; }
+.footer-place { margin: 0 0 0.6rem; }

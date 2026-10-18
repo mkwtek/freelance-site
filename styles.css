@@ -1868,13 +1868,14 @@ body { background: var(--white-warm); }
 .ps-red { fill: #a63a24; }
 @media (max-width: 52em) { .pinstripe { width: 5.5rem; top: 1.4rem; opacity: .85; } .why-banner { padding-top: 3.6rem; } }
 
-/* ---------- Footer tagline as a logo: blackletter "Analog soul" and script "digital solutions", split by a lightning bolt.
-   The end of "soul" and the start of "digital" tuck behind the bolt. Real text, so it reads as one phrase. ---------- */
-.footer-logo { display: flex; align-items: center; justify-content: center; flex-wrap: nowrap; margin: 0.4rem 0 1rem; font-size: clamp(1.1rem, 5vw, 2rem); line-height: 1; white-space: nowrap; }
-.fl-old { font-family: 'Pirata One', Georgia, serif; font-size: 1.25em; color: var(--paper); text-shadow: 2px 2px 0 #ebbd4e; position: relative; z-index: 0; }
-.fl-new { font-family: var(--font-display); color: #e8c547; position: relative; z-index: 0; }
-.fl-mark { position: relative; z-index: 1; width: 1.5em; height: 1.5em; margin: 0 -0.32em; overflow: visible; flex: none; }
-.flm-gold { fill: #e8c547; stroke: var(--ink); stroke-width: 4; paint-order: stroke; }
+/* ---------- Footer tagline as a stacked logo: blackletter "Analog soul" over script "digital solutions",
+   with a gold sparkle rule between. Real text, so it reads as one phrase. ---------- */
+.footer-logo { display: grid; justify-items: center; gap: 0.15em; margin: 0.4rem 0 1.1rem; font-size: clamp(1.3rem, 6vw, 2.2rem); line-height: 1; }
+.fl-old { font-family: 'Pirata One', Georgia, serif; font-size: 1.25em; color: var(--paper); text-shadow: 2px 2px 0 #ebbd4e;
+  -webkit-text-stroke: 1px #000; paint-order: stroke fill; }
+.fl-new { font-family: var(--font-display); color: #e8c547; }
+.fl-rule { display: flex; align-items: center; gap: 0.4em; width: 9em; color: #ebbd4e; font-size: 0.5em; }
+.fl-rule::before, .fl-rule::after { content: ""; flex: 1; height: 2px; background: #ebbd4e; }
 
 /* ---------- FAQ: native expand and collapse (keyboard and screen reader friendly), each question with a TV channel knob
    that clicks round when it opens ---------- */

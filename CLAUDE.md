@@ -32,6 +32,8 @@ Space Mono (labels), Pirata One (blackletter "Old-school" and "Analog soul"), VT
 - Base: warm white #fff7f0, oatmeal #efe6d3, ink #221f1b
 - Primary, teal: bright teal #6cc4bf (hero), dark teal #14595a (links, card labels), faded mint
   #dcebe6 (alt section)
+- Hero shape teal #4eaea8: the swoop fin and lounge panel behind the hero text only (ink text on it 6.2:1)
+- Checkerboard: ink and warm white, the band along the bottom of the hero only
 - Dark sections and footer: ink #221f1b (gauge panel #2c2823)
 - Accent fills, harvest gold #ebbd4e, ALWAYS with a black outline (tags, primary buttons, step numbers,
   "Built and tuned" header, legal box top bar). Ink text on gold 9.3:1. Never gold text on light backgrounds.

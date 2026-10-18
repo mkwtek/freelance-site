@@ -1895,3 +1895,39 @@ body { background: var(--white-warm); }
 /* footer order: name, what I do, the tagline logo, where */
 .footer-role { margin: 0 0 0.6rem; }
 .footer-place { margin: 0 0 0.6rem; }
+
+/* ---------- Hero shapes, two designs that take turns ----------
+   A: a flat swoop fin behind the headline with a gold pennant holding the intro.
+   B: a lounge-sign panel behind the headline with diamond fins.
+   Flat cut shapes, no outlines, one thin loose line around each, gold and cream sparkles.
+   Each design holds for one full 36.4s TV loop, then a slow 3s crossfade as the PSA ends and the bars glitch back.
+   Reduced motion: design A only. Ink text on the shape teal #4eaea8 is 6.2:1, on gold 9.3:1. */
+.hero-copy { position: relative; }
+.hero-copy > :not(.hero-swoop) { position: relative; z-index: 1; }
+.hero .eyebrow { z-index: 2; }
+.hero h1 { isolation: isolate; margin-bottom: 1.15em; }
+.lede { isolation: isolate; }
+.hero-swoop { position: absolute; z-index: 0; left: -2.75rem; top: -2.5rem; width: calc(100% + 5rem); height: auto; pointer-events: none; overflow: visible; }
+@media (max-width: 52em) { .hero-swoop { left: -1.5rem; top: -1.5rem; width: calc(100% + 3rem); } }
+.h1-sign { position: absolute; z-index: -1; left: -0.8em; top: -0.95em; width: 12em; height: 4.4em; pointer-events: none; overflow: visible; }
+.lede-pennant { position: absolute; z-index: -1; left: -1.9em; right: -3.4em; top: -0.85em; bottom: -0.85em; width: calc(100% + 5.3em); height: calc(100% + 1.7em); pointer-events: none; overflow: visible; }
+.lede-pennant .body { filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.22)); }
+.hero-swoop .body, .h1-sign .body { filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.22)); }
+.echo { stroke-width: 1.75px; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-swoop, .lede-pennant { animation: swap-a 72.8s ease-in-out infinite; }
+  .h1-sign { animation: swap-b 72.8s ease-in-out infinite; }
+  /* sparkles twinkle together on the ghost's 5.2s beat */
+  .tw { transform-box: fill-box; transform-origin: center; animation: hero-twinkle 5.2s ease-in-out infinite; }
+  .tw-pop { animation-name: hero-pop; }
+}
+@media (prefers-reduced-motion: reduce) { .h1-sign { display: none; } }
+@keyframes swap-a { 0%, 45.88% { opacity: 1; } 50%, 95.88% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes swap-b { 0%, 45.88% { opacity: 0; } 50%, 95.88% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes hero-twinkle { 0%, 100% { transform: scale(1); } 50% { transform: scale(.72); } }
+@keyframes hero-pop { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(.6) rotate(45deg); } }
+
+/* ---------- Black and white checkerboard band along the bottom of the hero ---------- */
+.hero { padding-bottom: calc(clamp(3rem, 7vw, 6rem) + 1.75rem); }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1.75rem; border-top: 3px solid #221f1b;
+  background: repeating-conic-gradient(#221f1b 0 25%, #fff7f0 0 50%) 0 0 / 1.75rem 1.75rem; }

@@ -190,13 +190,16 @@
   }
 
   // ---- The marker underline under "It's a legal issue." draws itself once it's on screen ----
+  // (watches the words themselves, since phones hide the wide stroke and draw one under each line instead)
   var markerLine = document.querySelector('.marker-wipe');
+  var markerWords = markerLine && markerLine.parentNode;
+  var drawMarker = function () { markerLine.classList.add('is-drawn'); markerWords.classList.add('is-drawn'); };
   if (markerLine && !reduceMotion) {
-    if (!('IntersectionObserver' in window)) { markerLine.classList.add('is-drawn'); }
+    if (!('IntersectionObserver' in window)) { drawMarker(); }
     else {
       new IntersectionObserver(function (entries, obs) {
-        if (entries[0].isIntersecting) { markerLine.classList.add('is-drawn'); obs.disconnect(); }
-      }, { threshold: 0.5, rootMargin: '0px 0px -15% 0px' }).observe(markerLine);
+        if (entries[0].isIntersecting) { drawMarker(); obs.disconnect(); }
+      }, { threshold: 0.5, rootMargin: '0px 0px -15% 0px' }).observe(markerWords);
     }
   }
 

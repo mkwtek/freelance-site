@@ -1769,3 +1769,80 @@ body { background: var(--white-warm); }
 .hero h1 { font-size: min(70px, 100cqi / 9.8); }
 .hero h1 .old, .hero h1 .accent { white-space: nowrap; }
 .hero h1 .old { font-size: 1.57em; line-height: 1; }
+
+/* ---------- "That's good to know" in the classic PSA sing-song: "That's" and "good" step in quickly,
+   "toooo" stretches and rises, then "know" lands on top and everything settles onto one line along the tail.
+   Timed inside the 36.4s TV loop (words 28.75s to 32.3s, they leave at 33.4s). Static: the line at rest. ---------- */
+.gk { transform-box: fill-box; transform-origin: 0% 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  .cmt-words { animation-name: cmt-words-sing; }
+  .gk1 { animation: gk1 36.4s linear infinite; }
+  .gk2 { animation: gk2 36.4s linear infinite; }
+  .gk3 { animation: gk3 36.4s linear infinite; }
+  .gk4 { animation: gk4 36.4s linear infinite; }
+  .cmt-star { animation-name: cmt-star-sing; }
+}
+@keyframes cmt-words-sing { 0%, 91.76% { opacity: 1; transform: none; } 93.68%, 100% { opacity: 0; transform: translate(-70px, -48px); } }
+@keyframes gk1 { 0%, 78.98% { opacity: 0; transform: translateY(3px) scale(.75); } 80.22%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk2 { 0%, 80.22% { opacity: 0; transform: translateY(3px) scale(.75); } 81.46%, 97% { opacity: 1; transform: none; } 97.01%, 100% { opacity: 0; } }
+@keyframes gk3 {
+  0%, 81.46% { opacity: 0; transform: translateY(3px) scale(.75); }
+  82.28% { opacity: 1; transform: none; }
+  86.95% { opacity: 1; transform: translateY(-4px) scaleX(1.65); }
+  87.91%, 97% { opacity: 1; transform: none; }
+  97.01%, 100% { opacity: 0; }
+}
+@keyframes gk4 {
+  0%, 86.95% { opacity: 0; transform: translateY(-14px) scale(1.8); }
+  87.8% { opacity: 1; transform: translateY(1px) scale(.96); }
+  88.6%, 97% { opacity: 1; transform: none; }
+  97.01%, 100% { opacity: 0; }
+}
+/* the star flashes as "know" lands */
+@keyframes cmt-star-sing {
+  0%, 78.43% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
+  78.71% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
+  81.32%, 87.4% { opacity: 1; transform: translate(192px, 210px) scale(1); }
+  88% { opacity: 1; transform: translate(192px, 210px) scale(1.4); }
+  89.5%, 90.66% { opacity: 1; transform: translate(192px, 210px) scale(1); }
+  92.31% { opacity: 1; transform: translate(170px, 192px) scale(2.2); }
+  93.68% { opacity: 1; transform: translate(140px, 176px) scale(4.2); }
+  94.51%, 100% { opacity: 0; transform: translate(132px, 173px) scale(6); }
+}
+
+/* ---------- One shared beat: small loops follow the ghost's 5.2s peek (seven per TV loop) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .tv-scan { animation-duration: 5.2s; }
+  .spider, .spider-thread { animation-duration: 12.1333s; }   /* three drops per TV loop */
+  .spider-body { animation-duration: 1.3s, 0.35s; }
+}
+
+/* ---------- Second tagline, under the black banner ---------- */
+.hero-haunt { font: 400 clamp(1.15rem, 4.6vw, 1.5rem)/1.2 'Shrikhand', Georgia, serif; color: var(--ink); margin: -0.6rem 0 1.4rem; }
+@media (prefers-reduced-motion: no-preference) { .hero-copy > .hero-haunt { animation-delay: 0.68s; } }
+
+/* ---------- Rug: 2px up and left ---------- */
+.room-rug { translate: -2px -2px; }
+
+/* ---------- Phones and narrow windows: the hero and standalone pieces center; long paragraphs stay left ---------- */
+@media (max-width: 52em) {
+  .hero-copy { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-actions, .hero-badges { justify-content: center; }
+  .site-check > .btn { justify-self: center; align-self: center; }
+  .turntable { display: block; margin-inline: auto; }
+  .typewriter50 { display: block; margin-inline: auto; }
+  .contact-form [type="submit"] { display: flex; width: fit-content; margin-inline: auto; }
+}
+
+/* stacked: the button sits below the rug, so the rug never covers it when it rolls out */
+@media (max-width: 52em) { .motion-wrap { margin-top: 2.1rem; } }
+
+/* phones: when "It's a legal issue." wraps, the same hand-drawn marker runs under each line (wipes in on scroll) */
+@media (max-width: 30em) {
+  .legal-box h3 .marker { text-decoration: none; padding-bottom: 0.28em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9.5C42 5 96 4.2 150 5.4 170 5.9 186 6.8 197 8.6' fill='none' stroke='%23a63a24' stroke-width='4.2' stroke-linecap='round'/%3E%3Cpath d='M18 11.6C70 8.4 130 8.1 182 10.2' fill='none' stroke='%23a63a24' stroke-width='2.6' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E") no-repeat 0 100% / 100% 0.42em; }
+}
+@media (max-width: 30em) and (prefers-reduced-motion: no-preference) {
+  .legal-box h3 .marker { background-size: 0% 0.42em; transition: background-size 0.6s cubic-bezier(.4, 0, .2, 1); }
+  .legal-box h3 .marker.is-drawn { background-size: 100% 0.42em; }
+}

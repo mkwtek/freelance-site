@@ -2142,3 +2142,6 @@ body { background: var(--white-warm); }
   68.41% { opacity: 0; transform: translate(0.50em, -3.30em) scale(1) rotate(3deg); }
   100% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
 }
+
+/* About: a hot rod engine wired to a computer, the "wrenches to websites" idea, under the four steps and as wide as the text */
+.about-engine { display: block; width: 100%; height: auto; margin: 1.25rem 0 1.5rem; filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.15)); }

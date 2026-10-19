@@ -198,41 +198,49 @@
     }, { threshold: 1, rootMargin: '0px 0px -25% 0px' }).observe(turntable);
   }
 
-  // ---- Under the hood: the hood swings open soon after the car comes on screen ----
+  // ---- Under the hood: the hood swings open each time the car comes on screen ----
   // A soft-edged wedge pivots at the hood hinge (40% across, 41% down the picture) and sweeps up the hood's arc
-  // while the open picture fades in, and the rest of the car crossfades at the same time, so nothing changes late.
+  // while the open picture fades in and the rest of the car crossfades at the same time. Once the car is fully
+  // off screen the hood quietly shuts again, so it swings open again the next time it scrolls into view.
   var hood = document.querySelector('.hood-swap');
   if (hood && !reduceMotion && 'IntersectionObserver' in window) {
     hood.classList.add('is-armed');                                     // without this (or with reduced motion) the hood shows open
-    new IntersectionObserver(function (entries, obs) {
-      if (!entries[0].isIntersecting) return;
-      obs.disconnect();
-      var openImg = hood.querySelector('.hood-open');
-      openImg.loading = 'eager';                                        // it's hidden while shut, so lazy loading might never fetch it
-      var HX = 40, HY = 41, SWING = 800;
-      var mask = function (m) { openImg.style.webkitMaskImage = m; openImg.style.maskImage = m; };
-      var shutImg = hood.querySelector('.hood-shut');
-      var swing = function () {
-        var t0 = performance.now();
-        hood.classList.add('is-open');
-        (function frame(now) {
-          var k = Math.min(1, (now - t0) / SWING), ease = 1 - Math.pow(1 - k, 3);
-          var from = 240, to = 258 + 64 * ease;                           // conic angles (0deg points up): fender line to past the hood tip
-          var rest = 'rgba(0,0,0,' + (k * k * (3 - 2 * k)).toFixed(3) + ')'; // the rest of the car changes in step with the hood
-          openImg.style.opacity = Math.min(1, 0.25 + k * 1.2).toFixed(2);
-          // the two drawings' outlines sit a pixel apart, so while both show the black lines look thicker;
-          // ease the shut picture out over the last part so the outline thins gradually instead of snapping at the end
-          var out = k < 0.6 ? 0 : (k - 0.6) / 0.4;
-          shutImg.style.opacity = (1 - out * out * (3 - 2 * out)).toFixed(3);
-          mask('conic-gradient(from 0deg at ' + HX + '% ' + HY + '%, ' + rest + ' 0deg ' + (from - 8) + 'deg, #000 ' + from + 'deg ' + (to - 10) + 'deg, ' + rest + ' ' + (to + 4) + 'deg 360deg)');
-          if (k < 1) requestAnimationFrame(frame);
-          else { mask(''); openImg.style.opacity = ''; shutImg.style.opacity = ''; hood.classList.add('is-done'); }
-        })(t0);
-      };
-      setTimeout(function () {                                          // wait for the open-hood picture so the swing never shows a gap
-        (openImg.decode ? openImg.decode() : Promise.resolve()).then(swing, swing);
-      }, 1200);
-    }, { threshold: 0.5 }).observe(hood);                         // half the car on screen, then a short beat
+    var openImg = hood.querySelector('.hood-open'), shutImg = hood.querySelector('.hood-shut');
+    var HX = 40, HY = 41, SWING = 1200, wait = 0, raf = 0, state = 'shut';
+    var smooth = function (x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); };
+    var mask = function (m) { openImg.style.webkitMaskImage = m; openImg.style.maskImage = m; };
+    var shut = function () {                                            // back to closed, off screen so nobody sees it
+      clearTimeout(wait); cancelAnimationFrame(raf);
+      mask(''); openImg.style.opacity = ''; shutImg.style.opacity = '';
+      hood.classList.remove('is-open', 'is-done'); state = 'shut';
+    };
+    var swing = function () {
+      var t0 = performance.now();
+      hood.classList.add('is-open'); state = 'swinging';
+      (function frame(now) {
+        var k = Math.min(1, (now - t0) / SWING), ease = 1 - Math.pow(1 - k, 3);
+        var from = 240, to = 258 + 64 * ease;                           // conic angles (0deg points up): fender line to past the hood tip
+        var rest = 'rgba(0,0,0,' + smooth(k).toFixed(3) + ')';            // the rest of the car changes in step with the hood
+        openImg.style.opacity = Math.min(1, 0.25 + k * 1.2).toFixed(2);
+        // the two drawings' outlines sit a pixel apart, so while both show the black lines look heavier;
+        // ease the shut picture out over the second half so the outline thins gradually
+        shutImg.style.opacity = (1 - smooth((k - 0.45) / 0.55)).toFixed(3);
+        mask('conic-gradient(from 0deg at ' + HX + '% ' + HY + '%, ' + rest + ' 0deg ' + (from - 8) + 'deg, #000 ' + from + 'deg ' + (to - 10) + 'deg, ' + rest + ' ' + (to + 4) + 'deg 360deg)');
+        if (k < 1) raf = requestAnimationFrame(frame);
+        else { mask(''); openImg.style.opacity = ''; shutImg.style.opacity = ''; hood.classList.add('is-done'); state = 'open'; }
+      })(t0);
+    };
+    new IntersectionObserver(function (entries) {
+      var e = entries[entries.length - 1];
+      if (!e.isIntersecting) { if (state !== 'shut') shut(); return; }    // fully off screen: shut it for next time
+      if (e.intersectionRatio >= 0.5 && state === 'shut') {             // half the car on screen, then a short beat
+        state = 'waiting';
+        openImg.loading = 'eager';                                      // it's hidden while shut, so lazy loading might never fetch it
+        wait = setTimeout(function () {                                 // wait for the open-hood picture so the swing never shows a gap
+          (openImg.decode ? openImg.decode() : Promise.resolve()).then(function () { if (state === 'waiting') swing(); }, function () { if (state === 'waiting') swing(); });
+        }, 1200);
+      }
+    }, { threshold: [0, 0.5] }).observe(hood);
   }
 
   // ---- The marker underline under "It's a legal issue." draws itself once it's on screen ----

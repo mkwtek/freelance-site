@@ -587,3 +587,24 @@
   } else { park(); }
   document.addEventListener('motionchange', function (e) { if (e.detail.paused) park(); });
 })();
+
+// ---- Agency builds: "Liner notes" slide up out of each album sleeve; Back in the sleeve or Escape puts them away ----
+(function () {
+  document.querySelectorAll('.liner-btn').forEach(function (btn) {
+    var liner = document.getElementById(btn.getAttribute('aria-controls'));
+    var close = liner.querySelector('.liner-close');
+    var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var open = function () {
+      liner.hidden = false; btn.setAttribute('aria-expanded', 'true');
+      requestAnimationFrame(function () { requestAnimationFrame(function () { liner.classList.add('is-out'); }); });
+      liner.querySelector('.liner-title').focus({ preventScroll: true });
+    };
+    var shut = function () {
+      liner.classList.remove('is-out'); btn.setAttribute('aria-expanded', 'false'); btn.focus({ preventScroll: true });
+      setTimeout(function () { if (!liner.classList.contains('is-out')) liner.hidden = true; }, reduce ? 0 : 500);
+    };
+    btn.addEventListener('click', function () { liner.hidden ? open() : shut(); });
+    close.addEventListener('click', shut);
+    liner.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
+  });
+})();

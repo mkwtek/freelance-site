@@ -283,8 +283,10 @@
   }
 
   // ---- Scroll-in reveal: blocks fade up once as they come into view ----
-  // Only blocks that start below the fold are hidden, so nothing on screen ever flickers.
-  // Skipped with reduced motion and data saver.
+  // Nothing is hidden while the page sits still. Once you start scrolling, a block is tucked away
+  // only when it's just below the bottom of the screen, then fades up as it comes into view.
+  // So the page is always complete for anyone who doesn't scroll: printing, search engines and
+  // checkers like WAVE all see the real text at full contrast. Skipped with reduced motion and data saver.
   if (reduceMotion || saveData) return;
   var SELECTORS = '.section .eyebrow, .section h2, .section-lede, .channel, .site-check, .hood, ' +
     '.compare-wrap, .legal-box, .ask-box, .how-copy, .meters, .pull-quote, .case, .sub-title, .mini-case, ' +
@@ -292,15 +294,13 @@
   var pending = [].slice.call(document.querySelectorAll(SELECTORS)).filter(function (el) {
     return el.getBoundingClientRect().top > window.innerHeight;
   });
-  if (!pending.length) return;
-  pending.forEach(function (el) { el.classList.add('rv'); });
-  document.documentElement.classList.add('reveal-on');
+  if (!pending.length || !('IntersectionObserver' in window)) return;
 
   function done(el) { el.classList.remove('rv', 'rv-in'); el.style.removeProperty('--rv-delay'); }
+  function drop(el) { var i = pending.indexOf(el); if (i > -1) pending.splice(i, 1); }
   function reveal(el, order) {
-    var i = pending.indexOf(el);
-    if (i < 0) return;
-    pending.splice(i, 1);
+    if (!el.classList.contains('rv') || el.classList.contains('rv-in')) return;
+    drop(el);
     el.style.setProperty('--rv-delay', Math.min(order * 0.08, 0.32) + 's');   // a row arrives one after another
     el.classList.add('rv-in');
     el.addEventListener('transitionend', function end(ev) {
@@ -311,8 +311,28 @@
     setTimeout(function () { if (el.classList.contains('rv-in')) done(el); }, 1400);   // safety net
   }
 
-  // Two triggers call the same reveal, so a block can never stay hidden if one misfires
+  // Step 1, on the first scroll: watch a band just below the screen. A block entering that band is
+  // still out of sight, so tucking it away there can't flicker. One that's already on screen stays as is.
+  var armed = false, near;
+  function arm() {
+    if (armed) return;
+    armed = true;
+    document.documentElement.classList.add('reveal-on');
+    near = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        near.unobserve(e.target);
+        if (e.boundingClientRect.top > window.innerHeight) e.target.classList.add('rv');
+        else drop(e.target);
+      });
+    }, { rootMargin: '0px 0px 30% 0px' });
+    pending.forEach(function (el) { near.observe(el); });
+  }
+
+  // Step 2: fade a tucked-away block up as it comes on screen. Two triggers call the same reveal,
+  // so a block can never stay hidden if one misfires.
   function check() {
+    arm();
     var limit = window.innerHeight * 0.94, n = 0;
     pending.slice().forEach(function (el) {
       var r = el.getBoundingClientRect();
@@ -325,15 +345,13 @@
   }
   window.addEventListener('scroll', check, { passive: true });
   window.addEventListener('resize', check);
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      var n = 0;
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { io.unobserve(e.target); reveal(e.target, n++); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
-    pending.forEach(function (el) { io.observe(el); });
-  }
+  var io = new IntersectionObserver(function (entries) {
+    var n = 0;
+    entries.forEach(function (e) {
+      if (e.isIntersecting && e.target.classList.contains('rv')) { io.unobserve(e.target); reveal(e.target, n++); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  pending.forEach(function (el) { io.observe(el); });
 })();
 
 // ---- Room lights, timed to the TV: on its second peek (as the TV first changes channel) the ghost tugs the lamp's pull chain and the room

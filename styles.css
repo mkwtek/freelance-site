@@ -1185,7 +1185,7 @@ body { background: var(--white-warm); }
 .tt-pivot { fill: var(--ink); }
 .tt-pivot-cap { fill: var(--gold); }
 .tt-arm { transform-box: view-box; transform: rotate(-14deg); transition: transform 1s cubic-bezier(.4, 1.2, .5, 1); }
-#work .sub-head:hover .tt-arm, .mini-case-grid:hover ~ * .tt-arm { transform: none; }
+#work .sub-head:hover .tt-arm, .mini-case-grid:hover ~ * .tt-arm, .turntable.is-playing .tt-arm { transform: none; }
 .tt-case { fill: var(--teal-dark); stroke: var(--ink); stroke-width: 3.5; }
 .tt-band { stroke: var(--white-warm); stroke-width: 2.5; opacity: .7; }
 /* speaker: woven grille cloth in a gold trim frame; knobs: pointers and dial ticks, set to different positions */

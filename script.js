@@ -190,6 +190,14 @@
     }
   }
 
+  // ---- Record player: the tonearm drops onto the record a second after it's well on screen (hover still works) ----
+  var turntable = document.querySelector('.turntable');
+  if (turntable && !reduceMotion && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries, obs) {
+      if (entries[0].isIntersecting) { obs.disconnect(); setTimeout(function () { turntable.classList.add('is-playing'); }, 1000); }
+    }, { threshold: 1, rootMargin: '0px 0px -25% 0px' }).observe(turntable);
+  }
+
   // ---- The marker underline under "It's a legal issue." draws itself once it's on screen ----
   // (watches the words themselves, since phones hide the wide stroke and draw one under each line instead)
   var markerLine = document.querySelector('.marker-wipe');

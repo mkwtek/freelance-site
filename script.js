@@ -95,7 +95,7 @@
     // turning right as the TV glitches between the color bars and "Please stand by".
     // Pauses on hover or focus, stops for good once you pick a channel, and stops after a few turns.
     var surf = null, hops = 0, inView = false, held = false, surfDone = reduceMotion;
-    var LOOP = 36400, GLITCHES = [0.2069 * LOOP, 0.3560 * LOOP, 0.4995 * LOOP, 0.9588 * LOOP];   // matches the tv-glitch keyframes
+    var LOOP = 41600, GLITCHES = [0.1810 * LOOP, 0.3115 * LOOP, 0.4371 * LOOP, 0.9640 * LOOP];   // matches the tv-glitch keyframes
     var glitchAnim = function () {
       var g = document.querySelector('.tv-glitch');
       return g && g.getAnimations ? g.getAnimations()[0] : null;
@@ -177,15 +177,16 @@
     });
   }
 
-  // ---- Mailbox flag swings up once the Fan Mail section comes into view ----
+  // ---- Mailbox flag swings up a second after the mailbox is well on screen ----
   var mailbox = document.querySelector('.mailbox');
   if (mailbox) {
     if (reduceMotion || !('IntersectionObserver' in window)) {
       mailbox.classList.add('is-up');
     } else {
       new IntersectionObserver(function (entries, obs) {
-        if (entries[0].isIntersecting) { mailbox.classList.add('is-up'); obs.disconnect(); }
-      }, { threshold: 0.8 }).observe(mailbox);
+        // wait until the whole mailbox is up out of the bottom quarter of the screen, then a beat, so it's seen
+        if (entries[0].isIntersecting) { obs.disconnect(); setTimeout(function () { mailbox.classList.add('is-up'); }, 1000); }
+      }, { threshold: 1, rootMargin: '0px 0px -25% 0px' }).observe(mailbox);
     }
   }
 
@@ -295,7 +296,7 @@
   var anim = ghost && ghost.getAnimations ? ghost.getAnimations()[0] : null;
   if (!anim || anim.currentTime == null) { root.classList.remove('room-intro'); return; }
   var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
-  var TV = 36400, OFF_PEAK = 18030, ON_PEAK = 33630;  // TV loop; peeks just as the PSA comes on, and at the star's flash
+  var TV = 41600, OFF_PEAK = 18030, ON_PEAK = 38830;  // TV loop; peeks just as the PSA comes on, and at the star's flash
   var FIRST_PEAK = 7630;                             // first lights-on: the second peek, as the TV changes to its first channel
   var tv = document.querySelector('.tv-bars');
   var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;

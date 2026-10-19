@@ -2209,7 +2209,7 @@ body { background: var(--white-warm); }
 
 /* ---------- FAQ: a rotary phone beside the heading ---------- */
 .faq-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 21rem); gap: 1rem 2rem; align-items: center; }   /* wide enough to read the phone's dial */
-.faq-phone { display: block; width: 100%; height: auto; transform: rotate(-4deg); filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
+.faq-phone { display: block; width: 100%; height: auto; transform: rotate(4deg); filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
 @media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; } .faq-phone { width: min(17rem, 85%); margin: 0 auto; } }
 
 /* desktop: a second, smaller web (no spider) in the top-left corner, so the web on the left on phones isn't a surprise */

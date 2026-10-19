@@ -14,6 +14,8 @@
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/new-rocker-normal-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/space-mono-normal-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css?v=176">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
@@ -223,7 +225,7 @@
               <circle cx="255" cy="180" r="2.8" fill="#3a3631"/>
             </g>
             </g>
-            <!-- brass model plate reading DELUXE (a period model word, not a brand) above a woven speaker grille -->
+            <!-- brass model plate reading DELUXE (a period model word, not a brand) above a woven speaker grille with brass bars -->
             <defs>
               <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1d58a"/><stop offset=".5" stop-color="#c79a45"/><stop offset="1" stop-color="#8a6526"/></linearGradient>
               <pattern id="grille-weave" width="3" height="3" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="#cdb489"/><path d="M0 .75h1.5M1.5 2.25h1.5" stroke="#7d6440" stroke-width="1"/><path d="M2.25 0v1.5M.75 1.5v1.5" stroke="#efe0bd" stroke-width=".8"/></pattern>
@@ -232,8 +234,10 @@
             <rect x="239" y="210.5" width="32" height="8" rx="2" fill="url(#brass)" stroke="var(--ink)" stroke-width="1.4"/>
             <circle cx="242.2" cy="214.5" r=".8" fill="#6b4e1c"/><circle cx="267.8" cy="214.5" r=".8" fill="#6b4e1c"/>
             <text x="255" y="214.7" font-family="'Space Mono', monospace" font-weight="700" font-size="4.6" letter-spacing=".9" fill="#4a3410" text-anchor="middle" dominant-baseline="central">DELUXE</text>
-            <rect x="238" y="221" width="34" height="25" rx="4" fill="url(#grille-weave)"/>
-            <rect x="238" y="221" width="34" height="25" rx="4" fill="url(#grille-shade)" stroke="var(--ink)" stroke-width="2.5"/>
+            <rect x="238" y="224.5" width="34" height="22" rx="4" fill="url(#grille-weave)"/>
+            <!-- three brass bars across the grille cloth, like the Process radio's speaker -->
+            <g stroke-linecap="round"><path d="M242 230h26M242 235.5h26M242 241h26" stroke="var(--ink)" stroke-width="3.6"/><path d="M242 230h26M242 235.5h26M242 241h26" stroke="#c79a45" stroke-width="2"/><path d="M243 229.6h24M243 235.1h24M243 240.6h24" stroke="#f1d58a" stroke-width=".6"/></g>
+            <rect x="238" y="224.5" width="34" height="22" rx="4" fill="url(#grille-shade)" stroke="var(--ink)" stroke-width="2.5"/>
             <defs>
               <clipPath id="screen-clip"><rect x="46" y="106" width="168" height="134" rx="18"/></clipPath>
               <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">

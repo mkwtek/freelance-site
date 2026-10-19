@@ -95,7 +95,7 @@
     // turning right as the TV glitches between the color bars and "Please stand by".
     // Pauses on hover or focus, stops for good once you pick a channel, and stops after a few turns.
     var surf = null, hops = 0, inView = false, held = false, surfDone = reduceMotion;
-    var LOOP = 41600, GLITCHES = [0.1810 * LOOP, 0.3115 * LOOP, 0.4371 * LOOP, 0.9640 * LOOP];   // matches the tv-glitch keyframes
+    var LOOP = 46800, GLITCHES = [0.1609 * LOOP, 0.2769 * LOOP, 0.3885 * LOOP, 0.9680 * LOOP];   // matches the tv-glitch keyframes
     var glitchAnim = function () {
       var g = document.querySelector('.tv-glitch');
       return g && g.getAnimations ? g.getAnimations()[0] : null;
@@ -304,7 +304,7 @@
   var anim = ghost && ghost.getAnimations ? ghost.getAnimations()[0] : null;
   if (!anim || anim.currentTime == null) { root.classList.remove('room-intro'); return; }
   var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
-  var TV = 41600, OFF_PEAK = 18030, ON_PEAK = 38830;  // TV loop; peeks just as the PSA comes on, and at the star's flash
+  var TV = 46800, OFF_PEAK = 18030, ON_PEAK = 44030;  // TV loop; peeks just as the PSA comes on, and at the star's flash
   var FIRST_PEAK = 7630;                             // first lights-on: the second peek, as the TV changes to its first channel
   var tv = document.querySelector('.tv-bars');
   var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;
@@ -416,7 +416,8 @@
   var pt = function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); };
   var quad = function (s0, s1, t0, t1) { return 'M' + pt(P(s0, t0)) + 'L' + pt(P(s1, t0)) + 'L' + pt(P(s1, t1)) + 'L' + pt(P(s0, t1)) + 'Z'; };
 
-  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = 5.25 / K, S0 = -0.05;
+  var NARROW = strip.clientWidth < 600;               // phones: a shorter strip so everything draws about a third bigger
+  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = NARROW ? 5.4 : 5.25 / K, S0 = -0.05, VW = NARROW ? 900 : 1200;
   var svg = '';
   svg += '<defs><radialGradient id="puffg"><stop offset="0" stop-color="#fbf7ef"/><stop offset=".6" stop-color="#ddd6ca" stop-opacity=".9"/><stop offset="1" stop-color="#ddd6ca" stop-opacity="0"/></radialGradient></defs>';
   // shoulders, road, edge lines
@@ -508,7 +509,7 @@
   };
   svg += onPole(nb, 'flag-a', true) + onPole(fb, 'flag-b', false);
   var top = Math.min(treeTop - 6, fb[1] - POLE, P(S0, LANE_T)[1] - REAR[1]) - 10 + 0, bottom = P(FIN + 0.18, 0)[1] + 22;
-  strip.innerHTML = '<svg class="race" viewBox="0 ' + top.toFixed(0) + ' 1200 ' + (bottom - top).toFixed(0) + '" aria-hidden="true" focusable="false">' + svg + '</svg>';
+  strip.innerHTML = '<svg class="race" viewBox="0 ' + top.toFixed(0) + ' ' + VW + ' ' + (bottom - top).toFixed(0) + '" aria-hidden="true" focusable="false">' + svg + '</svg>';
   var el = strip.querySelector('svg'), car = el.querySelector('.car'), tilt = el.querySelector('.car-tilt'), smoke = el.querySelector('.smoke');
   var lights = [0, 1, 2, 3, 4].map(function (i) { return el.querySelectorAll('.lt-' + i); });
   var light = function (i) { [].forEach.call(lights[i], function (l) { l.classList.add('on'); }); };

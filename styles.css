@@ -2282,7 +2282,7 @@ body { background: var(--white-warm); }
 @media (max-width: 30em) { .faq summary { padding-right: 6.4rem; } }
 
 /* Agency builds: liner notes slide up out of the album sleeve */
-.mini-case--lp { position: relative; }
+.mini-case--lp { position: relative; transition: min-height .35s ease; }
 .liner-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0.9rem 1.25rem 0; padding: 0.45rem 0.9rem; cursor: pointer;
   font: 700 0.9rem/1 var(--font-body); color: var(--ink); background: var(--white-warm); border: 2px solid var(--ink); border-radius: 999px; box-shadow: 2px 2px 0 var(--ink); }
 .liner-btn::before { content: ""; width: 0.9rem; height: 0.7rem; border: 2px solid var(--red-text); border-radius: 2px;

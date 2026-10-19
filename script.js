@@ -612,14 +612,17 @@
     var liner = document.getElementById(btn.getAttribute('aria-controls'));
     var close = liner.querySelector('.liner-close');
     var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var card = btn.closest('.mini-case');
     var open = function () {
       liner.hidden = false; btn.setAttribute('aria-expanded', 'true');
+      card.style.minHeight = '';                                        // grow the card when the notes are taller than it
+      if (liner.scrollHeight > liner.clientHeight) card.style.minHeight = (liner.scrollHeight + card.offsetHeight - liner.clientHeight + 4) + 'px';
       requestAnimationFrame(function () { requestAnimationFrame(function () { liner.classList.add('is-out'); }); });
       liner.querySelector('.liner-title').focus({ preventScroll: true });
     };
     var shut = function () {
       liner.classList.remove('is-out'); btn.setAttribute('aria-expanded', 'false'); btn.focus({ preventScroll: true });
-      setTimeout(function () { if (!liner.classList.contains('is-out')) liner.hidden = true; }, reduce ? 0 : 500);
+      setTimeout(function () { if (!liner.classList.contains('is-out')) { liner.hidden = true; card.style.minHeight = ''; } }, reduce ? 0 : 500);
     };
     btn.addEventListener('click', function () { liner.hidden ? open() : shut(); });
     close.addEventListener('click', shut);

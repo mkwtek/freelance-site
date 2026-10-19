@@ -462,7 +462,7 @@
   var quad = function (s0, s1, t0, t1) { return 'M' + pt(P(s0, t0)) + 'L' + pt(P(s1, t0)) + 'L' + pt(P(s1, t1)) + 'L' + pt(P(s0, t1)) + 'Z'; };
 
   var NARROW = strip.clientWidth < 600;               // phones: a shorter strip so everything draws about a third bigger
-  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = NARROW ? 5.4 : 5.25 / K, S0 = -0.05, VW = NARROW ? 900 : 1200;
+  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = NARROW ? 4.7 : 5.25 / K, S0 = -0.05, VW = NARROW ? 820 : 1200;
   var svg = '';
   svg += '<defs><radialGradient id="puffg"><stop offset="0" stop-color="#fbf7ef"/><stop offset=".6" stop-color="#ddd6ca" stop-opacity=".9"/><stop offset="1" stop-color="#ddd6ca" stop-opacity="0"/></radialGradient></defs>';
   // shoulders, road, edge lines
@@ -553,7 +553,7 @@
     return '<g class="flag ' + cls + '"><g transform="translate(' + (b[0] + (flip ? 4 : -4) * FS).toFixed(1) + ',' + (b[1] - POLE - 52 * FS).toFixed(1) + ') scale(' + (flip ? -FS : FS) + ',' + FS + ')">' + flag + '</g></g>';
   };
   svg += onPole(nb, 'flag-a', true) + onPole(fb, 'flag-b', false);
-  var top = Math.min(treeTop - 6, fb[1] - POLE, P(S0, LANE_T)[1] - REAR[1]) - 10 + 0, bottom = P(FIN + 0.18, 0)[1] + 22;
+  var top = Math.min(treeTop - 6, fb[1] - POLE - 56 * FS, P(S0, LANE_T)[1] - REAR[1]) - 10, bottom = P(FIN + 0.18, 0)[1] + 22;   // top includes the flag tips on the poles
   strip.innerHTML = '<svg class="race" viewBox="0 ' + top.toFixed(0) + ' ' + VW + ' ' + (bottom - top).toFixed(0) + '" aria-hidden="true" focusable="false">' + svg + '</svg>';
   var el = strip.querySelector('svg'), car = el.querySelector('.car'), tilt = el.querySelector('.car-tilt'), smoke = el.querySelector('.smoke');
   var lights = [0, 1, 2, 3, 4].map(function (i) { return el.querySelectorAll('.lt-' + i); });
@@ -604,9 +604,10 @@
     [0, 1, 2].forEach(function (i) { later(function () { light(i); }, 500 + i * 500); });
     later(function () { light(3); }, 2000);
     var t0 = performance.now(), GO = 2100, DUR = 2600, END = 9.5 / K, lastPuff = 0, crossed = false;
+    var RUMBLE = 1.5 * VW / Math.max(1, strip.clientWidth);           // idle shake of about 1.5 screen pixels at any size
     (function frame(now) {
       var e = now - t0;
-      if (e < GO) { place(S0, 0, e > 200 ? Math.sin(e / 18) * 0.8 : 0); }           // idle rumble at the line
+      if (e < GO) { place(S0, 0, e > 200 ? Math.sin(e / 18) * RUMBLE : 0); }           // idle rumble at the line
       else {
         var k = Math.min(1, (e - GO) / DUR), d = e - GO;
         var s = S0 + (END - S0) * Math.pow(k, 2.1);

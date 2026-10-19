@@ -198,7 +198,9 @@
     }, { threshold: 1, rootMargin: '0px 0px -25% 0px' }).observe(turntable);
   }
 
-  // ---- Under the hood: the hood lifts open soon after the car comes on screen ----
+  // ---- Under the hood: the hood swings open soon after the car comes on screen ----
+  // A soft-edged wedge pivots at the hood hinge (40% across, 41% down the picture) and sweeps up the hood's arc
+  // while the open picture fades in; then the rest of the car crossfades, so the two drawings never judder.
   var hood = document.querySelector('.hood-swap');
   if (hood && !reduceMotion && 'IntersectionObserver' in window) {
     hood.classList.add('is-armed');                                     // without this (or with reduced motion) the hood shows open
@@ -206,13 +208,33 @@
       if (!entries[0].isIntersecting) return;
       obs.disconnect();
       var openImg = hood.querySelector('.hood-open');
-      openImg.loading = 'eager';                                        // it's clipped to nothing while shut, so lazy loading would never fetch it
-      var lift = function () {
+      openImg.loading = 'eager';                                        // it's hidden while shut, so lazy loading might never fetch it
+      var HX = 40, HY = 41, SWING = 700, SETTLE = 500;
+      var mask = function (m) { openImg.style.webkitMaskImage = m; openImg.style.maskImage = m; };
+      var swing = function () {
+        var t0 = performance.now();
         hood.classList.add('is-open');
-        setTimeout(function () { hood.classList.add('is-done'); }, 600);
+        (function frame(now) {
+          var e = now - t0;
+          if (e < SWING) {
+            var k = e / SWING, ease = 1 - Math.pow(1 - k, 3);
+            var from = 240, to = 258 + 64 * ease;                         // conic angles (0deg points up): fender line to past the hood tip
+            openImg.style.opacity = Math.min(1, 0.25 + k * 1.2).toFixed(2);
+            mask('conic-gradient(from 0deg at ' + HX + '% ' + HY + '%, transparent 0deg ' + (from - 8) + 'deg, #000 ' + from + 'deg ' + (to - 10) + 'deg, transparent ' + (to + 4) + 'deg 360deg)');
+            requestAnimationFrame(frame);
+          } else if (e < SWING + SETTLE) {
+            var rest = 'rgba(0,0,0,' + ((e - SWING) / SETTLE).toFixed(3) + ')';
+            openImg.style.opacity = '1';
+            mask('conic-gradient(from 0deg at ' + HX + '% ' + HY + '%, ' + rest + ' 0deg 232deg, #000 240deg 322deg, ' + rest + ' 336deg 360deg)');
+            requestAnimationFrame(frame);
+          } else {
+            mask(''); openImg.style.opacity = '';
+            hood.classList.add('is-done');
+          }
+        })(t0);
       };
-      setTimeout(function () {                                          // wait for the open-hood picture so the lift never shows a gap
-        (openImg.decode ? openImg.decode() : Promise.resolve()).then(lift, lift);
+      setTimeout(function () {                                          // wait for the open-hood picture so the swing never shows a gap
+        (openImg.decode ? openImg.decode() : Promise.resolve()).then(swing, swing);
       }, 1200);
     }, { threshold: 0.5 }).observe(hood);                         // half the car on screen, then a short beat
   }

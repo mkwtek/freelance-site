@@ -2309,8 +2309,8 @@ body { background: var(--white-warm); }
 .liner-close::after { content: " \2193"; }
 @media (prefers-reduced-motion: reduce) { .liner { transition: none; } }
 
-/* Under the hood: the hood starts shut, then lifts open a couple of seconds after the car is on screen.
-   The open-hood picture is revealed from the fender up over the front half, like the hood being raised. */
+/* Under the hood: the hood starts shut, then swings open soon after the car is on screen.
+   The open-hood picture is revealed by a soft-edged wedge pivoting at the hood hinge (script.js), then the rest crossfades. */
 .hood-swap { position: relative; }
 .hood-swap .hood-open { position: absolute; inset: 0; }
 /* one shadow for the whole car, so the two stacked pictures don't double it up */
@@ -2319,9 +2319,7 @@ body { background: var(--white-warm); }
 /* once the hood is up (or when there is no animation) only the open picture shows */
 .hood-swap:not(.is-armed) .hood-shut, .hood-swap.is-done .hood-shut { visibility: hidden; }
 @media (prefers-reduced-motion: no-preference) {
-  .hood-swap.is-armed .hood-open { clip-path: polygon(0 100%, 52% 100%, 52% 100%, 0 100%); }
-  .hood-swap.is-armed.is-open .hood-open { clip-path: polygon(0 0, 52% 0, 52% 100%, 0 100%); transition: clip-path .55s cubic-bezier(.2, .8, .3, 1); }
-  .hood-swap.is-armed.is-done .hood-open { clip-path: none; }
+  .hood-swap.is-armed:not(.is-open) .hood-open { visibility: hidden; }   /* hidden until the swing starts */
 }
 
 /* Hero: even out the gap between "New-school code." and the lede (owner's nudge: line down 3px, lede up 1px) */

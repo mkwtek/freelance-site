@@ -1630,10 +1630,10 @@ body { background: var(--white-warm); }
 @keyframes psa-c3 { 0% { opacity: 0; } 69.018% { opacity: 1; } 93.035% { opacity: 0; } }
 @keyframes knob-click {
   0%, 16.022% { transform: rotate(0); }
-  16.668% { transform: rotate(36deg); }  16.987%, 27.627% { transform: rotate(30deg); }
-  28.272% { transform: rotate(66deg); }  28.591%, 38.78% { transform: rotate(60deg); }
-  39.426% { transform: rotate(96deg); }  39.744%, 92.459% { transform: rotate(90deg); }
-  93.268% { transform: rotate(-6deg); }  93.587%, 100% { transform: rotate(0); }
+  16.668% { transform: rotate(56deg); }  16.987%, 27.627% { transform: rotate(45deg); }
+  28.272% { transform: rotate(101deg); }  28.591%, 38.78% { transform: rotate(90deg); }
+  39.426% { transform: rotate(146deg); }  39.744%, 92.459% { transform: rotate(135deg); }
+  93.268% { transform: rotate(-11deg); }  93.587%, 100% { transform: rotate(0); }
 }
 
 /* ---------- Comet sign-off, modeled on the classic TV spot ----------
@@ -2106,7 +2106,7 @@ body { background: var(--white-warm); }
   .why-head .hood-swap { order: -1; width: 100%; max-width: 26rem; margin-inline: auto; }
 }
 
-/* ---------- Little ghost, take 3: one steady drift up and to the right, then gone before the big ghost moves,
+/* ---------- Little ghost, take 4: floats out of "haunt" with a steady sideways drift, one soft swell that grazes the top of "you", then up and away; gone before the big ghost moves,
    so it reads as the same ghost far off, then back behind the TV. Load: 0.9s to 5.3s (big ghost slides out at 5.5s).
    Each TV loop: 20.5s to 24.9s, while the big ghost is hidden (20.1s to 27.2s). ---------- */
 @media (prefers-reduced-motion: no-preference) {
@@ -2116,32 +2116,148 @@ body { background: var(--white-warm); }
   .haunt-ghost { animation-name: haunt-drift-loop-sm, haunt-drift-sm; }
 }
 @keyframes haunt-drift {
-  0.00% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
-  12.00% { opacity: 1; transform: translate(0.50em, -0.12em) scale(0.95) rotate(4deg); }
-  60.00% { opacity: 0.9; transform: translate(3.00em, -1.56em) scale(1) rotate(-4deg); }
-  100.00% { opacity: 0; transform: translate(5.00em, -2.60em) scale(1) rotate(3deg); }
+  0.000% { opacity: 0.00; transform: translate(-2.10em, 0.20em) scale(0.60) rotate(0.0deg); }
+  3.125% { opacity: 0.26; transform: translate(-1.90em, 0.11em) scale(0.64) rotate(0.8deg); }
+  6.250% { opacity: 0.52; transform: translate(-1.71em, -0.04em) scale(0.68) rotate(1.5deg); }
+  9.375% { opacity: 0.78; transform: translate(-1.52em, -0.23em) scale(0.72) rotate(2.2deg); }
+  12.500% { opacity: 1.00; transform: translate(-1.33em, -0.44em) scale(0.77) rotate(2.8deg); }
+  15.625% { opacity: 1.00; transform: translate(-1.15em, -0.64em) scale(0.81) rotate(3.3deg); }
+  18.750% { opacity: 1.00; transform: translate(-0.97em, -0.81em) scale(0.85) rotate(3.7deg); }
+  21.875% { opacity: 1.00; transform: translate(-0.80em, -0.93em) scale(0.89) rotate(3.9deg); }
+  25.000% { opacity: 1.00; transform: translate(-0.64em, -1.00em) scale(0.93) rotate(4.0deg); }
+  28.125% { opacity: 1.00; transform: translate(-0.48em, -1.02em) scale(0.97) rotate(3.9deg); }
+  31.250% { opacity: 1.00; transform: translate(-0.32em, -1.01em) scale(1.00) rotate(3.7deg); }
+  34.375% { opacity: 1.00; transform: translate(-0.16em, -0.97em) scale(1.00) rotate(3.3deg); }
+  37.500% { opacity: 1.00; transform: translate(-0.01em, -0.93em) scale(1.00) rotate(2.8deg); }
+  40.625% { opacity: 1.00; transform: translate(0.14em, -0.91em) scale(1.00) rotate(2.2deg); }
+  43.750% { opacity: 1.00; transform: translate(0.29em, -0.93em) scale(1.00) rotate(1.5deg); }
+  46.875% { opacity: 1.00; transform: translate(0.45em, -0.99em) scale(1.00) rotate(0.8deg); }
+  50.000% { opacity: 1.00; transform: translate(0.60em, -1.05em) scale(1.00) rotate(0.0deg); }
+  53.125% { opacity: 1.00; transform: translate(0.76em, -1.11em) scale(1.00) rotate(-0.8deg); }
+  56.250% { opacity: 1.00; transform: translate(0.91em, -1.17em) scale(1.00) rotate(-1.5deg); }
+  59.375% { opacity: 1.00; transform: translate(1.07em, -1.22em) scale(1.00) rotate(-2.2deg); }
+  62.500% { opacity: 1.00; transform: translate(1.24em, -1.28em) scale(1.00) rotate(-2.8deg); }
+  65.625% { opacity: 1.00; transform: translate(1.40em, -1.33em) scale(1.00) rotate(-3.3deg); }
+  68.750% { opacity: 1.00; transform: translate(1.57em, -1.38em) scale(1.00) rotate(-3.7deg); }
+  71.875% { opacity: 1.00; transform: translate(1.74em, -1.46em) scale(1.00) rotate(-3.9deg); }
+  75.000% { opacity: 1.00; transform: translate(1.91em, -1.56em) scale(1.00) rotate(-4.0deg); }
+  78.125% { opacity: 1.00; transform: translate(2.09em, -1.66em) scale(1.00) rotate(-3.9deg); }
+  81.250% { opacity: 0.94; transform: translate(2.26em, -1.76em) scale(1.00) rotate(-3.7deg); }
+  84.375% { opacity: 0.78; transform: translate(2.44em, -1.87em) scale(1.00) rotate(-3.3deg); }
+  87.500% { opacity: 0.63; transform: translate(2.61em, -1.97em) scale(1.00) rotate(-2.8deg); }
+  90.625% { opacity: 0.47; transform: translate(2.79em, -2.08em) scale(1.00) rotate(-2.2deg); }
+  93.750% { opacity: 0.31; transform: translate(2.96em, -2.18em) scale(1.00) rotate(-1.5deg); }
+  96.875% { opacity: 0.16; transform: translate(3.13em, -2.29em) scale(1.00) rotate(-0.8deg); }
+  100.000% { opacity: 0.00; transform: translate(3.30em, -2.40em) scale(1.00) rotate(-0.0deg); }
 }
 @keyframes haunt-drift-sm {
-  0.00% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
-  12.00% { opacity: 1; transform: translate(-0.10em, -0.23em) scale(0.95) rotate(4deg); }
-  60.00% { opacity: 0.9; transform: translate(0.30em, -1.98em) scale(1) rotate(-4deg); }
-  100.00% { opacity: 0; transform: translate(0.50em, -3.30em) scale(1) rotate(3deg); }
+  0.000% { opacity: 0.00; transform: translate(-1.60em, 0.20em) scale(0.60) rotate(0.0deg); }
+  3.125% { opacity: 0.26; transform: translate(-1.49em, 0.10em) scale(0.64) rotate(0.8deg); }
+  6.250% { opacity: 0.52; transform: translate(-1.38em, -0.06em) scale(0.68) rotate(1.5deg); }
+  9.375% { opacity: 0.78; transform: translate(-1.28em, -0.26em) scale(0.72) rotate(2.2deg); }
+  12.500% { opacity: 1.00; transform: translate(-1.18em, -0.48em) scale(0.77) rotate(2.8deg); }
+  15.625% { opacity: 1.00; transform: translate(-1.10em, -0.70em) scale(0.81) rotate(3.3deg); }
+  18.750% { opacity: 1.00; transform: translate(-1.02em, -0.88em) scale(0.85) rotate(3.7deg); }
+  21.875% { opacity: 1.00; transform: translate(-0.95em, -1.02em) scale(0.89) rotate(3.9deg); }
+  25.000% { opacity: 1.00; transform: translate(-0.89em, -1.11em) scale(0.93) rotate(4.0deg); }
+  28.125% { opacity: 1.00; transform: translate(-0.83em, -1.15em) scale(0.97) rotate(3.9deg); }
+  31.250% { opacity: 1.00; transform: translate(-0.78em, -1.15em) scale(1.00) rotate(3.7deg); }
+  34.375% { opacity: 1.00; transform: translate(-0.74em, -1.13em) scale(1.00) rotate(3.3deg); }
+  37.500% { opacity: 1.00; transform: translate(-0.70em, -1.11em) scale(1.00) rotate(2.8deg); }
+  40.625% { opacity: 1.00; transform: translate(-0.66em, -1.12em) scale(1.00) rotate(2.2deg); }
+  43.750% { opacity: 1.00; transform: translate(-0.63em, -1.16em) scale(1.00) rotate(1.5deg); }
+  46.875% { opacity: 1.00; transform: translate(-0.59em, -1.24em) scale(1.00) rotate(0.8deg); }
+  50.000% { opacity: 1.00; transform: translate(-0.55em, -1.33em) scale(1.00) rotate(0.0deg); }
+  53.125% { opacity: 1.00; transform: translate(-0.51em, -1.41em) scale(1.00) rotate(-0.8deg); }
+  56.250% { opacity: 1.00; transform: translate(-0.46em, -1.49em) scale(1.00) rotate(-1.5deg); }
+  59.375% { opacity: 1.00; transform: translate(-0.41em, -1.57em) scale(1.00) rotate(-2.2deg); }
+  62.500% { opacity: 1.00; transform: translate(-0.35em, -1.65em) scale(1.00) rotate(-2.8deg); }
+  65.625% { opacity: 1.00; transform: translate(-0.29em, -1.73em) scale(1.00) rotate(-3.3deg); }
+  68.750% { opacity: 1.00; transform: translate(-0.23em, -1.81em) scale(1.00) rotate(-3.7deg); }
+  71.875% { opacity: 1.00; transform: translate(-0.16em, -1.91em) scale(1.00) rotate(-3.9deg); }
+  75.000% { opacity: 1.00; transform: translate(-0.09em, -2.04em) scale(1.00) rotate(-4.0deg); }
+  78.125% { opacity: 1.00; transform: translate(-0.01em, -2.16em) scale(1.00) rotate(-3.9deg); }
+  81.250% { opacity: 0.94; transform: translate(0.06em, -2.29em) scale(1.00) rotate(-3.7deg); }
+  84.375% { opacity: 0.78; transform: translate(0.14em, -2.42em) scale(1.00) rotate(-3.3deg); }
+  87.500% { opacity: 0.63; transform: translate(0.22em, -2.56em) scale(1.00) rotate(-2.8deg); }
+  90.625% { opacity: 0.47; transform: translate(0.29em, -2.69em) scale(1.00) rotate(-2.2deg); }
+  93.750% { opacity: 0.31; transform: translate(0.36em, -2.82em) scale(1.00) rotate(-1.5deg); }
+  96.875% { opacity: 0.16; transform: translate(0.43em, -2.96em) scale(1.00) rotate(-0.8deg); }
+  100.000% { opacity: 0.00; transform: translate(0.50em, -3.10em) scale(1.00) rotate(-0.0deg); }
 }
 @keyframes haunt-drift-loop {
-  0% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
-  43.804% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
-  44.932% { opacity: 1; transform: translate(0.50em, -0.12em) scale(0.95) rotate(4deg); }
-  49.443% { opacity: 0.9; transform: translate(3.00em, -1.56em) scale(1) rotate(-4deg); }
-  58.122% { opacity: 0; transform: translate(5.00em, -2.60em) scale(1) rotate(3deg); }
-  100% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
+  0% { opacity: 0; transform: translate(-2.10em, 0.20em) scale(.6); }
+  43.804% { opacity: 0.00; transform: translate(-2.10em, 0.20em) scale(0.60) rotate(0.0deg); }
+  44.251% { opacity: 0.26; transform: translate(-1.90em, 0.11em) scale(0.64) rotate(0.8deg); }
+  44.699% { opacity: 0.52; transform: translate(-1.71em, -0.04em) scale(0.68) rotate(1.5deg); }
+  45.146% { opacity: 0.78; transform: translate(-1.52em, -0.23em) scale(0.72) rotate(2.2deg); }
+  45.594% { opacity: 1.00; transform: translate(-1.33em, -0.44em) scale(0.77) rotate(2.8deg); }
+  46.041% { opacity: 1.00; transform: translate(-1.15em, -0.64em) scale(0.81) rotate(3.3deg); }
+  46.489% { opacity: 1.00; transform: translate(-0.97em, -0.81em) scale(0.85) rotate(3.7deg); }
+  46.936% { opacity: 1.00; transform: translate(-0.80em, -0.93em) scale(0.89) rotate(3.9deg); }
+  47.383% { opacity: 1.00; transform: translate(-0.64em, -1.00em) scale(0.93) rotate(4.0deg); }
+  47.831% { opacity: 1.00; transform: translate(-0.48em, -1.02em) scale(0.97) rotate(3.9deg); }
+  48.278% { opacity: 1.00; transform: translate(-0.32em, -1.01em) scale(1.00) rotate(3.7deg); }
+  48.726% { opacity: 1.00; transform: translate(-0.16em, -0.97em) scale(1.00) rotate(3.3deg); }
+  49.173% { opacity: 1.00; transform: translate(-0.01em, -0.93em) scale(1.00) rotate(2.8deg); }
+  49.621% { opacity: 1.00; transform: translate(0.14em, -0.91em) scale(1.00) rotate(2.2deg); }
+  50.068% { opacity: 1.00; transform: translate(0.29em, -0.93em) scale(1.00) rotate(1.5deg); }
+  50.516% { opacity: 1.00; transform: translate(0.45em, -0.99em) scale(1.00) rotate(0.8deg); }
+  50.963% { opacity: 1.00; transform: translate(0.60em, -1.05em) scale(1.00) rotate(0.0deg); }
+  51.410% { opacity: 1.00; transform: translate(0.76em, -1.11em) scale(1.00) rotate(-0.8deg); }
+  51.858% { opacity: 1.00; transform: translate(0.91em, -1.17em) scale(1.00) rotate(-1.5deg); }
+  52.305% { opacity: 1.00; transform: translate(1.07em, -1.22em) scale(1.00) rotate(-2.2deg); }
+  52.753% { opacity: 1.00; transform: translate(1.24em, -1.28em) scale(1.00) rotate(-2.8deg); }
+  53.200% { opacity: 1.00; transform: translate(1.40em, -1.33em) scale(1.00) rotate(-3.3deg); }
+  53.648% { opacity: 1.00; transform: translate(1.57em, -1.38em) scale(1.00) rotate(-3.7deg); }
+  54.095% { opacity: 1.00; transform: translate(1.74em, -1.46em) scale(1.00) rotate(-3.9deg); }
+  54.543% { opacity: 1.00; transform: translate(1.91em, -1.56em) scale(1.00) rotate(-4.0deg); }
+  54.990% { opacity: 1.00; transform: translate(2.09em, -1.66em) scale(1.00) rotate(-3.9deg); }
+  55.437% { opacity: 0.94; transform: translate(2.26em, -1.76em) scale(1.00) rotate(-3.7deg); }
+  55.885% { opacity: 0.78; transform: translate(2.44em, -1.87em) scale(1.00) rotate(-3.3deg); }
+  56.332% { opacity: 0.63; transform: translate(2.61em, -1.97em) scale(1.00) rotate(-2.8deg); }
+  56.780% { opacity: 0.47; transform: translate(2.79em, -2.08em) scale(1.00) rotate(-2.2deg); }
+  57.227% { opacity: 0.31; transform: translate(2.96em, -2.18em) scale(1.00) rotate(-1.5deg); }
+  57.675% { opacity: 0.16; transform: translate(3.13em, -2.29em) scale(1.00) rotate(-0.8deg); }
+  58.122% { opacity: 0.00; transform: translate(3.30em, -2.40em) scale(1.00) rotate(-0.0deg); }
+  100% { opacity: 0; transform: translate(-2.10em, 0.20em) scale(.6); }
 }
 @keyframes haunt-drift-loop-sm {
-  0% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
-  43.804% { opacity: 0; transform: translate(-0.20em, 0.30em) scale(0.7) rotate(-6deg); }
-  44.932% { opacity: 1; transform: translate(-0.10em, -0.23em) scale(0.95) rotate(4deg); }
-  49.443% { opacity: 0.9; transform: translate(0.30em, -1.98em) scale(1) rotate(-4deg); }
-  58.122% { opacity: 0; transform: translate(0.50em, -3.30em) scale(1) rotate(3deg); }
-  100% { opacity: 0; transform: translate(-0.2em, 0.3em) scale(.7); }
+  0% { opacity: 0; transform: translate(-1.60em, 0.20em) scale(.6); }
+  43.804% { opacity: 0.00; transform: translate(-1.60em, 0.20em) scale(0.60) rotate(0.0deg); }
+  44.251% { opacity: 0.26; transform: translate(-1.49em, 0.10em) scale(0.64) rotate(0.8deg); }
+  44.699% { opacity: 0.52; transform: translate(-1.38em, -0.06em) scale(0.68) rotate(1.5deg); }
+  45.146% { opacity: 0.78; transform: translate(-1.28em, -0.26em) scale(0.72) rotate(2.2deg); }
+  45.594% { opacity: 1.00; transform: translate(-1.18em, -0.48em) scale(0.77) rotate(2.8deg); }
+  46.041% { opacity: 1.00; transform: translate(-1.10em, -0.70em) scale(0.81) rotate(3.3deg); }
+  46.489% { opacity: 1.00; transform: translate(-1.02em, -0.88em) scale(0.85) rotate(3.7deg); }
+  46.936% { opacity: 1.00; transform: translate(-0.95em, -1.02em) scale(0.89) rotate(3.9deg); }
+  47.383% { opacity: 1.00; transform: translate(-0.89em, -1.11em) scale(0.93) rotate(4.0deg); }
+  47.831% { opacity: 1.00; transform: translate(-0.83em, -1.15em) scale(0.97) rotate(3.9deg); }
+  48.278% { opacity: 1.00; transform: translate(-0.78em, -1.15em) scale(1.00) rotate(3.7deg); }
+  48.726% { opacity: 1.00; transform: translate(-0.74em, -1.13em) scale(1.00) rotate(3.3deg); }
+  49.173% { opacity: 1.00; transform: translate(-0.70em, -1.11em) scale(1.00) rotate(2.8deg); }
+  49.621% { opacity: 1.00; transform: translate(-0.66em, -1.12em) scale(1.00) rotate(2.2deg); }
+  50.068% { opacity: 1.00; transform: translate(-0.63em, -1.16em) scale(1.00) rotate(1.5deg); }
+  50.516% { opacity: 1.00; transform: translate(-0.59em, -1.24em) scale(1.00) rotate(0.8deg); }
+  50.963% { opacity: 1.00; transform: translate(-0.55em, -1.33em) scale(1.00) rotate(0.0deg); }
+  51.410% { opacity: 1.00; transform: translate(-0.51em, -1.41em) scale(1.00) rotate(-0.8deg); }
+  51.858% { opacity: 1.00; transform: translate(-0.46em, -1.49em) scale(1.00) rotate(-1.5deg); }
+  52.305% { opacity: 1.00; transform: translate(-0.41em, -1.57em) scale(1.00) rotate(-2.2deg); }
+  52.753% { opacity: 1.00; transform: translate(-0.35em, -1.65em) scale(1.00) rotate(-2.8deg); }
+  53.200% { opacity: 1.00; transform: translate(-0.29em, -1.73em) scale(1.00) rotate(-3.3deg); }
+  53.648% { opacity: 1.00; transform: translate(-0.23em, -1.81em) scale(1.00) rotate(-3.7deg); }
+  54.095% { opacity: 1.00; transform: translate(-0.16em, -1.91em) scale(1.00) rotate(-3.9deg); }
+  54.543% { opacity: 1.00; transform: translate(-0.09em, -2.04em) scale(1.00) rotate(-4.0deg); }
+  54.990% { opacity: 1.00; transform: translate(-0.01em, -2.16em) scale(1.00) rotate(-3.9deg); }
+  55.437% { opacity: 0.94; transform: translate(0.06em, -2.29em) scale(1.00) rotate(-3.7deg); }
+  55.885% { opacity: 0.78; transform: translate(0.14em, -2.42em) scale(1.00) rotate(-3.3deg); }
+  56.332% { opacity: 0.63; transform: translate(0.22em, -2.56em) scale(1.00) rotate(-2.8deg); }
+  56.780% { opacity: 0.47; transform: translate(0.29em, -2.69em) scale(1.00) rotate(-2.2deg); }
+  57.227% { opacity: 0.31; transform: translate(0.36em, -2.82em) scale(1.00) rotate(-1.5deg); }
+  57.675% { opacity: 0.16; transform: translate(0.43em, -2.96em) scale(1.00) rotate(-0.8deg); }
+  58.122% { opacity: 0.00; transform: translate(0.50em, -3.10em) scale(1.00) rotate(-0.0deg); }
+  100% { opacity: 0; transform: translate(-1.60em, 0.20em) scale(.6); }
 }
 
 /* About: a hot rod engine wired to a computer, the "wrenches to websites" idea, under the four steps and as wide as the text */
@@ -2356,3 +2472,12 @@ body { background: var(--white-warm); }
 /* TV: 16 units of headroom in the drawing so the antenna balls stay inside it while the antenna springs up
    (the drop shadow made Chrome clip anything outside the drawing mid-animation); pulled up the same amount so nothing moves */
 .tv { margin-top: calc(var(--tvw) * -0.04211); }
+
+/* TV channel knob: each channel change clunks it 45 degrees with an overshoot, and its face flashes gold for a beat */
+@media (prefers-reduced-motion: no-preference) {
+  .knob circle { animation: knob-flash 46.8s linear infinite; }
+}
+@keyframes knob-flash {
+  0%, 16.0%, 17.9%, 27.6%, 29.5%, 38.8%, 40.7%, 92.4%, 94.3%, 100% { fill: var(--paper); }
+  16.5%, 28.1%, 39.3%, 93.0% { fill: #f4cf5c; }
+}

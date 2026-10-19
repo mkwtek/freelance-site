@@ -2313,6 +2313,11 @@ body { background: var(--white-warm); }
    The open-hood picture is revealed from the fender up over the front half, like the hood being raised. */
 .hood-swap { position: relative; }
 .hood-swap .hood-open { position: absolute; inset: 0; }
+/* one shadow for the whole car, so the two stacked pictures don't double it up */
+.why-head .hood-swap { filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
+.why-head .hood-swap .hotrod { filter: none; }
+/* once the hood is up (or when there is no animation) only the open picture shows */
+.hood-swap:not(.is-armed) .hood-shut, .hood-swap.is-done .hood-shut { visibility: hidden; }
 @media (prefers-reduced-motion: no-preference) {
   .hood-swap.is-armed .hood-open { clip-path: polygon(0 100%, 52% 100%, 52% 100%, 0 100%); }
   .hood-swap.is-armed.is-open .hood-open { clip-path: polygon(0 0, 52% 0, 52% 100%, 0 100%); transition: clip-path .55s cubic-bezier(.2, .8, .3, 1); }

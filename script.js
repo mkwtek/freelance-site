@@ -205,9 +205,13 @@
     new IntersectionObserver(function (entries, obs) {
       if (!entries[0].isIntersecting) return;
       obs.disconnect();
-      setTimeout(function () {
+      var openImg = hood.querySelector('.hood-open');
+      var lift = function () {
         hood.classList.add('is-open');
         setTimeout(function () { hood.classList.add('is-done'); }, 600);
+      };
+      setTimeout(function () {                                          // wait for the open-hood picture so the lift never shows a gap
+        (openImg.decode ? openImg.decode() : Promise.resolve()).then(lift, lift);
       }, 2000);
     }, { threshold: 0.6, rootMargin: '0px 0px -20% 0px' }).observe(hood);
   }

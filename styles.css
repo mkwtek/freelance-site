@@ -2216,3 +2216,36 @@ body { background: var(--white-warm); }
 @media (min-width: 52.01em) {
   .corner-web--small { display: block; right: auto; left: 0; width: clamp(4.5rem, 9vw, 7rem); transform: scaleX(-1); z-index: 0; opacity: 0.7; }
 }
+
+/* ---------- The Finish Line ---------- */
+.finish { background: var(--ink); color: var(--paper); text-align: center; overflow: hidden; position: relative; }
+.finish::before { content: ""; display: block; height: 24px;
+  background: repeating-conic-gradient(var(--paper) 0 25%, var(--ink) 0 50%) 0 0 / 24px 24px; }
+.finish-head { padding: 2.25rem 1rem 0; }
+.finish-title { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.25rem); color: var(--yellow-on-ink); margin: 0;
+  text-shadow: 3px 3px 0 var(--red-text); font-weight: 400; }
+.finish-sub { margin: 0.4rem 0 0; font-size: 1.0625rem; color: var(--paper); }
+.finish-again { margin-top: 0.9rem; font: 700 0.9375rem/1 var(--font-body); color: var(--ink); background: var(--yellow-on-ink);
+  border: 2px solid var(--paper); border-radius: 999px; padding: 0.6rem 1.1rem; cursor: pointer; visibility: hidden; }
+.finish-again.is-ready { visibility: visible; }
+.finish-again:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
+
+.strip { margin: 0.25rem 0 1.5rem; }
+.race { display: block; width: 100%; height: auto; overflow: hidden; }
+
+.race .glow { opacity: 0; transition: opacity .12s; pointer-events: none; }
+.race .glow.on { opacity: 1; }
+.race .rim { fill: #0f0d0c; stroke: #5d5650; stroke-width: 1.2; }
+.race .rim.on.amber { fill: #ffb23a; stroke: #ffd27a; }
+.race .rim.on.green { fill: #6fe36a; stroke: #b8f5b4; }
+.race .rim.on.stage { fill: #fff4c8; stroke: #fff; }
+
+/* flags rise out of the pole tops and wave once the car crosses */
+.race .flag { opacity: 0; transform: translateY(14px); transition: opacity .3s, transform .5s cubic-bezier(.3,1.5,.5,1); }
+.finish.is-done .race .flag { opacity: 1; transform: none; }
+.race .cloth { transform-box: fill-box; transform-origin: 0 50%; }
+@media (prefers-reduced-motion: no-preference) {
+  .finish.is-done:not(.is-parked) .race .cloth { animation: wave .7s ease-in-out infinite alternate; }
+  .finish.is-done .race .flag-b .cloth { animation-delay: -.35s; }
+}
+@keyframes wave { from { transform: skewY(-7deg) scaleX(.94); } to { transform: skewY(6deg) scaleX(1.04); } }

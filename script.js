@@ -390,3 +390,190 @@
   });
   if (!startLit) turnOn(true);
 })();
+
+/* The Finish Line : the road is drawn on the same ground plane as the car art.
+   Measured on the (mirrored) car: rear tire -> front tire runs F, front tire -> far front tire runs A.
+   Every road point is O + s*F + t*A (s = along the road in car lengths, t = across it in car widths). */
+(function () {
+  var root = document.querySelector('.finish');
+  if (!root) return;
+  var strip = root.querySelector('.strip'), again = root.querySelector('.finish-again');
+  var NS = 'http://www.w3.org/2000/svg';
+  var K = 0.7;                                       // overall size of the scene's pieces
+  var CW = 300 * K, CH = CW * 499 / 900;
+  var F = [160 * K, 36.3 * K], A = [95.7 * K, -31.3 * K], O = [0, 300];
+  var REAR = [CW * 70 / 900, CH * 385 / 499];        // rear tire contact inside the mirrored image
+  var P = function (s, t) { return [O[0] + s * F[0] + t * A[0], O[1] + s * F[1] + t * A[1]]; };
+  var pt = function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); };
+  var quad = function (s0, s1, t0, t1) { return 'M' + pt(P(s0, t0)) + 'L' + pt(P(s1, t0)) + 'L' + pt(P(s1, t1)) + 'L' + pt(P(s0, t1)) + 'Z'; };
+
+  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = 5.25 / K, S0 = -0.05;
+  var svg = '';
+  svg += '<defs><radialGradient id="puffg"><stop offset="0" stop-color="#fbf7ef"/><stop offset=".6" stop-color="#ddd6ca" stop-opacity=".9"/><stop offset="1" stop-color="#ddd6ca" stop-opacity="0"/></radialGradient></defs>';
+  // shoulders, road, edge lines
+  svg += '<path d="' + quad(-4, 16, -0.45, ROAD + 0.45) + '" fill="#3a342e"/>';
+  svg += '<path d="' + quad(-4, 16, 0, ROAD) + '" fill="#5d5650"/>';
+  svg += '<path d="' + quad(-4, 16, 0, 0.05) + '" fill="#f4ebd9"/><path d="' + quad(-4, 16, ROAD - 0.05, ROAD) + '" fill="#f4ebd9"/>';
+  for (var s = -4; s < 16; s += 0.7) svg += '<path d="' + quad(s, s + 0.36, 1.43, 1.5) + '" fill="#e8c547"/>';   // lane dashes
+  svg += '<path d="' + quad(START, START + 0.05, 0, ROAD) + '" fill="#f4ebd9"/>';                            // start line
+  // checkered finish line across the road
+  var rows = 2, cols = 14, ds = 0.09, dt = ROAD / cols;
+  for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++)
+    svg += '<path d="' + quad(FIN + r * ds, FIN + (r + 1) * ds, c * dt, (c + 1) * dt) + '" fill="' + ((r + c) % 2 ? '#221f1b' : '#fff8ec') + '"/>';
+
+  // christmas tree, modeled on real trees: padded base, post, black light housing, cap on top.
+  // It stands on the center line just past the start and faces the drivers (back up the road),
+  // so from here we see its back and near side, the light hoods poking toward the cars, and the glow.
+  // Built in feet: x across the road (+ = far side), y along it (+ = toward the finish), z up.
+  var tb = P(START + 0.25, 1.465);
+  var WX = 1.5;                                                     // widen it a little so it reads at this size
+  var ax = [A[0] / 6 * WX, A[1] / 6 * WX], fy = [F[0] / 13 * WX, F[1] / 13 * WX], upz = 22 * K;
+  var q = function (x, y, z) { return [tb[0] + x * ax[0] + y * fy[0], tb[1] + x * ax[1] + y * fy[1] - z * upz]; };
+  var poly = function (ps) { return 'M' + ps.map(pt).join('L') + 'Z'; };
+  var face = function (ps, fill, extra) { return '<path d="' + poly(ps) + '" fill="' + fill + '" stroke="#6b645c" stroke-width=".9" stroke-linejoin="round"' + (extra || '') + '/>'; };
+  // visible faces of a box from this camera: back (+y), near side (-x), top
+  var box = function (x0, x1, y0, y1, z0, z1, back, side, top) {
+    return face([q(x0, y0, z0), q(x0, y1, z0), q(x0, y1, z1), q(x0, y0, z1)], side) +
+      face([q(x0, y1, z0), q(x1, y1, z0), q(x1, y1, z1), q(x0, y1, z1)], back) +
+      face([q(x0, y0, z1), q(x1, y0, z1), q(x1, y1, z1), q(x0, y1, z1)], top);
+  };
+  var ring = function (x, y, z, r) {                              // a circle standing across the road
+    var ps = []; for (var i = 0; i < 18; i++) { var th = i / 18 * Math.PI * 2; ps.push(q(x + Math.cos(th) * r, y, z + Math.sin(th) * r)); }
+    return poly(ps);
+  };
+  var tree = '';
+  tree += box(-0.45, 0.45, 0, 0.9, 0, 1.4, '#e8c547', '#c9a53a', '#f4cf5c');                       // padded base
+  tree += '<path d="' + poly([q(-0.45, 0.1, 0.25), q(-0.45, 0.45, 1.15), q(-0.45, 0.7, 1.15), q(-0.45, 0.35, 0.25)]) + '" fill="#221f1b"/>';   // chevron
+  tree += box(-0.12, 0.12, 0.33, 0.57, 1.4, 4.4, '#34589a', '#26406f', '#34589a');                   // post
+  // lights: two columns (one per lane); pre-stage + stage small up top, then 3 amber, green, red
+  var LZ = [[7.62, 's', 0.12], [7.38, 's', 0.12], [7.0, 0, 0.21], [6.5, 1, 0.21], [6.0, 2, 0.21], [5.5, 3, 0.21], [5.0, 4, 0.21]];
+  var tint = { s: 'stage', 0: 'amber', 1: 'amber', 2: 'amber', 3: 'green', 4: 'red' };
+  // each light is its own black pod with a hood pointing at the drivers; pods sit either side of a narrow spine
+  var pods = function (xc, glowOnly) {
+    var out = '';
+    LZ.forEach(function (L) {
+      var z = L[0], r = L[2], cls = 'lt-' + L[1] + ' ' + tint[L[1]];
+      if (glowOnly) {
+        var g = q(xc, -0.5, z);
+        out += '<circle class="glow ' + cls + '" cx="' + g[0].toFixed(1) + '" cy="' + g[1].toFixed(1) + '" r="' + (r * 120 * K).toFixed(1) + '" fill="url(#glow-' + tint[L[1]] + ')"/>';
+        return;
+      }
+      out += face([q(xc - r, 0.0, z + r), q(xc - r, -0.42, z + r), q(xc - r, -0.42, z - r), q(xc - r, 0.0, z - r)], '#2e2a26') +    // hood side
+        face([q(xc - r, 0.0, z + r), q(xc + r, 0.0, z + r), q(xc + r, -0.42, z + r), q(xc - r, -0.42, z + r)], '#4a443d') +       // hood top
+        '<path class="rim ' + cls + '" d="' + ring(xc, -0.42, z, r) + '"/>' +
+        box(xc - r - 0.03, xc + r + 0.03, 0.0, 0.42, z - r - 0.03, z + r + 0.03, '#1a1716', '#2e2a26', '#3a342e');               // pod
+    });
+    return out;
+  };
+  tree += pods(0.5, true) + pods(-0.5, true);                     // glow first, so the pods sit on top of it
+  tree += pods(0.5, false);                                       // far lane column
+  tree += box(-0.16, 0.16, 0.0, 0.42, 4.4, 7.95, '#34589a', '#26406f', '#4f74b8');                   // spine
+  tree += pods(-0.5, false);                                      // near lane column
+  tree += box(-0.85, 0.85, -0.25, 0.6, 7.95, 8.2, '#221f1b', '#221f1b', '#4a443d');                  // cap
+  var glowDef = function (id, c) { return '<radialGradient id="glow-' + id + '"><stop offset="0" stop-color="' + c + '" stop-opacity=".95"/><stop offset=".35" stop-color="' + c + '" stop-opacity=".55"/><stop offset="1" stop-color="' + c + '" stop-opacity="0"/></radialGradient>'; };
+  svg = svg.replace('</defs>', glowDef('amber', '#ffb23a') + glowDef('green', '#6fe36a') + glowDef('red', '#ff4a3a') + glowDef('stage', '#fff4c8') + '</defs>');
+  var treeSvg = '<g class="tree">' + tree + '</g>';
+  var treeTop = q(0, 0.6, 8.2)[1];
+
+  // banner gantry: far pole behind the car, near pole and banner in front
+  var POLE = 262 * K, BAN = 58 * K;
+  var nb = P(FIN + 0.09, -0.25), fb = P(FIN + 0.09, ROAD + 0.25);
+  var pole = function (b) { return '<rect x="' + (b[0] - 5).toFixed(1) + '" y="' + (b[1] - POLE).toFixed(1) + '" width="10" height="' + POLE + '" fill="#f4ebd9" stroke="#221f1b" stroke-width="2.5"/>'; };
+
+  svg += '<g class="far-pole">' + pole(fb) + '</g>';
+  svg += treeSvg;
+  svg += '<g class="smoke"></g>';
+  svg += '<g class="car"><g class="car-tilt"><g transform="scale(-1,1)"><image href="images/ratrod.webp?v=1" x="' + (-(CW - REAR[0])).toFixed(1) + '" y="' + (-REAR[1]).toFixed(1) + '" width="' + CW + '" height="' + CH.toFixed(1) + '"/></g></g></g>';
+  var slope = (fb[1] - nb[1]) / (fb[0] - nb[0]);
+  var ban = 'M' + pt([nb[0], nb[1] - POLE]) + 'L' + pt([fb[0], fb[1] - POLE]) + 'L' + pt([fb[0], fb[1] - POLE + BAN]) + 'L' + pt([nb[0], nb[1] - POLE + BAN]) + 'Z';
+  var len = fb[0] - nb[0];
+  svg += '<g class="banner">' + pole(nb) +
+    '<path d="' + ban + '" fill="#fff8ec" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/>' +
+    '<text transform="matrix(1 ' + slope.toFixed(4) + ' 0 1 ' + nb[0].toFixed(1) + ' 0)" x="' + (len / 2).toFixed(1) + '" y="' + (nb[1] - POLE + BAN / 2 + 13 * K).toFixed(1) + '" text-anchor="middle" font-family="Shrikhand, Georgia, serif" font-size="' + (36 * K) + '" fill="#a63a24" letter-spacing="1">FINISH LINE</text></g>';
+  // checkered flags on top of the two banner poles; they rise and wave once the car crosses
+  var cloth = ''; for (var fr = 0; fr < 4; fr++) for (var fc = 0; fc < 6; fc++) cloth += '<rect x="' + (6 + fc * 8) + '" y="' + (2 + fr * 8) + '" width="8" height="8" fill="' + ((fr + fc) % 2 ? '#221f1b' : '#fff8ec') + '"/>';
+  var flag = '<rect x="2" y="0" width="4" height="56" rx="2" fill="#fff8ec" stroke="#221f1b" stroke-width="1.5"/><g class="cloth">' + cloth + '<rect x="6" y="2" width="48" height="32" fill="none" stroke="#221f1b" stroke-width="2"/></g>';
+  var FS = 1.5 * K;
+  var onPole = function (b, cls, flip) {
+    return '<g class="flag ' + cls + '"><g transform="translate(' + (b[0] + (flip ? 4 : -4) * FS).toFixed(1) + ',' + (b[1] - POLE - 52 * FS).toFixed(1) + ') scale(' + (flip ? -FS : FS) + ',' + FS + ')">' + flag + '</g></g>';
+  };
+  svg += onPole(nb, 'flag-a', true) + onPole(fb, 'flag-b', false);
+  var top = Math.min(treeTop - 6, fb[1] - POLE, P(S0, LANE_T)[1] - REAR[1]) - 10 + 0, bottom = P(FIN + 0.18, 0)[1] + 22;
+  strip.innerHTML = '<svg class="race" viewBox="0 ' + top.toFixed(0) + ' 1200 ' + (bottom - top).toFixed(0) + '" aria-hidden="true" focusable="false">' + svg + '</svg>';
+  var el = strip.querySelector('svg'), car = el.querySelector('.car'), tilt = el.querySelector('.car-tilt'), smoke = el.querySelector('.smoke');
+  var lights = [0, 1, 2, 3, 4].map(function (i) { return el.querySelectorAll('.lt-' + i); });
+  var light = function (i) { [].forEach.call(lights[i], function (l) { l.classList.add('on'); }); };
+
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var paused = function () { return document.documentElement.classList.contains('motion-paused'); };
+  var timers = [], raf = 0, puffs = [];
+  var later = function (fn, ms) { timers.push(setTimeout(fn, ms)); };
+  var place = function (s, ang, bob) {
+    var p = P(s, LANE_T);
+    car.setAttribute('transform', 'translate(' + p[0].toFixed(1) + ',' + (p[1] + (bob || 0)).toFixed(1) + ')');
+    tilt.setAttribute('transform', 'rotate(' + (ang || 0).toFixed(2) + ')');
+  };
+  var reset = function () {
+    timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(raf);
+    smoke.innerHTML = ''; puffs = [];
+    [].forEach.call(el.querySelectorAll('[class*="lt-"]'), function (l) { l.classList.remove('on'); });
+    root.classList.remove('is-done', 'is-parked'); again.classList.remove('is-ready');
+    place(S0, 0);
+  };
+  var park = function () {
+    reset(); place(FIN + 0.75, 0);
+    light(3);
+    root.classList.add('is-parked', 'is-done');
+    again.textContent = 'Run the race'; again.classList.add('is-ready');
+  };
+
+  var addPuff = function (s, born) {
+    var c = document.createElementNS(NS, 'circle'); c.setAttribute('fill', 'url(#puffg)'); smoke.appendChild(c);
+    puffs.push({ el: c, s: s, born: born, life: 1500 + Math.random() * 700, dx: Math.random() * 0.5, up: (30 + Math.random() * 50) * K, r: (18 + Math.random() * 14) * K });
+  };
+  var drawPuffs = function (now) {
+    puffs = puffs.filter(function (p) {
+      var k = (now - p.born) / p.life;
+      if (k >= 1) { p.el.remove(); return false; }
+      var at = P(p.s - p.dx * k - 0.05, LANE_T + 0.15);
+      p.el.setAttribute('cx', at[0].toFixed(1)); p.el.setAttribute('cy', (at[1] - 12 * K - p.up * k).toFixed(1));
+      p.el.setAttribute('r', (p.r * (0.6 + 2.2 * k)).toFixed(1));
+      p.el.setAttribute('opacity', (k < 0.12 ? k / 0.12 : 1 - (k - 0.12) / 0.88).toFixed(2));
+      return true;
+    });
+  };
+
+  var race = function () {
+    reset();
+    later(function () { [].forEach.call(el.querySelectorAll('.lt-s'), function (l) { l.classList.add('on'); }); }, 150);
+    [0, 1, 2].forEach(function (i) { later(function () { light(i); }, 500 + i * 500); });
+    later(function () { light(3); }, 2000);
+    var t0 = performance.now(), GO = 2100, DUR = 2600, END = 9.5 / K, lastPuff = 0, crossed = false;
+    (function frame(now) {
+      var e = now - t0;
+      if (e < GO) { place(S0, 0, e > 200 ? Math.sin(e / 18) * 0.8 : 0); }           // idle rumble at the line
+      else {
+        var k = Math.min(1, (e - GO) / DUR), d = e - GO;
+        var s = S0 + (END - S0) * Math.pow(k, 2.1);
+        var ang = d < 260 ? -7 * d / 260 : d < 1400 ? -7 * (1 - (d - 260) / 1140) : 0;   // front lifts, then settles
+        place(s, ang);
+        if (d < 1000 && now - lastPuff > 40) { addPuff(s, now); lastPuff = now; }
+        if (!crossed && s + 1 >= FIN) {
+          crossed = true; root.classList.add('is-done');
+          later(function () { again.textContent = 'Run it again'; again.classList.add('is-ready'); }, 900);
+        }
+      }
+      drawPuffs(now);
+      if (e < GO + DUR || puffs.length) raf = requestAnimationFrame(frame);
+    })(t0);
+  };
+
+  again.addEventListener('click', race);
+  place(S0, 0);
+  if (reduce || paused()) { park(); return; }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); race(); } }, { threshold: 0.6 });
+    io.observe(strip);
+  } else { park(); }
+  document.addEventListener('motionchange', function (e) { if (e.detail.paused) park(); });
+})();

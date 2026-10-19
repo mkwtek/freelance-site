@@ -451,7 +451,7 @@
 (function () {
   var root = document.querySelector('.finish');
   if (!root) return;
-  var strip = root.querySelector('.strip'), again = root.querySelector('.finish-again');
+  var strip = root.querySelector('.strip'), shop = root.querySelector('.paint-shop'), again = root.querySelector('.paint-race');
   var NS = 'http://www.w3.org/2000/svg';
   var K = 0.7;                                       // overall size of the scene's pieces
   var CW = 300 * K, CH = CW * 499 / 900;
@@ -538,7 +538,7 @@
   svg += '<g class="far-pole">' + pole(fb) + '</g>';
   svg += treeSvg;
   svg += '<g class="smoke"></g>';
-  svg += '<g class="car"><g class="car-tilt"><g transform="scale(-1,1)"><image href="images/ratrod.webp?v=2" x="' + (-(CW - REAR[0])).toFixed(1) + '" y="' + (-REAR[1]).toFixed(1) + '" width="' + CW + '" height="' + CH.toFixed(1) + '"/></g></g></g>';
+  svg += '<g class="car"><g class="car-tilt"><g transform="scale(-1,1)"><image href="images/ratrod-classic.webp?v=1" x="' + (-(CW - REAR[0])).toFixed(1) + '" y="' + (-REAR[1]).toFixed(1) + '" width="' + CW + '" height="' + CH.toFixed(1) + '"/></g></g></g>';
   var slope = (fb[1] - nb[1]) / (fb[0] - nb[0]);
   var ban = 'M' + pt([nb[0], nb[1] - POLE]) + 'L' + pt([fb[0], fb[1] - POLE]) + 'L' + pt([fb[0], fb[1] - POLE + BAN]) + 'L' + pt([nb[0], nb[1] - POLE + BAN]) + 'Z';
   var len = fb[0] - nb[0];
@@ -572,14 +572,14 @@
     timers.forEach(clearTimeout); timers = []; cancelAnimationFrame(raf);
     smoke.innerHTML = ''; puffs = [];
     [].forEach.call(el.querySelectorAll('[class*="lt-"]'), function (l) { l.classList.remove('on'); });
-    root.classList.remove('is-done', 'is-parked'); again.classList.remove('is-ready');
+    root.classList.remove('is-done', 'is-parked');
     place(S0, 0);
   };
   var park = function () {
     reset(); place(FIN + 0.75, 0);
     light(3);
     root.classList.add('is-parked', 'is-done');
-    again.textContent = 'Run the race'; again.classList.add('is-ready');
+    showShop();
   };
 
   var addPuff = function (s, born) {
@@ -615,7 +615,7 @@
         if (d < 1000 && now - lastPuff > 40) { addPuff(s, now); lastPuff = now; }
         if (!crossed && s + 1 >= FIN) {
           crossed = true; root.classList.add('is-done');
-          later(function () { again.textContent = 'Run it again'; again.classList.add('is-ready'); }, 900);
+          later(showShop, 900);
         }
       }
       drawPuffs(now);
@@ -623,7 +623,49 @@
     })(t0);
   };
 
-  again.addEventListener('click', race);
+  // paint shop: cycle the paint jobs (same car, same crop, so the road geometry fits every one)
+  var PAINTS = [['classic', 'Classic Flames'], ['long-flames', 'Long Flames'], ['pinstripe', 'Red Pinstripe'],
+    ['scrollwork', 'Cream Scrollwork'], ['flames-pinstripe', 'Flames & Pinstripes']];
+  var paintSrc = function (i) { return 'images/ratrod-' + PAINTS[i][0] + '.webp?v=1'; };
+  var carImg = el.querySelector('.car image'), thumb = shop.querySelector('.paint-thumb');
+  var label = shop.querySelector('.paint-label'), count = shop.querySelector('.paint-count');
+  var pick = 0;
+  var showPaint = function () {
+    thumb.src = paintSrc(pick);
+    label.textContent = PAINTS[pick][1]; count.textContent = (pick + 1) + ' of ' + PAINTS.length;
+    if (root.classList.contains('is-parked')) carImg.setAttribute('href', paintSrc(pick));   // parked car (no motion) shows it right away
+  };
+  var showShop = function () {
+    if (!shop.classList.contains('is-ready')) {
+      PAINTS.forEach(function (p, i) { if (i) { var im = new Image(); im.src = paintSrc(i); } });   // warm up the other paint jobs
+      showPaint();
+    }
+    shop.classList.add('is-ready');
+    fitShop();
+  };
+  // keep the card in the corner under the road: lower the section only as far as needed to clear the road's shoulder
+  var fitShop = function () {
+    if (!shop.classList.contains('is-ready')) return;
+    strip.style.marginBottom = '';
+    var svgBox = el.getBoundingClientRect(), vb = el.viewBox.baseVal, sc = svgBox.width / vb.width;
+    var cardRight = (shop.getBoundingClientRect().right - svgBox.left) / sc;              // in scene units
+    var s = (cardRight - O[0] + 0.45 * A[0]) / F[0], edge = P(s, -0.45)[1];               // bottom of the near shoulder at that x
+    var roadPx = svgBox.top + (edge - vb.y) * sc;
+    var base = parseFloat(getComputedStyle(strip).marginBottom) || 0;
+    var cardTop = svgBox.bottom + base - shop.offsetHeight - parseFloat(getComputedStyle(shop).bottom);
+    var short = roadPx + 10 - cardTop;                                                     // how far it would overlap
+    if (short > 0) strip.style.marginBottom = (base + short) + 'px';
+  };
+  var fitT = 0;
+  window.addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitShop, 150); });
+  var step = function (d) { pick = (pick + d + PAINTS.length) % PAINTS.length; showPaint(); };
+  shop.querySelector('.paint-prev').addEventListener('click', function () { step(-1); });
+  shop.querySelector('.paint-next').addEventListener('click', function () { step(1); });
+  again.addEventListener('click', function () {
+    carImg.setAttribute('href', paintSrc(pick));
+    var go = function () { race(); };
+    var im = new Image(); im.onload = im.onerror = go; im.src = paintSrc(pick);    // swap paint once it's loaded, then race
+  });
   place(S0, 0);
   if (reduce || paused()) { park(); return; }
   if ('IntersectionObserver' in window) {

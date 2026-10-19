@@ -14,7 +14,7 @@
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=156">
+  <link rel="stylesheet" href="styles.css?v=157">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -653,7 +653,7 @@
             <p class="eyebrow">FAQ</p>
             <h2 id="faq-title">Frequently asked questions</h2>
           </div>
-          <img class="faq-phone" src="images/rotary-phone.webp?v=1" width="720" height="581" loading="lazy" decoding="async" alt="Illustration: a teal rotary phone with the Wrenches to Websites seal on its dial">
+          <img class="faq-phone" src="images/rotary-phone.webp?v=2" width="900" height="583" loading="lazy" decoding="async" alt="Illustration: a teal rotary phone whose dial reads &quot;Questions? Talk to a real person&quot;">
         </div>
         <div class="faq-list">
           <details class="faq"><summary>How much does a website cost?</summary>
@@ -858,11 +858,20 @@
       <h2 class="finish-title" id="finish-title">The Finish Line!</h2>
       <p class="finish-sub">Thanks for reading all the way to the end.</p>
       <p class="finish-sub">Hope to work with you soon.</p>
-      <button class="finish-again" type="button">Run it again</button>
     </div>
     <div class="strip"></div>
+    <div class="paint-shop" role="group" aria-labelledby="paint-shop-title">
+      <p class="paint-shop-title" id="paint-shop-title">Paint shop</p>
+      <div class="paint-pick">
+        <button class="paint-prev" type="button" aria-label="Previous paint job"><span aria-hidden="true">&#9664;</span></button>
+        <img class="paint-thumb" width="900" height="499" alt="">
+        <button class="paint-next" type="button" aria-label="Next paint job"><span aria-hidden="true">&#9654;</span></button>
+      </div>
+      <p class="paint-name" aria-live="polite"><span class="paint-label">Classic Flames</span> <span class="paint-count">1 of 5</span></p>
+      <button class="paint-race" type="button">Race it!</button>
+    </div>
   </section>
 
-  <script src="script.js?v=37" defer></script>
+  <script src="script.js?v=38" defer></script>
 </body>
 </html>

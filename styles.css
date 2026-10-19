@@ -2208,9 +2208,9 @@ body { background: var(--white-warm); }
 @media (min-width: 52.01em) and (max-width: 68em) { .lede-pennant { right: -1.2em; width: calc(100% + 3.1em); } }
 
 /* ---------- FAQ: a rotary phone beside the heading ---------- */
-.faq-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1rem 2rem; align-items: center; }
+.faq-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 21rem); gap: 1rem 2rem; align-items: center; }   /* wide enough to read the phone's dial */
 .faq-phone { display: block; width: 100%; height: auto; transform: rotate(-4deg); filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
-@media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr) minmax(0, 8.5rem); gap: 0.75rem; } }
+@media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; } .faq-phone { width: min(17rem, 85%); margin: 0 auto; } }
 
 /* desktop: a second, smaller web (no spider) in the top-left corner, so the web on the left on phones isn't a surprise */
 .corner-web--small { display: none; }
@@ -2325,3 +2325,26 @@ body { background: var(--white-warm); }
 /* Hero: even out the gap between "New-school code." and the lede (owner's nudge: line down 3px, lede up 1px) */
 .hero h1 .accent { position: relative; top: 3px; }
 .hero-copy > .lede { margin-top: -1px; }
+
+/* Finish Line paint shop: after the first race, cycle the rat rod's paint jobs and send the chosen one down the strip.
+   It sits in the race's bottom-left corner, under the road; script.js lowers the section just enough that it never touches the road. */
+.finish { position: relative; }
+.paint-shop { position: absolute; left: max(1rem, 2.5vw); bottom: 1rem; z-index: 2; width: min(21rem, calc(100% - 2rem));
+  display: none; grid-template-columns: minmax(0, 11.5rem) 1fr; grid-template-areas: "title title" "pick name" "pick race";
+  column-gap: 0.75rem; align-items: center; padding: 0.55rem 0.75rem 0.65rem; text-align: left;
+  background: #2b2723; border: 2px solid var(--paper); border-radius: 0.8rem; box-shadow: 4px 4px 0 rgba(0, 0, 0, .45); }
+.paint-shop.is-ready { display: grid; animation: shop-in .45s ease-out; }   /* takes no room until the first race is over */
+@keyframes shop-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.paint-shop-title { grid-area: title; margin: 0 0 0.15rem; font: 700 0.75rem/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow-on-ink); }
+.paint-pick { grid-area: pick; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.3rem; }
+.paint-thumb { display: block; width: 100%; height: auto; transform: scaleX(-1); filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .35)); }
+.paint-prev, .paint-next { width: 1.9rem; height: 1.9rem; padding: 0; cursor: pointer; border-radius: 50%;
+  font: 700 0.75rem/1 var(--font-body); color: var(--ink); background: var(--paper); border: 2px solid var(--ink); box-shadow: 0 2px 0 #000; }
+.paint-prev:hover, .paint-next:hover { background: #fbe39b; }
+.paint-name { grid-area: name; margin: 0; align-self: end; font: 700 0.95rem/1.3 var(--font-body); color: var(--paper); }
+.paint-count { display: block; font: 400 0.75rem/1.3 var(--font-mono); color: #cfc6b4; }
+.paint-race { grid-area: race; justify-self: start; align-self: start; margin-top: 0.4rem; padding: 0.55rem 1.15rem; cursor: pointer;
+  font: 700 0.9375rem/1 var(--font-body); color: var(--ink); background: var(--yellow-on-ink); border: 2px solid var(--paper); border-radius: 999px; }
+.paint-race:hover { background: #fbe39b; }
+.paint-prev:focus-visible, .paint-next:focus-visible, .paint-race:focus-visible { outline: 3px solid var(--yellow-on-ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .paint-shop.is-ready { animation: none; } }

@@ -1654,7 +1654,7 @@ body { background: var(--white-warm); }
 }
 /* tail draws in behind the star as it streaks up the diagonal */
 @keyframes cmt-trail {
-  0%, 70.939% { clip-path: inset(0 100% 0 0); opacity: 1; }
+  0%, 76.281% { clip-path: inset(0 100% 0 0); opacity: 1; }
   78.42% { clip-path: inset(0 0 0 0); opacity: 1; }
   92.736% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
   94.657% { clip-path: inset(0 0 0 0); opacity: 0; transform: translate(-30px, -14px); }
@@ -1670,7 +1670,7 @@ body { background: var(--white-warm); }
 }
 /* star: up the diagonal, rests (twinkling), then grows toward you into the center and blooms */
 @keyframes cmt-star {
-  0%, 70.83% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
+  0%, 76.172% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
   76.39% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
   78.42% { opacity: 1; transform: translate(192px, 210px) scale(1); }
   82.052% { opacity: 1; transform: translate(192px, 210px) scale(1.12); }
@@ -1800,7 +1800,7 @@ body { background: var(--white-warm); }
 /* ---------- "That's good to know" as a sing-along: a bouncing ball with a fading tail hops word to word
    and each word lights up as the ball lands, with a longer hang before "know". Everything then holds on one line
    along the comet tail for about 3 seconds before leaving with the star's flash.
-   Timed inside the 46.8s TV loop: comet arrives 33.2s, words 35.7s to 38.0s, hold, leave 44.4s. Static: the line at rest. ---------- */
+   Timed inside the 46.8s TV loop: comet streaks in 34.6s and lands 35.7s as the words begin, words to 38.0s, hold, leave 44.4s. Static: the line at rest. ---------- */
 .gk { transform-box: fill-box; transform-origin: 50% 100%; }
 .sing-ball .sb { fill: #e8c547; opacity: 0; transform-box: view-box; }
 .sing-ball .sb0 { stroke: #141210; stroke-width: 1; paint-order: stroke; }
@@ -1818,8 +1818,8 @@ body { background: var(--white-warm); }
   .sing-ball .sb3 { animation-name: sing-tail3; animation-delay: 0.15s; }
 }
 @keyframes cmt-trail-sing {
-  0%, 68.707% { clip-path: inset(0 100% 0 0); opacity: 1; transform: none; }
-  70.962% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
+  0%, 74.049% { clip-path: inset(0 100% 0 0); opacity: 1; transform: none; }
+  76.304% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
   94.867% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
   96.267%, 100% { clip-path: inset(0 0 0 0); opacity: 0; transform: translate(-30px, -14px); }
 }
@@ -1848,9 +1848,9 @@ body { background: var(--white-warm); }
 @keyframes sing-tail3 { 0%, 76.304% { opacity: 0; transform: translate(69px, 178px); } 76.849% { opacity: .16; transform: translate(69px, 186px); animation-timing-function: ease-out; } 77.393% { transform: translate(87px, 179px); animation-timing-function: ease-in; } 77.938% { transform: translate(105px, 186px); animation-timing-function: ease-out; } 78.521% { transform: translate(118px, 180px); animation-timing-function: ease-in; } 79.104% { transform: translate(131px, 186px); animation-timing-function: ease-out; } 79.999% { transform: translate(144px, 177px); animation-timing-function: ease-in; } 80.893% { opacity: .16; transform: translate(157px, 186px); } 81.438%, 100% { opacity: 0; transform: translate(157px, 186px); } }
 /* the comet arrives a little sooner; its star flashes as "know" lands, then grows into the bloom as before */
 @keyframes cmt-star-sing {
-  0%, 68.707% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
-  68.94% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
-  70.962%, 80.738% { opacity: 1; transform: translate(192px, 210px) scale(1); }
+  0%, 74.049% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
+  74.282% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
+  76.304%, 80.738% { opacity: 1; transform: translate(192px, 210px) scale(1); }
   81.204% { opacity: 1; transform: translate(192px, 210px) scale(1.4); }
   82.371%, 92.736% { opacity: 1; transform: translate(192px, 210px) scale(1); }
   94.019% { opacity: 1; transform: translate(170px, 192px) scale(2.2); }

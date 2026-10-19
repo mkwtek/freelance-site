@@ -198,6 +198,20 @@
     }, { threshold: 1, rootMargin: '0px 0px -25% 0px' }).observe(turntable);
   }
 
+  // ---- Under the hood: the hood lifts open a couple of seconds after the car is on screen ----
+  var hood = document.querySelector('.hood-swap');
+  if (hood && !reduceMotion && 'IntersectionObserver' in window) {
+    hood.classList.add('is-armed');                                     // without this (or with reduced motion) the hood shows open
+    new IntersectionObserver(function (entries, obs) {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      setTimeout(function () {
+        hood.classList.add('is-open');
+        setTimeout(function () { hood.classList.add('is-done'); }, 600);
+      }, 2000);
+    }, { threshold: 0.6, rootMargin: '0px 0px -20% 0px' }).observe(hood);
+  }
+
   // ---- The marker underline under "It's a legal issue." draws itself once it's on screen ----
   // (watches the words themselves, since phones hide the wide stroke and draw one under each line instead)
   var markerLine = document.querySelector('.marker-wipe');

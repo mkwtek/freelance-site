@@ -2103,6 +2103,7 @@ body { background: var(--white-warm); }
 @media (max-width: 52em) {
   .why-head { grid-template-columns: minmax(0, 1fr); }
   .why-head .hotrod { order: -1; max-width: 26rem; margin-inline: auto; }
+  .why-head .hood-swap { order: -1; width: 100%; max-width: 26rem; margin-inline: auto; }
 }
 
 /* ---------- Little ghost, take 3: one steady drift up and to the right, then gone before the big ghost moves,
@@ -2307,3 +2308,13 @@ body { background: var(--white-warm); }
   background: var(--ink); border: 2px solid var(--ink); border-radius: 999px; }
 .liner-close::after { content: " \2193"; }
 @media (prefers-reduced-motion: reduce) { .liner { transition: none; } }
+
+/* Under the hood: the hood starts shut, then lifts open a couple of seconds after the car is on screen.
+   The open-hood picture is revealed from the fender up over the front half, like the hood being raised. */
+.hood-swap { position: relative; }
+.hood-swap .hood-open { position: absolute; inset: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .hood-swap.is-armed .hood-open { clip-path: polygon(0 100%, 52% 100%, 52% 100%, 0 100%); }
+  .hood-swap.is-armed.is-open .hood-open { clip-path: polygon(0 0, 52% 0, 52% 100%, 0 100%); transition: clip-path .55s cubic-bezier(.2, .8, .3, 1); }
+  .hood-swap.is-armed.is-done .hood-open { clip-path: none; }
+}

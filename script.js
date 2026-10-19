@@ -483,7 +483,7 @@
   svg += '<g class="far-pole">' + pole(fb) + '</g>';
   svg += treeSvg;
   svg += '<g class="smoke"></g>';
-  svg += '<g class="car"><g class="car-tilt"><g transform="scale(-1,1)"><image href="images/ratrod.webp?v=1" x="' + (-(CW - REAR[0])).toFixed(1) + '" y="' + (-REAR[1]).toFixed(1) + '" width="' + CW + '" height="' + CH.toFixed(1) + '"/></g></g></g>';
+  svg += '<g class="car"><g class="car-tilt"><g transform="scale(-1,1)"><image href="images/ratrod.webp?v=2" x="' + (-(CW - REAR[0])).toFixed(1) + '" y="' + (-REAR[1]).toFixed(1) + '" width="' + CW + '" height="' + CH.toFixed(1) + '"/></g></g></g>';
   var slope = (fb[1] - nb[1]) / (fb[0] - nb[0]);
   var ban = 'M' + pt([nb[0], nb[1] - POLE]) + 'L' + pt([fb[0], fb[1] - POLE]) + 'L' + pt([fb[0], fb[1] - POLE + BAN]) + 'L' + pt([nb[0], nb[1] - POLE + BAN]) + 'Z';
   var len = fb[0] - nb[0];

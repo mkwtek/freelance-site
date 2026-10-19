@@ -2250,3 +2250,21 @@ body { background: var(--white-warm); }
 }
 @keyframes wave { from { transform: skewY(-7deg) scaleX(.94); } to { transform: skewY(6deg) scaleX(1.04); } }
 .finish-sub + .finish-sub { margin-top: 0.15rem; color: var(--yellow-on-ink); }
+
+/* Fan Mail on phones: read like a real letter, not a tall stacked postcard.
+   Stamp and postmark sit in the top-right corner with the message wrapping around them; the sender goes underneath. */
+@media (max-width: 36em) {
+  .quote--postcard { padding: 0.4rem; background-size: auto; }
+  .pc-in { display: block; position: relative; padding: 1.1rem 1.1rem 1rem; }
+  .pc-msg { border: 0; padding: 0; }
+  .pc-msg::before { content: ""; float: right; width: 5.6rem; height: 6.4rem; }   /* room for the stamp and postmark */
+  .pc-msg p { font-size: 1rem; line-height: 1.55; }
+  .quote--short .pc-msg p:first-child { font-size: 1.1rem; }
+  .pc-msg .pc-sign, .quote--short .pc-msg .pc-sign { font-size: 1.8rem; margin: 0.15rem 0 0; }
+  .pc-addr { position: static; display: block; padding: 0.6rem 0 0; margin-top: 0.5rem; border-top: 2px solid #b8ab92; }
+  .pc-stamp { top: 0.9rem; right: 0.9rem; width: 3.6rem; }
+  .pc-mark { top: 3.3rem; right: 0.5rem; width: 5rem; }   /* cancels the stamp, like real mail */
+  .pc-addr footer { font-size: 0.9rem; }
+  .pc-city { border: 0; padding: 0; font-size: 0.85rem; }
+  .pc-line { display: none; }
+}

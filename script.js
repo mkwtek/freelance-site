@@ -198,7 +198,7 @@
     }, { threshold: 1, rootMargin: '0px 0px -25% 0px' }).observe(turntable);
   }
 
-  // ---- Under the hood: the hood lifts open a couple of seconds after the car is on screen ----
+  // ---- Under the hood: the hood lifts open soon after the car comes on screen ----
   var hood = document.querySelector('.hood-swap');
   if (hood && !reduceMotion && 'IntersectionObserver' in window) {
     hood.classList.add('is-armed');                                     // without this (or with reduced motion) the hood shows open
@@ -206,14 +206,15 @@
       if (!entries[0].isIntersecting) return;
       obs.disconnect();
       var openImg = hood.querySelector('.hood-open');
+      openImg.loading = 'eager';                                        // it's clipped to nothing while shut, so lazy loading would never fetch it
       var lift = function () {
         hood.classList.add('is-open');
         setTimeout(function () { hood.classList.add('is-done'); }, 600);
       };
       setTimeout(function () {                                          // wait for the open-hood picture so the lift never shows a gap
         (openImg.decode ? openImg.decode() : Promise.resolve()).then(lift, lift);
-      }, 2000);
-    }, { threshold: 0.6, rootMargin: '0px 0px -20% 0px' }).observe(hood);
+      }, 1200);
+    }, { threshold: 0.5 }).observe(hood);                         // half the car on screen, then a short beat
   }
 
   // ---- The marker underline under "It's a legal issue." draws itself once it's on screen ----

@@ -2180,11 +2180,11 @@ body { background: var(--white-warm); }
   .corner-web { right: auto; left: 0; transform: scaleX(-1); }
   /* one "room" that scales as a unit. The TV body (not the drawing's box, which has room for the ghost) is centered:
      its middle sits 42% across the drawing. The lamp stands just past the ghost so its arm only reaches a little. */
-  .hero-art { --tvw: min(23rem, calc((50% + 1rem) / 0.66)); --m: calc(50% - var(--tvw) * 0.4224);
+  .hero-art { --tvw: min(26.45rem, calc((50% + 1rem) / 0.66 * 1.15)); --m: calc(50% - var(--tvw) * 0.4224 - 5px);
     justify-content: flex-start; padding-top: calc(var(--tvw) * 0.2); }
   .tv { width: var(--tvw); margin-left: var(--m); }
-  .floor-lamp { display: block; right: auto; left: calc(var(--m) + var(--tvw) * 0.86); width: calc(var(--tvw) * 0.22); bottom: calc(var(--tvw) * 0.05); }
-  .room-rug { left: calc(50% - var(--tvw) * 0.6); width: calc(var(--tvw) * 1.26); bottom: calc(var(--tvw) * -0.06); }
+  .floor-lamp { display: block; right: auto; left: calc(var(--m) + var(--tvw) * 0.78); width: calc(var(--tvw) * 0.21); bottom: calc(var(--tvw) * 0.05); }
+  .room-rug { left: calc(50% - var(--tvw) * 0.6 - 5px); width: calc(var(--tvw) * 1.26); bottom: calc(var(--tvw) * -0.06 - 10px); }
   /* bigger lettering on the TV screen so it can be read on a phone */
   .tv-standby { font-size: 13px; }
   .tv-tag { font-size: 14.5px; }
@@ -2209,3 +2209,9 @@ body { background: var(--white-warm); }
 .faq-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 1rem 2rem; align-items: center; }
 .faq-phone { display: block; width: 100%; height: auto; transform: rotate(-4deg); filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
 @media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr) minmax(0, 8.5rem); gap: 0.75rem; } }
+
+/* desktop: a second, smaller web (no spider) in the top-left corner, so the web on the left on phones isn't a surprise */
+.corner-web--small { display: none; }
+@media (min-width: 52.01em) {
+  .corner-web--small { display: block; right: auto; left: 0; width: clamp(4.5rem, 9vw, 7rem); transform: scaleX(-1); z-index: 0; opacity: 0.7; }
+}

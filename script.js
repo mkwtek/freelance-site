@@ -625,8 +625,8 @@
   };
 
   // paint shop: cycle the paint jobs (same car, same crop, so the road geometry fits every one)
-  var PAINTS = [['classic', 'Classic Flames'], ['long-flames', 'Long Flames'], ['pinstripe', 'Red Pinstripe'],
-    ['scrollwork', 'Cream Scrollwork'], ['flames-pinstripe', 'Flames & Pinstripes']];
+  var PAINTS = [['classic', 'Flames and Pinstripes V1'], ['long-flames', 'Long Flames'], ['pinstripe', 'Pinstripes'],
+    ['scrollwork', 'Scrollwork Pinstripes'], ['flames-pinstripe', 'Flames and Pinstripes V2']];
   var paintSrc = function (i) { return 'images/ratrod-' + PAINTS[i][0] + '.webp?v=1'; };
   var carImg = el.querySelector('.car image'), thumb = shop.querySelector('.paint-thumb');
   var label = shop.querySelector('.paint-label'), count = shop.querySelector('.paint-count');

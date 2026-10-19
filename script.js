@@ -95,7 +95,7 @@
     // turning right as the TV glitches between the color bars and "Please stand by".
     // Pauses on hover or focus, stops for good once you pick a channel, and stops after a few turns.
     var surf = null, hops = 0, inView = false, held = false, surfDone = reduceMotion;
-    var LOOP = 46800, GLITCHES = [0.1609 * LOOP, 0.2769 * LOOP, 0.3885 * LOOP, 0.9680 * LOOP];   // matches the tv-glitch keyframes
+    var LOOP = 46800, GLITCHES = [0.1609 * LOOP, 0.2769 * LOOP, 0.3885 * LOOP, 0.9253 * LOOP];   // matches the tv-glitch keyframes
     var glitchAnim = function () {
       var g = document.querySelector('.tv-glitch');
       return g && g.getAnimations ? g.getAnimations()[0] : null;

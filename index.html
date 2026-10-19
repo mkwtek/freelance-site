@@ -14,7 +14,7 @@
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/shrikhand-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=163">
+  <link rel="stylesheet" href="styles.css?v=164">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -802,7 +802,7 @@
             <label for="f-msg">Tell me about it</label>
             <textarea id="f-msg" name="message" rows="5" required></textarea>
           </div>
-          <input type="text" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label class="visually-hidden" for="hp-field" aria-hidden="true">Leave this field empty</label><input type="text" id="hp-field" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="btn btn-primary" type="submit">Send it</button>
         </form>
       </div>

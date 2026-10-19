@@ -881,10 +881,10 @@ body { background: var(--white-warm); }
 .dial-ch {
   width: 2.3rem; height: 2.3rem; margin: -1.15rem 0 0 -1.15rem;
   transform: rotate(var(--a)) translateY(-38cqi) rotate(calc(var(--a) * -1));
-  background: transparent; border: 0; color: #f4ebd9; font-size: 1.05rem; text-shadow: 0 1px 0 #000;
+  background: #1c1a18; border: 0; color: #f4ebd9; font-size: 1.05rem; text-shadow: 0 1px 0 #000;   /* same as the bezel, so contrast checkers see the real backdrop */
 }
-.dial-ch:hover { background: rgba(244, 235, 217, 0.15); color: #fff; }
-.dial-ch[aria-checked="true"] { background: transparent; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
+.dial-ch:hover { background: #3a3631; color: #fff; }
+.dial-ch[aria-checked="true"] { background: #1c1a18; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
 .dial-ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
 .dial-ch { font-size: 7.5cqi; }
 

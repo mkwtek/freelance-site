@@ -2183,14 +2183,15 @@ body { background: var(--white-warm); }
   .hero-art { --tvw: min(26.45rem, calc((50% + 1rem) / 0.66 * 1.15)); --m: calc(50% - var(--tvw) * 0.4224 - 5px);
     justify-content: flex-start; padding-top: calc(var(--tvw) * 0.2); }
   .tv { width: var(--tvw); margin-left: var(--m); }
-  .floor-lamp { display: block; right: auto; left: calc(var(--m) + var(--tvw) * 0.78); width: calc(var(--tvw) * 0.21); bottom: calc(var(--tvw) * 0.05); }
+  .floor-lamp { display: block; right: auto; left: calc(var(--m) + var(--tvw) * 0.765); width: calc(var(--tvw) * 0.2415); bottom: calc(var(--tvw) * 0.05); }
   .room-rug { left: calc(50% - var(--tvw) * 0.6 - 5px); width: calc(var(--tvw) * 1.26); bottom: calc(var(--tvw) * -0.06 - 10px); }
   /* bigger lettering on the TV screen so it can be read on a phone */
   .tv-standby { font-size: 13px; }
   .tv-tag { font-size: 14.5px; }
-  .tv-psa-line { font-size: 12px; letter-spacing: 0.01em; }
+  .tv-psa-line { font-size: 11px; letter-spacing: 0.01em; }
+  .tv-tag-sm { font-size: 12px; letter-spacing: 0.01em; }   /* stays inside the gold frame */
   .tv-psa-btn { font-size: 10px; letter-spacing: 0.01em; }
-  .tv-psa-head { font-size: 9.5px; }
+  .tv-psa-head { font-size: 9px; }
 }
 @media (min-width: 52.01em) {
   /* wide screens keep the original desktop proportions (TV centered in its column, a taller lamp standing behind

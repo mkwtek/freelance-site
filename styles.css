@@ -2180,11 +2180,11 @@ body { background: var(--white-warm); }
   .corner-web { right: auto; left: 0; transform: scaleX(-1); }
   /* one "room" that scales as a unit. The TV body (not the drawing's box, which has room for the ghost) is centered:
      its middle sits 42% across the drawing. The lamp stands just past the ghost so its arm only reaches a little. */
-  .hero-art { --tvw: min(26.45rem, calc((50% + 1rem) / 0.66 * 1.15)); --m: calc(50% - var(--tvw) * 0.4224 - 5px);
+  .hero-art { --tvw: min(26.45rem, calc((50% + 1rem) / 0.66 * 1.15)); --m: min(calc(50% - var(--tvw) * 0.4224 - 13px), calc(100% + 4px - var(--tvw) * 1.0347));
     justify-content: flex-start; padding-top: calc(var(--tvw) * 0.2); }
   .tv { width: var(--tvw); margin-left: var(--m); }
-  .floor-lamp { display: block; right: auto; left: calc(var(--m) + var(--tvw) * 0.765); width: calc(var(--tvw) * 0.2415); bottom: calc(var(--tvw) * 0.05); }
-  .room-rug { left: calc(50% - var(--tvw) * 0.6 - 5px); width: calc(var(--tvw) * 1.26); bottom: calc(var(--tvw) * -0.06 - 10px); }
+  .floor-lamp { display: block; right: auto; left: calc(var(--m) + var(--tvw) * 0.8033 + 10px); width: calc(var(--tvw) * 0.2777); bottom: calc(var(--tvw) * 0.05); }   /* chain hangs just past the ghost so its arm shows */
+  .room-rug { left: calc(var(--m) - var(--tvw) * 0.1776); width: calc(var(--tvw) * 1.26); bottom: calc(var(--tvw) * -0.06 - 10px); }
   /* bigger lettering on the TV screen so it can be read on a phone */
   .tv-standby { font-size: 13px; }
   .tv-tag { font-size: 14.5px; }

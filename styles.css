@@ -194,7 +194,11 @@ h1, h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.0
 h3, h4 { font-weight: 700; }
 p { margin: 0 0 1rem; }
 a { color: var(--blue-text); text-underline-offset: 0.18em; }
-a:hover { text-decoration-thickness: 2px; }
+a:hover, a:active { text-decoration-thickness: 2px; }
+/* Interaction states, site-wide. Visited links keep their normal color on purpose (a one-page site with a few outside links).
+   Taps: Safari's grey tap box is off; every control shows its own hover color while pressed instead. */
+a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color: transparent; }
+:disabled { cursor: not-allowed; opacity: 0.6; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
 .wrap { width: min(100% - 2rem, var(--wrap)); margin-inline: auto; }
 .visually-hidden {
@@ -268,7 +272,7 @@ body { background: var(--white-warm); }
 }
 /* Softer yellows: a pale butter section background so cards stand out, a lighter site check box */
 .section-alt { background: #fcf0c4; }
-.btn-ghost:hover { background: #fbe39b; }
+.btn-ghost:hover, .btn-ghost:active { background: #fbe39b; }
 /* Under-the-hood cards: icon beside the label, brick red headings */
 .hood-icon { width: 4rem; height: 4rem; flex: none; overflow: visible; margin-top: -0.25rem; }
 .hood-icon { margin-top: 0; }
@@ -342,7 +346,7 @@ body { background: var(--white-warm); }
   .site-nav .nav-cta { margin: 0.4rem 0 0; text-align: center; }
   .site-nav li + li:not(:has(.nav-cta)) { border-top: 1px solid rgba(34, 31, 27, 0.14); }   /* thin dividers so each row reads as its own button */
   .site-nav ul { gap: 0; }
-  .site-nav a:not(.nav-cta) { border-radius: 0.35rem; -webkit-tap-highlight-color: transparent; }   /* rows, not pills, between the dividers; no iPhone tap box over the yellow */
+  .site-nav a:not(.nav-cta) { border-radius: 0.35rem; }   /* rows, not pills, between the dividers */
   .site-nav a:not(.nav-cta):hover, .site-nav a:not(.nav-cta):active { background: var(--gold); }   /* yellow on hover or tap; ink text on it 9.3:1 (AAA) */
 }
 .site-header, .site-nav { background: var(--white-warm); }
@@ -352,7 +356,7 @@ body { background: var(--white-warm); }
   .nav-toggle { padding: 0.4rem 0.7rem; }
   .brand-name { font-size: 1.15rem; }
 }
-.site-nav .nav-cta:hover { background: var(--gold); color: var(--ink); }
+.site-nav .nav-cta:hover, .site-nav .nav-cta:active { background: var(--gold); color: var(--ink); }
 /* Color-bar stripe (same colors and order as the TV), under the header and atop dark sections */
 .site-header { border-bottom: 0; }
 .site-header::after {
@@ -1149,7 +1153,7 @@ body { background: var(--white-warm); }
   font: 700 0.8125rem var(--font-body); letter-spacing: 0.02em; color: var(--ink);
   padding: 0.3rem 0.8rem; background: var(--white-warm); border: 2px solid var(--ink); border-radius: 999px; cursor: pointer;
 }
-.motion-toggle:hover { background: #fbe39b; }
+.motion-toggle:hover, .motion-toggle:active { background: #fbe39b; }
 .motion-toggle:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .mt-icon { font-size: 0.9em; line-height: 1; }
 @media (max-width: 52em) { .motion-wrap .motion-toggle { order: -1; } }
@@ -1522,7 +1526,7 @@ body { background: var(--white-warm); }
   transform: rotate(var(--a)) translateY(-38cqi) rotate(calc(var(--a) * -1));
   background: #1c1a18; border: 0; color: #f4ebd9; font-size: 1.05rem; text-shadow: 0 1px 0 #000;   /* same as the bezel, so contrast checkers see the real backdrop */
 }
-.dial-ch:hover { background: #3a3631; color: #fff; }
+.dial-ch:hover, .dial-ch:active { background: #3a3631; color: #fff; }
 .dial-ch[aria-checked="true"] { background: #1c1a18; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
 .dial-ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
 .dial-ch { font-size: 7.5cqi; }
@@ -1743,7 +1747,7 @@ body { background: var(--white-warm); }
   font: 700 0.9rem/1 var(--font-body); color: var(--ink); background: var(--white-warm); border: 2px solid var(--ink); border-radius: 999px; box-shadow: 2px 2px 0 var(--ink); }
 .liner-btn::before { content: ""; width: 0.9rem; height: 0.7rem; border: 2px solid var(--red-text); border-radius: 2px;
   background: repeating-linear-gradient(0deg, var(--red-text) 0 1px, transparent 1px 3px); }
-.liner-btn:hover { background: #fbe39b; }
+.liner-btn:hover, .liner-btn:active { background: #fbe39b; }
 .liner-btn:focus-visible, .liner-close:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .liner { position: absolute; inset: 0.6rem 0.6rem 0; z-index: 3; overflow: auto; padding: 1.1rem 1.15rem 1.25rem;
   background: repeating-linear-gradient(180deg, transparent 0 1.55rem, rgba(166, 58, 36, .14) 1.55rem calc(1.55rem + 1px)), #fbf6ea;
@@ -1993,6 +1997,7 @@ body { background: var(--white-warm); }
 .pull-quote { font-family: var(--font-body); font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.45; letter-spacing: 0; }
 /* Palette consolidation */
 .section-dark :focus-visible { outline-color: var(--yellow-on-ink); }
+.section-dark .contact-form :focus-visible { outline-color: var(--ink); }   /* the form is a light card, so its outline goes back to ink (15:1) */
 .section-dark .eyebrow { font-size: 1rem; padding: 0.4rem 0.8rem; }
 .section-dark .eyebrow {
   background: var(--gold); color: var(--ink);
@@ -2246,7 +2251,7 @@ body { background: var(--white-warm); }
 .faq summary::after { content: ""; flex: none; width: 1.75rem; height: 1.75rem; border-radius: 50%; border: 3px solid var(--ink);
   background: linear-gradient(var(--red-text), var(--red-text)) 50% 3px / 3px 42% no-repeat, #ebbd4e; transition: transform 0.35s cubic-bezier(.3, 1.4, .5, 1); }
 .faq[open] summary::after { transform: rotate(135deg); }
-.faq summary:hover { background: #fbe39b; }
+.faq summary:hover, .faq summary:active { background: #fbe39b; }
 .faq summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .faq-a { padding: 0 1.25rem 1.1rem; border-top: 2px dashed var(--ink); margin: 0 1.25rem; padding-inline: 0; padding-top: 0.9rem; }
 .faq-a p, .faq-a li { color: var(--ink-soft); }
@@ -2576,13 +2581,13 @@ body { background: var(--white-warm); }
 .paint-thumb { display: block; width: 100%; height: auto; transform: scaleX(-1); filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .35)); }
 .paint-prev, .paint-next { padding: 0; cursor: pointer; border-radius: 50%;
   font: 700 0.75em/1 var(--font-body); width: 2.5em; height: 2.5em; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); box-shadow: 0 2px 0 #000; }
-.paint-prev:hover, .paint-next:hover { background: #fbe39b; }
+.paint-prev:hover, .paint-next:hover, .paint-prev:active, .paint-next:active { background: #fbe39b; }
 .paint-name { grid-area: name; margin: 0; align-self: end; font: 700 0.95em/1.3 var(--font-body); color: var(--paper); }
 .paint-label { display: flex; align-items: flex-end; min-height: 2.6em; }   /* always room for two lines, so the card never changes size */
 .paint-count { display: block; font: 400 0.79em/1.3 var(--font-mono); color: #cfc6b4; }
 .paint-race { grid-area: race; justify-self: start; align-self: start; margin-top: 0.4em; padding: 0.55em 1.15em; cursor: pointer;
   font: 700 0.9375em/1 var(--font-body); color: var(--ink); background: var(--yellow-on-ink); border: 2px solid var(--paper); border-radius: 999px; }
-.paint-race:hover { background: #fbe39b; }
+.paint-race:hover, .paint-race:active { background: #fbe39b; }
 /* phones: the same card, a little less oversized so the name still has room beside the car, and centered since it sits on its own under the strip */
 @media (max-width: 40em) { .paint-shop { font-size: 1.15rem; grid-template-columns: minmax(0, 1.15fr) 1fr; left: 50%; translate: -50% 0; } }
 .paint-prev:focus-visible, .paint-next:focus-visible, .paint-race:focus-visible { outline: 3px solid var(--yellow-on-ink); outline-offset: 3px; }

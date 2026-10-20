@@ -354,10 +354,11 @@
   pending.forEach(function (el) { io.observe(el); });
 })();
 
-// ---- Room lights, timed to the TV: on its second peek (as the TV first changes channel) the ghost tugs the lamp's pull chain and the room
-// lights up. It dims the room just as the PSA comes on, and turns the lights back on right as the PSA's
-// star blooms into its flash. The ghost peeks seven times per TV loop (5.2s each, see .ghost in the CSS),
-// so its peeks land on those moments. Reduced motion: the room just stays lit. ----
+// ---- Room lights, one cycle per TV loop: after the small ghost dives into the TV and the big ghost slides
+// out (8.8s), the big ghost tugs the lamp's pull chain on his next peek (12.8s) and the room lights up. He turns
+// it off again at the end of "That's good to know" (44s) and slips back behind the TV, and it all repeats.
+// The ghost peeks nine times per TV loop (5.2s each, see .ghost in the CSS), so his peeks land on those
+// moments. Reduced motion: the room just stays lit. ----
 (function () {
   'use strict';
   var root = document.documentElement;
@@ -367,8 +368,7 @@
   var anim = ghost && ghost.getAnimations ? ghost.getAnimations()[0] : null;
   if (!anim || anim.currentTime == null) { root.classList.remove('room-intro'); return; }
   var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
-  var TV = 46800, OFF_PEAK = 18030, ON_PEAK = 44030;  // TV loop; peeks just as the PSA comes on, and at the star's flash
-  var FIRST_PEAK = 12830;                            // first lights-on: the big ghost's first peek after the little ghost dives into the TV
+  var TV = 46800, ON_PEAK = 12830, OFF_PEAK = 44030;  // TV loop; lights on at his first peek once he's out, off after "That's good to know"
   var tv = document.querySelector('.tv-bars');
   var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;
   var untilTv = function (at, lead) {                 // ms until the TV loop reaches `at`, at least `lead` ms away
@@ -432,8 +432,8 @@
     }, 700);
   };
 
-  var turnOn = function (first) {
-    var w = first ? untilTv(FIRST_PEAK, 1200) : untilTv(ON_PEAK, 1200);
+  var turnOn = function () {
+    var w = untilTv(ON_PEAK, 1200);
     if (!hasLamp()) {                                                        // phones: the rug alone, on the peek
       later(function () { lightsOn(); scheduleOff(); }, w);
       return;
@@ -442,10 +442,10 @@
     later(function () { tugThen(reach(), function () { lightsOn(); scheduleOff(); }); }, w);
   };
   var scheduleOff = function () {
-    var w = untilTv(OFF_PEAK, 1200);                                          // lights down for the PSA
+    var w = untilTv(OFF_PEAK, 1200);                                          // lights off at the end of the cycle
     later(function () {
-      if (!hasLamp()) { lightsOff(); turnOn(false); return; }
-      tugThen(reach(), function () { lightsOff(); turnOn(false); });
+      if (!hasLamp()) { lightsOff(); turnOn(); return; }
+      tugThen(reach(), function () { lightsOff(); turnOn(); });
     }, w);
   };
   // Pause: stop the cycle and leave the room lit. Play: carry on from lit.
@@ -460,7 +460,7 @@
       scheduleOff();
     }
   });
-  if (!startLit) turnOn(true);
+  if (!startLit) turnOn();
 })();
 
 /* The Finish Line : the road is drawn on the same ground plane as the car art.

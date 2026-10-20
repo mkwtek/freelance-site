@@ -655,7 +655,7 @@
     [0, 1, 2].forEach(function (i) { later(function () { light(i); }, 500 + i * 500); });
     later(function () { light(3); }, 2000);
     var t0 = performance.now(), GO = 2100, DUR = 2600, END = 9.5 / K, lastPuff = 0, crossed = false;
-    var RUMBLE = 1.5 * VW / Math.max(1, strip.clientWidth);           // idle shake of about 1.5 screen pixels at any size
+    var RUMBLE = 0.9 * VW / Math.max(1, strip.clientWidth);           // idle shake of about 0.9 screen pixels at any size (the desktop amount)
     (function frame(now) {
       var e = now - t0;
       if (e < GO) { place(S0, 0, e > 200 ? Math.sin(e / 18) * RUMBLE : 0); }           // idle rumble at the line

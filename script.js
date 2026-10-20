@@ -627,7 +627,7 @@
     place(S0, 0);
   };
   var park = function () {
-    reset(); place(FIN + 0.75, 0);
+    reset(); place(FIN + 0.75, 0); root.classList.remove('is-live');
     light(3);
     root.classList.add('is-parked', 'is-done');
     showShop();
@@ -668,6 +668,7 @@
         if (!crossed && s + 1 >= FIN) {
           crossed = true; root.classList.add('is-done');
           later(showShop, 900);
+          later(function () { root.classList.remove('is-live'); }, 3000);   // paused: the flags wave a few seconds, then hold
         }
       }
       drawPuffs(now);
@@ -714,17 +715,26 @@
   shop.querySelector('.paint-prev').addEventListener('click', function () { step(-1); });
   shop.querySelector('.paint-next').addEventListener('click', function () { step(1); });
   again.addEventListener('click', function () {
+    root.classList.add('is-live');                 // a race you asked for runs in full, flags and all, even while paused
     carImg.setAttribute('href', paintSrc(pick));
     var go = function () { race(); };
     var im = new Image(); im.onload = im.onerror = go; im.src = paintSrc(pick);    // swap paint once it's loaded, then race
   });
   place(S0, 0);
-  if (reduce || paused()) { park(); return; }
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); race(); } }, { threshold: 0.6 });
+  if (reduce) { park(); return; }
+  var io;
+  var raceWhenSeen = function () {                 // race once the strip is on screen
+    if (!('IntersectionObserver' in window)) { park(); return; }
+    if (io) io.disconnect();
+    io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); race(); } }, { threshold: 0.6 });
     io.observe(strip);
-  } else { park(); }
-  document.addEventListener('motionchange', function (e) { if (e.detail.paused) park(); });
+  };
+  if (paused()) park(); else raceWhenSeen();
+  // Pause parks the car past the line; Play brings the race back from the start
+  document.addEventListener('motionchange', function (e) {
+    if (e.detail.paused) { if (io) io.disconnect(); park(); return; }
+    if (root.classList.contains('is-parked')) { reset(); raceWhenSeen(); }
+  });
 })();
 
 // ---- Agency builds: "Liner notes" slide up out of each album sleeve; Back in the sleeve or Escape puts them away ----

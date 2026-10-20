@@ -340,6 +340,8 @@ body { background: var(--white-warm); }
   .site-nav ul { flex-direction: column; align-items: stretch; gap: 0.25rem; }
   .site-nav a { display: block; padding: 0.8rem 1rem; }
   .site-nav .nav-cta { margin: 0.4rem 0 0; text-align: center; }
+  .site-nav li + li:not(:has(.nav-cta)) { border-top: 1px solid rgba(34, 31, 27, 0.14); }   /* thin dividers so each row reads as its own button */
+  .site-nav ul { gap: 0; }
 }
 .site-header, .site-nav { background: var(--white-warm); }
 /* Very narrow screens or very large text: hide the word "Menu" (still read by screen readers) */
@@ -1038,7 +1040,7 @@ body { background: var(--white-warm); }
   86%, 100% { transform: translateY(-106px); }
 }
 @keyframes spider-wiggle { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
-.corner-web { z-index: 2; }
+.corner-web { z-index: 0; }   /* on the wall behind the lamp; it comes first in the page, so the lamp draws over it */
 /* ---------- Opening: the spider spins its web, then drops; the ghost slides out from behind the set ---------- */
 @media (prefers-reduced-motion: no-preference) {
   .web-strand { stroke-dasharray: 1; stroke-dashoffset: 1; animation: web-spin 0.45s ease-out var(--d) forwards; }
@@ -1396,7 +1398,7 @@ body { background: var(--white-warm); }
   /* the rug is centered on the screen under the whole scene (an even 8px from each edge on phones), and the lamp is
      placed from the rug's own size so its base always stands on the rug's right side, whatever the width */
   .hero-art { --rugw: min(calc(100vw - 16px), calc(var(--tvw) * 1.3)); --rugb: calc(var(--tvw) * -0.06 - 10px); --lampw: calc(var(--tvw) * 0.31); }
-  .floor-lamp { width: var(--lampw); height: calc(var(--lampw) * 3.325); left: calc(50% + var(--rugw) * 0.37 - var(--lampw) / 2); bottom: calc(var(--rugb) + var(--rugw) * 0.1108 - var(--lampw) * 0.0917); }
+  .floor-lamp { width: var(--lampw); aspect-ratio: 120 / 399; left: calc(50% + var(--rugw) * 0.37 - var(--lampw) / 2); bottom: calc(var(--rugb) + var(--rugw) * 0.1108 - var(--lampw) * 0.0917); }
   /* the lamp is smaller here (its base stays on the rug), so a shorter chain keeps the pull above the ghost's head */
   .lamp-chain circle:nth-child(n+17) { display: none; }
   .lamp-chain .chain-pull { transform: translateY(-45px); }
@@ -1417,6 +1419,10 @@ body { background: var(--white-warm); }
   .room-rug { left: calc(var(--m) - var(--tvw) * 0.056); width: calc(var(--tvw) * 1.1); bottom: calc(var(--tvw) * -0.0786); }
   .floor-lamp { left: calc(var(--m) + var(--tvw) * 0.7344); width: calc(var(--tvw) * 0.338); bottom: calc(var(--tvw) * 0.0356); }
   .lamp-chain > g { transform: translate(4.8px, 9.68px); }   /* keeps the pull where it hung before the lamp moved onto the rug */
+  .floor-lamp { aspect-ratio: 120 / 410; }   /* about two chain links shorter than drawn (120 x 420) */
+  .lamp-chain circle:nth-child(n+22) { display: none; }
+  .lamp-chain .chain-pull { transform: translateY(-10px); }
+  .corner-web:not(.corner-web--small) { width: clamp(7rem, 15vw, 12rem); }   /* smaller, so it stays clear of the lamp shade */
 }
 /* TV: 16 units of headroom in the drawing so the antenna balls stay inside it while the antenna springs up
    (the drop shadow made Chrome clip anything outside the drawing mid-animation); pulled up the same amount so nothing moves */
@@ -2592,4 +2598,5 @@ body { background: var(--white-warm); }
 .motion-paused .crt-on, .motion-paused .crt-beam, .motion-paused .web-strand { animation-play-state: running !important; }
 .motion-paused .spider-body { animation-play-state: paused, running !important; }
 .motion-paused .hero h1 .hl { animation-play-state: running !important; }
-.motion-paused .ghost-enter { transform: none !important; }   /* paused: the big ghost stays out where you can see him */
+.motion-paused .ghost-enter { transform: none !important; }
+.motion-paused .finish.is-live *, .motion-paused .finish.is-live *::before, .motion-paused .finish.is-live *::after { animation-play-state: running !important; }   /* a race started with Race it! */   /* paused: the big ghost stays out where you can see him */

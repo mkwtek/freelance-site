@@ -9,6 +9,14 @@
   <meta property="og:title" content="Business Name | Web Development &amp; Consulting">
   <meta property="og:description" content="Old-school craft, new-school code. Fast, accessible websites for small businesses and nonprofits.">
   <meta property="og:type" content="website">
+  <!-- link preview picture for shared links (texts, social posts). Full web address required; update it if the site moves to its own domain -->
+  <meta property="og:url" content="https://mkwtek.github.io/freelance-site/">
+  <meta property="og:image" content="https://mkwtek.github.io/freelance-site/images/og-workbench.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A retro workbench with tools on a pegboard, a little ghost, and an old TV showing web page code, under signs reading From Wrenches To Websites">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://mkwtek.github.io/freelance-site/images/og-workbench.jpg">
   <meta name="theme-color" content="#221f1b">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -16,7 +24,7 @@
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/new-rocker-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-mono-normal-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=187">
+  <link rel="stylesheet" href="styles.css?v=190">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -846,6 +854,13 @@
           <button class="btn btn-primary" type="submit">Send it</button>
         </form>
       </div>
+      <!-- closing picture: the workbench on an old screen, switching on (a line, then the picture) once as it scrolls into view -->
+      <div class="wrap bench-wrap">
+        <figure class="bench-screen">
+          <img src="images/workbench-1200.webp?v=1" srcset="images/workbench-1200.webp?v=1 1200w, images/workbench.webp?v=1 2400w" sizes="(min-width: 75em) 70rem, 100vw" width="2400" height="1310" loading="lazy" decoding="async" alt="Illustration: a retro workbench with tools on a pegboard, a little ghost, an old TV showing web page code and a layout sketch, a keyboard and mouse, a rotary phone and a record player, under signs reading From Wrenches To Websites">
+          <span class="bench-beam" aria-hidden="true"></span>
+        </figure>
+      </div>
     </section>
   </main>
 
@@ -912,6 +927,6 @@
     </div>
   </section>
 
-  <script src="script.js?v=46" defer></script>
+  <script src="script.js?v=49" defer></script>
 </body>
 </html>

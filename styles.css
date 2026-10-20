@@ -2659,3 +2659,6 @@ body { background: var(--white-warm); }
 .seo-body h3 { margin-top: 0.4rem; }
 .seo-close { font-weight: 700; }
 @media (max-width: 30em) { .seo-callout { grid-template-columns: 1fr; } }
+
+.myth-stamp { width: 10.5rem; height: auto; margin-top: 0.3rem; }   /* a worn rubber stamp: "MYTH" over "BUSTED" */
+@media (max-width: 30em) { .myth-stamp { width: 9.5rem; } }

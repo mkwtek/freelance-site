@@ -2572,8 +2572,8 @@ body { background: var(--white-warm); }
 .paint-race { grid-area: race; justify-self: start; align-self: start; margin-top: 0.4em; padding: 0.55em 1.15em; cursor: pointer;
   font: 700 0.9375em/1 var(--font-body); color: var(--ink); background: var(--yellow-on-ink); border: 2px solid var(--paper); border-radius: 999px; }
 .paint-race:hover { background: #fbe39b; }
-/* phones: the same card, a little less oversized, so the name still has room beside the car */
-@media (max-width: 40em) { .paint-shop { font-size: 1.15rem; grid-template-columns: minmax(0, 1.15fr) 1fr; } }
+/* phones: the same card, a little less oversized so the name still has room beside the car, and centered since it sits on its own under the strip */
+@media (max-width: 40em) { .paint-shop { font-size: 1.15rem; grid-template-columns: minmax(0, 1.15fr) 1fr; left: 50%; translate: -50% 0; } }
 .paint-prev:focus-visible, .paint-next:focus-visible, .paint-race:focus-visible { outline: 3px solid var(--yellow-on-ink); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .paint-shop.is-ready { animation: none; } }
 

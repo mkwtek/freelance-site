@@ -16,7 +16,7 @@
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/new-rocker-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-mono-normal-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=181">
+  <link rel="stylesheet" href="styles.css?v=182">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -225,19 +225,19 @@
               <circle cx="255" cy="180" r="2.8" fill="#3a3631"/>
             </g>
             </g>
-            <!-- brass model plate reading DELUXE (a period model word, not a brand) above a woven speaker grille with brass bars -->
+            <!-- brass model plate reading DELUXE (a period model word, not a brand) at the top of the control column, and a woven speaker grille with brass bars at the bottom -->
             <defs>
               <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1d58a"/><stop offset=".5" stop-color="#c79a45"/><stop offset="1" stop-color="#8a6526"/></linearGradient>
               <pattern id="grille-weave" width="3" height="3" patternUnits="userSpaceOnUse"><rect width="3" height="3" fill="#cdb489"/><path d="M0 .75h1.5M1.5 2.25h1.5" stroke="#7d6440" stroke-width="1"/><path d="M2.25 0v1.5M.75 1.5v1.5" stroke="#efe0bd" stroke-width=".8"/></pattern>
               <linearGradient id="grille-shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset=".25" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".15"/></linearGradient>
             </defs>
-            <rect x="239" y="211.2" width="32" height="8" rx="2" fill="url(#brass)" stroke="var(--ink)" stroke-width="1.4"/>
-            <circle cx="242.2" cy="215.2" r=".8" fill="#6b4e1c"/><circle cx="267.8" cy="215.2" r=".8" fill="#6b4e1c"/>
-            <text x="255" y="215.4" font-family="'Space Mono', monospace" font-weight="700" font-size="4.6" letter-spacing=".9" fill="#4a3410" text-anchor="middle" dominant-baseline="central">DELUXE</text>
-            <rect x="236" y="222" width="38" height="26" rx="4.5" fill="url(#grille-weave)"/>
-            <!-- three brass bars across the grille cloth, like the Process radio's speaker -->
-            <g stroke-linecap="round"><path d="M240.5 228h29M240.5 235h29M240.5 242h29" stroke="var(--ink)" stroke-width="4"/><path d="M240.5 228h29M240.5 235h29M240.5 242h29" stroke="#c79a45" stroke-width="2.3"/><path d="M241.5 227.5h27M241.5 234.5h27M241.5 241.5h27" stroke="#f1d58a" stroke-width=".7"/></g>
-            <rect x="236" y="222" width="38" height="26" rx="4.5" fill="url(#grille-shade)" stroke="var(--ink)" stroke-width="2.5"/>
+            <rect x="239" y="93" width="32" height="8" rx="2" fill="url(#brass)" stroke="var(--ink)" stroke-width="1.4"/>
+            <circle cx="242.2" cy="97" r=".8" fill="#6b4e1c"/><circle cx="267.8" cy="97" r=".8" fill="#6b4e1c"/>
+            <text x="255" y="97.2" font-family="'Space Mono', monospace" font-weight="700" font-size="4.6" letter-spacing=".9" fill="#4a3410" text-anchor="middle" dominant-baseline="central">DELUXE</text>
+            <rect x="236.5" y="213" width="37" height="35" rx="5" fill="url(#grille-weave)"/>
+            <!-- four brass bars across the grille cloth, like the Process radio's speaker -->
+            <g stroke-linecap="round"><path d="M240.5 220.5h29M240.5 227.5h29M240.5 234.5h29M240.5 241.5h29" stroke="var(--ink)" stroke-width="4"/><path d="M240.5 220.5h29M240.5 227.5h29M240.5 234.5h29M240.5 241.5h29" stroke="#c79a45" stroke-width="2.3"/><path d="M241.5 220.0h27M241.5 227.0h27M241.5 234.0h27M241.5 241.0h27" stroke="#f1d58a" stroke-width=".7"/></g>
+            <rect x="236.5" y="213" width="37" height="35" rx="5" fill="url(#grille-shade)" stroke="var(--ink)" stroke-width="2.5"/>
             <defs>
               <clipPath id="screen-clip"><rect x="46" y="106" width="168" height="134" rx="18"/></clipPath>
               <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
@@ -245,6 +245,8 @@
               </pattern>
             </defs>
           </svg>
+          <!-- phones: a second little ghost that flies in from the left and dives into the screen -->
+          <svg class="tv-diver" viewBox="0 0 64 76" aria-hidden="true" focusable="false"><g class="haunt-arms" stroke-linecap="round" fill="none"><path d="M14 26q-3-22 6-40M50 26q3-22-6-40" stroke="#221f1b" stroke-width="10"/><path d="M14 26q-3-22 6-40M50 26q3-22-6-40" stroke="#fff7f0" stroke-width="5.5"/></g><g class="haunt-body"><path d="M32 4C15 4 7 17 7 33V66q4.2-7 8.4 0q4.2 7 8.4 0q4.2-7 8.4 0q4.2 7 8.4 0q4.2-7 8.4 0V33C57 17 49 4 32 4Z" fill="#fff7f0" stroke="#221f1b" stroke-width="4.5" stroke-linejoin="round"/><g class="haunt-face"><ellipse cx="24" cy="32" rx="3.6" ry="5" fill="#221f1b"/><ellipse cx="40" cy="32" rx="3.6" ry="5" fill="#221f1b"/><path d="M26 45q6 5 12 0" fill="none" stroke="#221f1b" stroke-width="3.5" stroke-linecap="round"/></g><g class="haunt-face-down" transform="translate(32 27) scale(1.5)"><ellipse cx="-6" cy="-3" rx="3.2" ry="4.4" fill="#221f1b"/><ellipse cx="6" cy="-3" rx="3.2" ry="4.4" fill="#221f1b"/><path d="M-4 6q4 3.5 8 0" fill="none" stroke="#221f1b" stroke-width="3" stroke-linecap="round"/></g></g><g class="haunt-tuck"><path d="M32 4C15 4 7 17 7 33V66q4.2-7 8.4 0q4.2 7 8.4 0q4.2-7 8.4 0q4.2 7 8.4 0q4.2-7 8.4 0V33C57 17 49 4 32 4Z" fill="#fff7f0" stroke="#221f1b" stroke-width="4.5" stroke-linejoin="round"/><path d="M18 64V51a7.5 7.5 0 0 1 15 0V64M31 64V51a7.5 7.5 0 0 1 15 0V64" fill="#fff7f0" stroke="#221f1b" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"/><g stroke-linecap="round" fill="none"><path d="M8 40q4 16 14 15M56 40q-4 16-14 15" stroke="#221f1b" stroke-width="8"/><path d="M8 40q4 16 14 15M56 40q-4 16-14 15" stroke="#fff7f0" stroke-width="3.8"/></g><ellipse cx="25" cy="24" rx="3.4" ry="4.6" fill="#221f1b"/><ellipse cx="39" cy="24" rx="3.4" ry="4.6" fill="#221f1b"/><path d="M28 33q4 4 8 0" fill="none" stroke="#221f1b" stroke-width="3" stroke-linecap="round"/></g></svg>
         </div>
         <div class="motion-wrap">
           <p class="visually-hidden" id="motion-note">Nonstop motion can distract some people or even make them feel sick. Accessibility guidelines say visitors need a way to stop it, so here's the off switch.</p>
@@ -910,6 +912,6 @@
     </div>
   </section>
 
-  <script src="script.js?v=43" defer></script>
+  <script src="script.js?v=44" defer></script>
 </body>
 </html>

@@ -368,8 +368,7 @@
   if (!anim || anim.currentTime == null) { root.classList.remove('room-intro'); return; }
   var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
   var TV = 46800, OFF_PEAK = 18030, ON_PEAK = 44030;  // TV loop; peeks just as the PSA comes on, and at the star's flash
-  var FIRST_PEAK = 7630;                             // first lights-on: the second peek, as the TV changes to its first channel
-  if (window.matchMedia && matchMedia('(min-width: 52.01em)').matches) FIRST_PEAK = 12830;   // wider screens: after the little ghost's dive
+  var FIRST_PEAK = 12830;                            // first lights-on: the big ghost's first peek after the little ghost dives into the TV
   var tv = document.querySelector('.tv-bars');
   var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;
   var untilTv = function (at, lead) {                 // ms until the TV loop reaches `at`, at least `lead` ms away
@@ -719,7 +718,7 @@
   });
 })();
 
-// ---- Wider screens: aim the little ghost's dive at the middle of the TV screen ----
+// ---- Aim the little ghost's dive at the middle of the TV screen (and place the phone ghost) ----
 (function () {
   var g = document.querySelector('.haunt-ghost'), scr = document.querySelector('.tv-scan'), probe = null;
   if (!g || !scr) return;
@@ -732,9 +731,23 @@
     g.style.setProperty('--dive-x', dx.toFixed(1) + 'px');
     g.style.setProperty('--dive-y', dy.toFixed(1) + 'px');
   };
-  aim();
-  window.addEventListener('resize', aim);
-  window.addEventListener('load', aim);
-  setTimeout(aim, 1300);   // again once the TV has finished dropping into place
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(aim);   // the haunt line shifts when its font arrives
+  // Phones: the second little ghost starts just off the left edge, halfway between the rug and the pause button
+  var diver = document.querySelector('.tv-diver'), rug = document.querySelector('.room-rug'), btn = document.querySelector('.motion-toggle');
+  var aimDiver = function () {
+    if (!diver || !rug || !btn || getComputedStyle(diver).display === 'none') return;
+    var cs = getComputedStyle(diver), box = diver.parentElement.getBoundingClientRect();
+    var d = { width: parseFloat(cs.width), height: parseFloat(cs.height) };   // his size without the flight's transform
+    var r = rug.getBoundingClientRect(), b = btn.getBoundingClientRect(), s = scr.getBoundingClientRect();
+    var x = -d.width * 1.1, y = (r.bottom + b.top) / 2;   // where his middle starts, on screen
+    diver.style.left = (x - d.width / 2 - box.left).toFixed(1) + 'px';
+    diver.style.top = (y - d.height / 2 - box.top).toFixed(1) + 'px';
+    diver.style.setProperty('--dive-x', ((s.left + s.width / 2) - x).toFixed(1) + 'px');
+    diver.style.setProperty('--dive-y', ((s.top + s.height * 0.45) - y).toFixed(1) + 'px');
+  };
+  var aimAll = function () { aim(); aimDiver(); };
+  aimAll();
+  window.addEventListener('resize', aimAll);
+  window.addEventListener('load', aimAll);
+  setTimeout(aimAll, 1300);   // again once the TV has finished dropping into place
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(aimAll);   // the haunt line shifts when its font arrives
 })();

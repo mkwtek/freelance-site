@@ -1394,6 +1394,10 @@ body { background: var(--white-warm); }
      placed from the rug's own size so its base always stands on the rug's right side, whatever the width */
   .hero-art { --rugw: min(calc(100vw - 16px), calc(var(--tvw) * 1.3)); --rugb: calc(var(--tvw) * -0.06 - 10px); --lampw: calc(var(--tvw) * 0.2777); }
   .floor-lamp { width: var(--lampw); left: calc(50% + var(--rugw) * 0.37 - var(--lampw) / 2); bottom: calc(var(--rugb) + var(--rugw) * 0.1108 - var(--lampw) * 0.0917); }
+  /* the lamp is smaller here (its base stays on the rug), so a shorter chain keeps the pull above the ghost's head */
+  .lamp-chain circle:nth-child(n+11) { display: none; }
+  .lamp-chain .chain-pull { transform: translateY(-55px); }
+  .lamp-chain > g { transform: translate(20px, 7.68px); }   /* toward the shade's right side, just past the ghost's shoulder */
   .room-rug { left: calc(50% - var(--rugw) / 2); width: var(--rugw); bottom: var(--rugb); translate: 0 -2px; }
   /* bigger lettering on the TV screen so it can be read on a phone */
   .tv-standby { font-size: 13px; }
@@ -1403,11 +1407,13 @@ body { background: var(--white-warm); }
   .tv-psa-btn { font-size: 10px; letter-spacing: 0.01em; transform: translateY(0.5px); }   /* bigger caps sit higher; keeps the label centered in the pill */
   .tv-psa-head { font-size: 9px; }
 }
+@media (min-width: 35.01em) and (max-width: 52em) { .lamp-chain > g { transform: translate(13px, 7.68px); } }   /* wider phones and tablets: the rug stops growing, so less shift */
 @media (min-width: 52.01em) {
   .tv { width: var(--tvw); margin-left: var(--m); }
   /* rug and lamp both scale with the TV, so the lamp's base stays on the rug's right side at every width */
   .room-rug { left: calc(var(--m) - var(--tvw) * 0.056); width: calc(var(--tvw) * 1.1); bottom: calc(var(--tvw) * -0.0786); }
   .floor-lamp { left: calc(var(--m) + var(--tvw) * 0.7344); width: calc(var(--tvw) * 0.338); bottom: calc(var(--tvw) * 0.0356); }
+  .lamp-chain > g { transform: translate(4.8px, 9.68px); }   /* keeps the pull where it hung before the lamp moved onto the rug */
 }
 /* TV: 16 units of headroom in the drawing so the antenna balls stay inside it while the antenna springs up
    (the drop shadow made Chrome clip anything outside the drawing mid-animation); pulled up the same amount so nothing moves */

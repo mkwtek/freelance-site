@@ -417,9 +417,9 @@
   var setDash = function (v) { [].forEach.call(paths, function (el) { el.style.strokeDashoffset = v; }); };
 
   var reach = function () {
-    var bob = chain.querySelector('.chain-pull'), bb = bob.getBBox();       // aim for the pull, wherever it hangs
-    var p = lamp.createSVGPoint(); p.x = bb.x + bb.width / 2; p.y = bb.y + bb.height * 0.6;
-    var local = p.matrixTransform(bob.getScreenCTM()).matrixTransform(arm.getScreenCTM().inverse());
+    var bb = chain.querySelector('.chain-pull').getBoundingClientRect();     // aim for the pull, wherever it hangs
+    var p = lamp.createSVGPoint(); p.x = bb.left + bb.width / 2; p.y = bb.top + bb.height * 0.6;
+    var local = p.matrixTransform(arm.getScreenCTM().inverse());
     var hx = local.x, hy = local.y + 7;
     // shoulder high on the side, so the arm is short
     var d = 'M340 162Q' + (hx + 12).toFixed(1) + ' ' + ((162 + hy) / 2).toFixed(1) + ' ' + hx.toFixed(1) + ' ' + hy.toFixed(1);
@@ -482,7 +482,15 @@
       if (chain) chain.classList.remove('is-tug');
       if (arm) { arm.style.opacity = 0; arm.removeAttribute('transform'); }
     } else {
-      scheduleOff();
+      // Play picks the cycle back up where the TV is: lit between the two pulls, dark outside them
+      var t = tvAnim && tvAnim.currentTime != null ? tvAnim.currentTime % TV : ON_PEAK;
+      // the big ghost was held out while paused; if the cycle has him hidden now, he slides back instead of jumping
+      var enter = document.querySelector('.ghost-enter'), back = document.querySelector('.ghost-return');
+      if (enter && back && back.animate) {
+        var m = new DOMMatrix(getComputedStyle(enter).transform);
+        if (Math.abs(m.e) > 1) back.animate([{ transform: 'translate(' + (-m.e) + 'px, ' + (-m.f) + 'px)' }, { transform: 'none' }], { duration: 900, easing: 'ease-in-out' });
+      }
+      if (t >= ON_PEAK && t < OFF_PEAK) { scheduleOff(); } else { lightsOff(); turnOn(); }
     }
   });
   if (!startLit) turnOn();

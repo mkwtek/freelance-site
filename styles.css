@@ -2502,7 +2502,6 @@ body { background: var(--white-warm); }
 .fl-rule::before, .fl-rule::after { content: ""; flex: 1; height: 2px; background: #ebbd4e; }
 /* footer order: name, what I do, the tagline logo, where */
 .footer-role { margin: 0 0 0.6rem; }
-.footer-place { margin: 0 0 0.6rem; }   /* even gaps down the stack */
 
 /* footer logo: the divider sits midway between "Analog soul" (allowing for its gold shadow) and "DIGITAL SOLUTIONS" */
 .fl-rule { position: relative; top: 0.4em; }
@@ -2537,6 +2536,12 @@ body { background: var(--white-warm); }
 }
 @keyframes wave { from { transform: skewY(-7deg) scaleX(.94); } to { transform: skewY(6deg) scaleX(1.04); } }
 .finish-sub + .finish-sub { margin-top: 0.15rem; color: var(--yellow-on-ink); }   /* even gaps: pennant to banner matches banner to the haunt line */
+.finish-slogan { display: flex; justify-content: center; align-items: center; gap: 0.5em; margin: 0.7rem 0 0; font-size: 1.0625rem; font-weight: 700; letter-spacing: 0.02em; color: var(--paper); text-wrap: balance; }
+.fs-star { flex: none; color: var(--yellow-on-ink); }   /* desktop: a star at each end of the line */
+@media (max-width: 30em) {   /* phones: the line breaks evenly after "run," with a star above and below */
+  .finish-slogan { flex-direction: column; gap: 0.15em; }
+  .fs-text { max-width: 12.5em; }
+}
 
 /* Finish Line paint shop: after the first race, cycle the rat rod's paint jobs and send the chosen one down the strip.
    It sits in the race's bottom-left corner, under the road; script.js lowers the section just enough that it never touches the road. */

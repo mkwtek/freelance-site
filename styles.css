@@ -342,7 +342,7 @@ body { background: var(--white-warm); }
   .site-nav .nav-cta { margin: 0.4rem 0 0; text-align: center; }
   .site-nav li + li:not(:has(.nav-cta)) { border-top: 1px solid rgba(34, 31, 27, 0.14); }   /* thin dividers so each row reads as its own button */
   .site-nav ul { gap: 0; }
-  .site-nav a:not(.nav-cta) { border-radius: 0.35rem; }   /* rows, not pills, between the dividers */
+  .site-nav a:not(.nav-cta) { border-radius: 0.35rem; -webkit-tap-highlight-color: transparent; }   /* rows, not pills, between the dividers; no iPhone tap box over the yellow */
   .site-nav a:not(.nav-cta):hover, .site-nav a:not(.nav-cta):active { background: var(--gold); }   /* yellow on hover or tap; ink text on it 9.3:1 (AAA) */
 }
 .site-header, .site-nav { background: var(--white-warm); }

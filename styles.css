@@ -726,7 +726,7 @@ body { background: var(--white-warm); }
   .haunt-ghost { animation: haunt-drift-loop-sm 46.8s linear infinite; }
   .haunt-seen .haunt-ghost { animation: haunt-drift-loop-sm 46.8s linear infinite, haunt-drift-sm 4.4s linear 0.4s 1; }
 }
-/* ---------- Wider screens: the little ghost floats out of "haunt", cannonballs along the top of its arc and dives into the TV screen.
+/* ---------- Wider screens: the little ghost rises out of "you" and glides on one gentle arc into the TV screen, with a quick tucked double spin near the end.
    On load it reaches the glass at 7.5s, right as the first channel change happens; then the big ghost slides out
    from behind the set (8s) and pulls the lamp chain on its next peek. Each loop it dives in again while the big
    ghost is away (20.5s to 28.9s), and the screen flashes as it enters. script.js measures the distance to the
@@ -944,7 +944,7 @@ body { background: var(--white-warm); }
 @keyframes tv-splash-loop { 0%, 61.70% { opacity: 0; transform: scale(.15); } 61.71% { opacity: 1; transform: scale(.15); } 63.6% { opacity: 0; transform: scale(3.6); } 100% { opacity: 0; } }
 @keyframes tv-splash-loop2 { 0%, 62.03% { opacity: 0; transform: scale(.15); } 62.04% { opacity: 1; transform: scale(.15); } 63.95% { opacity: 0; transform: scale(3.6); } 100% { opacity: 0; } }
 
-/* the cannonball: knees come up under the sheet, arms hug them, and one roll ends at the dive angle */
+/* the cannonball: knees come up under the sheet, arms hug them, and two rolls end at the entry angle */
 .haunt-tuck { opacity: 0; }
 @media (min-width: 52.01em) and (prefers-reduced-motion: no-preference) {
   .haunt-tuck { animation: haunt-tuck-loop 46.8s linear infinite, haunt-tuck 6.63s linear 0.9s 1; }

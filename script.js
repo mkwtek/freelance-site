@@ -151,24 +151,49 @@
   var band = document.querySelector('.tuning-band');
   if (band) {
     var steps = document.querySelectorAll('.tuner li');
-    var tuneTo = function (i) {
-      var badge = steps[i] && steps[i].querySelector('.tuner-freq');
-      if (!badge) return;
-      var b = band.getBoundingClientRect(), r = badge.getBoundingClientRect();
+    var pointer = band.querySelector('.tb-pointer');
+    var hunting = [];
+    var xOf = function (i) {                                             // where the pointer sits for step i
+      var b = band.getBoundingClientRect(), badge = steps[i] && steps[i].querySelector('.tuner-freq');
+      if (!badge) return null;
+      var r = badge.getBoundingClientRect();
       var oneRow = steps[0].getBoundingClientRect().top === steps[steps.length - 1].getBoundingClientRect().top;
       // One row: sit right above the step number. Stacked on phones: spread the five steps across the band.
-      var x = oneRow ? r.left + r.width / 2 - b.left : b.width * (i + 0.5) / steps.length;
+      return oneRow ? r.left + r.width / 2 - b.left : b.width * (i + 0.5) / steps.length;
+    };
+    var tuneTo = function (i) {
+      hunting.forEach(clearTimeout); hunting = [];
+      if (pointer) pointer.style.transition = '';
+      var x = xOf(i);
+      if (x === null) return;
       band.style.setProperty('--tb', x + 'px');
       steps.forEach(function (li, k) { li.classList.toggle('is-tuned', k === i); });
+    };
+    // The first time it comes on screen the pointer hunts for the station like an old dial: a sweep right,
+    // back left a little past it, a nudge right, then it settles on step 1.
+    var hunt = function () {
+      var x0 = xOf(0), x1 = xOf(1);
+      if (x0 === null || x1 === null || reduceMotion || !pointer) { tuneTo(0); return; }
+      var d = x1 - x0;
+      var moves = [[1.7, 0.9], [-0.35, 1.4], [0.18, 0.7]];               // [offset in steps, seconds]: a slower drift back
+      var edge = band.clientWidth - 6;                                   // stays inside the band
+      var t = 0;
+      moves.forEach(function (m) {
+        hunting.push(setTimeout(function () {
+          pointer.style.transition = 'left ' + m[1] + 's ease-in-out';
+          band.style.setProperty('--tb', Math.min(edge, Math.max(6, x0 + m[0] * d)) + 'px');
+        }, t));
+        t += m[1] * 1000 + 60;
+      });
+      hunting.push(setTimeout(function () { tuneTo(0); }, t));
     };
     steps.forEach(function (li, i) {
       li.addEventListener('mouseenter', function () { tuneTo(i); });
       li.addEventListener('click', function () { tuneTo(i); });
     });
-    // Sweep to the first station once the band is on screen
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries, obs) {
-        if (entries[0].isIntersecting) { tuneTo(0); obs.disconnect(); }
+        if (entries[0].isIntersecting) { hunt(); obs.disconnect(); }
       }, { threshold: 0.8 }).observe(band);
     } else { tuneTo(0); }
     window.addEventListener('resize', function () {
@@ -252,8 +277,8 @@
     if (!('IntersectionObserver' in window)) { drawMarker(); }
     else {
       new IntersectionObserver(function (entries, obs) {
-        if (entries[0].isIntersecting) { drawMarker(); obs.disconnect(); }
-      }, { threshold: 0.5, rootMargin: '0px 0px -15% 0px' }).observe(markerWords);
+        if (entries[0].isIntersecting) { setTimeout(drawMarker, 250); obs.disconnect(); }
+      }, { threshold: 0.5, rootMargin: '0px 0px -32% 0px' }).observe(markerWords);   // waits until the words are about two-thirds of the way up the screen
     }
   }
 

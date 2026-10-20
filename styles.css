@@ -2515,6 +2515,7 @@ body { background: var(--white-warm); }
 .finish::before { content: ""; display: block; height: 24px;
   background: repeating-conic-gradient(var(--paper) 0 25%, var(--ink) 0 50%) 0 0 / 24px 24px; }
 .finish-head { padding: 2.25rem 1rem 0; }
+.finish-flag { display: block; width: clamp(3.6rem, 7vw, 4.8rem); height: auto; margin: 0 auto 0.35rem; }   /* crossed checkered flags over the title, like a crest */
 .finish-title { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.25rem); color: var(--yellow-on-ink); margin: 0;
   text-shadow: 3px 3px 0 var(--red-text); font-weight: 400; }
 .finish-sub { margin: 0.4rem 0 0; font-size: 1.0625rem; color: var(--paper); }

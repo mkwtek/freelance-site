@@ -1596,8 +1596,7 @@ body { background: var(--white-warm); }
    Each loop: the big ghost turns the lights off (18s), slips back behind the TV (19s), the little ghost floats
    while it's gone (20.6s), the big ghost slides back out (27.2s) and turns the lights on at the PSA flash (33.6s). ---------- */
 @media (prefers-reduced-motion: no-preference) { .ghost-enter { animation: ghost-away 46.8s ease-in-out infinite, ghost-enter 1.1s cubic-bezier(.3, .8, .4, 1) 5.5s backwards; } }
-@media (prefers-reduced-motion: no-preference) { .ghost-enter { animation-delay: 0s, 8s; } }   /* after the little ghost dives into the TV */
-@media (max-width: 52em) and (prefers-reduced-motion: no-preference) { .ghost-enter { animation-delay: 0s, 8.8s; } }   /* mobile: a longer beat after the small ghost goes in */
+@media (prefers-reduced-motion: no-preference) { .ghost-enter { animation-delay: 0s, 8.8s; } }   /* a beat (about 1.3s) after the small ghost dives into the TV */
 @keyframes ghost-away {
   0%, 40.6% { transform: none; }
   42.933%, 63.015% { transform: translateX(-78px); }

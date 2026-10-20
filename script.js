@@ -369,6 +369,7 @@
   var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
   var TV = 46800, OFF_PEAK = 18030, ON_PEAK = 44030;  // TV loop; peeks just as the PSA comes on, and at the star's flash
   var FIRST_PEAK = 7630;                             // first lights-on: the second peek, as the TV changes to its first channel
+  if (window.matchMedia && matchMedia('(min-width: 52.01em)').matches) FIRST_PEAK = 12830;   // wider screens: after the little ghost's dive
   var tv = document.querySelector('.tv-bars');
   var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;
   var untilTv = function (at, lead) {                 // ms until the TV loop reaches `at`, at least `lead` ms away
@@ -716,4 +717,24 @@
     close.addEventListener('click', shut);
     liner.addEventListener('keydown', function (e) { if (e.key === 'Escape') shut(); });
   });
+})();
+
+// ---- Wider screens: aim the little ghost's dive at the middle of the TV screen ----
+(function () {
+  var g = document.querySelector('.haunt-ghost'), scr = document.querySelector('.tv-scan'), probe = null;
+  if (!g || !scr) return;
+  var aim = function () {
+    // where the ghost sits when nothing moves it: an invisible copy with no animation
+    if (!probe) { probe = g.cloneNode(false); probe.removeAttribute('class'); probe.setAttribute('class', 'haunt-ghost'); probe.style.cssText = 'animation:none !important; visibility:hidden; opacity:0'; g.parentElement.appendChild(probe); }
+    var r = probe.getBoundingClientRect(), s = scr.getBoundingClientRect();
+    var gx = r.left + r.width / 2, gy = r.top + r.height / 2;
+    var dx = (s.left + s.width / 2) - gx, dy = (s.top + s.height * 0.45) - gy;
+    g.style.setProperty('--dive-x', dx.toFixed(1) + 'px');
+    g.style.setProperty('--dive-y', dy.toFixed(1) + 'px');
+  };
+  aim();
+  window.addEventListener('resize', aim);
+  window.addEventListener('load', aim);
+  setTimeout(aim, 1300);   // again once the TV has finished dropping into place
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(aim);   // the haunt line shifts when its font arrives
 })();

@@ -782,24 +782,3 @@
   setTimeout(aimAll, 1300);   // again once the TV has finished dropping into place
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(aimAll);   // the haunt line shifts when its font arrives
 })();
-
-// ---- Contact: the workbench screen switches on once as it scrolls into view, then stays on ----
-// Nothing is switched off until you start scrolling, and only while the screen is still below the fold,
-// so the picture is there for anyone who doesn't scroll.
-(function () {
-  var screen = document.querySelector('.bench-screen');
-  if (!screen || !('IntersectionObserver' in window)) return;
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var first = function () {
-    window.removeEventListener('scroll', first);
-    if (screen.getBoundingClientRect().top < window.innerHeight) return;   // already on screen: leave it on
-    screen.classList.add('is-off');
-    var io = new IntersectionObserver(function (entries) {
-      if (!entries[entries.length - 1].isIntersecting) return;
-      io.disconnect();
-      setTimeout(function () { screen.classList.remove('is-off'); }, 150);   // a beat on the line, then the picture
-    }, { threshold: 0.2 });
-    io.observe(screen);
-  };
-  window.addEventListener('scroll', first, { passive: true });
-})();

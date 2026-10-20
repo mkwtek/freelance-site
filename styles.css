@@ -2448,20 +2448,6 @@ body { background: var(--white-warm); }
   .typewriter50 { display: block; margin-inline: auto; }
   .contact-form [type="submit"] { display: flex; width: fit-content; margin-inline: auto; }
 }
-/* Contact closes with the workbench on an old screen. Once you start scrolling, script.js shows it switched off
-   (a glowing line) while it's still below the screen, then switches it on for good as it comes into view.
-   The frame always keeps its size, so nothing below it moves. Without the script or with reduced motion it simply shows. */
-.bench-wrap { margin-top: 3.5rem; }
-.bench-wrap .bench-screen { margin-bottom: 0; border-color: var(--paper); box-shadow: 6px 7px 0 rgba(0, 0, 0, 0.35); }
-.bench-screen { position: relative; margin: 0 0 2.5rem; overflow: hidden; background: #0b0a09; border: 3px solid var(--ink);
-  border-radius: 1rem; box-shadow: 6px 7px 0 rgba(34, 31, 27, 0.18); }
-.bench-screen img { display: block; width: 100%; height: auto; clip-path: inset(0); filter: none;
-  transition: clip-path 0.6s cubic-bezier(.2, .8, .3, 1), filter 0.6s ease-out; }
-.bench-beam { position: absolute; left: 3%; right: 3%; top: 50%; height: 3px; margin-top: -1.5px; border-radius: 2px; opacity: 0;
-  background: #fffbe8; box-shadow: 0 0 10px 3px rgba(255, 251, 232, 0.55); pointer-events: none; transition: opacity 0.25s ease-out; }
-.bench-screen.is-off img { clip-path: inset(50% 0 50% 0); filter: brightness(1.8); transition-timing-function: cubic-bezier(.6, 0, .9, .4); transition-duration: 0.45s; }
-.bench-screen.is-off .bench-beam { opacity: 1; transition-delay: 0.3s; }
-@media (max-width: 40em) { .bench-wrap { margin-top: 2.5rem; } .bench-screen { border-radius: 0.75rem; } .bench-wrap .bench-screen { box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.35); } }
 
 /* ==========================================================================
    Footer

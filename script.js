@@ -742,7 +742,7 @@
     diver.style.left = (x - d.width / 2 - box.left).toFixed(1) + 'px';
     diver.style.top = (y - d.height / 2 - box.top).toFixed(1) + 'px';
     diver.style.setProperty('--dive-x', ((s.left + s.width / 2) - x).toFixed(1) + 'px');
-    diver.style.setProperty('--dive-y', ((s.top + s.height * 0.45) - y).toFixed(1) + 'px');
+    diver.style.setProperty('--dive-y', ((s.top + s.height * 0.5) - y).toFixed(1) + 'px');   // the middle of the picture
   };
   var aimAll = function () { aim(); aimDiver(); };
   aimAll();

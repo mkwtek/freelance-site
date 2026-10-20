@@ -1071,9 +1071,9 @@ body { background: var(--white-warm); }
   61.129% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8164), calc(0.000em + var(--dive-y) * 1.0751)) rotate(1553.0deg) scale(0.962, 1.463); clip-path: polygon(50% -185.6%, 293.9% 120.2%, -193.9% 120.2%); }
   61.234% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8399), calc(0.000em + var(--dive-y) * 1.0668)) rotate(1553.0deg) scale(0.917, 1.577); clip-path: polygon(50% -122.8%, 235.6% 114.8%, -135.6% 114.8%); }
   61.337% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8658), calc(0.000em + var(--dive-y) * 1.0570)) rotate(1553.0deg) scale(0.863, 1.661); clip-path: polygon(50% -63.8%, 180.9% 109.8%, -80.9% 109.8%); }
-  61.442% { opacity: 0.926; transform: translate(calc(var(--dive-x) * 0.8935), calc(0.000em + var(--dive-y) * 1.0458)) rotate(1553.0deg) scale(0.800, 1.658); clip-path: polygon(50% -18.5%, 138.9% 105.9%, -38.9% 105.9%); }
-  61.545% { opacity: 0.583; transform: translate(calc(var(--dive-x) * 0.9244), calc(0.000em + var(--dive-y) * 1.0327)) rotate(1553.0deg) scale(0.730, 1.485); clip-path: polygon(50% 3.3%, 118.6% 104.1%, -18.6% 104.1%); }
-  61.650% { opacity: 0.189; transform: translate(calc(var(--dive-x) * 0.9597), calc(0.000em + var(--dive-y) * 1.0174)) rotate(1553.0deg) scale(0.653, 1.017); clip-path: polygon(50% 4.0%, 118.0% 104.0%, -18.0% 104.0%); }
+  61.442% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8935), calc(0.000em + var(--dive-y) * 1.0458)) rotate(1553.0deg) scale(0.800, 1.658); clip-path: polygon(50% -18.5%, 138.9% 105.9%, -38.9% 105.9%); }
+  61.545% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.9244), calc(0.000em + var(--dive-y) * 1.0327)) rotate(1553.0deg) scale(0.730, 1.485); clip-path: polygon(50% 3.3%, 118.6% 104.1%, -18.6% 104.1%); }
+  61.650% { opacity: 0.583; transform: translate(calc(var(--dive-x) * 0.9597), calc(0.000em + var(--dive-y) * 1.0174)) rotate(1553.0deg) scale(0.653, 1.017); clip-path: polygon(50% 4.0%, 118.0% 104.0%, -18.0% 104.0%); }
   61.752% { opacity: 0.000; transform: translate(calc(var(--dive-x) * 1.0000), calc(0.000em + var(--dive-y) * 1.0000)) rotate(1553.0deg) scale(0.569, 0.085); clip-path: polygon(50% 4.0%, 118.0% 104.0%, -18.0% 104.0%); }
   61.802%, 100% { opacity: 0; transform: none; }
 }
@@ -1165,9 +1165,9 @@ body { background: var(--white-warm); }
   93.804% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8164), calc(0.000em + var(--dive-y) * 1.0751)) rotate(1553.0deg) scale(0.962, 1.463); clip-path: polygon(50% -185.6%, 293.9% 120.2%, -193.9% 120.2%); }
   94.848% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8399), calc(0.000em + var(--dive-y) * 1.0668)) rotate(1553.0deg) scale(0.917, 1.577); clip-path: polygon(50% -122.8%, 235.6% 114.8%, -135.6% 114.8%); }
   95.869% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8658), calc(0.000em + var(--dive-y) * 1.0570)) rotate(1553.0deg) scale(0.863, 1.661); clip-path: polygon(50% -63.8%, 180.9% 109.8%, -80.9% 109.8%); }
-  96.914% { opacity: 0.926; transform: translate(calc(var(--dive-x) * 0.8935), calc(0.000em + var(--dive-y) * 1.0458)) rotate(1553.0deg) scale(0.800, 1.658); clip-path: polygon(50% -18.5%, 138.9% 105.9%, -38.9% 105.9%); }
-  97.935% { opacity: 0.583; transform: translate(calc(var(--dive-x) * 0.9244), calc(0.000em + var(--dive-y) * 1.0327)) rotate(1553.0deg) scale(0.730, 1.485); clip-path: polygon(50% 3.3%, 118.6% 104.1%, -18.6% 104.1%); }
-  98.979% { opacity: 0.189; transform: translate(calc(var(--dive-x) * 0.9597), calc(0.000em + var(--dive-y) * 1.0174)) rotate(1553.0deg) scale(0.653, 1.017); clip-path: polygon(50% 4.0%, 118.0% 104.0%, -18.0% 104.0%); }
+  96.914% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.8935), calc(0.000em + var(--dive-y) * 1.0458)) rotate(1553.0deg) scale(0.800, 1.658); clip-path: polygon(50% -18.5%, 138.9% 105.9%, -38.9% 105.9%); }
+  97.935% { opacity: 1.000; transform: translate(calc(var(--dive-x) * 0.9244), calc(0.000em + var(--dive-y) * 1.0327)) rotate(1553.0deg) scale(0.730, 1.485); clip-path: polygon(50% 3.3%, 118.6% 104.1%, -18.6% 104.1%); }
+  98.979% { opacity: 0.583; transform: translate(calc(var(--dive-x) * 0.9597), calc(0.000em + var(--dive-y) * 1.0174)) rotate(1553.0deg) scale(0.653, 1.017); clip-path: polygon(50% 4.0%, 118.0% 104.0%, -18.0% 104.0%); }
   100.000% { opacity: 0.000; transform: translate(calc(var(--dive-x) * 1.0000), calc(0.000em + var(--dive-y) * 1.0000)) rotate(1553.0deg) scale(0.569, 0.085); clip-path: polygon(50% 4.0%, 118.0% 104.0%, -18.0% 104.0%); }
 }
 @keyframes haunt-face { 0%, 80.51% { opacity: 1; } 82.36%, 100% { opacity: 0; } }

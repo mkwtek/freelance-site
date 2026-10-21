@@ -818,3 +818,22 @@
   });
   openFaq(location.hash);
 })();
+
+// ---- Menu shows where you are: as you scroll, the link for the section you're reading is marked as current ----
+// It uses the hover look (a soft pill on desktop, the yellow row in the phone menu), and screen readers hear "current location".
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.site-nav a[href^="#"]:not(.nav-cta)'));
+  var sections = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  var contact = document.getElementById('contact');                 // past the FAQ and Fan Mail, nothing is marked
+  if (!links.length) return;
+  var update = function () {
+    var line = innerHeight * 0.4, current = -1;                      // a section counts once its top passes 40% down the screen
+    sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= line) current = i; });
+    if (contact && contact.getBoundingClientRect().top <= line) current = -1;
+    links.forEach(function (a, i) { if (i === current) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+  };
+  var queued = false;
+  addEventListener('scroll', function () { if (!queued) { queued = true; requestAnimationFrame(function () { queued = false; update(); }); } }, { passive: true });
+  addEventListener('resize', update);
+  update();
+})();

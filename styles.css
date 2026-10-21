@@ -260,7 +260,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   display: inline-block; padding: 0.55rem 0.8rem; border-radius: 999px;
   color: var(--ink); font-weight: 600; text-decoration: none;
 }
-.site-nav a:hover { background: var(--paper-dark); }
+.site-nav a:hover, .site-nav a[aria-current] { background: var(--paper-dark); }   /* the section you are reading shows in the menu, using the hover look */
 .site-nav .nav-cta { background: var(--ink); color: var(--paper); margin-left: 0.4rem; }
 .site-nav .nav-cta:hover { background: var(--red-text); }
 .nav-toggle {
@@ -292,7 +292,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .site-nav ul { gap: 0; }
   .site-nav a:not(.nav-cta) { border-radius: 0.35rem; }   /* rows, not pills, between the dividers */
   .site-nav a { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }   /* iPhone: no lifted link preview or text selection on a slow tap; these links only jump down the page */
-  .site-nav a:not(.nav-cta):hover, .site-nav a:not(.nav-cta):active { background: var(--gold); }   /* yellow on hover or tap; ink text on it 9.3:1 (AAA) */
+  .site-nav a:not(.nav-cta):hover, .site-nav a:not(.nav-cta):active, .site-nav a[aria-current]:not(.nav-cta) { background: var(--gold); }   /* yellow on hover or tap; ink text on it 9.3:1 (AAA) */
 }
 .site-header, .site-nav { background: var(--white-warm); }
 /* Very narrow screens or very large text: hide the word "Menu" (still read by screen readers) */

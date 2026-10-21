@@ -2622,15 +2622,15 @@ body { background: var(--white-warm); }
 .deadline-board dd { margin: 0; }
 .deadline-note { margin: 0.75rem 0 0; font-style: italic; }
 @media (max-width: 30em) { .deadline-board dl > div { grid-template-columns: 1fr; gap: 0.1rem; } }
-.price-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 0.75rem; font-size: 0.95rem; }
-.price-table caption { text-align: left; font-weight: 700; margin-bottom: 0.4rem; }
-.price-table th, .price-table td { padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(34, 31, 27, 0.18); text-align: left; vertical-align: top; }
-.price-table thead th { border-bottom: 2px solid var(--ink); }
+.price-table, .choice-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0 0.75rem; font-size: 0.95rem; }
+.price-table caption, .choice-table caption { text-align: left; font-weight: 700; margin-bottom: 0.4rem; }
+.price-table th, .price-table td, .choice-table th, .choice-table td { padding: 0.5rem 0.6rem; border-bottom: 1px solid rgba(34, 31, 27, 0.18); text-align: left; vertical-align: top; }
+.price-table thead th, .choice-table thead th { border-bottom: 2px solid var(--ink); }
 .price-table td:last-child { font-weight: 800; white-space: nowrap; }
 .faq-fine { font-size: 0.9rem; color: var(--muted); }
 @media (max-width: 30em) { .price-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .price-table tr { display: grid; padding: 0.5rem 0; border-bottom: 1px solid rgba(34, 31, 27, 0.18); }
-  .price-table th, .price-table td { border: 0; padding: 0.1rem 0; }
+  .price-table th, .price-table td, .choice-table th, .choice-table td { border: 0; padding: 0.1rem 0; }
   .price-table td:nth-child(2)::before { content: "Typical: "; font-weight: 700; }
   .price-table td:last-child::before { content: "With me: "; } }
 
@@ -2662,3 +2662,11 @@ body { background: var(--white-warm); }
 
 .myth-stamp { width: 10.5rem; height: auto; margin-top: 0.3rem; }   /* a worn rubber stamp: "MYTH" over "BUSTED" */
 @media (max-width: 30em) { .myth-stamp { width: 9.5rem; } }
+
+.choice-table tbody th { width: 24%; }
+@media (max-width: 30em) { .choice-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .choice-table tr { display: grid; padding: 0.5rem 0; border-bottom: 1px solid rgba(34, 31, 27, 0.18); }
+  .choice-table th, .choice-table td { border: 0; padding: 0.15rem 0; width: auto; }
+  .choice-table tbody th { width: auto; }
+  .choice-table td:nth-of-type(1)::before { content: "Good for: "; font-weight: 700; }
+  .choice-table td:nth-of-type(2)::before { content: "Keep in mind: "; font-weight: 700; } }

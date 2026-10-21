@@ -538,7 +538,7 @@ body { background: var(--white-warm); }
   .hero .eyebrow { margin-bottom: 1.4rem; }                 /* breathing room between the gold banner and the headline */
   .hero h1 { margin-bottom: 1.5em; }                        /* the intro clears the diamond fins */
   /* lounge panel: narrower and centered, so both ends, the white star and the last diamond stay on screen */
-  .h1-sign { left: calc(50% - 5.1em); width: 10.2em; height: 3.74em; top: -0.7em; }
+  .h1-sign { left: calc(50% - 5.1em); width: 10.2em; height: 3.44em; top: -0.4em; }   /* starts below the banner, same bottom edge */
   .h1-sign .fin { transform-box: view-box; transform-origin: 0 -140px; transform: scaleY(.9); }   /* shorter fin tails */
   /* pennant: kept inside the screen with its notch and point showing; the text sits inside it */
   .lede { padding: 0 2.4rem; }
@@ -729,11 +729,11 @@ body { background: var(--white-warm); }
 /* ---------- Phones: the haunt tagline sits below the TV, so its little ghost waits until the line scrolls into view ---------- */
 @media (max-width: 52em) and (prefers-reduced-motion: no-preference) {
   .haunt-ghost { animation: haunt-drift-loop 46.8s linear infinite; }
-  .haunt-seen .haunt-ghost { animation: haunt-drift-loop 46.8s linear infinite, haunt-drift 4.4s linear 0.4s 1; }
+  .haunt-seen .haunt-ghost { animation: haunt-drift-rep 12s linear 0.4s infinite; }   /* replays every 12s while the line is on screen */
 }
 @media (max-width: 30em) and (prefers-reduced-motion: no-preference) {
   .haunt-ghost { animation: haunt-drift-loop-sm 46.8s linear infinite; }
-  .haunt-seen .haunt-ghost { animation: haunt-drift-loop-sm 46.8s linear infinite, haunt-drift-sm 4.4s linear 0.4s 1; }
+  .haunt-seen .haunt-ghost { animation: haunt-drift-sm-rep 12s linear 0.4s infinite; }
 }
 /* ---------- Wider screens: the little ghost rises out of "you" and glides on one gentle arc into the TV screen, with a quick tucked triple spin near the end.
    Once per 46.8s cycle (3.1s to 7.5s) he reaches the glass right as the first channel change happens, so it looks
@@ -2094,7 +2094,7 @@ body { background: var(--white-warm); }
 
 /* Process: tuner band */
 .tuner {
-  overflow: clip;
+  clip-path: inset(-10px 0 -10px -10px);   /* trims the dotted lines at the right edge but leaves room for the tuned ring on the other sides */
   display: grid; grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
   gap: 1.25rem; list-style: none; padding: 0; margin: 2rem 0 0; counter-reset: none;
 }
@@ -2670,3 +2670,108 @@ body { background: var(--white-warm); }
   .choice-table tbody th { width: auto; }
   .choice-table td:nth-of-type(1)::before { content: "Good for: "; font-weight: 700; }
   .choice-table td:nth-of-type(2)::before { content: "Keep in mind: "; font-weight: 700; } }
+
+/* phones: the haunt ghost replays on its own 12s beat (4.4s drift, then a pause) */
+@keyframes haunt-drift-rep {
+  0.000% { opacity: 0.00; transform: translate(-2.40em, -0.15em) scale(0.60) rotate(0.0deg); }
+  0.917% { opacity: 0.03; transform: translate(-2.39em, -0.15em) scale(0.60) rotate(0.5deg); }
+  1.833% { opacity: 0.10; transform: translate(-2.35em, -0.16em) scale(0.62) rotate(0.9deg); }
+  2.750% { opacity: 0.22; transform: translate(-2.30em, -0.18em) scale(0.64) rotate(1.4deg); }
+  3.667% { opacity: 0.35; transform: translate(-2.23em, -0.20em) scale(0.66) rotate(1.8deg); }
+  4.583% { opacity: 0.50; transform: translate(-2.14em, -0.24em) scale(0.69) rotate(2.1deg); }
+  5.500% { opacity: 0.65; transform: translate(-2.01em, -0.29em) scale(0.73) rotate(2.4deg); }
+  6.417% { opacity: 0.78; transform: translate(-1.88em, -0.35em) scale(0.76) rotate(2.7deg); }
+  7.333% { opacity: 0.90; transform: translate(-1.73em, -0.42em) scale(0.80) rotate(2.9deg); }
+  8.250% { opacity: 0.97; transform: translate(-1.55em, -0.50em) scale(0.84) rotate(3.0deg); }
+  9.167% { opacity: 1.00; transform: translate(-1.37em, -0.59em) scale(0.87) rotate(3.0deg); }
+  10.083% { opacity: 1.00; transform: translate(-1.16em, -0.69em) scale(0.91) rotate(3.0deg); }
+  11.000% { opacity: 1.00; transform: translate(-0.93em, -0.78em) scale(0.94) rotate(2.9deg); }
+  11.917% { opacity: 1.00; transform: translate(-0.70em, -0.87em) scale(0.96) rotate(2.7deg); }
+  12.833% { opacity: 1.00; transform: translate(-0.46em, -0.94em) scale(0.98) rotate(2.4deg); }
+  13.750% { opacity: 1.00; transform: translate(-0.21em, -0.99em) scale(1.00) rotate(2.1deg); }
+  14.667% { opacity: 1.00; transform: translate(0.05em, -1.03em) scale(1.00) rotate(1.8deg); }
+  15.583% { opacity: 1.00; transform: translate(0.32em, -1.05em) scale(1.00) rotate(1.4deg); }
+  16.500% { opacity: 1.00; transform: translate(0.60em, -1.08em) scale(1.00) rotate(0.9deg); }
+  17.417% { opacity: 1.00; transform: translate(0.87em, -1.10em) scale(1.00) rotate(0.5deg); }
+  18.333% { opacity: 1.00; transform: translate(1.15em, -1.14em) scale(1.00) rotate(0.0deg); }
+  19.250% { opacity: 1.00; transform: translate(1.43em, -1.18em) scale(1.00) rotate(-0.5deg); }
+  20.167% { opacity: 1.00; transform: translate(1.70em, -1.23em) scale(1.00) rotate(-0.9deg); }
+  21.083% { opacity: 1.00; transform: translate(1.98em, -1.26em) scale(1.00) rotate(-1.4deg); }
+  22.000% { opacity: 1.00; transform: translate(2.25em, -1.30em) scale(1.00) rotate(-1.8deg); }
+  22.917% { opacity: 1.00; transform: translate(2.51em, -1.33em) scale(1.00) rotate(-2.1deg); }
+  23.833% { opacity: 1.00; transform: translate(2.76em, -1.35em) scale(1.00) rotate(-2.4deg); }
+  24.750% { opacity: 1.00; transform: translate(3.00em, -1.39em) scale(1.00) rotate(-2.7deg); }
+  25.667% { opacity: 1.00; transform: translate(3.23em, -1.46em) scale(1.00) rotate(-2.9deg); }
+  26.583% { opacity: 1.00; transform: translate(3.46em, -1.52em) scale(1.00) rotate(-3.0deg); }
+  27.500% { opacity: 1.00; transform: translate(3.67em, -1.59em) scale(1.00) rotate(-3.0deg); }
+  28.417% { opacity: 1.00; transform: translate(3.85em, -1.64em) scale(1.00) rotate(-3.0deg); }
+  29.333% { opacity: 0.98; transform: translate(4.03em, -1.69em) scale(1.00) rotate(-2.9deg); }
+  30.250% { opacity: 0.89; transform: translate(4.18em, -1.74em) scale(1.00) rotate(-2.7deg); }
+  31.167% { opacity: 0.76; transform: translate(4.31em, -1.78em) scale(1.00) rotate(-2.4deg); }
+  32.083% { opacity: 0.60; transform: translate(4.44em, -1.81em) scale(1.00) rotate(-2.1deg); }
+  33.000% { opacity: 0.43; transform: translate(4.53em, -1.85em) scale(1.00) rotate(-1.8deg); }
+  33.917% { opacity: 0.27; transform: translate(4.60em, -1.87em) scale(1.00) rotate(-1.4deg); }
+  34.833% { opacity: 0.13; transform: translate(4.65em, -1.89em) scale(1.00) rotate(-0.9deg); }
+  35.750% { opacity: 0.04; transform: translate(4.69em, -1.90em) scale(1.00) rotate(-0.5deg); }
+  36.667% { opacity: 0.00; transform: translate(4.70em, -1.90em) scale(1.00) rotate(-0.0deg); }
+  36.8%, 100% { opacity: 0.00; transform: translate(-2.40em, -0.15em) scale(0.60) rotate(0.0deg); }
+}
+@keyframes haunt-drift-sm-rep {
+  0.000% { opacity: 0.00; transform: translate(-1.80em, -0.10em) scale(0.60) rotate(0.0deg); }
+  0.917% { opacity: 0.03; transform: translate(-1.80em, -0.10em) scale(0.60) rotate(0.5deg); }
+  1.833% { opacity: 0.10; transform: translate(-1.79em, -0.11em) scale(0.62) rotate(0.9deg); }
+  2.750% { opacity: 0.22; transform: translate(-1.76em, -0.14em) scale(0.64) rotate(1.4deg); }
+  3.667% { opacity: 0.35; transform: translate(-1.73em, -0.17em) scale(0.66) rotate(1.8deg); }
+  4.583% { opacity: 0.50; transform: translate(-1.69em, -0.22em) scale(0.69) rotate(2.1deg); }
+  5.500% { opacity: 0.65; transform: translate(-1.65em, -0.27em) scale(0.73) rotate(2.4deg); }
+  6.417% { opacity: 0.78; transform: translate(-1.59em, -0.35em) scale(0.76) rotate(2.7deg); }
+  7.333% { opacity: 0.90; transform: translate(-1.53em, -0.44em) scale(0.80) rotate(2.9deg); }
+  8.250% { opacity: 0.97; transform: translate(-1.46em, -0.55em) scale(0.84) rotate(3.0deg); }
+  9.167% { opacity: 1.00; transform: translate(-1.38em, -0.66em) scale(0.87) rotate(3.0deg); }
+  10.083% { opacity: 1.00; transform: translate(-1.30em, -0.79em) scale(0.91) rotate(3.0deg); }
+  11.000% { opacity: 1.00; transform: translate(-1.22em, -0.91em) scale(0.94) rotate(2.9deg); }
+  11.917% { opacity: 1.00; transform: translate(-1.12em, -1.02em) scale(0.96) rotate(2.7deg); }
+  12.833% { opacity: 1.00; transform: translate(-1.02em, -1.13em) scale(0.98) rotate(2.4deg); }
+  13.750% { opacity: 1.00; transform: translate(-0.92em, -1.22em) scale(1.00) rotate(2.1deg); }
+  14.667% { opacity: 1.00; transform: translate(-0.81em, -1.30em) scale(1.00) rotate(1.8deg); }
+  15.583% { opacity: 1.00; transform: translate(-0.71em, -1.35em) scale(1.00) rotate(1.4deg); }
+  16.500% { opacity: 1.00; transform: translate(-0.60em, -1.42em) scale(1.00) rotate(0.9deg); }
+  17.417% { opacity: 1.00; transform: translate(-0.48em, -1.49em) scale(1.00) rotate(0.5deg); }
+  18.333% { opacity: 1.00; transform: translate(-0.38em, -1.57em) scale(1.00) rotate(0.0deg); }
+  19.250% { opacity: 1.00; transform: translate(-0.27em, -1.65em) scale(1.00) rotate(-0.5deg); }
+  20.167% { opacity: 1.00; transform: translate(-0.15em, -1.74em) scale(1.00) rotate(-0.9deg); }
+  21.083% { opacity: 1.00; transform: translate(-0.04em, -1.82em) scale(1.00) rotate(-1.4deg); }
+  22.000% { opacity: 1.00; transform: translate(0.06em, -1.89em) scale(1.00) rotate(-1.8deg); }
+  22.917% { opacity: 1.00; transform: translate(0.17em, -1.97em) scale(1.00) rotate(-2.1deg); }
+  23.833% { opacity: 1.00; transform: translate(0.27em, -2.03em) scale(1.00) rotate(-2.4deg); }
+  24.750% { opacity: 1.00; transform: translate(0.37em, -2.12em) scale(1.00) rotate(-2.7deg); }
+  25.667% { opacity: 1.00; transform: translate(0.47em, -2.22em) scale(1.00) rotate(-2.9deg); }
+  26.583% { opacity: 1.00; transform: translate(0.55em, -2.32em) scale(1.00) rotate(-3.0deg); }
+  27.500% { opacity: 1.00; transform: translate(0.63em, -2.41em) scale(1.00) rotate(-3.0deg); }
+  28.417% { opacity: 1.00; transform: translate(0.71em, -2.50em) scale(1.00) rotate(-3.0deg); }
+  29.333% { opacity: 0.98; transform: translate(0.78em, -2.58em) scale(1.00) rotate(-2.9deg); }
+  30.250% { opacity: 0.89; transform: translate(0.84em, -2.65em) scale(1.00) rotate(-2.7deg); }
+  31.167% { opacity: 0.76; transform: translate(0.90em, -2.72em) scale(1.00) rotate(-2.4deg); }
+  32.083% { opacity: 0.60; transform: translate(0.94em, -2.77em) scale(1.00) rotate(-2.1deg); }
+  33.000% { opacity: 0.43; transform: translate(0.98em, -2.82em) scale(1.00) rotate(-1.8deg); }
+  33.917% { opacity: 0.27; transform: translate(1.01em, -2.86em) scale(1.00) rotate(-1.4deg); }
+  34.833% { opacity: 0.13; transform: translate(1.04em, -2.88em) scale(1.00) rotate(-0.9deg); }
+  35.750% { opacity: 0.04; transform: translate(1.05em, -2.90em) scale(1.00) rotate(-0.5deg); }
+  36.667% { opacity: 0.00; transform: translate(1.05em, -2.90em) scale(1.00) rotate(-0.0deg); }
+  36.8%, 100% { opacity: 0.00; transform: translate(-1.80em, -0.10em) scale(0.60) rotate(0.0deg); }
+}
+@media (max-width: 52em) { .hero-haunt { translate: 0 2px; } }
+
+/* "Same platform, two very different websites": a light panel and a dark panel split by a gold slash; no letter crosses the cut */
+.split-title { display: grid; grid-template-columns: auto 1fr; max-width: 56rem; margin: 0 auto 1.75rem; padding: 0; overflow: hidden;
+  border: 3px solid var(--ink); border-radius: var(--radius); box-shadow: 5px 5px 0 var(--ink); background: var(--white-warm);
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem); line-height: 1.15; }
+.split-a { padding: 1.6rem 2.6rem 1.6rem 1.75rem; color: var(--ink); align-self: center; }
+.split-b { position: relative; padding: 1.6rem 1.75rem 1.6rem 3rem; color: var(--white-warm); background: var(--ink); clip-path: polygon(1.8rem 0, 100% 0, 100% 100%, 0 100%); margin-left: -1.8rem; display: flex; align-items: center; justify-content: center; }
+.split-b::before { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 2.6rem; background: var(--gold); clip-path: polygon(1.8rem 0, 2.6rem 0, 0.8rem 100%, 0 100%); }
+@media (max-width: 40em) {
+  .split-title { grid-template-columns: 1fr; text-align: center; }
+  .split-a { padding: 1.1rem 1.25rem; }
+  .split-b { margin: 0; padding: 1.35rem 1.25rem 1.1rem; clip-path: none; border-top: 0.45rem solid var(--gold); }   /* phones: a straight gold divider */
+  .split-b::before { display: none; }
+}

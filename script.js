@@ -755,6 +755,11 @@
       if (card.offsetWidth > card.parentElement.clientWidth * 0.9 && need < liner.clientHeight) card.style.height = Math.ceil(need + card.offsetHeight - liner.clientHeight) + 'px';
       requestAnimationFrame(function () { requestAnimationFrame(function () { liner.classList.add('is-out'); }); });
       liner.querySelector('.liner-title').focus({ preventScroll: true });
+      // phones: once the notes are out, scroll so the whole card is in view
+      setTimeout(function () {
+        var r = card.getBoundingClientRect();
+        if (r.bottom > innerHeight || r.top < 0) card.scrollIntoView({ block: card.offsetHeight < innerHeight - 90 ? 'end' : 'start', behavior: reduce ? 'auto' : 'smooth' });
+      }, reduce ? 0 : 450);
     };
     var shut = function () {
       liner.classList.remove('is-out'); btn.setAttribute('aria-expanded', 'false'); btn.focus({ preventScroll: true });

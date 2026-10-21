@@ -334,7 +334,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .hero h1 { font-size: min(70px, 100cqi / 9.8); isolation: isolate; margin-bottom: 1.15em; }
 .hero h1 .accent {
   color: var(--ink); -webkit-box-decoration-break: clone; box-decoration-break: clone; background: none;
-  padding: 0; position: relative; top: 3px;
+  padding: 0; position: relative; top: 6px;   /* "New-school code." sits a little lower under "Old-school craft." */
 }
 .lede { font-size: 1.2rem; max-width: 34rem; color: var(--ink); font-weight: 600; isolation: isolate; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin: 1.5rem 0 1.75rem; }
@@ -2433,8 +2433,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 /* Pause / play every animation on the page (WCAG 2.2.2). The choice is remembered in this browser. */
 .motion-paused *, .motion-paused *::before, .motion-paused *::after { animation-play-state: paused !important; }
 /* one-time entrances always play, even if the visitor saved "paused" (otherwise things would stay hidden) */
-.motion-paused .hero-copy > *, .motion-paused .motion-wrap, .motion-paused .tv, .motion-paused .tv-antenna,
-.motion-paused .crt-on, .motion-paused .crt-beam, .motion-paused .web-strand { animation-play-state: running !important; }
+.motion-paused .hero-copy > :not(.hero-swoop), .motion-paused .motion-wrap, .motion-paused .tv, .motion-paused .tv-antenna,
+.motion-paused .crt-on, .motion-paused .crt-beam, .motion-paused .web-strand { animation-play-state: running !important; }   /* entrance animations finish even when paused; the swoop is left out so it pauses with the panel and pennant it swaps with */
 .motion-paused .spider-body { animation-play-state: paused, running !important; }
 .motion-paused .hero h1 .hl { animation-play-state: running !important; }
 .motion-paused .ghost-enter { transform: none !important; }

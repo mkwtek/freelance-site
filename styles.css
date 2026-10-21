@@ -538,7 +538,7 @@ body { background: var(--white-warm); }
   .hero .eyebrow { margin-bottom: 1.4rem; }                 /* breathing room between the gold banner and the headline */
   .hero h1 { margin-bottom: 1.5em; }                        /* the intro clears the diamond fins */
   /* lounge panel: narrower and centered, so both ends, the white star and the last diamond stay on screen */
-  .h1-sign { left: calc(50% - 5.1em - 3px); width: calc(10.2em + 6px); height: 3.44em; top: -0.4em; translate: 0 10px; }   /* starts below the banner, nudged 10px lower, 3px wider each side */
+  .h1-sign { left: calc(50% - 5.1em - 8px); width: calc(10.2em + 16px); height: 3.44em; top: -0.4em; translate: 0 20px; }   /* starts below the banner, nudged 20px lower, 8px wider each side */
   .h1-sign .fin { transform-box: view-box; transform-origin: 0 -140px; transform: scaleY(.9); }   /* shorter fin tails */
   /* pennant: kept inside the screen with its notch and point showing; the text sits inside it */
   .lede { padding: 0 2.4rem; }

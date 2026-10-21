@@ -436,7 +436,11 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .hero .eyebrow { z-index: 2; }
 .hero-swoop { position: absolute; z-index: 0; left: -2.75rem; top: -2.5rem; width: calc(100% + 5rem); height: auto; pointer-events: none; overflow: visible; }
 @media (max-width: 52em) { .hero-swoop { left: -1.5rem; top: -1.5rem; width: calc(100% + 3rem); } }
-.h1-sign { position: absolute; z-index: -1; left: -0.8em; top: -0.95em; width: 12em; height: 4.4em; pointer-events: none; overflow: visible; }
+/* The panel normally hangs 0.8em past the headline's left edge. On narrower desktop windows the headline sits close
+   to the screen edge, so the panel's left edge stops 6px inside the screen and the panel narrows from the left,
+   keeping its right edge where it was. (Gutter = the space beside the page's .wrap column.) */
+.h1-sign { --sign-left: max(-0.8em, calc(6px - max(1rem, (100vw - var(--wrap)) / 2)));
+  position: absolute; z-index: -1; left: var(--sign-left); top: -0.95em; width: calc(11.2em - var(--sign-left)); height: 4.4em; pointer-events: none; overflow: visible; }
 .lede-pennant { position: absolute; z-index: -1; left: -1.9em; right: -3.4em; top: -0.85em; bottom: -0.85em; width: calc(100% + 5.3em); height: calc(100% + 1.7em); pointer-events: none; overflow: visible; }
 .lede-pennant .body { filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.22)); }
 .hero-swoop .body, .h1-sign .body { filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.22)); }

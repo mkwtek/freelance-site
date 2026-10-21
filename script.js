@@ -805,3 +805,16 @@
   setTimeout(aimAll, 1300);   // again once the TV has finished dropping into place
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(aimAll);   // the haunt line shifts when its font arrives
 })();
+
+// ---- Links to a FAQ answer (like "Read more about platform risks") open that answer ----
+(function () {
+  var openFaq = function (hash) {
+    var d = hash && hash.length > 1 && document.getElementById(hash.slice(1));
+    if (d && d.tagName === 'DETAILS') d.open = true;
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#faq-"]');
+    if (a) openFaq(a.getAttribute('href'));
+  });
+  openFaq(location.hash);
+})();

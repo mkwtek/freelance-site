@@ -203,7 +203,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .wrap { width: min(100% - 2rem, var(--wrap)); margin-inline: auto; }
 .visually-hidden {
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: pre; border: 0;   /* pre, not nowrap: keeps the leading space, so copied link text doesn't run together */
 }
 .skip-link {
   position: absolute; left: 1rem; top: -4rem; z-index: 100;
@@ -2775,3 +2775,5 @@ body { background: var(--white-warm); }
   .split-b { margin: 0; padding: 1.35rem 1.25rem 1.1rem; clip-path: none; border-top: 0.45rem solid var(--gold); }   /* phones: a straight gold divider */
   .split-b::before { display: none; }
 }
+
+.read-more { display: inline-block; margin-top: 0.35rem; font-weight: 700; white-space: nowrap; }

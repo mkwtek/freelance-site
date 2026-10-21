@@ -2777,3 +2777,8 @@ body { background: var(--white-warm); }
 }
 
 .read-more { display: inline-block; margin-top: 0.35rem; font-weight: 700; white-space: nowrap; }
+
+/* About: the line that ties the shop to the web work, set apart */
+.pull-line { margin: 1.5rem 0; padding: 0.9rem 1.2rem; border-left: 8px solid var(--gold); background: var(--white-warm); border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 1.0625rem; line-height: 1.6; color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+.pull-line strong { font-weight: 800; }

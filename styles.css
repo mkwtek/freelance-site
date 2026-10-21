@@ -2171,6 +2171,8 @@ body { background: var(--white-warm); }
 
 /* About */
 .about-grid { display: grid; grid-template-columns: minmax(0, 0.8fr) 1.2fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+/* side by side: the photo column rides along while the longer story scrolls past, then stops at the end */
+@media (min-width: 52.01em) { .about-grid { align-items: start; } .about-photo { position: sticky; top: calc(80px + 2rem); } }
 .about-photo img {
   border: 3px solid var(--ink); border-radius: 50% 50% var(--radius) var(--radius);
   box-shadow: var(--shadow); filter: sepia(0.15) contrast(1.05);

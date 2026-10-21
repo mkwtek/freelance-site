@@ -1531,7 +1531,7 @@ body { background: var(--white-warm); }
 .dial-ch[aria-checked="true"] { background: #1c1a18; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
 .dial-ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
 .dial-ch { font-size: 7.5cqi; }
-.check-note { margin-top: 0.5rem; font-size: 0.875rem; font-style: normal; color: var(--ink-soft); }
+.check-note { margin-top: calc(0.5rem + 5px); font-size: 0.875rem; font-style: normal; color: var(--ink-soft); }
 /* Channel picked on the dial: its CH badge turns gold, matching the dial's selected number */
 .channel.is-picked .channel-num { background: var(--gold) !important; }
 

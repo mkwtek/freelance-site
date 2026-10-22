@@ -843,7 +843,9 @@
   update();
 })();
 
-// ---- "Send it" snowmobile scene: starts when it scrolls into view, so visitors see the run from the beginning ----
+// ---- "Send it" snowmobile scene: plays from the beginning each time it comes fully into view ----
+// One run, then a 6 second rest so it isn't distracting, then again while it's still on screen. Scrolling it off
+// screen resets it, so coming back always starts the run over.
 (function () {
   var scene = document.querySelector('.send-scene');
   if (!scene) return;
@@ -851,7 +853,25 @@
   var svg = scene.querySelector('.sled-svg'), mq = matchMedia('(max-width: 40em)');
   var fit = function () { svg.setAttribute('viewBox', mq.matches ? '0 -60 640 290' : '-250 -60 1700 290'); };
   fit(); if (mq.addEventListener) mq.addEventListener('change', fit);
-  if (!('IntersectionObserver' in window)) { scene.classList.add('is-on'); return; }
-  var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { scene.classList.add('is-on'); io.disconnect(); } }, { threshold: 0.4 });
-  io.observe(scene);
+  var REST = 6000, inView = false, rest = null, due = false;
+  var run = function () {
+    clearTimeout(rest); due = false;
+    scene.classList.remove('is-on');
+    void scene.offsetWidth;                                             // so the animations restart from 0
+    scene.classList.add('is-on');
+  };
+  if (!('IntersectionObserver' in window)) { run(); return; }
+  scene.addEventListener('animationend', function (e) {                 // the rider's run is the longest piece of the scene
+    if (e.animationName !== 'rider-run' || !inView) return;
+    rest = setTimeout(function () {
+      if (document.documentElement.classList.contains('motion-paused')) { due = true; return; }   // wait for Play
+      run();
+    }, REST);
+  });
+  document.addEventListener('motionchange', function (e) { if (!e.detail.paused && due && inView) run(); });
+  new IntersectionObserver(function (es) {
+    var e = es[es.length - 1];
+    if (e.intersectionRatio >= 0.9 && !inView) { inView = true; run(); }
+    else if (!e.isIntersecting && inView) { inView = false; clearTimeout(rest); due = false; scene.classList.remove('is-on'); }
+  }, { threshold: [0, 0.9] }).observe(scene);
 })();

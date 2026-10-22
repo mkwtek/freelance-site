@@ -2193,13 +2193,18 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   box-shadow: 0 2px 0 var(--ink); transform: rotate(-57deg);
 }
 .faq[open] summary::after { transform: rotate(57deg); }
+/* a small "Worth the read" tag after the AI question, the one answer most worth opening; it sits in the line of text,
+   so the row keeps the same size and spacing as the others */
+.faq-tag { display: inline-block; margin-left: 0.35rem; padding: 0.1rem 0.5rem; vertical-align: 0.15em; white-space: nowrap;
+  font: 800 0.68rem/1.3 var(--font-body); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--ink); background: var(--gold); border: 2px solid var(--ink); border-radius: 999px; }
 .faq summary:hover, .faq summary:active { background: #fbe39b; }
 .faq summary:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
 .faq-a { padding: 0 1.25rem 1.1rem; border-top: 2px dashed var(--ink); margin: 0 1.25rem; padding-inline: 0; padding-top: 0.9rem; }
 .faq-a p, .faq-a li { color: var(--ink-soft); }
 .faq-a ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
 .faq-a li::marker { color: var(--red-text); }
-.faq-a p + p { margin-top: 0.75rem; }
+.faq-a p + p, .faq-a ul + p { margin-top: 0.75rem; }
 /* parts of a long answer (the AI answer: the turn from cars to websites and two short headings): bigger, in the
    headline font, with a short gold bar above, so the answer reads in chunks instead of one long run of paragraphs.
    The last line of that answer sits on its own with a gold bar beside it as the takeaway. */

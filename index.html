@@ -24,7 +24,7 @@
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/new-rocker-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-mono-normal-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=227">
+  <link rel="stylesheet" href="styles.css?v=228">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -777,6 +777,17 @@
               <p>The right choice depends on more than this chart: your budget, who will update the site, how you plan to grow, and the ongoing costs of hosting, plugins and upkeep. That takes a real conversation about your business, so tell me what you need and we'll work it out together.</p>
             </div>
           </details>
+          <details class="faq" id="faq-ai"><summary>Why pay a web developer when AI can build my website?</summary>
+            <div class="faq-a">
+              <p>AI can generate a website. But something that looks finished isn't the same as something built correctly that works for everyone.</p>
+              <p>I know, I know. Another automotive analogy. Picture doing your own brake job to save money. You install the parts, put the wheels back on, and the brakes feel fine. But did air get into the ABS unit, which on many cars requires a professional scan tool to bleed properly? Did you torque every bolt to spec, or just until it felt right? You may never know you made a mistake until it costs you a much bigger repair, or someone gets hurt.</p>
+              <p>Websites have hidden problems too. An AI-built site can look polished on the screen where you checked it, then break on a smaller phone, a tablet or a big monitor. Text overlaps, menus stop working, and visitors leave without contacting you. Beneath an attractive design, there can also be accessibility barriers, security gaps, broken forms and slow pages. Some problems only show up later.</p>
+              <p><strong>AI does what you ask, but it can't know what you didn't think to ask.</strong> Getting good results means knowing what to tell it: how to make a site accessible, protect forms, adapt layouts to different screens, and test that everything works. If you don't know those things need attention, you may not know they're missing, and AI may not catch them either.</p>
+              <p>I use modern tools, including AI, in my own work. AI can speed up development, but it doesn't replace the training and judgment needed to know what to ask for, test the results and fix what's wrong.</p>
+              <p><strong>You're not just paying someone to turn the wrench. You're paying them to know which wrench to use, exactly how far to turn it, and why.</strong></p>
+              <p>You can build a website yourself with AI, and depending on your needs, that may be a fine choice. But if your site represents your business and your reputation, the cheapest option up front isn't always the least expensive in the long run.</p>
+            </div>
+          </details>
           <details class="faq"><summary>How long does a website take?</summary>
             <div class="faq-a">
               <p>Every project is different, but these are typical timelines from our first conversation to launch:</p>
@@ -958,6 +969,7 @@
       <!-- "Send it": a rider takes the snowbank jump below the form, then sits up and says it still runs. Decoration only. -->
       <div class="send-scene" aria-hidden="true">
         <svg class="sled-svg" viewBox="-250 -60 1700 290" preserveAspectRatio="xMidYMax meet" focusable="false">
+          <g class="sled-cam">   <!-- on phones the scene is zoomed in and this group pans to follow him -->
           <!-- snowbanks: the ramp, the gap, the landing bank -->
           <defs><linearGradient id="snow-shade" x1="0" y1="120" x2="0" y2="240" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f7fbfc"/><stop offset="1" stop-color="#e2eff3"/></linearGradient></defs><path d="M-3000 200H290Q375 200 460 150Q472 152 484 200H815C860 200 878 146 905 142L955 146C982 150 1000 200 1045 200H4000V240H-3000Z" fill="url(#snow-shade)" stroke="#c4dde4" stroke-width="2" stroke-linejoin="round"/>
           <path d="M330 196q30-6 60-18M600 214l26-4M890 158l26-8M972 168l20 12M150 212l40 2M1200 212l40 2M-200 212l40 2M-500 214l30 2M1500 214l30 2" stroke="#c9e1e7" stroke-width="2.5" stroke-linecap="round"/><g fill="#ffffff" opacity=".9"><circle cx="420" cy="170" r="2"/><circle cx="880" cy="150" r="2"/><circle cx="200" cy="206" r="1.6"/><circle cx="1100" cy="208" r="1.6"/><circle cx="640" cy="222" r="1.6"/></g>
@@ -987,6 +999,7 @@
           <g class="bubble b2"><rect x="14" y="-60" width="100" height="54" rx="22" fill="#fff7f0" stroke="#221f1b" stroke-width="3"/><path d="M22 -8L0 0L42 -8" fill="#fff7f0" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/><path d="M24 -9H40" stroke="#fff7f0" stroke-width="4"/><text x="64" y="-24" text-anchor="middle">Woo!</text></g>
           <g class="bubble b3"><rect x="1270" y="30" width="190" height="54" rx="22" fill="#fff7f0" stroke="#221f1b" stroke-width="3"/><path d="M1284 80L1256 104L1312 80" fill="#fff7f0" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/><path d="M1286 79H1310" stroke="#fff7f0" stroke-width="4"/><text x="1365" y="65" text-anchor="middle">Well that hurt.</text></g>
           <g class="bubble b4"><rect x="14" y="-60" width="150" height="54" rx="22" fill="#fff7f0" stroke="#221f1b" stroke-width="3"/><path d="M22 -8L0 0L42 -8" fill="#fff7f0" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/><path d="M24 -9H40" stroke="#fff7f0" stroke-width="4"/><text x="89" y="-24" text-anchor="middle">Still runs!</text></g>
+          </g>
         </svg>
       </div>
     </section>
@@ -1057,6 +1070,6 @@
     </div>
   </section>
 
-  <script src="script.js?v=63" defer></script>
+  <script src="script.js?v=64" defer></script>
 </body>
 </html>

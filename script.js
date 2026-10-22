@@ -28,22 +28,22 @@
   }
 
   // ---- Pause / play all animations; remembered in this browser ----
-  var motionBtn = document.querySelector('.motion-toggle');
+  // Two buttons share it: the one in the hero and the small one in the header, which stays within reach as you scroll.
+  var motionBtns = [].slice.call(document.querySelectorAll('.motion-toggle, .motion-mini'));
   var isPaused = function () { return document.documentElement.classList.contains('motion-paused'); };
   var showMotionState = function () {
-    if (!motionBtn) return;
-    motionBtn.classList.toggle('is-paused', isPaused());   // both labels are in the button; CSS shows one
+    motionBtns.forEach(function (b) { b.classList.toggle('is-paused', isPaused()); });   // both labels are in each button; CSS shows one
   };
-  if (motionBtn) {
-    showMotionState();
-    motionBtn.addEventListener('click', function () {
+  showMotionState();
+  motionBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
       var paused = !isPaused();
       document.documentElement.classList.toggle('motion-paused', paused);
       try { localStorage.setItem('motion', paused ? 'paused' : 'on'); } catch (e) {}
       showMotionState();
       document.dispatchEvent(new CustomEvent('motionchange', { detail: { paused: paused } }));
     });
-  }
+  });
 
   // ---- Keep section links out of the address bar ----
   // A menu link leaves "#about" in the address, so a refresh later would jump back to that

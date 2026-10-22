@@ -2191,10 +2191,13 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .faq-a ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
 .faq-a li::marker { color: var(--red-text); }
 .faq-a p + p { margin-top: 0.75rem; }
-/* a turning point inside a long answer (the AI answer's move from cars to websites): bigger, in the headline font,
-   with a short gold bar above it, so it reads as a new part and breaks up the long run of paragraphs */
-.faq-a .faq-turn { margin-top: 1.5rem; font: 400 1.3rem/1.2 var(--font-display); color: var(--ink); }
+/* parts of a long answer (the AI answer: the turn from cars to websites and two short headings): bigger, in the
+   headline font, with a short gold bar above, so the answer reads in chunks instead of one long run of paragraphs.
+   The last line of that answer sits on its own with a gold bar beside it as the takeaway. */
+.faq-a .faq-turn { margin: 1.75rem 0 0; font: 400 1.3rem/1.2 var(--font-display); color: var(--ink); }
 .faq-a .faq-turn::before { content: ""; display: block; width: 3rem; height: 4px; margin-bottom: 0.7rem; background: var(--gold); border-radius: 2px; }
+.faq-a .faq-turn + p { margin-top: 0.75rem; }
+.faq-a .faq-close { margin-top: 1.5rem; padding: 0.2rem 0 0.2rem 0.9rem; border-left: 4px solid var(--gold); color: var(--ink); font-size: 1.05rem; }
 .faq-more { margin-top: 1.5rem; }
 @media (prefers-reduced-motion: reduce) { .faq summary::after { transition: none; } }
 #faq .ask-box { margin-top: 2rem; }

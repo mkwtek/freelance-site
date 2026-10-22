@@ -842,3 +842,16 @@
   addEventListener('resize', update);
   update();
 })();
+
+// ---- "Send it" snowmobile scene: starts when it scrolls into view, so visitors see the run from the beginning ----
+(function () {
+  var scene = document.querySelector('.send-scene');
+  if (!scene) return;
+  // phones: zoom in on the jump so the rider and the speech bubbles stay readable
+  var svg = scene.querySelector('.sled-svg'), mq = matchMedia('(max-width: 40em)');
+  var fit = function () { svg.setAttribute('viewBox', mq.matches ? '400 -60 1070 290' : '-250 -60 1700 290'); };
+  fit(); if (mq.addEventListener) mq.addEventListener('change', fit);
+  if (!('IntersectionObserver' in window)) { scene.classList.add('is-on'); return; }
+  var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { scene.classList.add('is-on'); io.disconnect(); } }, { threshold: 0.4 });
+  io.observe(scene);
+})();

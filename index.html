@@ -24,7 +24,7 @@
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/new-rocker-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-mono-normal-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=226">
+  <link rel="stylesheet" href="styles.css?v=227">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -955,6 +955,40 @@
           <button class="btn btn-primary" type="submit">Send it</button>
         </form>
       </div>
+      <!-- "Send it": a rider takes the snowbank jump below the form, then sits up and says it still runs. Decoration only. -->
+      <div class="send-scene" aria-hidden="true">
+        <svg class="sled-svg" viewBox="-250 -60 1700 290" preserveAspectRatio="xMidYMax meet" focusable="false">
+          <!-- snowbanks: the ramp, the gap, the landing bank -->
+          <defs><linearGradient id="snow-shade" x1="0" y1="120" x2="0" y2="240" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f7fbfc"/><stop offset="1" stop-color="#e2eff3"/></linearGradient></defs><path d="M-3000 200H290Q375 200 460 150Q472 152 484 200H815C860 200 878 146 905 142L955 146C982 150 1000 200 1045 200H4000V240H-3000Z" fill="url(#snow-shade)" stroke="#c4dde4" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M330 196q30-6 60-18M600 214l26-4M890 158l26-8M972 168l20 12M150 212l40 2M1200 212l40 2M-200 212l40 2M-500 214l30 2M1500 214l30 2" stroke="#c9e1e7" stroke-width="2.5" stroke-linecap="round"/><g fill="#ffffff" opacity=".9"><circle cx="420" cy="170" r="2"/><circle cx="880" cy="150" r="2"/><circle cx="200" cy="206" r="1.6"/><circle cx="1100" cy="208" r="1.6"/><circle cx="640" cy="222" r="1.6"/></g>
+          <g class="sled">
+            <path d="M-56 -14H26V0H-50Q-56 0 -56 -6Z" fill="#4a433c" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="-42" cy="-6" r="4" fill="#c9492f"/><circle cx="-24" cy="-6" r="4" fill="#c9492f"/><circle cx="-6" cy="-6" r="4" fill="#c9492f"/><circle cx="12" cy="-6" r="4" fill="#c9492f"/>
+            <path d="M42 -14V-4M14 -2H66Q78 -2 78 -14" fill="none" stroke="#221f1b" stroke-width="4" stroke-linecap="round"/>
+            <path d="M-52 -14H30L64 -26L50 -42H-8L-30 -30H-52Z" fill="#c9492f" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M-52 -22H40" stroke="#3a3631" stroke-width="5"/>
+            <path d="M30 -42L42 -58L52 -56L50 -42Z" fill="#6b625a" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="-50" y="-38" width="40" height="9" rx="3" fill="#4a433c" stroke="#221f1b" stroke-width="3"/>
+            <rect x="52" y="-31" width="9" height="6" rx="1.5" fill="#f4cf5c" stroke="#221f1b" stroke-width="2"/>
+            <path d="M22 -42L28 -54" stroke="#221f1b" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <g class="rider">
+            <path d="M-34 -38H0L16 -20L8 -13L-6 -27H-34Z" fill="#1b6566" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="6" y="-19" width="15" height="9" rx="3" fill="#7a4a2e" stroke="#221f1b" stroke-width="2.5"/>
+            <path d="M-36 -38Q-42 -72 -18 -76Q4 -76 2 -50L-2 -38Z" fill="#ebbd4e" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M-30 -56H-2M-32 -46H0" stroke="#c99a2e" stroke-width="2"/>
+            <g class="arm-ride"><path d="M-12 -64Q8 -60 26 -52" fill="none" stroke="#221f1b" stroke-width="12" stroke-linecap="round"/><path d="M-12 -64Q8 -60 26 -52" fill="none" stroke="#ebbd4e" stroke-width="7" stroke-linecap="round"/><circle cx="27" cy="-52" r="5" fill="#7a4a2e" stroke="#221f1b" stroke-width="2"/></g>
+            <g class="arm-up"><path d="M-12 -66Q-4 -86 6 -100" fill="none" stroke="#221f1b" stroke-width="12" stroke-linecap="round"/><path d="M-12 -66Q-4 -86 6 -100" fill="none" stroke="#ebbd4e" stroke-width="7" stroke-linecap="round"/><circle cx="7" cy="-102" r="5" fill="#7a4a2e" stroke="#221f1b" stroke-width="2"/></g>
+            <clipPath id="helmet-shell"><circle cx="-14" cy="-88" r="14"/></clipPath><circle cx="-14" cy="-88" r="14" fill="#fff7f0"/><g clip-path="url(#helmet-shell)"><path d="M-40 -110H-14Q-10 -94 -24 -68H-40Z" fill="#221f1b"/><path d="M-12.5 -106Q-8.5 -93 -21.5 -70" fill="none" stroke="#7a4a2e" stroke-width="3"/><path d="M-10 -106Q-6 -93 -19 -70" fill="none" stroke="#c9492f" stroke-width="3"/><path d="M-7.5 -106Q-3.5 -93 -16.5 -70" fill="none" stroke="#e8893a" stroke-width="3"/><path d="M-12 -93Q-6 -95 4 -93V-70H-12Z" fill="#f0c49a"/><path d="M-12 -93Q-6 -95 4 -93" fill="none" stroke="#221f1b" stroke-width="2"/></g><circle cx="-14" cy="-88" r="14" fill="none" stroke="#221f1b" stroke-width="3"/><path d="M-10 -88.5H-5" stroke="#221f1b" stroke-width="1.4" stroke-linecap="round"/><ellipse cx="-2.5" cy="-88" rx="3.2" ry="2.3" fill="#221f1b"/><path d="M-3.6 -89L-1.8 -89" stroke="#58b6b1" stroke-width="1" stroke-linecap="round"/><path d="M0.2 -86Q2.6 -84.4 0.6 -82.6" fill="none" stroke="#221f1b" stroke-width="1.4" stroke-linecap="round"/><path d="M-5 -79.5Q-2 -77.6 0.5 -79.6" fill="none" stroke="#221f1b" stroke-width="1.4" stroke-linecap="round"/>
+          </g>
+          <g class="snow-puff"><circle cx="896" cy="156" r="11" fill="#fff"/><circle cx="918" cy="146" r="8" fill="#fff"/><circle cx="874" cy="150" r="7" fill="#fff"/><circle cx="900" cy="134" r="5" fill="#fff"/></g>
+          <g class="dazed"><path d="M1230 92l3 7 7 1-5 5 1 7-6-4-6 4 1-7-5-5 7-1z" fill="#f4cf5c" stroke="#221f1b" stroke-width="1.5"/><path d="M1274 84l2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1z" fill="#f4cf5c" stroke="#221f1b" stroke-width="1.5"/></g>
+          <g class="bubble b1"><rect x="390" y="-36" width="214" height="84" rx="22" fill="#fff7f0" stroke="#221f1b" stroke-width="3"/><path d="M400 44L404 86L428 44" fill="#fff7f0" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/><text x="497" y="-2" text-anchor="middle">Don't be silly,</text><text class="send-it-word" x="497" y="30" text-anchor="middle">send it!</text></g>
+          <g class="bubble b2"><rect x="14" y="-60" width="100" height="54" rx="22" fill="#fff7f0" stroke="#221f1b" stroke-width="3"/><path d="M22 -8L0 0L42 -8" fill="#fff7f0" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/><path d="M24 -9H40" stroke="#fff7f0" stroke-width="4"/><text x="64" y="-24" text-anchor="middle">Woo!</text></g>
+          <g class="bubble b3"><rect x="1270" y="30" width="190" height="54" rx="22" fill="#fff7f0" stroke="#221f1b" stroke-width="3"/><path d="M1284 80L1256 104L1312 80" fill="#fff7f0" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/><path d="M1286 79H1310" stroke="#fff7f0" stroke-width="4"/><text x="1365" y="65" text-anchor="middle">Well that hurt.</text></g>
+          <g class="bubble b4"><rect x="14" y="-60" width="150" height="54" rx="22" fill="#fff7f0" stroke="#221f1b" stroke-width="3"/><path d="M22 -8L0 0L42 -8" fill="#fff7f0" stroke="#221f1b" stroke-width="3" stroke-linejoin="round"/><path d="M24 -9H40" stroke="#fff7f0" stroke-width="4"/><text x="89" y="-24" text-anchor="middle">Still runs!</text></g>
+        </svg>
+      </div>
     </section>
   </main>
 
@@ -1023,6 +1057,6 @@
     </div>
   </section>
 
-  <script src="script.js?v=62" defer></script>
+  <script src="script.js?v=63" defer></script>
 </body>
 </html>

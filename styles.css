@@ -260,6 +260,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   display: inline-block; padding: 0.55rem 0.8rem; border-radius: 999px;
   color: var(--ink); font-weight: 600; text-decoration: none;
 }
+.nav-home { display: none; }   /* wide screens: the logo already links home */
 .site-nav a:hover, .site-nav a[aria-current] { background: var(--paper-dark); }   /* the section you are reading shows in the menu, using the hover look */
 .site-nav .nav-cta { background: var(--ink); color: var(--paper); margin-left: 0.4rem; }
 .site-nav .nav-cta:hover { background: var(--red-text); }
@@ -277,6 +278,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .nav-toggle-bars::before { top: -6px; }
 .nav-toggle-bars::after { top: 6px; }
 @media (max-width: 74em) {
+  .nav-home { display: block; }   /* in the dropdown menu, a plain "Home" link at the top */
   .nav-toggle { display: inline-flex; }
   .site-nav {
     display: none;
@@ -2404,10 +2406,10 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
    It sits in the race's bottom-left corner, under the road; script.js lowers the section just enough that it never touches the road. */
 .paint-shop { position: absolute; left: max(1rem, 2.5vw); bottom: 1rem; z-index: 2; font-size: 1.5rem;   /* everything inside scales with this */
   width: min(21em, calc(100% - 2rem));
-  display: none; grid-template-columns: minmax(0, 11.5em) 1fr; grid-template-areas: "title title" "pick name" "pick race";
+  display: grid; visibility: hidden; grid-template-columns: minmax(0, 11.5em) 1fr; grid-template-areas: "title title" "pick name" "pick race";
   column-gap: 0.75em; align-items: center; padding: 0.55em 0.75em 0.65em; text-align: left;
   background: #2b2723; border: 2px solid var(--paper); border-radius: 0.8em; box-shadow: 4px 4px 0 rgba(0, 0, 0, .45); }
-.paint-shop.is-ready { display: grid; animation: shop-in .45s ease-out; }   /* takes no room until the first race is over */
+.paint-shop.is-ready { visibility: visible; animation: shop-in .45s ease-out; }   /* its space is saved from the start (hidden until the first race is over), so the page never jumps when it appears */
 @keyframes shop-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .paint-shop-title { grid-area: title; margin: 0 0 0.15em; font: 700 0.75em/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow-on-ink); }
 .paint-pick { grid-area: pick; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.3em; }

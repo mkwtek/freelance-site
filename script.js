@@ -697,17 +697,20 @@
     fitShop();
   };
   // keep the card in the corner under the road: lower the section only as far as needed to clear the road's shoulder
+  // It runs before the card is shown too (the card is laid out but hidden), so the space is saved from the start.
+  // The strip's own margin is read once; resetting it before each measurement made the page shrink for a moment,
+  // which pulled the screen up when you were scrolled to the bottom.
+  var baseMargin = null;
   var fitShop = function () {
-    if (!shop.classList.contains('is-ready')) return;
-    strip.style.marginBottom = '';
+    if (baseMargin === null) baseMargin = parseFloat(getComputedStyle(strip).marginBottom) || 0;
     var svgBox = el.getBoundingClientRect(), vb = el.viewBox.baseVal, sc = svgBox.width / vb.width;
     var cardRight = (shop.getBoundingClientRect().right - svgBox.left) / sc;              // in scene units
     var s = (cardRight - O[0] + 0.45 * A[0]) / F[0], edge = P(s, -0.45)[1];               // bottom of the near shoulder at that x
     var roadPx = svgBox.top + (edge - vb.y) * sc;
-    var base = parseFloat(getComputedStyle(strip).marginBottom) || 0;
+    var base = baseMargin;
     var cardTop = svgBox.bottom + base - shop.offsetHeight - parseFloat(getComputedStyle(shop).bottom);
     var short = roadPx + 10 - cardTop;                                                     // how far it would overlap
-    if (short > 0) strip.style.marginBottom = (base + short) + 'px';
+    strip.style.marginBottom = short > 0 ? (base + short) + 'px' : '';
   };
   var fitT = 0;
   window.addEventListener('resize', function () { clearTimeout(fitT); fitT = setTimeout(fitShop, 150); });
@@ -721,6 +724,8 @@
     var im = new Image(); im.onload = im.onerror = go; im.src = paintSrc(pick);    // swap paint once it's loaded, then race
   });
   place(S0, 0);
+  fitShop();                                       // save the card's space before the first race
+  window.addEventListener('load', fitShop);
   if (reduce) { park(); return; }
   var io;
   var raceWhenSeen = function () {                 // race once the strip is on screen

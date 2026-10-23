@@ -843,15 +843,30 @@
   update();
 })();
 
-// ---- Accessibility deadline board: "Deadlines are coming" pulses while the board is on screen (CSS) ----
-// Off screen it stops, so the first pulse always comes soon after someone scrolls to it.
+// ---- Accessibility deadline board: the "Deadlines are coming" peek ----
+// Each time the board comes on screen, a moment later the ranger pops up from behind it, says his lines and ducks back
+// down (CSS, .is-peek). Scrolling the board fully off screen resets him, so he does it again the next time it scrolls
+// back into view (on every screen size). If animations are paused, he waits for Play. Never with reduced motion.
 (function () {
   var board = document.querySelector('.deadline-board');
-  if (!board || !('IntersectionObserver' in window)) return;
+  if (!board || !board.querySelector('.deadline-peek') || !('IntersectionObserver' in window)) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var seen = false, playing = false, wait = null, due = false;
+  var peek = function () {
+    if (!seen || playing) return;
+    if (document.documentElement.classList.contains('motion-paused')) { due = true; return; }
+    due = false; playing = true; board.classList.add('is-peek');
+  };
+  var reset = function () { clearTimeout(wait); wait = null; due = false; playing = false; board.classList.remove('is-peek'); };
+  document.addEventListener('motionchange', function (e) { if (!e.detail.paused && due) peek(); });
+  board.addEventListener('animationend', function (e) { if (e.animationName === 'peek-title') { playing = false; board.classList.remove('is-peek'); } });   // the title's pulse is the last thing to finish
   new IntersectionObserver(function (es) {
     var e = es[es.length - 1];
-    if (e.intersectionRatio >= 0.6) board.classList.add('is-on');
-    else if (!e.isIntersecting) board.classList.remove('is-on');
+    if (e.intersectionRatio >= 0.6 && !seen) {
+      seen = true; wait = setTimeout(function () { wait = null; peek(); }, 1200);
+    } else if (!e.isIntersecting && seen) {
+      seen = false; reset();
+    }
   }, { threshold: [0, 0.6] }).observe(board);
 })();
 

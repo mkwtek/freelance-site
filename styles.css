@@ -1493,7 +1493,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @keyframes chase { 0% { fill: #fff3c4; } 50% { fill: #c99a2e; } }
 /* ---------- Channel dial (services) ---------- */
 .services-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem 3rem; }
-.dial { position: relative; aspect-ratio: 1; width: 15.2rem; container-type: inline-size; }
+.dial { position: relative; aspect-ratio: 1; width: 13.75rem; container-type: inline-size; }
 .dial-face { position: absolute; height: auto; overflow: visible; inset: 0; width: 100%; }
 .dial-knob { transform-box: view-box; transform-origin: 100px 100px; transform: rotate(var(--angle)); transition: transform 0.6s cubic-bezier(.3, 1.4, .5, 1); }
 .dial-ch {
@@ -1510,17 +1510,17 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @media (max-width: 52em) {
   .services-head { grid-template-columns: 1fr; justify-items: center; }
   .services-head > div { justify-self: stretch; }
-  .dial { width: 15.2rem; }
+  .dial { width: 13.75rem; }
   .dial-ch { transform: rotate(var(--a)) translateY(-5.9rem) rotate(calc(var(--a) * -1)); }
 }
 /* Free site check box: a touch more muted so the sign and button pop */
 /* Dial sizing: scales with its own width (container units), never wider than the screen */
 .dial-ch { transform: rotate(var(--a)) translateY(-41.8cqi) rotate(calc(var(--a) * -1)); }
-@media (max-width: 52em) { .dial { width: min(15.2rem, 100%); justify-self: center; margin-inline: auto; } }
+@media (max-width: 52em) { .dial { width: min(13.75rem, 100%); justify-self: center; margin-inline: auto; } }
 /* ---------- Authentic VHF dial: printed 2-13 + U on a dark bezel, chrome knob with a bar handle ---------- */
 .dial-print { pointer-events: none; }
 .dial-ch {
-  width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem;   /* 44px tap targets (WCAG AAA); the dial is 15.2rem so neighbors don't overlap */
+  width: 2.5rem; height: 2.5rem; margin: -1.25rem 0 0 -1.25rem;   /* 40px tap targets (well over the 24px WCAG minimum); the dial is 13.75rem so neighbors don't overlap */
   transform: rotate(var(--a)) translateY(-38cqi) rotate(calc(var(--a) * -1));
   background: #1c1a18; border: 0; color: #f4ebd9; font-size: 1.05rem; text-shadow: 0 1px 0 #000;   /* same as the bezel, so contrast checkers see the real backdrop */
 }
@@ -2217,9 +2217,9 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 /* an open FAQ question keeps rounded corners on top only, so its highlight joins the answer below */
 .faq[open] summary { border-radius: 0.7rem 0.7rem 0 0; }
 /* ---------- FAQ: a rotary phone beside the heading ---------- */
-.faq-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 17.85rem); gap: 1rem 2rem; align-items: center; }   /* phone beside the heading */
+.faq-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 18.9rem); gap: 1rem 2rem; align-items: center; }   /* phone beside the heading, big enough to read the words on its dial */
 .faq-phone { display: block; width: 100%; height: auto; transform: rotate(2deg); filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
-@media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; } .faq-phone { width: min(14.45rem, 72%); margin: 0 auto; }
+@media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; } .faq-phone { width: min(15.35rem, 76%); margin: 0 auto; }
 }
 /* FAQ dial with printed CLOSE / OPEN labels; the knob's pointer turns between them */   
 .faq summary::before { content: ""; position: absolute; right: 0.9rem; top: 50%; width: 5.75rem; height: 2.875rem; transform: translateY(-50%);

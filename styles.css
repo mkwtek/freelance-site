@@ -298,6 +298,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .motion-mini:hover .mm-disc, .motion-mini:active .mm-disc { fill: #fbe39b; }
 .motion-mini.is-paused .mm-disc { fill: var(--gold); }
 .motion-mini text { font: 800 10px var(--font-body); letter-spacing: 0.08em; }   /* the same spacing in both words, so the letters sit evenly around the ring in every browser */
+.motion-mini .mm-top { font-size: 9px; }   /* PLAY/PAUSE sits on the tighter inner curve, which makes it look bigger than ANIMATIONS at the same size */
 /* keyboard focus: a ring just outside the disc, inside the lettering, so it stays within the header */
 .motion-mini .mm-focus { fill: none; stroke: var(--ink); stroke-width: 2.5; visibility: hidden; }
 .motion-mini:focus-visible { outline: none; }

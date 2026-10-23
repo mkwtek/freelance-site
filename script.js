@@ -843,6 +843,18 @@
   update();
 })();
 
+// ---- Accessibility deadline board: "Deadlines are coming" pulses while the board is on screen (CSS) ----
+// Off screen it stops, so the first pulse always comes soon after someone scrolls to it.
+(function () {
+  var board = document.querySelector('.deadline-board');
+  if (!board || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (es) {
+    var e = es[es.length - 1];
+    if (e.intersectionRatio >= 0.6) board.classList.add('is-on');
+    else if (!e.isIntersecting) board.classList.remove('is-on');
+  }, { threshold: [0, 0.6] }).observe(board);
+})();
+
 // ---- "Send it" snowmobile scene: plays from the beginning each time it comes fully into view ----
 // One run, then a 6 second rest so it isn't distracting, then again while it's still on screen. Scrolling it off
 // screen resets it, so coming back always starts the run over.

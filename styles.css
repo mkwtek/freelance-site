@@ -254,7 +254,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
    high-density phone screens (the browser rounds the sticky header's position to a fraction of a pixel) */
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--paper); border-bottom: 0; box-shadow: 0 -0.5rem 0 var(--white-warm); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
-.brand { min-width: 0; display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; }
+.brand { min-width: 0; min-height: 2.75rem; display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; }   /* 44px tall: the WCAG AAA tap size */
 .brand-tv { width: 2.6rem; height: auto; flex: none; }
 .brand-name { font-family: var(--font-display); font-size: 1.35rem; line-height: 1; }
 /* "WEB WORKS" on its own line under the name, smaller and spaced out, so a longer business name still fits the header;
@@ -444,7 +444,6 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
    The blackletter is width-matched to "New-school code." (its gold shadow included). */
 @media (min-width: 52.01em) { .hero-grid { grid-template-columns: 1.4fr 1fr; gap: clamp(1rem, 2.5vw, 2.5rem); } }
 .hero-copy { container-type: inline-size; position: relative; }
-.hero h1 .old, .hero h1 .accent { white-space: nowrap; }
 /* ---------- "That's good to know" as a sing-along: a bouncing ball with a fading tail hops word to word
    and each word lights up as the ball lands, with a longer hang before "know". Everything then holds on one line
    along the comet tail for about 3 seconds before leaving with the star's flash.
@@ -1120,7 +1119,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .motion-toggle {
   display: inline-flex; align-items: center; gap: 0.4em; flex: none;
   font: 700 0.8125rem var(--font-body); letter-spacing: 0.02em; color: var(--ink);
-  padding: 0.3rem 0.8rem; background: var(--white-warm); border: 2px solid var(--ink); border-radius: 999px; cursor: pointer;
+  min-height: 2.75rem; padding: 0.3rem 0.8rem; background: var(--white-warm); border: 2px solid var(--ink); border-radius: 999px; cursor: pointer;   /* 44px tall: the WCAG AAA tap size */
 }
 .motion-toggle:hover, .motion-toggle:active { background: #fbe39b; }
 .motion-toggle:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
@@ -1158,7 +1157,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .tv-psa-line { font: 700 10.5px var(--font-mono); fill: var(--paper); letter-spacing: 0.03em; }
 .tv-psa-gold { fill: #e8c547; }
 .tv-psa-ring { font: 800 6px var(--font-body); fill: #e8c547; letter-spacing: 0.08em; }   /* the tiny lettering around the round button drawn on the TV */
-/* card 3 is read along with, one thing at a time (about 1.8s each): "ABOVE" grows and turns gold, then the round
+/* card 3 is read along with, one thing at a time (about 2s each, a short pause between): "ABOVE" grows and turns gold, then the round
    button drawn under it grows, then "BELOW", then the pill under that.
    Each pulsing word is a copy of its whole line (the rest of the line invisible), so it lines up exactly at any text
    size; the plain word underneath is hidden while the copy pulses. The scale centers are the middle of each word. */
@@ -1174,24 +1173,24 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .psa-mini-in { animation: psa-mini 46.8s ease-in-out infinite; }
   .psa-pill { animation: psa-pill 46.8s ease-in-out infinite; }
 }
-@keyframes psa-above {   /* 28.9s to 30.7s of the loop, about 1.15s after card 3 comes on */
-  0%, 61.752% { opacity: 0; transform: none; fill: var(--paper); }
-  61.753% { opacity: 1; transform: none; fill: var(--paper); }
-  62.393%, 64.957% { opacity: 1; transform: scale(1.25); fill: #e8c547; }
-  65.597% { opacity: 1; transform: none; fill: var(--paper); }
-  65.598%, 100% { opacity: 0; transform: none; fill: var(--paper); }
+@keyframes psa-above {   /* 27.47s to 29.47s of the loop, about 1.4s after card 3 comes on */
+  0%, 58.697% { opacity: 0; transform: none; fill: var(--paper); }
+  58.698% { opacity: 1; transform: none; fill: var(--paper); }
+  59.338%, 62.329% { opacity: 1; transform: scale(1.25); fill: #e8c547; }
+  62.969% { opacity: 1; transform: none; fill: var(--paper); }
+  62.97%, 100% { opacity: 0; transform: none; fill: var(--paper); }
 }
-@keyframes psa-mini { 0%, 65.919% { transform: none; } 66.56%, 69.124% { transform: scale(1.2); } 69.765%, 100% { transform: none; } }   /* 30.85s to 32.65s */
-@keyframes psa-below {   /* 33.0s to 34.8s */
-  0%, 70.513% { opacity: 0; transform: none; fill: var(--paper); }
-  70.514% { opacity: 1; transform: none; fill: var(--paper); }
-  71.154%, 73.718% { opacity: 1; transform: scale(1.25); fill: #e8c547; }
-  74.358% { opacity: 1; transform: none; fill: var(--paper); }
-  74.359%, 100% { opacity: 0; transform: none; fill: var(--paper); }
+@keyframes psa-mini { 0%, 63.718% { transform: none; } 64.359%, 67.35% { transform: scale(1.2); } 67.991%, 100% { transform: none; } }   /* 29.82s to 31.82s */
+@keyframes psa-below {   /* 32.27s to 34.27s */
+  0%, 68.953% { opacity: 0; transform: none; fill: var(--paper); }
+  68.954% { opacity: 1; transform: none; fill: var(--paper); }
+  69.594%, 72.585% { opacity: 1; transform: scale(1.25); fill: #e8c547; }
+  73.225% { opacity: 1; transform: none; fill: var(--paper); }
+  73.226%, 100% { opacity: 0; transform: none; fill: var(--paper); }
 }
-@keyframes psa-pill { 0%, 74.679% { transform: none; } 75.32%, 77.885% { transform: scale(1.15); } 78.526%, 100% { transform: none; } }   /* 34.95s to 36.75s */
-@keyframes psa-above-hide { 0%, 61.752% { fill-opacity: 1; } 61.753%, 65.597% { fill-opacity: 0; } 65.598%, 100% { fill-opacity: 1; } }
-@keyframes psa-below-hide { 0%, 70.513% { fill-opacity: 1; } 70.514%, 74.358% { fill-opacity: 0; } 74.359%, 100% { fill-opacity: 1; } }
+@keyframes psa-pill { 0%, 73.974% { transform: none; } 74.615%, 77.607% { transform: scale(1.15); } 78.248%, 100% { transform: none; } }   /* 34.62s to 36.62s */
+@keyframes psa-above-hide { 0%, 58.697% { fill-opacity: 1; } 58.698%, 62.969% { fill-opacity: 0; } 62.97%, 100% { fill-opacity: 1; } }
+@keyframes psa-below-hide { 0%, 68.953% { fill-opacity: 1; } 68.954%, 73.225% { fill-opacity: 0; } 73.226%, 100% { fill-opacity: 1; } }
 .tv-psa-good { font: italic 700 15px var(--font-body); fill: #f6a98e; clip-path: inset(0 100% 0 0);
   paint-order: stroke; stroke: #141210; stroke-width: 3px; }   /* a dark edge keeps the words crisp over the comet's tail */
 @media (prefers-reduced-motion: no-preference) {
@@ -1209,7 +1208,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   0% { opacity: 0; }
   16.092% { opacity: 1; } 17.586% { opacity: 0; }
   27.689% { opacity: 1; } 28.591% { opacity: 0; }
-  38.85% { opacity: 1; } 40.343% { opacity: 0; }
+  35.65% { opacity: 1; } 37.143% { opacity: 0; }
   92.522% { opacity: 1; } 93.587% { opacity: 0; }
 }
 @keyframes tv-circle {
@@ -1223,22 +1222,22 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   0% { opacity: 0; }
   28.288% { opacity: 1; transform: translateX(6px) skewX(7deg); }
   28.591% { opacity: 1; transform: none; }
-  38.998% { opacity: 1; transform: translateX(-5px) skewX(-6deg); }
-  39.293% { opacity: 0; }
+  35.798% { opacity: 1; transform: translateX(-5px) skewX(-6deg); }
+  36.093% { opacity: 0; }
 }
 @keyframes tv-psa {
   0% { opacity: 0; }
-  40.196% { opacity: 1; transform: translateX(6px) skewX(7deg); }
-  40.491% { opacity: 1; transform: none; }
+  36.996% { opacity: 1; transform: translateX(6px) skewX(7deg); }
+  37.291% { opacity: 1; transform: none; }
   92.732% { opacity: 1; transform: translateX(-5px) skewX(-6deg); }
   93.035% { opacity: 0; }
 }
-/* cards 1 and 2 about 4.4s each, card 3 (the two off switches) about 9.2s since there's the most to take in; the
-   comet sign-off gets the last card to itself so it never runs over the words */
-@keyframes psa-c1 { 0% { opacity: 1; } 49.9% { opacity: 0; } }
-@keyframes psa-c2 { 0% { opacity: 0; } 49.9% { opacity: 1; } 59.3% { opacity: 0; } }
-@keyframes psa-c3 { 0% { opacity: 0; } 59.3% { opacity: 1; } 79% { opacity: 0; } }
-@keyframes psa-c4 { 0% { opacity: 0; } 79% { opacity: 1; } 93.035% { opacity: 0; } }
+/* the PSA starts at 37.3% (the tagline before it is about 3.4s); cards 1 and 2 about 4.3s each, card 3 (the two
+   off switches) about 11.4s since there's the most to take in; the comet sign-off gets the last card to itself */
+@keyframes psa-c1 { 0% { opacity: 1; } 46.5% { opacity: 0; } }
+@keyframes psa-c2 { 0% { opacity: 0; } 46.5% { opacity: 1; } 55.7% { opacity: 0; } }
+@keyframes psa-c3 { 0% { opacity: 0; } 55.7% { opacity: 1; } 80% { opacity: 0; } }
+@keyframes psa-c4 { 0% { opacity: 0; } 80% { opacity: 1; } 93.035% { opacity: 0; } }
 @keyframes uhf-twitch {   /* the fine-tuning knob jerks back and forth when the small ghost possesses the set (7.5s), then settles */
   0%, 16.0% { transform: rotate(0); }
   16.35% { transform: rotate(-24deg); }  16.7% { transform: rotate(16deg); }  17.05% { transform: rotate(-8deg); }
@@ -1247,8 +1246,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @keyframes knob-click {   /* one VHF click per channel: 2, 3, 4, 5, then back round to 2 */
   0%, 16.022% { transform: rotate(0); }
   16.668% { transform: rotate(34.7deg); }  16.987%, 27.627% { transform: rotate(27.7deg); }
-  28.272% { transform: rotate(62.4deg); }  28.591%, 38.78% { transform: rotate(55.4deg); }
-  39.426% { transform: rotate(90.1deg); }  39.744%, 92.459% { transform: rotate(83.1deg); }
+  28.272% { transform: rotate(62.4deg); }  28.591%, 35.58% { transform: rotate(55.4deg); }
+  36.226% { transform: rotate(90.1deg); }  36.544%, 92.459% { transform: rotate(83.1deg); }
   93.268% { transform: rotate(-7deg); }  93.587%, 100% { transform: rotate(0); }
 }
 /* ---------- Comet sign-off, modeled on the classic TV spot ----------
@@ -1294,7 +1293,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   91.456% { opacity: 0; transform: translate(132px, 173px) scale(6); }
   100% { opacity: 0; transform: translate(132px, 173px) scale(6); }
 }
-@keyframes cmt-spin { 0%, 83.42% { transform: rotate(0); } 88.462% { transform: rotate(40deg); } 91.456% { transform: rotate(150deg); } 100% { transform: rotate(150deg); } }
+@keyframes cmt-spin { 0%, 84.42% { transform: rotate(0); } 88.462% { transform: rotate(40deg); } 91.456% { transform: rotate(150deg); } 100% { transform: rotate(150deg); } }
 @keyframes cmt-flash {
   0%, 90.383% { opacity: 0; transform: scale(.4); }
   91.129% { opacity: 1; transform: scale(1); }
@@ -1308,16 +1307,16 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .motion-mini:not(.is-paused) .mm-disc { animation: psa-cue-disc 46.8s linear infinite; }   /* the round header button lights up too */
 }
 @keyframes psa-cue {
-  0%, 74.679% { box-shadow: 0 0 0 0 rgba(232, 197, 71, 0); background: var(--white-warm); }
-  75.32% { box-shadow: 0 0 0 5px rgba(232, 197, 71, .9); background: #fbe39b; }
-  76.6% { box-shadow: 0 0 0 2px rgba(232, 197, 71, .9); background: #fbe39b; }
-  77.885% { box-shadow: 0 0 0 5px rgba(232, 197, 71, .9); background: #fbe39b; }
-  78.526%, 100% { box-shadow: 0 0 0 0 rgba(232, 197, 71, 0); background: var(--white-warm); }
+  0%, 73.974% { box-shadow: 0 0 0 0 rgba(232, 197, 71, 0); background: var(--white-warm); }
+  74.615% { box-shadow: 0 0 0 5px rgba(232, 197, 71, .9); background: #fbe39b; }
+  76.111% { box-shadow: 0 0 0 2px rgba(232, 197, 71, .9); background: #fbe39b; }
+  77.607% { box-shadow: 0 0 0 5px rgba(232, 197, 71, .9); background: #fbe39b; }
+  78.248%, 100% { box-shadow: 0 0 0 0 rgba(232, 197, 71, 0); background: var(--white-warm); }
 }
 @keyframes psa-cue-disc {
-  0%, 65.919% { fill: var(--paper); }
-  66.56%, 69.124% { fill: #fbe39b; }
-  69.765%, 100% { fill: var(--paper); }
+  0%, 63.718% { fill: var(--paper); }
+  64.359%, 67.35% { fill: #fbe39b; }
+  67.991%, 100% { fill: var(--paper); }
 }
 /* the ghost peeks nine times per 46.8s TV loop, so its tugs on the lamp chain line up with the TV */
 /* ---------- Hero entrance, once on load (all settled by about 2.6s, before the spider drops) ----------
@@ -1351,42 +1350,42 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .sing-ball .sb3 { animation-name: sing-tail3; animation-delay: 0.15s; }
 }
 @keyframes cmt-trail-sing {
-  0%, 79.049% { clip-path: inset(0 100% 0 0); opacity: 1; transform: none; }
-  81.304% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
+  0%, 80.049% { clip-path: inset(0 100% 0 0); opacity: 1; transform: none; }
+  82.304% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
   90.593% { clip-path: inset(0 0 0 0); opacity: 1; transform: none; }
   91.993%, 100% { clip-path: inset(0 0 0 0); opacity: 0; transform: translate(-30px, -14px); }
 }
 @keyframes cmt-words-sing { 0%, 90.593% { opacity: 1; transform: none; } 91.993%, 100% { opacity: 0; transform: translate(-40px, -28px); } }
 /* each word pops in as the ball lands on it */
-@keyframes gk1 { 0%, 81.46% { opacity: 0; transform: translateY(1.5px) scale(.94); } 82.471%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
-@keyframes gk2 { 0%, 82.549% { opacity: 0; transform: translateY(1.5px) scale(.94); } 83.56%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
-@keyframes gk3 { 0%, 83.715% { opacity: 0; transform: translateY(1.5px) scale(.94); } 84.726%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
-@keyframes gk4 { 0%, 85.504% { opacity: 0; transform: translateY(1.5px) scale(.94); } 86.593%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
+@keyframes gk1 { 0%, 82.46% { opacity: 0; transform: translateY(1.5px) scale(.94); } 83.471%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
+@keyframes gk2 { 0%, 83.549% { opacity: 0; transform: translateY(1.5px) scale(.94); } 84.56%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
+@keyframes gk3 { 0%, 84.715% { opacity: 0; transform: translateY(1.5px) scale(.94); } 85.726%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
+@keyframes gk4 { 0%, 86.504% { opacity: 0; transform: translateY(1.5px) scale(.94); } 87.593%, 93.393% { opacity: 1; transform: none; } 93.4%, 100% { opacity: 0; } }
 /* the ball: lands on That's, good, to, then a long high hang before know, a little settle bounce, then fades */
 @keyframes sing-ball {
-  0%, 81.304% { opacity: 0; transform: translate(71.8px, 176.6px); }
-  81.849% { opacity: 1; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; }
-  82.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; }
-  82.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; }
-  83.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; }
-  84.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; }
-  84.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; }
-  85.893% { transform: translate(173.3px, 184.6px); animation-timing-function: ease-out; }
-  86.36% { transform: translate(173.3px, 179.6px); animation-timing-function: ease-in; }
-  86.826% { opacity: 1; transform: translate(173.3px, 184.6px); }
-  87.838%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); }
+  0%, 82.304% { opacity: 0; transform: translate(71.8px, 176.6px); }
+  82.849% { opacity: 1; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; }
+  83.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; }
+  83.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; }
+  84.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; }
+  85.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; }
+  85.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; }
+  86.893% { transform: translate(173.3px, 184.6px); animation-timing-function: ease-out; }
+  87.36% { transform: translate(173.3px, 179.6px); animation-timing-function: ease-in; }
+  87.826% { opacity: 1; transform: translate(173.3px, 184.6px); }
+  88.838%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); }
 }
-@keyframes sing-tail1 { 0%, 81.304% { opacity: 0; transform: translate(71.8px, 176.6px); } 81.849% { opacity: .55; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; } 82.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; } 82.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; } 83.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; } 84.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; } 84.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; } 85.893% { opacity: .55; transform: translate(173.3px, 184.6px); } 86.438%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); } }
-@keyframes sing-tail2 { 0%, 81.304% { opacity: 0; transform: translate(71.8px, 176.6px); } 81.849% { opacity: .32; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; } 82.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; } 82.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; } 83.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; } 84.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; } 84.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; } 85.893% { opacity: .32; transform: translate(173.3px, 184.6px); } 86.438%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); } }
-@keyframes sing-tail3 { 0%, 81.304% { opacity: 0; transform: translate(71.8px, 176.6px); } 81.849% { opacity: .16; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; } 82.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; } 82.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; } 83.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; } 84.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; } 84.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; } 85.893% { opacity: .16; transform: translate(173.3px, 184.6px); } 86.438%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); } }
-/* the comet arrives once card 3 is done (its rest before the bloom is about 0.5s); its star flashes as "know" lands, then
+@keyframes sing-tail1 { 0%, 82.304% { opacity: 0; transform: translate(71.8px, 176.6px); } 82.849% { opacity: .55; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; } 83.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; } 83.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; } 84.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; } 85.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; } 85.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; } 86.893% { opacity: .55; transform: translate(173.3px, 184.6px); } 87.438%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); } }
+@keyframes sing-tail2 { 0%, 82.304% { opacity: 0; transform: translate(71.8px, 176.6px); } 82.849% { opacity: .32; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; } 83.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; } 83.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; } 84.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; } 85.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; } 85.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; } 86.893% { opacity: .32; transform: translate(173.3px, 184.6px); } 87.438%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); } }
+@keyframes sing-tail3 { 0%, 82.304% { opacity: 0; transform: translate(71.8px, 176.6px); } 82.849% { opacity: .16; transform: translate(71.8px, 184.6px); animation-timing-function: ease-out; } 83.393% { transform: translate(92.5px, 177.6px); animation-timing-function: ease-in; } 83.938% { transform: translate(113.3px, 184.6px); animation-timing-function: ease-out; } 84.521% { transform: translate(128.3px, 178.6px); animation-timing-function: ease-in; } 85.104% { transform: translate(143.3px, 184.6px); animation-timing-function: ease-out; } 85.999% { transform: translate(158.3px, 175.6px); animation-timing-function: ease-in; } 86.893% { opacity: .16; transform: translate(173.3px, 184.6px); } 87.438%, 100% { opacity: 0; transform: translate(173.3px, 184.6px); } }
+/* the comet arrives once card 3 is done at 80% (its rest before the bloom is short, about 0.05s after "know"); its star flashes as "know" lands, then
    grows into the bloom. The comet is drawn 30 units higher than at first, so its last stops are 30 lower to end in the middle. */
 @keyframes cmt-star-sing {
-  0%, 79.049% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
-  79.282% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
-  81.304%, 85.738% { opacity: 1; transform: translate(192px, 210px) scale(1); }
-  86.204% { opacity: 1; transform: translate(192px, 210px) scale(1.4); }
-  87.371%, 88.462% { opacity: 1; transform: translate(192px, 210px) scale(1); }
+  0%, 80.049% { opacity: 0; transform: translate(10px, 255px) scale(.6); }
+  80.282% { opacity: 1; transform: translate(14px, 254px) scale(.65); }
+  82.304%, 86.738% { opacity: 1; transform: translate(192px, 210px) scale(1); }
+  87.204% { opacity: 1; transform: translate(192px, 210px) scale(1.4); }
+  88.371%, 88.462% { opacity: 1; transform: translate(192px, 210px) scale(1); }
   89.745% { opacity: 1; transform: translate(170px, 222px) scale(2.2); }
   90.81% { opacity: 1; transform: translate(140px, 206px) scale(4.2); }
   91.456%, 100% { opacity: 0; transform: translate(132px, 203px) scale(6); }
@@ -1494,7 +1493,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @keyframes chase { 0% { fill: #fff3c4; } 50% { fill: #c99a2e; } }
 /* ---------- Channel dial (services) ---------- */
 .services-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1.5rem 3rem; }
-.dial { position: relative; aspect-ratio: 1; width: 13.5rem; container-type: inline-size; }
+.dial { position: relative; aspect-ratio: 1; width: 15.2rem; container-type: inline-size; }
 .dial-face { position: absolute; height: auto; overflow: visible; inset: 0; width: 100%; }
 .dial-knob { transform-box: view-box; transform-origin: 100px 100px; transform: rotate(var(--angle)); transition: transform 0.6s cubic-bezier(.3, 1.4, .5, 1); }
 .dial-ch {
@@ -1511,17 +1510,17 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @media (max-width: 52em) {
   .services-head { grid-template-columns: 1fr; justify-items: center; }
   .services-head > div { justify-self: stretch; }
-  .dial { width: 13.5rem; }
+  .dial { width: 15.2rem; }
   .dial-ch { transform: rotate(var(--a)) translateY(-5.9rem) rotate(calc(var(--a) * -1)); }
 }
 /* Free site check box: a touch more muted so the sign and button pop */
 /* Dial sizing: scales with its own width (container units), never wider than the screen */
 .dial-ch { transform: rotate(var(--a)) translateY(-41.8cqi) rotate(calc(var(--a) * -1)); }
-@media (max-width: 52em) { .dial { width: min(12.5rem, 100%); justify-self: center; margin-inline: auto; } }
+@media (max-width: 52em) { .dial { width: min(15.2rem, 100%); justify-self: center; margin-inline: auto; } }
 /* ---------- Authentic VHF dial: printed 2-13 + U on a dark bezel, chrome knob with a bar handle ---------- */
 .dial-print { pointer-events: none; }
 .dial-ch {
-  width: 2.3rem; height: 2.3rem; margin: -1.15rem 0 0 -1.15rem;
+  width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem;   /* 44px tap targets (WCAG AAA); the dial is 15.2rem so neighbors don't overlap */
   transform: rotate(var(--a)) translateY(-38cqi) rotate(calc(var(--a) * -1));
   background: #1c1a18; border: 0; color: #f4ebd9; font-size: 1.05rem; text-shadow: 0 1px 0 #000;   /* same as the bezel, so contrast checkers see the real backdrop */
 }
@@ -1557,7 +1556,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .case { grid-template-columns: 1fr; }
   .case img, .case:nth-child(even) img { order: 0; border: 0; border-bottom: 3px solid var(--ink); height: auto; }
 }
-.text-link { font-weight: 700; display: inline-block; padding-block: 0.15rem; }   /* at least 24px tall, the WCAG 2.2 minimum tap size */
+.text-link { font-weight: 700; display: inline-flex; align-items: center; min-height: 2.75rem; }   /* links that stand on their own line: 44px tall, the WCAG AAA tap size */
 .mini-case-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
   gap: 1.5rem; list-style: none; padding: 0; margin: 1.5rem 0 0;
@@ -1711,7 +1710,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .lp-actions { margin-top: auto; padding: 0.9rem 1.25rem 0; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
 .lp-actions .text-link, .lp-actions .liner-btn { margin: 0; }
 @container (max-width: 20rem) { .lp-actions { flex-direction: column; justify-content: center; gap: 0.6rem; } }
-.liner-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0.9rem 1.25rem 0; padding: 0.45rem 0.9rem; cursor: pointer;
+.liner-btn { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0.9rem 1.25rem 0; min-height: 2.75rem; padding: 0.45rem 0.9rem; cursor: pointer;
   font: 700 0.9rem/1 var(--font-body); color: var(--ink); background: var(--white-warm); border: 2px solid var(--ink); border-radius: 999px; box-shadow: 2px 2px 0 var(--ink); }
 .liner-btn::before { content: ""; width: 0.9rem; height: 0.7rem; border: 2px solid var(--red-text); border-radius: 2px;
   background: repeating-linear-gradient(0deg, var(--red-text) 0 1px, transparent 1px 3px); }
@@ -1732,7 +1731,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .liner-proj { margin-top: 0.85rem !important; }
 .liner .liner-note { margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted); }
 .liner .text-link, .liner p, .liner h5, .liner h6, .liner ul { margin-inline: 0; }
-.liner-close { margin-top: 0.9rem; padding: 0.45rem 0.9rem; cursor: pointer; font: 700 0.88rem/1 var(--font-body); color: var(--paper);
+.liner-close { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: 0.9rem; padding: 0.45rem 0.9rem; cursor: pointer; font: 700 0.88rem/1 var(--font-body); color: var(--paper);
   background: var(--ink); border: 2px solid var(--ink); border-radius: 999px; }
 .liner-close::after { content: " \2193"; }
 @media (prefers-reduced-motion: reduce) { .liner { transition: none; } }
@@ -2506,12 +2505,12 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .paint-pick { grid-area: pick; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.3em; }
 .paint-thumb { display: block; width: 100%; height: auto; transform: scaleX(-1); filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .35)); }
 .paint-prev, .paint-next { padding: 0; cursor: pointer; border-radius: 50%;
-  font: 700 0.75em/1 var(--font-body); width: 2.5em; height: 2.5em; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); box-shadow: 0 2px 0 #000; }
+  font: 700 0.75em/1 var(--font-body); width: 2.5em; height: 2.5em; min-width: 2.75rem; min-height: 2.75rem; color: var(--ink); background: var(--paper); border: 2px solid var(--ink); box-shadow: 0 2px 0 #000; }   /* never under 44px (WCAG AAA tap size), even on phones where the card is smaller */
 .paint-prev:hover, .paint-next:hover, .paint-prev:active, .paint-next:active { background: #fbe39b; }
 .paint-name { grid-area: name; margin: 0; align-self: end; font: 700 0.95em/1.3 var(--font-body); color: var(--paper); }
 .paint-label { display: flex; align-items: flex-end; min-height: 2.6em; }   /* always room for two lines, so the card never changes size */
 .paint-count { display: block; font: 400 0.79em/1.3 var(--font-mono); color: #cfc6b4; }
-.paint-race { grid-area: race; justify-self: start; align-self: start; margin-top: 0.4em; padding: 0.55em 1.15em; cursor: pointer;
+.paint-race { grid-area: race; justify-self: start; align-self: start; margin-top: 0.4em; min-height: 2.75rem; padding: 0.55em 1.15em; cursor: pointer;
   font: 700 0.9375em/1 var(--font-body); color: var(--ink); background: var(--yellow-on-ink); border: 2px solid var(--paper); border-radius: 999px; }
 .paint-race:hover, .paint-race:active { background: #fbe39b; }
 /* phones: the same card, a little less oversized so the name still has room beside the car, and centered since it sits on its own under the strip */
@@ -2546,6 +2545,14 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .hl-gold { background: linear-gradient(transparent 45%, var(--gold) 45%); color: inherit; font-weight: 800; padding: 0 0.1em; }
 .deadline-board { margin: 0 0 1.25rem; padding: 1rem 1.25rem; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
 .deadline-title { margin: 0 0 0.5rem; font: 700 0.85rem/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow-on-ink); }
+/* "Deadlines are coming" grows once, about a second after the board comes into view, then again every 15s while it's
+   on screen (script.js adds .is-on); a quick nudge, not a constant blink. Pauses with the pause button. */
+.deadline-title { width: fit-content; transform-origin: 0 50%; --dl-pulse: 1.25; }   /* only as wide as the words */
+@media (max-width: 22.5em) { .deadline-title { --dl-pulse: 1.06; } }   /* the narrowest phones: the title nearly fills the board, so a smaller pulse keeps it inside */
+@media (prefers-reduced-motion: no-preference) {
+  .deadline-board.is-on .deadline-title { animation: deadline-pulse 15s ease-in-out 0.8s infinite; }
+}
+@keyframes deadline-pulse { 0% { transform: none; } 3% { transform: scale(var(--dl-pulse)); } 7%, 100% { transform: none; } }
 .deadline-board dl { margin: 0; display: grid; gap: 0.6rem; }
 .deadline-board dl > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.75rem; align-items: baseline; }
 .deadline-board dt { font-weight: 800; color: var(--yellow-on-ink); }
@@ -2580,8 +2587,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 /* "Same platform" block: its own centered sub-section */
 .compare-intro, .compare-lead { max-width: 46rem; margin-inline: auto; text-align: center; }
 
-.footer-more { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.1rem; margin: 0 0 0.9rem; font-size: 0.9rem; }
-.footer-more a { color: var(--cyan-on-ink); }
+.footer-more { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 1.1rem; margin: 0 0 0.9rem; font-size: 0.9rem; }
+.footer-more a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--cyan-on-ink); }   /* 44px tall tap targets; the extra height replaces the row gap */
 .seo-body h3 { margin-top: 0.4rem; }
 .seo-close { font-weight: 700; }
 @media (max-width: 30em) { .seo-callout { grid-template-columns: 1fr; } }
@@ -2702,7 +2709,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .split-b::before { display: none; }
 }
 
-.read-more { display: inline-block; margin-top: 0.35rem; font-weight: 700; white-space: nowrap; }
+.read-more { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: 0.1rem; font-weight: 700; white-space: nowrap; }
 
 /* About: the line that ties the shop to the web work, set apart */
 .pull-line { margin: 1.5rem 0; padding: 0.9rem 1.2rem; border-left: 8px solid var(--gold); background: var(--white-warm); border-radius: 0 var(--radius) var(--radius) 0;

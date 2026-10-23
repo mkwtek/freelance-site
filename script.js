@@ -854,7 +854,7 @@
   if (!board || !board.querySelector('.deadline-peek') || !('IntersectionObserver' in window)) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   var marker = board.parentNode.querySelectorAll('.legal-list > li')[2], header = document.querySelector('.site-header');
-  var wide = matchMedia('(min-width: 30.01em)');
+  var wide = matchMedia('(min-width: 36.01em)');
   var inView = false, seen = false, playing = false, wait = null, due = false;
   var readPast = function () {
     if (!wide.matches || !marker) return true;

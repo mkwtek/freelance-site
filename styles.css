@@ -351,6 +351,14 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 }
 /* menu labels and the brand stay on one line; below 74em the Menu button takes over (the full 8-item menu needs about 73em) */
 .site-nav a, .brand-name { white-space: nowrap; }
+/* Large text on small phones (narrower than 18.5em, e.g. 20px text on a 320px phone): the name wraps onto two lines
+   and the round pause button is a little smaller, so the name never runs under the button. Below 15em (24px text on a
+   375px phone) the TV logo steps aside too; the name still links home. */
+@media (max-width: 18.5em) {
+  .brand-name { white-space: normal; }
+  .motion-mini svg { width: 3.75rem; height: 3.75rem; }
+}
+@media (max-width: 15em) { .brand-tv { display: none; } }
 
 /* ==========================================================================
    Hero: headline, buttons and badges
@@ -2046,7 +2054,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 }
 .tuner h3 { font-size: 1.1rem; }
 .tuner p { color: var(--ink-soft); font-size: 0.975rem; margin: 0; }
-#process { background: var(--mint-faded); }
+#process { background: var(--mint-faded); overflow-x: clip; }   /* the tuner's dotted lines run past its right edge (trimmed by its clip-path); this keeps them from making the page wider than the screen */
 /* FM tuning band: slim backlit receiver strip, pointer moves to the step you're reading */
 .tuning-band {
   position: relative; overflow: hidden; margin-top: 1.75rem; padding: 0.35rem 1rem 0.45rem;
@@ -2148,7 +2156,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 #about .about-photo img.seal-sticker { position: absolute; right: -1.75rem; bottom: calc(-2rem - 5px); width: calc(36% - 1px); margin: 0;
   border: 0; border-radius: 50%; box-shadow: none; transform: rotate(6deg); filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.25)); }
 #about .about-photo img.about-engine { margin: 3rem 0 0; border: 0; border-radius: 0; box-shadow: none; filter: drop-shadow(4px 5px 0 rgba(34, 31, 27, 0.15)); }
-#about { padding-bottom: 4.5rem; }
+#about { padding-bottom: 4.5rem; overflow-x: clip; }   /* the seal sticker hangs off the photo; on the narrowest phones it would otherwise make the page 1px wider than the screen */
 @media (max-width: 52em) {
   #about .about-photo img.seal-sticker { right: -0.75rem; bottom: calc(-1.25rem - 2px); width: calc(36% + 2px); }
   #about .about-photo img.about-engine { margin-top: 2.75rem; }
@@ -2225,6 +2233,13 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .faq summary::before { content: ""; position: absolute; right: 0.9rem; top: 50%; width: 5.75rem; height: 2.875rem; transform: translateY(-50%);
   background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2092%2046%22%3E%3Cpath%20d%3D%22M31%2024A17%2017%200%200%201%2061%2024%22%20fill%3D%22none%22%20stroke%3D%22%23221f1b%22%20stroke-width%3D%221.4%22%20stroke-dasharray%3D%221.5%202.5%22/%3E%3Cpath%20d%3D%22M29.5%2021.5l-3.5-3.5M62.5%2021.5l3.5-3.5%22%20stroke%3D%22%23221f1b%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%2219%22%20y%3D%2213%22%20text-anchor%3D%22middle%22%20font-family%3D%22Helvetica%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2211%22%20fill%3D%22%23a63a24%22%3ECLOSE%3C/text%3E%3Ctext%20x%3D%2274%22%20y%3D%2213%22%20text-anchor%3D%22middle%22%20font-family%3D%22Helvetica%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2211%22%20fill%3D%22%236b645c%22%3EOPEN%3C/text%3E%3C/svg%3E") center / contain no-repeat; pointer-events: none; }
 .faq[open] summary::before { background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2092%2046%22%3E%3Cpath%20d%3D%22M31%2024A17%2017%200%200%201%2061%2024%22%20fill%3D%22none%22%20stroke%3D%22%23221f1b%22%20stroke-width%3D%221.4%22%20stroke-dasharray%3D%221.5%202.5%22/%3E%3Cpath%20d%3D%22M29.5%2021.5l-3.5-3.5M62.5%2021.5l3.5-3.5%22%20stroke%3D%22%23221f1b%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ctext%20x%3D%2219%22%20y%3D%2213%22%20text-anchor%3D%22middle%22%20font-family%3D%22Helvetica%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2211%22%20fill%3D%22%236b645c%22%3ECLOSE%3C/text%3E%3Ctext%20x%3D%2274%22%20y%3D%2213%22%20text-anchor%3D%22middle%22%20font-family%3D%22Helvetica%2CArial%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2211%22%20fill%3D%22%23a63a24%22%3EOPEN%3C/text%3E%3C/svg%3E"); }
+/* Large text on the narrowest screens (below 17em, e.g. 20px text on a 320px phone): the CLOSE/OPEN plate moves under
+   the question, so the question gets the full width instead of running off the screen */
+@media (max-width: 17em) {
+  .faq summary { padding-right: 1.25rem; padding-bottom: 3.9rem; }
+  .faq summary::before { top: auto; bottom: 0.6rem; transform: none; }
+  .faq summary::after { top: auto; bottom: 0.63rem; }
+}
 
 /* ==========================================================================
    Fan Mail
@@ -2551,7 +2566,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .deadline-peek { display: none; }
 @media (prefers-reduced-motion: no-preference) {
   .deadline-board { margin-top: 6.4rem; }
-  .deadline-peek { display: block; position: absolute; left: 33.333%; translate: -50% 0; bottom: 100%; width: 7.5rem; pointer-events: none; }   /* a third of the way along the board */
+  .deadline-peek { display: block; position: absolute; left: max(33.333%, 19.5rem); translate: -50% 0; bottom: 100%; width: 7.5rem; pointer-events: none; }   /* a third of the way along the board, but never closer to its left edge than 19.5rem, so the wall and "deadlines are coming!" always fit on narrower screens */
   .peek-window { overflow: hidden; margin-bottom: 1.2rem; }   /* he peeks over the wall piece: his window ends at its snowy timber rail */
   /* the top of an ice wall, risen from behind the board, with a snowy wooden timber rail he peeks over; its ends step
      down unevenly into the board; drawn in front of him so his gloves rest on the rail */
@@ -2582,7 +2597,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .deadline-board.is-peek .ps4 { animation: peek-s4 14s linear forwards; }
   .deadline-board.is-peek .deadline-title { animation: peek-title 1.8s ease-in-out 13.1s both; }   /* one slow, gentle pulse right after he ducks back down */
 }
-@media (prefers-reduced-motion: no-preference) and (max-width: 30em) {
+@media (prefers-reduced-motion: no-preference) and (max-width: 36em) {   /* phones and small tablets: below 36em the desktop placement doesn't fit beside the board's left edge */
   .deadline-board { margin-top: 5.1rem; }
   .deadline-peek { width: 5.5rem; left: auto; right: 3.5rem; translate: none; }   /* phones: toward the right, so his bubbles have room on his left; far enough in that the wall's right end lands on the board's flat top edge, not its rounded corner */
   .peek-wall-window { left: -75%; width: 220%; height: 1.05rem; }   /* phones: he stands in the middle of the rail, like on desktop, and the wall drops steeply past his right side */
@@ -2592,6 +2607,12 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .peek-say { font-size: 0.9rem; padding: 0.3rem 0.7rem; }
   .peek-say { bottom: 1.9rem; right: 86%; }   /* beside his face, with room from him and the wall */
   .peek-say.ps4 { width: 8.75rem; right: 80%; white-space: normal; text-align: center; font-size: 0.95rem; }   /* phones: two lines, low, so it stays clear of the text above; a bit narrower and tucked closer to him so it fits on small phones */
+}
+/* large text on small phones (below 19em, e.g. 20px text on a 375px phone): the board is too narrow for him and his
+   bubbles side by side, so he sits this one out, the same as with reduced motion */
+@media (max-width: 19em) {
+  .deadline-peek { display: none; }
+  .deadline-board { margin-top: 0; }
 }
 /* 14s: the wall and then he rise (about 1.4s), "Winter is..." (2.4s), "wait, what?" (2.4s), "oh," (1.9s), the shout (3.8s), he and the wall go back down */
 @keyframes peek-wall { 0% { transform: translateY(101%); } 5%, 93% { transform: none; } 99%, 100% { transform: translateY(101%); } }   /* the wall comes up first and goes last */
@@ -2640,6 +2661,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 
 .lede-2 { display: block; }   /* second sentence on its own line */
 .nowrap { white-space: nowrap; }   /* keeps "Custom-built" from breaking at the hyphen */
+@media (max-width: 22em) { .faq summary .nowrap, .faq-tag { white-space: normal; } }   /* large text on small phones: an FAQ question may break at the hyphen, and the "Worth the read" tag onto two lines, rather than run off the screen */
 .empower { background: linear-gradient(transparent 55%, var(--gold) 55%); padding: 0 0.1em; }
 /* "Same platform" block: its own centered sub-section */
 .compare-intro, .compare-lead { max-width: 46rem; margin-inline: auto; text-align: center; }

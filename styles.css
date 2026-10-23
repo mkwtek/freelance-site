@@ -2558,79 +2558,17 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .seo-callout h3 { margin: 0 0 0.5rem; }
 .seo-callout p { margin: 0.5rem 0 0; }
 .hl-gold { background: linear-gradient(transparent 45%, var(--gold) 45%); color: inherit; font-weight: 800; padding: 0 0.1em; }
-.deadline-board { position: relative; margin: 0 0 1.25rem; padding: 1rem 1.25rem; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
-/* The peek: each time the board comes on screen, a fur-cloaked ranger pops up from behind the board (his window ends at the board's top
-   edge, so he seems to rise from behind it), says "Winter is..." "wait, what?" "oh," "deadlines are coming!" with a
-   pose for each line, and ducks back down. script.js starts it when the board is on screen. Only with motion allowed;
-   the board gets room above it for him. The four poses are lined up on the board's edge with his face in the same spot. */
-.deadline-peek { display: none; }
-@media (prefers-reduced-motion: no-preference) {
-  .deadline-board { margin-top: 6.4rem; }
-  .deadline-peek { display: block; position: absolute; left: max(33.333%, 19.5rem); translate: -50% 0; bottom: 100%; width: 7.5rem; pointer-events: none; }   /* a third of the way along the board, but never closer to its left edge than 19.5rem, so the wall and "deadlines are coming!" always fit on narrower screens */
-  .peek-window { overflow: hidden; margin-bottom: 1.2rem; }   /* he peeks over the wall piece: his window ends at its snowy timber rail */
-  /* the top of an ice wall, risen from behind the board, with a snowy wooden timber rail he peeks over; its ends step
-     down unevenly into the board; drawn in front of him so his gloves rest on the rail */
-  .peek-wall-window { position: absolute; z-index: 1; left: -91.5%; width: 283%; bottom: 0; height: 1.8rem; overflow: hidden; }   /* drawn by icewall3.py (two rows of ice); sized to the drawing's own proportions; its stepped ends come down onto the board's top edge */
-  .peek-wall { display: block; width: 100%; height: 100%; transform: translateY(101%); }
-  .peek-wall--phone { display: none; }   /* phones get their own wall shape (below) */
-  .peek-guy { position: relative; transform: translateY(101%); }
-  .peek-guy img { display: block; width: 100%; height: auto; transform: scaleX(-1); }   /* flipped to face the viewer's left, toward his bubbles */
-  .peek-guy .pf + .pf { position: absolute; inset: 0; }
-  .peek-guy .pf2, .peek-guy .pf3, .peek-guy .pf4 { opacity: 0; }
-  .peek-say { position: absolute; right: 96%; bottom: 2.9rem; margin: 0; padding: 0.5rem 1rem; white-space: nowrap; opacity: 0;
-    font: 700 1rem/1.2 var(--font-body); color: var(--ink); background: #fff7f0; border: 3px solid var(--ink); border-radius: 1.25rem;
-    box-shadow: 3px 3px 0 var(--ink); }
-  /* the tail: an ink triangle with a cream one inside it, pointing at him */
-  .peek-say::before, .peek-say::after { content: ""; position: absolute; top: 55%; border-style: solid; border-color: transparent; }
-  .peek-say::before { right: -1.05rem; margin-top: -0.55rem; border-width: 0.55rem 0 0.55rem 1.05rem; border-left-color: var(--ink); }
-  .peek-say::after { right: -0.6rem; margin-top: -0.32rem; border-width: 0.32rem 0 0.32rem 0.62rem; border-left-color: #fff7f0; }
-  .peek-say.ps4 { font: 400 1.15rem/1.15 var(--font-display); color: var(--red-text); }   /* one line, so it stays in the open space above the board */
-  .deadline-board.is-peek .peek-wall { animation: peek-wall 14s ease-in-out forwards; }
-  .deadline-board.is-peek .peek-guy { animation: peek-rise 14s ease-in-out forwards; }
-  .deadline-board.is-peek .pf1 { animation: peek-f1 14s steps(1) forwards; }
-  .deadline-board.is-peek .pf2 { animation: peek-f2 14s steps(1) forwards; }
-  .deadline-board.is-peek .pf3 { animation: peek-f3 14s steps(1) forwards; }
-  .deadline-board.is-peek .pf4 { animation: peek-f4 14s steps(1) forwards; }
-  .deadline-board.is-peek .ps1 { animation: peek-s1 14s linear forwards; }
-  .deadline-board.is-peek .ps2 { animation: peek-s2 14s linear forwards; }
-  .deadline-board.is-peek .ps3 { animation: peek-s3 14s linear forwards; }
-  .deadline-board.is-peek .ps4 { animation: peek-s4 14s linear forwards; }
-  .deadline-board.is-peek .deadline-title { animation: peek-title 1.8s ease-in-out 13.1s both; }   /* one slow, gentle pulse right after he ducks back down */
-}
-@media (prefers-reduced-motion: no-preference) and (max-width: 36em) {   /* phones and small tablets: below 36em the desktop placement doesn't fit beside the board's left edge */
-  .deadline-board { margin-top: 5.1rem; }
-  .deadline-peek { width: 5.5rem; left: auto; right: 3.5rem; translate: none; }   /* phones: toward the right, so his bubbles have room on his left; far enough in that the wall's right end lands on the board's flat top edge, not its rounded corner */
-  .peek-wall-window { left: -75%; width: 220%; height: 1.05rem; }   /* phones: he stands in the middle of the rail, like on desktop, and the wall drops steeply past his right side */
-  .peek-wall { display: none; }
-  .peek-wall.peek-wall--phone { display: block; }
-  .peek-window { margin-bottom: 0.7rem; }
-  .peek-say { font-size: 0.9rem; padding: 0.3rem 0.7rem; }
-  .peek-say { bottom: 1.9rem; right: 86%; }   /* beside his face, with room from him and the wall */
-  .peek-say.ps4 { width: 8.75rem; right: 80%; white-space: normal; text-align: center; font-size: 0.95rem; }   /* phones: two lines, low, so it stays clear of the text above; a bit narrower and tucked closer to him so it fits on small phones */
-}
-/* large text on small phones (below 19em, e.g. 20px text on a 375px phone): the board is too narrow for him and his
-   bubbles side by side, so he sits this one out, the same as with reduced motion */
-@media (max-width: 19em) {
-  .deadline-peek { display: none; }
-  .deadline-board { margin-top: 0; }
-}
-/* 14s: the wall and then he rise (about 1.4s), "Winter is..." (2.4s), "wait, what?" (2.4s), "oh," (1.9s), the shout (3.8s), he and the wall go back down */
-@keyframes peek-wall { 0% { transform: translateY(101%); } 5%, 93% { transform: none; } 99%, 100% { transform: translateY(101%); } }   /* the wall comes up first and goes last */
-@keyframes peek-rise { 0%, 4% { transform: translateY(101%); } 10%, 86% { transform: none; } 93%, 100% { transform: translateY(101%); } }
-@keyframes peek-f1 { 0% { opacity: 1; } 26%, 100% { opacity: 0; } }
-@keyframes peek-f2 { 0% { opacity: 0; } 26% { opacity: 1; } 44%, 100% { opacity: 0; } }
-@keyframes peek-f3 { 0% { opacity: 0; } 44% { opacity: 1; } 58%, 100% { opacity: 0; } }
-@keyframes peek-f4 { 0% { opacity: 0; } 58%, 100% { opacity: 1; } }
-@keyframes peek-s1 { 0%, 8% { opacity: 0; } 9%, 25% { opacity: 1; } 26%, 100% { opacity: 0; } }
-@keyframes peek-s2 { 0%, 26% { opacity: 0; } 27%, 43% { opacity: 1; } 44%, 100% { opacity: 0; } }
-@keyframes peek-s3 { 0%, 44% { opacity: 0; } 45%, 57% { opacity: 1; } 58%, 100% { opacity: 0; } }
-@keyframes peek-title { 0% { transform: none; } 45%, 55% { transform: scale(var(--dl-pulse)); } 100% { transform: none; } }
-@keyframes peek-s4 { 0%, 58% { opacity: 0; } 59%, 85% { opacity: 1; } 86%, 100% { opacity: 0; } }
+.deadline-board { margin: 0 0 1.25rem; padding: 1rem 1.25rem; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
 .deadline-title { margin: 0 0 0.5rem; font: 700 0.85rem/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--yellow-on-ink); }
-/* "Deadlines are coming" grows once, right after the ranger ducks back down (the peek animation below); it grows from
-   its left edge and stays inside the board */
+/* "Deadlines are coming" grows once, slowly and gently, about a second after the board comes into view, and again each
+   time it scrolls back into view (script.js adds .is-on, and removes it once the board is fully off screen). It grows
+   from its left edge and stays inside the board. Pauses with the pause button. */
 .deadline-title { width: fit-content; transform-origin: 0 50%; --dl-pulse: 1.12; }   /* only as wide as the words */
 @media (max-width: 22.5em) { .deadline-title { --dl-pulse: 1.05; } }   /* the narrowest phones: the title nearly fills the board, so a smaller pulse keeps it inside */
+@media (prefers-reduced-motion: no-preference) {
+  .deadline-board.is-on .deadline-title { animation: deadline-pulse 1.8s ease-in-out 1s both; }
+}
+@keyframes deadline-pulse { 0% { transform: none; } 45%, 55% { transform: scale(var(--dl-pulse)); } 100% { transform: none; } }
 .deadline-board dl { margin: 0; display: grid; gap: 0.6rem; }
 .deadline-board dl > div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.75rem; align-items: baseline; }
 .deadline-board dt { font-weight: 800; color: var(--yellow-on-ink); }

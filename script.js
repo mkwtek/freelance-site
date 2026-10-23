@@ -843,44 +843,15 @@
   update();
 })();
 
-// ---- Accessibility deadline board: the "Deadlines are coming" peek ----
-// Each time the board comes on screen, a moment later the ranger pops up from behind it, says his lines and ducks back
-// down (CSS, .is-peek). Scrolling the board fully off screen resets him, so he does it again the next time it scrolls
-// back into view (on every screen size). If animations are paused, he waits for Play. Never with reduced motion.
-// On screens wider than a phone the board shows up while people are still reading the list above it, so he also waits
-// until the "You receive federal funding." item has scrolled up to the top of the screen (under the sticky header).
+// ---- Accessibility deadline board: "Deadlines are coming" pulses once when the board comes on screen (CSS) ----
+// Fully off screen it resets, so it pulses again the next time someone scrolls back to it.
 (function () {
   var board = document.querySelector('.deadline-board');
-  if (!board || !board.querySelector('.deadline-peek') || !('IntersectionObserver' in window)) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var marker = board.parentNode.querySelectorAll('.legal-list > li')[2], header = document.querySelector('.site-header');
-  var wide = matchMedia('(min-width: 36.01em)');
-  var inView = false, seen = false, playing = false, wait = null, due = false;
-  var readPast = function () {
-    if (!wide.matches || !marker) return true;
-    return marker.getBoundingClientRect().top <= (header ? header.getBoundingClientRect().bottom : 0) + 1;
-  };
-  var peek = function () {
-    if (!seen || playing) return;
-    if (document.documentElement.classList.contains('motion-paused')) { due = true; return; }
-    due = false; playing = true; board.classList.add('is-peek');
-  };
-  var check = function () {                                             // start once the board is in view and they've read down to it
-    if (seen || !inView || !readPast()) return;
-    seen = true; wait = setTimeout(function () { wait = null; peek(); }, 1200);
-  };
-  var reset = function () { clearTimeout(wait); wait = null; seen = false; due = false; playing = false; board.classList.remove('is-peek'); };
-  document.addEventListener('motionchange', function (e) { if (!e.detail.paused && due) peek(); });
-  board.addEventListener('animationend', function (e) { if (e.animationName === 'peek-title') { playing = false; board.classList.remove('is-peek'); } });   // the title's pulse is the last thing to finish
-  var queued = false;
-  addEventListener('scroll', function () {
-    if (!inView || seen || queued) return;
-    queued = true; requestAnimationFrame(function () { queued = false; check(); });
-  }, { passive: true });
+  if (!board || !('IntersectionObserver' in window)) return;
   new IntersectionObserver(function (es) {
     var e = es[es.length - 1];
-    if (e.intersectionRatio >= 0.6) { inView = true; check(); }
-    else if (!e.isIntersecting) { inView = false; if (seen) reset(); }
+    if (e.intersectionRatio >= 0.6) board.classList.add('is-on');
+    else if (!e.isIntersecting) board.classList.remove('is-on');
   }, { threshold: [0, 0.6] }).observe(board);
 })();
 

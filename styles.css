@@ -2584,14 +2584,14 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 }
 @media (prefers-reduced-motion: no-preference) and (max-width: 30em) {
   .deadline-board { margin-top: 5.1rem; }
-  .deadline-peek { width: 5.5rem; left: auto; right: 2.25rem; translate: none; }   /* phones: toward the right, so his bubbles have room on his left; far enough in that the wall's right end lands on the board's flat top edge, not its rounded corner */
-  .peek-wall-window { left: -98%; width: 220%; height: 1.05rem; }   /* phones: the rail runs under all of him and the wall drops steeply just past his right side */
+  .deadline-peek { width: 5.5rem; left: auto; right: 3.5rem; translate: none; }   /* phones: toward the right, so his bubbles have room on his left; far enough in that the wall's right end lands on the board's flat top edge, not its rounded corner */
+  .peek-wall-window { left: -75%; width: 220%; height: 1.05rem; }   /* phones: he stands in the middle of the rail, like on desktop, and the wall drops steeply past his right side */
   .peek-wall { display: none; }
   .peek-wall.peek-wall--phone { display: block; }
   .peek-window { margin-bottom: 0.7rem; }
   .peek-say { font-size: 0.9rem; padding: 0.3rem 0.7rem; }
   .peek-say { bottom: 1.9rem; right: 86%; }   /* beside his face, with room from him and the wall */
-  .peek-say.ps4 { width: 10rem; white-space: normal; text-align: center; font-size: 0.95rem; }   /* phones: two lines, low, so it stays clear of the text above */
+  .peek-say.ps4 { width: 8.75rem; right: 80%; white-space: normal; text-align: center; font-size: 0.95rem; }   /* phones: two lines, low, so it stays clear of the text above; a bit narrower and tucked closer to him so it fits on small phones */
 }
 /* 14s: the wall and then he rise (about 1.4s), "Winter is..." (2.4s), "wait, what?" (2.4s), "oh," (1.9s), the shout (3.8s), he and the wall go back down */
 @keyframes peek-wall { 0% { transform: translateY(101%); } 5%, 93% { transform: none; } 99%, 100% { transform: translateY(101%); } }   /* the wall comes up first and goes last */

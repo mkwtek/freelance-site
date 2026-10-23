@@ -1659,7 +1659,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .sub-head > div { flex: 1 1 28rem; min-width: 0; }
 .sub-head .sub-title { margin-top: 0; }
 .sub-head .section-lede { margin-bottom: 0; }
-.turntable { width: min(15rem, 100%); height: auto; flex: none; }
+.turntable { width: min(18rem, 100%); height: auto; flex: none; }
 .tt-lid { fill: var(--red-text); stroke: var(--ink); stroke-width: 3.5; }
 .tt-lid-panel { fill: #efe6d3; stroke: var(--ink); stroke-width: 2; }
 .tt-hinge { stroke: var(--ink); stroke-width: 3; }
@@ -1687,7 +1687,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .tt-latch { fill: var(--gold); stroke: var(--ink); stroke-width: 1.5; }
 .tt-foot { fill: var(--ink); }
 @media (prefers-reduced-motion: reduce) { .tt-arm { transition: none; transform: none; } }
-@media (max-width: 40em) { .turntable { width: min(11rem, 60%); } }
+@media (max-width: 40em) { .turntable { width: min(16rem, 82%); } }   /* on phones it sits alone under the heading, so it can fill more of the width */
 /* Letter tiles size to their letter (wide W and M included) with room on every side */
 /* Cinerama coloring: letters alternate red and blue, each tile's 3D edge in the opposite color */
 /* Filled tiles: red and blue alternate, cream letters, each 3D edge in the opposite color */

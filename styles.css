@@ -259,7 +259,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .brand-name { font-family: var(--font-display); font-size: 1.35rem; line-height: 1; }
 /* "WEB WORKS" on its own line under the name, smaller and spaced out, so a longer business name still fits the header;
    never under 0.6rem, even when the name shrinks on small phones */
-.brand-sub { display: block; margin-top: 0.3em; font: 800 max(0.55em, 0.6rem)/1 var(--font-body); letter-spacing: 0.32em; text-transform: uppercase; }
+.brand-sub { display: block; margin-top: 0.3em; font: 800 max(0.6em, 0.6rem)/1 var(--font-body); letter-spacing: 0.32em; text-transform: uppercase; }
 .site-nav ul { display: flex; align-items: center; gap: 0.1rem; list-style: none; margin: 0; padding: 0; }
 .site-nav a {
   display: inline-block; padding: 0.55rem 0.45rem; border-radius: 999px;   /* snug enough that the full menu, the logo and the Pause button share one row */
@@ -336,6 +336,13 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .nav-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .nav-toggle { padding: 0.4rem 0.7rem; }
   .brand-name { font-size: clamp(0.78rem, 4vw, 1.35rem); }
+}
+/* most phones (wider than 21em at the browser's text size): the name a little bigger (about 17px at 390px wide) and
+   a little more room between the round pause button's lettering and the menu button; narrower screens and very
+   large text settings keep the sizes above, which already fit */
+@media (min-width: 21em) and (max-width: 30em) {
+  .brand-name { font-size: clamp(0.8rem, 5vw - 2.5px, 1.35rem); }
+  .nav-toggle { margin-left: 0.4rem; }
 }
 @media (max-width: 22em) { .brand-tv { width: 2.1rem; } .brand { gap: 0.45rem; } }   /* the narrowest phones: a smaller TV logo too */
 .site-nav .nav-cta:hover, .site-nav .nav-cta:active { background: var(--gold); color: var(--ink); }
@@ -498,6 +505,9 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .tw-pop { animation-name: hero-pop; }
 }
 @media (prefers-reduced-motion: reduce) { .h1-sign { display: none; } }
+/* phones: the TV has scrolled away by the time people read the headline, so the crescent and the panel trade places
+   three times as often (each shows 15.6s, a third of a TV loop) instead of once per loop */
+@media (prefers-reduced-motion: no-preference) and (max-width: 52em) { .hero-swoop, .lede-pennant, .h1-sign { animation-duration: 31.2s; } }
 @keyframes swap-a { 0%, 44.659% { opacity: 1; } 50%, 94.659% { opacity: 0; } 100% { opacity: 1; } }
 @keyframes swap-b { 0%, 44.659% { opacity: 0; } 50%, 94.659% { opacity: 1; } 100% { opacity: 0; } }
 @keyframes hero-twinkle { 0%, 100% { transform: scale(1); } 50% { transform: scale(.72); } }
@@ -515,10 +525,10 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 
 /* ---------- Phones: hero spacing and shapes that stay on screen ---------- */
 @media (max-width: 52em) {
-  .hero .eyebrow { margin-bottom: 1.4rem; }                 /* breathing room between the gold banner and the headline */
+  .hero .eyebrow { margin-bottom: 1.8rem; }                 /* breathing room between the gold banner and the headline */
   .hero h1 { margin-bottom: 1.5em; }                        /* the intro clears the diamond fins */
   /* lounge panel: narrower and centered, so both ends, the white star and the last diamond stay on screen */
-  .h1-sign { left: calc(50% - 5.1em - 8px); width: calc(10.2em + 16px); height: 3.44em; top: -0.4em; translate: 0 20px; }   /* starts below the banner, nudged 20px lower, 8px wider each side */
+  .h1-sign { left: calc(50% - 5.25em - 14px); width: calc(10.5em + 28px); height: 3.7em; top: -0.5em; translate: 0 20px; }   /* starts below the banner, nudged 20px lower, wide and tall enough that the headline's letters stay inside it */
   .h1-sign .fin { transform-box: view-box; transform-origin: 0 -140px; transform: scaleY(.9); }   /* shorter fin tails */
   /* pennant: kept inside the screen with its notch and point showing; the text sits inside it */
   .lede { padding: 0 2.4rem; }
@@ -1061,6 +1071,15 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   margin-top: calc(var(--tvw) * -0.04211);
 }
 .tv-standby { font: 700 11px var(--font-mono); fill: var(--paper); letter-spacing: 0.12em; }
+/* the test card: a tiny ghost peeks over the PLEASE STAND BY bar and waves, under a faint flicker of static */
+.tv-wave-arm { transform-box: fill-box; transform-origin: 20% 90%; }
+.tv-static line { stroke: #fff; stroke-width: 1.2; opacity: .18; }
+@media (prefers-reduced-motion: no-preference) {
+  .tv-wave-arm { animation: tv-wave 0.5s ease-in-out infinite alternate; }
+  .tv-static { animation: tv-static 0.24s steps(2) infinite; }
+}
+@keyframes tv-wave { from { transform: rotate(-18deg); } to { transform: rotate(16deg); } }
+@keyframes tv-static { from { transform: translateY(0); } to { transform: translateY(5px); } }
 .tv-scan { animation: flicker 3.2s steps(1) infinite; }
 .ghost, .knob { transform-box: view-box; }
 .ghost { animation: peek 6s ease-in-out infinite; transform-origin: 323px 236px; animation-duration: 5.2s; animation-delay: 0.09s; }
@@ -1674,6 +1693,11 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .turntable { width: min(18rem, 100%); height: auto; flex: none; }
 .tt-lid { fill: var(--red-text); stroke: var(--ink); stroke-width: 3.5; }
 .tt-lid-panel { fill: #efe6d3; stroke: var(--ink); stroke-width: 2; }
+/* a chrome nameplate on the lid, the way portable record players were badged (generic words, no brand) */
+.tt-plate { fill: #d6d1c7; stroke: var(--ink); stroke-width: 1.8; }
+.tt-plate-shine { stroke: #fff; stroke-width: 1.4; opacity: .7; }
+.tt-plate-name { font: 400 15px Yellowtail, cursive; fill: var(--red-text); text-anchor: middle; }
+.tt-plate-sub { font: 700 6px var(--font-mono); letter-spacing: 0.22em; fill: var(--ink); text-anchor: middle; }
 .tt-hinge { stroke: var(--ink); stroke-width: 3; }
 .tt-deck { fill: #efe6d3; stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
 .tt-platter { fill: #8f8676; stroke: var(--ink); stroke-width: 2; }
@@ -1734,14 +1758,14 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   transform: translateY(102%) rotate(1.5deg); transition: transform .5s cubic-bezier(.25, 1.2, .45, 1); }
 .liner.is-out { transform: none; }
 .liner-title { margin: 0 0 0.6rem; font: 400 1.35rem/1.1 'Pirata One', var(--font-display); color: var(--red-text); }
-.liner-title span { display: block; margin-top: 0.2rem; font: 700 0.95rem/1.3 var(--font-body); color: var(--ink); }
+.liner-title span { display: block; margin-top: 0.2rem; font: 700 1rem/1.3 var(--font-body); color: var(--ink); }
 .liner-title:focus { outline: none; }
-.liner-sub { margin: 0.75rem 0 0.2rem; font: 700 0.72rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-dark); }
-.liner p, .liner li { margin: 0; font-size: 0.92rem; line-height: 1.5; color: var(--ink-soft); }
+.liner-sub { margin: 0.75rem 0 0.2rem; font: 700 0.8rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-dark); }
+.liner p, .liner li { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--ink-soft); }
 .liner ul { margin: 0; padding-left: 1.1rem; }
 .liner li::marker { color: var(--red-text); }
 .liner-proj { margin-top: 0.85rem !important; }
-.liner .liner-note { margin-top: 0.5rem; font-size: 0.8rem; color: var(--muted); }
+.liner .liner-note { margin-top: 0.5rem; font-size: 0.875rem; color: var(--muted); }
 .liner .text-link, .liner p, .liner h5, .liner h6, .liner ul { margin-inline: 0; }
 .liner-close { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: 0.9rem; padding: 0.45rem 0.9rem; cursor: pointer; font: 700 0.88rem/1 var(--font-body); color: var(--paper);
   background: var(--ink); border: 2px solid var(--ink); border-radius: 999px; }
@@ -2231,7 +2255,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 /* ---------- FAQ: a rotary phone beside the heading ---------- */
 .faq-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 18.9rem); gap: 1rem 2rem; align-items: center; }   /* phone beside the heading, big enough to read the words on its dial */
 .faq-phone { display: block; width: 100%; height: auto; transform: rotate(2deg); filter: drop-shadow(5px 6px 0 rgba(34, 31, 27, 0.18)); }
-@media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; } .faq-phone { width: min(15.35rem, 76%); margin: 0 auto; }
+@media (max-width: 40em) { .faq-head { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; } .faq-phone { width: min(17rem, 84%); margin: 0 auto; }
 }
 /* FAQ dial with printed CLOSE / OPEN labels; the knob's pointer turns between them */   
 .faq summary::before { content: ""; position: absolute; right: 0.9rem; top: 50%; width: 5.75rem; height: 2.875rem; transform: translateY(-50%);
@@ -2303,6 +2327,21 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .mailbox.is-up .mb-flag { transform: none; }
 @media (prefers-reduced-motion: no-preference) { .mailbox.is-up .mb-flag { animation: mb-flag-up 0.9s cubic-bezier(.3, 1.6, .5, 1) both; } }
 @keyframes mb-flag-up { from { transform: rotate(90deg); } to { transform: none; } }
+/* the door starts closed over the mail and drops open (hinged along the bottom of the opening), then the flag goes up */
+.mb-door-closed { fill: #d9d5cd; stroke: var(--ink); stroke-width: 3.5; stroke-linejoin: round; display: none; }
+.mb-handle { fill: var(--ink); display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .mailbox.is-armed .mb-door-closed, .mailbox.is-armed .mb-handle { display: inline; transform-box: view-box; transform-origin: 70px 112px; }
+  .mailbox.is-armed :is(.mb-door, .mb-door-edge) { transform-box: view-box; transform-origin: 70px 112px; transform: scaleY(0); }
+  .mailbox.is-armed .mb-mail { opacity: 0; }
+  .mailbox.is-armed.is-up :is(.mb-door-closed, .mb-handle) { animation: mb-close-out 0.35s ease-in both; }
+  .mailbox.is-armed.is-up :is(.mb-door, .mb-door-edge) { animation: mb-open-in 0.45s cubic-bezier(.3, 1.5, .5, 1) 0.35s both; }
+  .mailbox.is-armed.is-up .mb-mail { animation: mb-mail-in 0.4s ease-out 0.6s both; }
+  .mailbox.is-armed.is-up .mb-flag { animation-delay: 0.9s; }
+}
+@keyframes mb-close-out { from { transform: none; } to { transform: scaleY(0); } }
+@keyframes mb-open-in { from { transform: scaleY(0); } to { transform: none; } }
+@keyframes mb-mail-in { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 40em) { .mailbox { width: min(8.5rem, 50%); } }
 .pc-msg .pc-sign { font: 400 1.9rem/1.1 Yellowtail, cursive; color: #2e3f6b; margin: 0.2rem 0 0; }
 @media (max-width: 40em) { .mailbox { width: min(9.5rem, 50%); } }
@@ -2386,11 +2425,11 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @media (max-width: 52em) { .contact-grid { grid-template-columns: 1fr; } }
 /* Contact: the moon and stars sit up in the open space under the typewriter, clear of the snowmobile scene along the
    bottom. One column (tablets and phones): smaller, low in the sky above the snow, just below the form. */
-.night-sky--contact { bottom: clamp(6.25rem, 15vw - 1.65rem, 10.75rem); }   /* rises with the typewriter as the screen widens, always just below it */
-@media (max-width: 52em) { .night-sky--contact { display: block; width: min(18rem, 55%); bottom: 1.75rem; opacity: .8; } }
+.night-sky--contact { bottom: calc(clamp(6.25rem, 15vw - 1.65rem, 10.75rem) + 6px); }   /* rises with the typewriter as the screen widens, always just below it */
+@media (max-width: 52em) { .night-sky--contact { display: block; width: min(18rem, 55%); bottom: calc(1.75rem + 6px); opacity: .8; } }
 /* Contact: a 1950s portable typewriter under the email line */
 .typewriter50 { display: block; width: min(17.6rem, 77%); height: auto; margin-top: 1.5rem; position: relative; z-index: 1; }
-@media (max-width: 52em) { .typewriter50 { width: min(13.2rem, 61.6%); margin-top: 1.25rem; } }
+@media (max-width: 52em) { .typewriter50 { width: min(15rem, 72%); margin-top: 1.25rem; } }   /* about the same size as the FAQ phone */
 @media (min-width: 52.01em) {
   .contact-grid { align-items: stretch; }
   .contact-copy { display: flex; flex-direction: column; }
@@ -2472,6 +2511,13 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .fl-rule::before, .fl-rule::after { content: ""; flex: 1; height: 2px; background: #ebbd4e; }
 /* footer order: name, what I do, the tagline logo, where */
 .footer-role { margin: 0 0 0.6rem; }
+/* phones: the badge, name and tagline a little bigger; the page links and the copyright line stay as they are */
+@media (max-width: 40em) {
+  .pnw-badge { width: 13.5rem; }
+  .footer-brand { font-size: 1.8rem; }
+  .footer-role { font-size: 1.0625rem; }
+  .footer-logo { font-size: clamp(1.45rem, 6.8vw, 2.2rem); }
+}
 /* footer logo: the divider sits midway between "Analog soul" (allowing for its gold shadow) and "DIGITAL SOLUTIONS" */
 
 /* ==========================================================================
@@ -2483,6 +2529,12 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .finish::before { content: ""; display: block; height: 24px;
   background: repeating-conic-gradient(var(--paper) 0 25%, var(--ink) 0 50%) 0 0 / 24px 24px; }
 .finish-head { padding: 2.25rem 1rem 0; }
+/* phones: the crest, title and lines a little bigger */
+@media (max-width: 40em) {
+  .finish-flag { width: 4.3rem; }
+  .finish-title { font-size: clamp(2.3rem, 7vw, 3.25rem); }
+  .finish-sub, .finish-slogan { font-size: 1.125rem; }
+}
 .finish-flag { display: block; width: clamp(3.6rem, 7vw, 4.8rem); height: auto; margin: 0 auto 0.35rem; }   /* crossed checkered flags over the title, like a crest */
 .finish-title { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3.25rem); color: var(--yellow-on-ink); margin: 0;
   text-shadow: 3px 3px 0 var(--red-text); font-weight: 400; }
@@ -2514,8 +2566,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 /* Finish Line paint shop: after the first race, cycle the rat rod's paint jobs and send the chosen one down the strip.
    It sits in the race's bottom-left corner, under the road; script.js lowers the section just enough that it never touches the road. */
 .paint-shop { position: absolute; left: max(1rem, 2.5vw); bottom: 1rem; z-index: 2; font-size: 1.5rem;   /* everything inside scales with this */
-  width: min(21em, calc(100% - 2rem));
-  display: grid; visibility: hidden; grid-template-columns: minmax(0, 11.5em) 1fr; grid-template-areas: "title title" "pick name" "pick race";
+  width: min(22.5em, calc(100% - 2rem));   /* room for a bigger car, so the paint job shows */
+  display: grid; visibility: hidden; grid-template-columns: minmax(0, 13em) 1fr; grid-template-areas: "title title" "pick name" "pick race";
   column-gap: 0.75em; align-items: center; padding: 0.55em 0.75em 0.65em; text-align: left;
   background: #2b2723; border: 2px solid var(--paper); border-radius: 0.8em; box-shadow: 4px 4px 0 rgba(0, 0, 0, .45); }
 .paint-shop.is-ready { visibility: visible; animation: shop-in .45s ease-out; }   /* its space is saved from the start (hidden until the first race is over), so the page never jumps when it appears */
@@ -2532,8 +2584,9 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .paint-race { grid-area: race; justify-self: start; align-self: start; margin-top: 0.4em; min-height: 2.75rem; padding: 0.55em 1.15em; cursor: pointer;
   font: 700 0.9375em/1 var(--font-body); color: var(--ink); background: var(--yellow-on-ink); border: 2px solid var(--paper); border-radius: 999px; }
 .paint-race:hover, .paint-race:active { background: #fbe39b; }
-/* phones: the same card, a little less oversized so the name still has room beside the car, and centered since it sits on its own under the strip */
-@media (max-width: 40em) { .paint-shop { font-size: 1.15rem; grid-template-columns: minmax(0, 1.15fr) 1fr; left: 50%; translate: -50% 0; } }
+/* phones: the car gets its own full-width row (arrows on either side) so the paint job is easy to see, with the paint's
+   name and the Race button underneath; centered since it sits on its own under the strip */
+@media (max-width: 40em) { .paint-shop { font-size: 1.15rem; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "title title" "pick pick" "name race"; left: 50%; translate: -50% 0; } }
 .paint-prev:focus-visible, .paint-next:focus-visible, .paint-race:focus-visible { outline: 3px solid var(--yellow-on-ink); outline-offset: 3px; }
 @media (prefers-reduced-motion: reduce) { .paint-shop.is-ready { animation: none; } }
 
@@ -2775,6 +2828,15 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .send-scene.is-on .leg-b { animation: leg-b 15s linear 1 forwards; }
 }
 .snow-puff, .dazed { transform-box: fill-box; transform-origin: center; }
+/* before the run starts (motion allowed), show its opening frame instead of the crash: no rider or sled yet, and on
+   phones the camera already at the start, so nothing jumps when it begins */
+@media (prefers-reduced-motion: no-preference) {
+  .send-scene:not(.is-on) :is(.rider, .sled) { visibility: hidden; }
+}
+@media (prefers-reduced-motion: no-preference) and (max-width: 40em) {
+  .send-scene:not(.is-on) .sled-cam { transform: translateX(360px); }
+  .send-scene:not(.is-on) .sled-trees { transform: translateX(180px); }
+}
 /* the two dizzy stars circle his head in a flat oval, a little bigger as they pass in front and smaller behind,
    opposite each other; still picture: one on each side */
 .dz { transform-box: fill-box; transform-origin: center; }

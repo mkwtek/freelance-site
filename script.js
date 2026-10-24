@@ -205,6 +205,7 @@
   // ---- Mailbox flag swings up a second after the mailbox is well on screen ----
   var mailbox = document.querySelector('.mailbox');
   if (mailbox) {
+    if (!reduceMotion) mailbox.classList.add('is-armed');            // door starts closed (CSS), drops open with the flag
     if (reduceMotion || !('IntersectionObserver' in window)) {
       mailbox.classList.add('is-up');
     } else {
@@ -215,12 +216,15 @@
     }
   }
 
-  // ---- Record player: the tonearm drops onto the record a second after it's well on screen (hover still works) ----
+  // ---- Record player: the tonearm drops onto the record once it's mostly on screen, and again each time it comes back (hover still works) ----
   var turntable = document.querySelector('.turntable');
   if (turntable && !reduceMotion && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries, obs) {
-      if (entries[0].isIntersecting) { obs.disconnect(); setTimeout(function () { turntable.classList.add('is-playing'); }, 1000); }
-    }, { threshold: 1, rootMargin: '0px 0px -25% 0px' }).observe(turntable);
+    var ttWait = null;                                                // plays each time it comes back on screen
+    new IntersectionObserver(function (entries) {
+      var e = entries[entries.length - 1];
+      if (e.intersectionRatio >= 0.6) { if (!ttWait && !turntable.classList.contains('is-playing')) ttWait = setTimeout(function () { ttWait = null; turntable.classList.add('is-playing'); }, 700); }
+      else if (!e.isIntersecting) { clearTimeout(ttWait); ttWait = null; turntable.classList.remove('is-playing'); }
+    }, { threshold: [0, 0.6] }).observe(turntable);
   }
 
   // ---- Under the hood: the hood swings open each time the car comes on screen ----
@@ -513,7 +517,7 @@
   var quad = function (s0, s1, t0, t1) { return 'M' + pt(P(s0, t0)) + 'L' + pt(P(s1, t0)) + 'L' + pt(P(s1, t1)) + 'L' + pt(P(s0, t1)) + 'Z'; };
 
   var NARROW = strip.clientWidth < 600;               // phones: a shorter strip so everything draws about a third bigger
-  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = NARROW ? 4.7 : 5.25 / K, S0 = -0.05, VW = NARROW ? 820 : 1200;
+  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = NARROW ? 4.15 : 5.25 / K, S0 = -0.05, VW = NARROW ? 750 : 1200;
   var svg = '';
   svg += '<defs><radialGradient id="puffg"><stop offset="0" stop-color="#fbf7ef"/><stop offset=".6" stop-color="#ddd6ca" stop-opacity=".9"/><stop offset="1" stop-color="#ddd6ca" stop-opacity="0"/></radialGradient></defs>';
   // shoulders, road, edge lines
@@ -604,7 +608,7 @@
     return '<g class="flag ' + cls + '"><g transform="translate(' + (b[0] + (flip ? 4 : -4) * FS).toFixed(1) + ',' + (b[1] - POLE - 52 * FS).toFixed(1) + ') scale(' + (flip ? -FS : FS) + ',' + FS + ')">' + flag + '</g></g>';
   };
   svg += onPole(nb, 'flag-a', true) + onPole(fb, 'flag-b', false);
-  var top = Math.min(treeTop - 6, fb[1] - POLE - 56 * FS, P(S0, LANE_T)[1] - REAR[1]) - 10, bottom = P(FIN + 0.18, 0)[1] + 22;   // top includes the flag tips on the poles
+  var top = Math.min(treeTop - 6, fb[1] - POLE - 56 * FS, P(S0, LANE_T)[1] - REAR[1]) - 10, bottom = Math.max(P(FIN + 0.18, 0)[1] + 22, P((VW + 0.45 * A[0]) / F[0], -0.45)[1] + 4);   // down to where the near shoulder leaves the right edge, so the road isn't cut off flat   // top includes the flag tips on the poles
   strip.innerHTML = '<svg class="race" viewBox="0 ' + top.toFixed(0) + ' ' + VW + ' ' + (bottom - top).toFixed(0) + '" aria-hidden="true" focusable="false">' + svg + '</svg>';
   var el = strip.querySelector('svg'), car = el.querySelector('.car'), tilt = el.querySelector('.car-tilt'), smoke = el.querySelector('.smoke');
   var lights = [0, 1, 2, 3, 4].map(function (i) { return el.querySelectorAll('.lt-' + i); });
@@ -887,3 +891,4 @@
     else if (!e.isIntersecting && inView) { inView = false; clearTimeout(rest); due = false; scene.classList.remove('is-on'); }
   }, { threshold: [0, 0.9] }).observe(scene);
 })();
+

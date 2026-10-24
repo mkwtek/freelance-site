@@ -2780,7 +2780,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .dz1 { transform: translate(-22px, 2px); }
 .dz2 { transform: translate(22px, -2px); }
 @media (prefers-reduced-motion: no-preference) {
-  .send-scene.is-on .dz { animation: dz-orbit 1.6s linear 1 forwards; }
+  .send-scene.is-on .dz { animation: dz-orbit 1.6s linear infinite; }   /* keeps circling (the rest of the scene plays once); they only show while he's dazed */
   .send-scene.is-on .dz2 { animation-delay: -0.8s; }
 }
 @keyframes dz-orbit {

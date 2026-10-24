@@ -262,19 +262,22 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .brand-sub { display: block; margin-top: 0.3em; font: 800 max(0.55em, 0.6rem)/1 var(--font-body); letter-spacing: 0.32em; text-transform: uppercase; }
 .site-nav ul { display: flex; align-items: center; gap: 0.1rem; list-style: none; margin: 0; padding: 0; }
 .site-nav a {
-  display: inline-block; padding: 0.55rem 0.5rem; border-radius: 999px;   /* snug enough that the full menu, the logo and the Pause button share one row */
-  color: var(--ink); font-weight: 600; text-decoration: none;
+  display: inline-block; padding: 0.55rem 0.45rem; border-radius: 999px;   /* snug enough that the full menu, the logo and the Pause button share one row */
+  color: var(--ink); font-size: 1.03rem; font-weight: 600; text-decoration: none;   /* a touch smaller than body text, so the full menu fits within the page width */
 }
 /* wide screens: no room for "Home" in the menu (the logo already links home), so it's hidden from view but still in
    the menu for keyboard and screen reader users; when it gets keyboard focus it shows as a tab just under the menu */
 .nav-home { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-@media (min-width: 68.01em) {
+@media (min-width: 71.01em) {
   .nav-home:focus-within { width: auto; height: auto; overflow: visible; clip: auto; top: calc(100% + 0.9rem); }
   .nav-home:focus-within a { background: var(--paper); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
 }
 .site-nav a:hover, .site-nav a[aria-current] { background: var(--paper-dark); }   /* the section you are reading shows in the menu, using the hover look */
 .site-nav .nav-cta { background: var(--ink); color: var(--paper); margin-left: 0.4rem; }
 .site-nav .nav-cta:hover { background: var(--red-text); }
+/* "Under the Hood" shortens to "Under Hood" on narrower desktop windows, just before the Menu button takes over;
+   screen readers still hear "the", and the phone menu always shows the full name */
+@media (min-width: 71.01em) and (max-width: 73em) { .nav-the { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
 .nav-toggle {
   display: none; align-items: center; gap: 0.5rem;
   min-height: 2.75rem; padding: 0.4rem 0.9rem;
@@ -305,7 +308,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .motion-mini:focus-visible .mm-focus { visibility: visible; }
 .site-nav { margin-left: auto; }
 @media (prefers-reduced-motion: reduce) { .motion-mini { display: none; } }   /* nothing moves, so there's nothing to pause */
-@media (max-width: 68em) {
+@media (max-width: 71em) {
   .nav-home { position: static; width: auto; height: auto; overflow: visible; clip: auto; }   /* in the dropdown menu, a plain "Home" link at the top */
   .nav-toggle { display: inline-flex; order: 1; }
   .header-inner { gap: 0.5rem; }
@@ -342,7 +345,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   background: var(--bars); border-block: 2px solid var(--ink);
 }
 /* Phone menu open: the color-bar stripe drops to the bottom of the menu */
-@media (max-width: 68em) {
+@media (max-width: 71em) {
   .site-nav.is-open { border-bottom: 0; }
   .site-nav.is-open::after {
     content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 0.5rem;
@@ -350,7 +353,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   }
   .site-header:has(.site-nav.is-open)::after { display: none; }
 }
-/* menu labels and the brand stay on one line; below 68em the Menu button takes over (the full menu needs about 67em) */
+/* menu labels and the brand stay on one line; below 71em the Menu button takes over (the full menu, with "Under Hood", needs about 70.9em) */
 .site-nav a, .brand-name { white-space: nowrap; }
 /* Large text on small phones (narrower than 18.5em, e.g. 20px text on a 320px phone): the name wraps onto two lines
    and the round pause button is a little smaller, so the name never runs under the button. Below 15em (24px text on a

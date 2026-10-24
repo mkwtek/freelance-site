@@ -268,7 +268,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 /* wide screens: no room for "Home" in the menu (the logo already links home), so it's hidden from view but still in
    the menu for keyboard and screen reader users; when it gets keyboard focus it shows as a tab just under the menu */
 .nav-home { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-@media (min-width: 74.01em) {
+@media (min-width: 68.01em) {
   .nav-home:focus-within { width: auto; height: auto; overflow: visible; clip: auto; top: calc(100% + 0.9rem); }
   .nav-home:focus-within a { background: var(--paper); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
 }
@@ -305,7 +305,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .motion-mini:focus-visible .mm-focus { visibility: visible; }
 .site-nav { margin-left: auto; }
 @media (prefers-reduced-motion: reduce) { .motion-mini { display: none; } }   /* nothing moves, so there's nothing to pause */
-@media (max-width: 74em) {
+@media (max-width: 68em) {
   .nav-home { position: static; width: auto; height: auto; overflow: visible; clip: auto; }   /* in the dropdown menu, a plain "Home" link at the top */
   .nav-toggle { display: inline-flex; order: 1; }
   .header-inner { gap: 0.5rem; }
@@ -342,7 +342,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   background: var(--bars); border-block: 2px solid var(--ink);
 }
 /* Phone menu open: the color-bar stripe drops to the bottom of the menu */
-@media (max-width: 74em) {
+@media (max-width: 68em) {
   .site-nav.is-open { border-bottom: 0; }
   .site-nav.is-open::after {
     content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 0.5rem;
@@ -350,7 +350,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   }
   .site-header:has(.site-nav.is-open)::after { display: none; }
 }
-/* menu labels and the brand stay on one line; below 74em the Menu button takes over (the full 8-item menu needs about 73em) */
+/* menu labels and the brand stay on one line; below 68em the Menu button takes over (the full menu needs about 67em) */
 .site-nav a, .brand-name { white-space: nowrap; }
 /* Large text on small phones (narrower than 18.5em, e.g. 20px text on a 320px phone): the name wraps onto two lines
    and the round pause button is a little smaller, so the name never runs under the button. Below 15em (24px text on a
@@ -1537,7 +1537,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .dial-ch[aria-checked="true"] { background: #1c1a18; box-shadow: none; color: var(--gold); text-decoration: underline 2px; text-underline-offset: 3px; }
 .dial-ch:focus-visible { outline: 3px solid var(--gold); outline-offset: 1px; }
 .dial-ch { font-size: 7.5cqi; }
-.check-note { margin-top: calc(0.5rem + 5px); font-size: 0.875rem; font-style: normal; color: var(--ink-soft); }
+.check-note { max-width: 46rem; margin: 0.9rem 0 0; font-size: 0.875rem; font-style: normal; color: var(--ink-soft); }   /* under the box, so the box holds just the offer */
 /* Channel picked on the dial: its CH badge turns gold, matching the dial's selected number */
 .channel.is-picked .channel-num { background: var(--gold) !important; }
 

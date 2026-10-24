@@ -2751,7 +2751,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .sled-svg text { font: 700 24px var(--font-body); fill: #221f1b; }
 .sled-svg .send-it-word { font: 400 32px var(--font-display); fill: #a63a24; transform-box: view-box; transform-origin: 0 0; }   /* "send it!" punches out of the bubble; it sits in a group whose 0,0 is the middle of the word, so it grows from its center the same way in every browser (Safari scaled it from the corner, out of the bubble) */
 .sled, .rider, .b1, .b2, .b4 { transform-box: view-box; transform-origin: 0 0; }
-.arm-up, .bubble, .snow-puff, .dazed { opacity: 0; }   /* .b4 rides off with him */
+.arm-up, .arm-ride, .bubble, .snow-puff, .dazed { opacity: 0; }   /* .b4 rides off with him; still picture: sitting in the snow, so his arm rests at his side (.arm-rest) instead of reaching for the handlebar */
 .sled { transform: translate(1100px, 200px) skewX(-28deg) scale(-1, .58); }   /* on its side, facing back */
 .rider { transform: translate(1240px, 166px) rotate(360deg) translate(20px, 60px); }
 .dazed, .b3 { opacity: 1; }   /* still picture: the last moment */
@@ -2761,6 +2761,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .send-scene.is-on .sled { animation: sled-run 15s linear 1 forwards; }
   .send-scene.is-on .arm-up { animation: arm-up 15s steps(1) 1 forwards; }
   .send-scene.is-on .arm-ride { animation: arm-ride 15s steps(1) 1 forwards; }
+  .send-scene.is-on .arm-rest { animation: arm-rest 15s steps(1) 1 forwards; }
   .send-scene.is-on .b1 { animation: b1 15s linear 1 forwards, bubble1-run 15s linear 1 forwards; }
   .send-scene.is-on .send-it-word { animation: send-pulse 15s ease-in-out 1 forwards; }   /* said louder once, just before the jump */
   .send-scene.is-on .b2 { animation: b2 15s linear 1 forwards, bubble2-run 15s linear 1 forwards; }
@@ -2813,7 +2814,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @media (max-width: 40em) and (prefers-reduced-motion: no-preference) {
   .send-scene.is-on .sled-cam { animation: sled-cam 15s linear 1 forwards; }
   .send-scene.is-on .sled-trees { animation: sled-trees 15s linear 1 forwards; }
-  .send-scene.is-on :is(.rider, .sled, .arm-up, .arm-ride, .b1, .send-it-word, .b2, .b3, .b4, .snow-puff, .dazed,
+  .send-scene.is-on :is(.rider, .sled, .arm-up, .arm-ride, .arm-rest, .b1, .send-it-word, .b2, .b3, .b4, .snow-puff, .dazed,
     .legs-sit, .legs-walk, .leg-a, .leg-b, .sled-cam, .sled-trees) { animation-duration: 16.5s; }
 }
 /* a solid cream outline around the rider and sled (the cream-edge filter in the scene's drawing, about 1.5px on screen on desktop, a little over 1px on phones),
@@ -2821,7 +2822,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .sled, .rider { filter: url(#cream-edge); }
 /* SLED-KEYFRAMES (generated: positions every quarter percent of the loop) */
 @keyframes arm-up { 0%, 26.5% { opacity: 0; } 27.0%, 35.5% { opacity: 1; } 36.0%, 70.5% { opacity: 0; } 71.0%, 92.0% { opacity: 1; } 92.5%, 100% { opacity: 0; } }
-@keyframes arm-ride { 0%, 100% { opacity: 1; } }
+@keyframes arm-ride { 0%, 37.5% { opacity: 1; } 37.6%, 62.5% { opacity: 0; } 62.6%, 100% { opacity: 1; } }
+@keyframes arm-rest { 0%, 37.5% { opacity: 0; } 37.6%, 62.5% { opacity: 1; } 62.6%, 100% { opacity: 0; } }
 @keyframes b1 { 0%, 3% { opacity: 0; } 5%, 26.5% { opacity: 1; } 28.0%, 100% { opacity: 0; } }
 @keyframes send-pulse { 0%, 18.5% { transform: none; } 19.5%, 25.5% { transform: scale(1.3); } 26.5%, 100% { transform: none; } }
 @keyframes b2 { 0%, 27.5% { opacity: 0; } 28.5%, 35.5% { opacity: 1; } 36.5%, 100% { opacity: 0; } }

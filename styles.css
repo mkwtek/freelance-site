@@ -727,8 +727,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 }
 /* ---------- Wider screens: the little ghost rises out of "you" and glides on one gentle arc into the TV screen, with a quick tucked triple spin near the end.
    Once per 46.8s cycle (3.1s to 7.5s) he reaches the glass right as the first channel change happens, so it looks
-   like he possesses the set: a flash and rings on the glass as it flips to "Please stand by". Then the big ghost
-   slides out from behind the set (8.8s) and pulls the lamp chain (see "The ghost story"). script.js measures the
+   like he possesses the set: a flash and rings on the glass as it flips to "Please stand by", where he waves. After
+   the next channel change the big ghost slides out from behind the set (13.6s) and pulls the lamp chain (see "The ghost story"). script.js measures the
    distance to the screen (--dive-x, --dive-y) so it lands on the glass at any width. On phones the "haunt you" line
    sits well below the TV, so that ghost keeps the drift above and a second small ghost (.tv-diver) does the dive. ---------- */
 @media (min-width: 52.01em) and (prefers-reduced-motion: no-preference) {
@@ -1071,14 +1071,17 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   margin-top: calc(var(--tvw) * -0.04211);
 }
 .tv-standby { font: 700 11px var(--font-mono); fill: var(--paper); letter-spacing: 0.12em; }
-/* the test card: a tiny ghost peeks over the PLEASE STAND BY bar and waves, under a faint flicker of static */
+/* the test card: the whole little ghost floats above the PLEASE STAND BY bar, bobbing and waving, under a faint flicker of static */
 .tv-wave-arm { transform-box: fill-box; transform-origin: 20% 90%; }
+.tv-ghost-bob { transform-box: fill-box; }
 .tv-static line { stroke: #fff; stroke-width: 1.2; opacity: .18; }
 @media (prefers-reduced-motion: no-preference) {
   .tv-wave-arm { animation: tv-wave 0.5s ease-in-out infinite alternate; }
+  .tv-ghost-bob { animation: tv-ghost-bob 1.6s ease-in-out infinite alternate; }
   .tv-static { animation: tv-static 0.24s steps(2) infinite; }
 }
 @keyframes tv-wave { from { transform: rotate(-18deg); } to { transform: rotate(16deg); } }
+@keyframes tv-ghost-bob { from { transform: translateY(0); } to { transform: translateY(-2.5px); } }
 @keyframes tv-static { from { transform: translateY(0); } to { transform: translateY(5px); } }
 .tv-scan { animation: flicker 3.2s steps(1) infinite; }
 .ghost, .knob { transform-box: view-box; }
@@ -1429,14 +1432,15 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 }
 /* ---------- The ghost story, one 46.8s cycle that replays exactly, in step with the TV ----------
    0s: color bars, room dark, the big ghost hidden behind the TV. 3.1s to 7.5s: the small ghost dives into the
-   screen and possesses it, so the channel changes to "Please stand by". 8.8s: the big ghost slides out from
-   behind the set; 12.8s: he pulls the lamp chain and the room lights up (script.js). He stays out through the
+   screen and possesses it, so the channel changes to "Please stand by", where he waves from inside the screen.
+   13s: as the screen goes to static between channels, the big ghost slides out from behind the set (only one
+   ghost is ever on screen); 18.0s: he pulls the lamp chain and the room lights up (script.js). He stays out through the
    tagline, the PSA and "That's good to know", turns the lamp off at 44s, slips back behind the TV, and it all
    starts again. ---------- */
 @media (prefers-reduced-motion: no-preference) { .ghost-enter { animation: ghost-away 46.8s ease-in-out infinite; } }
 @keyframes ghost-away {
-  0%, 18.803% { transform: translateX(-78px); }   /* hidden until 8.8s */
-  21.154%, 96.154% { transform: none; }            /* out by 9.9s, until 45s (after the lamp goes off) */
+  0%, 27.7% { transform: translateX(-78px); }     /* hidden until 13s, while he's waving inside the TV */
+  30.05%, 96.154% { transform: none; }             /* slides out through the static as the channel changes, out by 14.1s, until 45s */
   98.718%, 100% { transform: translateX(-78px); }  /* back behind the TV by 46.2s */
 }
 /* the TV words ease in softly (about half a second each) instead of popping */

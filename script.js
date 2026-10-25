@@ -383,8 +383,8 @@
   pending.forEach(function (el) { io.observe(el); });
 })();
 
-// ---- Room lights, one cycle per TV loop: after the small ghost dives into the TV and the big ghost slides
-// out (8.8s), the big ghost tugs the lamp's pull chain on his next peek (12.8s) and the room lights up. He turns
+// ---- Room lights, one cycle per TV loop: after the small ghost dives into the TV (waving on "Please stand by"), the
+// channel changes and the big ghost slides out (13.6s), then tugs the lamp's pull chain on his next peek (18.0s) and the room lights up. He turns
 // it off again at the end of "That's good to know" (44s) and slips back behind the TV, and it all repeats.
 // The ghost peeks nine times per TV loop (5.2s each, see .ghost in the CSS), so his peeks land on those
 // moments. Reduced motion: the room just stays lit. ----
@@ -397,7 +397,7 @@
   var anim = ghost && ghost.getAnimations ? ghost.getAnimations()[0] : null;
   if (!anim || anim.currentTime == null) { root.classList.remove('room-intro'); return; }
   var LOOP = 5200, PEAK = 2430;                    // ghost peek: fully out at 45% of 5.2s, after a 0.09s delay
-  var TV = 46800, ON_PEAK = 12830, OFF_PEAK = 44030;  // TV loop; lights on at his first peek once he's out, off after "That's good to know"
+  var TV = 46800, ON_PEAK = 18030, OFF_PEAK = 44030;  // TV loop; lights on at his first peek once he's out, off after "That's good to know"
   var tv = document.querySelector('.tv-bars');
   var tvAnim = tv && tv.getAnimations ? tv.getAnimations()[0] : null;
   var untilTv = function (at, lead) {                 // ms until the TV loop reaches `at`, at least `lead` ms away

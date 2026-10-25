@@ -253,13 +253,14 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 /* the cream shadow above the header fills the 1-2px sliver of page that can peek through above it while scrolling on
    high-density phone screens (the browser rounds the sticky header's position to a fraction of a pixel) */
 .site-header { position: sticky; top: 0; z-index: 50; background: var(--paper); border-bottom: 0; box-shadow: 0 -0.5rem 0 var(--white-warm); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 5rem; }   /* 80px: room for the stacked business name */
 .brand { min-width: 0; min-height: 2.75rem; display: flex; align-items: center; gap: 0.6rem; color: var(--ink); text-decoration: none; }   /* 44px tall: the WCAG AAA tap size */
 .brand-tv { width: 2.6rem; height: auto; flex: none; }
-.brand-name { font-family: var(--font-display); font-size: 1.35rem; line-height: 1; }
+.brand-name { font-family: var(--font-display); font-size: 1.65rem; line-height: 0.95; }
+.brand-l2 { display: block; }   /* "Analog" over "Artifact": stacking lets the name be bigger without crowding the menu or the phone buttons */
 /* "WEB WORKS" on its own line under the name, smaller and spaced out, so a longer business name still fits the header;
    never under 0.6rem, even when the name shrinks on small phones */
-.brand-sub { display: block; margin-top: 0.3em; font: 800 max(0.6em, 0.6rem)/1 var(--font-body); letter-spacing: 0.32em; text-transform: uppercase; }
+.brand-sub { display: block; margin-top: 0.35em; white-space: nowrap; font: 800 max(0.5em, 0.6rem)/1 var(--font-body); letter-spacing: 0.3em; text-transform: uppercase; }
 .site-nav ul { display: flex; align-items: center; gap: 0.1rem; list-style: none; margin: 0; padding: 0; }
 .site-nav a {
   display: inline-block; padding: 0.55rem 0.45rem; border-radius: 999px;   /* snug enough that the full menu, the logo and the Pause button share one row */
@@ -330,18 +331,16 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   .site-nav a:not(.nav-cta):hover, .site-nav a:not(.nav-cta):active, .site-nav a[aria-current]:not(.nav-cta) { background: var(--gold); }   /* yellow on hover or tap; ink text on it 9.3:1 (AAA) */
 }
 .site-header, .site-nav { background: var(--white-warm); }
-/* Phones: hide the word "Menu" (still read by screen readers), and let the name shrink with the screen, so the name,
-   the Pause button and the Menu button always share one row */
+/* Phones: hide the word "Menu" (still read by screen readers), and size the stacked name to the screen (about 26px
+   on most phones), so the name, the Pause button and the Menu button always share one row */
 @media (max-width: 30em) {
   .nav-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .nav-toggle { padding: 0.4rem 0.7rem; }
-  .brand-name { font-size: clamp(0.78rem, 4vw, 1.35rem); }
+  .brand-name { font-size: clamp(0.95rem, 7vw, 1.6rem); }
 }
-/* most phones (wider than 21em at the browser's text size): the name a little bigger (about 17px at 390px wide) and
-   a little more room between the round pause button's lettering and the menu button; narrower screens and very
-   large text settings keep the sizes above, which already fit */
+/* most phones (wider than 21em at the browser's text size): a little more room between the round pause button's
+   lettering and the menu button */
 @media (min-width: 21em) and (max-width: 30em) {
-  .brand-name { font-size: clamp(0.8rem, 5vw - 2.5px, 1.35rem); }
   .nav-toggle { margin-left: 0.4rem; }
 }
 @media (max-width: 22em) { .brand-tv { width: 2.1rem; } .brand { gap: 0.45rem; } }   /* the narrowest phones: a smaller TV logo too */
@@ -366,7 +365,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
    and the round pause button is a little smaller, so the name never runs under the button. Below 15em (24px text on a
    375px phone) the TV logo steps aside too; the name still links home. */
 @media (max-width: 18.5em) {
-  .brand-name { white-space: normal; }
+  .brand-name { white-space: normal; font-size: 0.95rem; }
+  .brand-sub { white-space: normal; }   /* "WEB WORKS" may wrap here instead of running under the buttons */
   .motion-mini svg { width: 3.75rem; height: 3.75rem; }
 }
 @media (max-width: 15em) { .brand-tv { display: none; } }

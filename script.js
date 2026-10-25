@@ -1,4 +1,4 @@
-// Business Name (placeholder) - small progressive enhancements.
+// Analog Artifact Web Works - small progressive enhancements.
 // The page works fully without this file.
 (function () {
   'use strict';

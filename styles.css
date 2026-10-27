@@ -2448,8 +2448,8 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .night-sky--contact { bottom: calc(clamp(6.25rem, 15vw - 1.65rem, 10.75rem) + 6px); }   /* rises with the typewriter as the screen widens, always just below it */
 @media (max-width: 52em) { .night-sky--contact { display: block; width: min(18rem, 55%); bottom: calc(1.75rem + 6px); opacity: .8; } }
 /* Contact: a 1950s portable typewriter under the email line */
-.typewriter50 { display: block; width: min(17.6rem, 77%); height: auto; margin-top: 1.5rem; position: relative; z-index: 1; }
-@media (max-width: 52em) { .typewriter50 { width: min(15rem, 72%); margin-top: 1.25rem; } }   /* about the same size as the FAQ phone */
+.typewriter50 { display: block; width: min(19rem, 82%); height: auto; margin-top: 1.5rem; position: relative; z-index: 1; }
+@media (max-width: 52em) { .typewriter50 { width: min(16.2rem, 77%); margin-top: 1.25rem; } }   /* a little bigger than the FAQ phone (was 15rem until 10/27) */
 @media (min-width: 52.01em) {
   .contact-grid { align-items: stretch; }
   .contact-copy { display: flex; flex-direction: column; }
@@ -2459,6 +2459,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 @media (max-width: 52em) {
   .typewriter50 { display: block; margin-inline: auto; }
   .contact-form [type="submit"] { display: flex; width: fit-content; margin-inline: auto; }
+  .captcha { display: flex; justify-content: center; }   /* the "I'm not a robot" box lines up with the centered Send it button */
 }
 
 /* ==========================================================================
@@ -3815,29 +3816,29 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   22.50% { transform: translate(-145.0px, 0.0px); }
   22.75% { transform: translate(-132.0px, 0.0px); }
   23.00% { transform: translate(-119.0px, 0.0px); }
-  23.25% { transform: translate(-106.0px, 0.0px); }
-  23.50% { transform: translate(-93.0px, 0.0px); }
-  23.75% { transform: translate(-81.0px, 0.0px); }
-  24.00% { transform: translate(-68.0px, 0.0px); }
-  24.25% { transform: translate(-55.0px, 0.0px); }
-  24.50% { transform: translate(-43.0px, 0.0px); }
-  24.75% { transform: translate(-30.0px, 0.0px); }
-  25.00% { transform: translate(-18.0px, 0.0px); }
-  25.25% { transform: translate(-6.0px, 0.0px); }
-  25.50% { transform: translate(6.0px, 0.0px); }
-  25.75% { transform: translate(18.0px, 0.0px); }
-  26.00% { transform: translate(30.0px, 0.0px); }
-  26.25% { transform: translate(41.0px, 0.0px); }
-  26.50% { transform: translate(50.0px, 0.0px); }
-  26.75% { transform: translate(50.0px, 0.0px); }
-  27.00% { transform: translate(50.0px, 0.0px); }
-  27.25% { transform: translate(50.0px, 0.0px); }
-  27.50% { transform: translate(50.0px, 0.0px); }
-  27.75% { transform: translate(50.0px, 0.0px); }
-  28.00% { transform: translate(50.0px, 0.0px); }
-  28.25% { transform: translate(50.0px, 0.0px); }
-  28.50% { transform: translate(50.0px, 0.0px); }
-  28.75% { transform: translate(50.0px, 0.0px); }
+  23.25% { transform: translate(-109.3px, -0.8px); }
+  23.50% { transform: translate(-98.5px, 0.4px); }
+  23.75% { transform: translate(-88.7px, 0.4px); }
+  24.00% { transform: translate(-78.7px, -1.7px); }
+  24.25% { transform: translate(-67.6px, -1.8px); }
+  24.50% { transform: translate(-57.7px, -3.4px); }
+  24.75% { transform: translate(-47.3px, -6.8px); }
+  25.00% { transform: translate(-36.8px, -8.2px); }
+  25.25% { transform: translate(-26.6px, -11.3px); }
+  25.50% { transform: translate(-16.7px, -15.9px); }
+  25.75% { transform: translate(-5.8px, -18.7px); }
+  26.00% { transform: translate(4.6px, -23.5px); }
+  26.25% { transform: translate(14.0px, -28.9px); }
+  26.50% { transform: translate(24.2px, -33.8px); }
+  26.75% { transform: translate(34.2px, -41.5px); }
+  27.00% { transform: translate(45.3px, -49.5px); }
+  27.25% { transform: translate(55.4px, -56.5px); }
+  27.50% { transform: translate(66.6px, -63.7px); }
+  27.75% { transform: translate(77.8px, -70.6px); }
+  28.00% { transform: translate(90.0px, -77.6px); }
+  28.25% { transform: translate(101.3px, -83.6px); }
+  28.50% { transform: translate(113.6px, -89.6px); }
+  28.75% { transform: translate(126.0px, -95.2px); }
   29.00% { transform: translate(50.0px, 0.0px); }
   29.25% { transform: translate(50.0px, 0.0px); }
   29.50% { transform: translate(50.0px, 0.0px); }

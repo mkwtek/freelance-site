@@ -508,7 +508,7 @@
   if (!root) return;
   var strip = root.querySelector('.strip'), shop = root.querySelector('.paint-shop'), again = root.querySelector('.paint-race');
   var NS = 'http://www.w3.org/2000/svg';
-  var K = 0.7;                                       // overall size of the scene's pieces
+  var K = 0.75;                                      // overall size of the scene's pieces (0.7 until 10/27; road and car drawn about 7% bigger)
   var CW = 300 * K, CH = CW * 499 / 900;
   var F = [160 * K, 36.3 * K], A = [95.7 * K, -31.3 * K], O = [0, 300];
   var REAR = [CW * 70 / 900, CH * 385 / 499];        // rear tire contact inside the mirrored image
@@ -516,8 +516,8 @@
   var pt = function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); };
   var quad = function (s0, s1, t0, t1) { return 'M' + pt(P(s0, t0)) + 'L' + pt(P(s1, t0)) + 'L' + pt(P(s1, t1)) + 'L' + pt(P(s0, t1)) + 'Z'; };
 
-  var NARROW = strip.clientWidth < 600;               // phones: a shorter strip so everything draws about a third bigger
-  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = NARROW ? 4.5 : 5.25 / K, S0 = -0.05, VW = NARROW ? 790 : 1200;
+  var NARROW = strip.clientWidth < 600;               // phones: a shorter strip so everything draws about a third bigger (finish at 4.1 keeps the far flag on screen)
+  var ROAD = 2.9, LANE_T = 0.22, START = 1.0, FIN = NARROW ? 4.1 : 5.25 / K, S0 = -0.05, VW = NARROW ? 790 : 1200;
   var svg = '';
   svg += '<defs><radialGradient id="puffg"><stop offset="0" stop-color="#fbf7ef"/><stop offset=".6" stop-color="#ddd6ca" stop-opacity=".9"/><stop offset="1" stop-color="#ddd6ca" stop-opacity="0"/></radialGradient></defs>';
   // shoulders, road, edge lines

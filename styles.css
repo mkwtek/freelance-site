@@ -2468,7 +2468,7 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 
 /* Footer */
 .site-footer { color: var(--paper); border-top: 3px solid var(--paper); padding: 2.5rem 0; text-align: center; background: var(--ink); }
-.footer-brand { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 0.25rem; }
+.footer-brand { font-family: var(--font-display); font-size: 1.8rem; line-height: 1.15; margin-bottom: 0.4rem; }   /* "Analog Artifact" over "Web Works"; still well under the "Analog soul" logo below */
 .footer-small { font-size: 0.875rem; color: #cfc6b6; margin: 0; }
 .pnw-badge { display: block; width: 12rem; height: auto; margin: 0 auto 1rem; }
 /* Ferry crosses the Sound; holds still mid-water for reduced motion */
@@ -2531,12 +2531,11 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 .fl-rule { display: flex; align-items: center; gap: 0.4em; width: 9em; color: #ebbd4e; font-size: 0.5em; position: relative; top: 0.4em; }
 .fl-rule::before, .fl-rule::after { content: ""; flex: 1; height: 2px; background: #ebbd4e; }
 /* footer order: name, what I do, the tagline logo, where */
-.footer-role { margin: 0 0 0.6rem; }
-/* phones: the badge, name and tagline a little bigger; the page links and the copyright line stay as they are */
+.footer-role { margin: 0 0 0.6rem; font-size: 1.1875rem; }
+/* phones: the badge, name and tagline logo a little bigger; the page links and the copyright line stay as they are */
 @media (max-width: 40em) {
   .pnw-badge { width: 13.5rem; }
-  .footer-brand { font-size: 1.8rem; }
-  .footer-role { font-size: 1.0625rem; }
+  .footer-brand { font-size: 1.85rem; }
   .footer-logo { font-size: clamp(1.45rem, 6.8vw, 2.2rem); }
 }
 /* footer logo: the divider sits midway between "Analog soul" (allowing for its gold shadow) and "DIGITAL SOLUTIONS" */

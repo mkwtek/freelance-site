@@ -1,0 +1,37 @@
+# Analog Artifact Web Works: server settings for Namecheap hosting.
+# After uploading to public_html, rename this file to:  .htaccess
+# (If a .htaccess file is already there, open it and paste these lines at the top instead.)
+
+RewriteEngine On
+
+# Leave SSL certificate checks alone (the hidden .well-known folder). Keep that folder!
+RewriteRule ^\.well-known/ - [L]
+
+# Always use https:// and drop "www."
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://analogartifactwebworks.com%{REQUEST_URI} [L,R=301]
+
+# Don't let anyone browse your folders
+Options -Indexes
+
+# Make the site load faster on repeat visits (photos, icons and fonts are cached for a month)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 month"
+</IfModule>
+
+# Styles and scripts change with every update, so browsers check for a newer copy
+# on each visit (they still reuse it if nothing changed)
+<FilesMatch "\.(css|js)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-cache"
+  </IfModule>
+  <IfModule mod_expires.c>
+    ExpiresActive Off
+  </IfModule>
+</FilesMatch>

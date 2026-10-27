@@ -8,14 +8,16 @@
   <meta property="og:title" content="Analog Artifact Web Works | Web Development &amp; Consulting">
   <meta property="og:description" content="Old-school craft, new-school code. Built to run, not just look good. Analog Soul / Digital Solutions. Fast, accessible websites for small businesses and nonprofits.">
   <meta property="og:type" content="website">
-  <!-- link preview picture for shared links (texts, social posts). Full web address required; update it if the site moves to its own domain -->
-  <meta property="og:url" content="https://mkwtek.github.io/freelance-site/">
-  <meta property="og:image" content="https://mkwtek.github.io/freelance-site/images/og-workbench.jpg">
+  <!-- canonical: tells search engines the real address, so the GitHub Pages dev copy is not treated as a second site -->
+  <link rel="canonical" href="https://analogartifactwebworks.com/">
+  <!-- link preview picture for shared links (texts, social posts). Full web address required -->
+  <meta property="og:url" content="https://analogartifactwebworks.com/">
+  <meta property="og:image" content="https://analogartifactwebworks.com/images/og-workbench.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="A retro workbench with tools on a pegboard, a little ghost, and an old TV showing web page code, under signs reading From Wrenches To Websites">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://mkwtek.github.io/freelance-site/images/og-workbench.jpg">
+  <meta name="twitter:image" content="https://analogartifactwebworks.com/images/og-workbench.jpg">
   <meta name="theme-color" content="#221f1b">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="fonts/dm-sans-normal-400-700.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,7 +25,7 @@
   <link rel="preload" href="fonts/pirata-one-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/new-rocker-normal-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/space-mono-normal-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=293">
+  <link rel="stylesheet" href="styles.css?v=295">
 <script>try{var d=document.documentElement,rm=matchMedia("(prefers-reduced-motion: reduce)").matches,pz=localStorage.getItem("motion")==="paused";if(pz)d.classList.add("motion-paused");if(!rm&&!pz)d.classList.add("room-intro")}catch(e){}</script>
 </head>
 <body>
@@ -968,8 +970,10 @@
           <p>Tell me a little about your project and I'll get back to you as soon as I can.</p>
           <img class="typewriter50" src="images/contact-typewriter.webp?v=3" width="640" height="514" alt="" loading="lazy" decoding="async">
         </div>
-        <!-- PLACEHOLDER: replace YOUR_FORM_ID with the Formspree form ID -->
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <!-- Contact form sends through Formspree (form "Analog Artifact contact", delivers to analogartifactwebworks@gmail.com).
+             script.js sends it in the background and shows the thank-you right here, like Atomic Afterlife; without
+             JavaScript the form still posts to Formspree and shows their thank-you page. -->
+        <form class="contact-form" action="https://formspree.io/f/moeeebyd" method="POST">
           <div class="field">
             <label for="f-name">Name</label>
             <input id="f-name" name="name" type="text" autocomplete="name" required>
@@ -1003,7 +1007,13 @@
             <textarea id="f-msg" name="message" rows="5" required></textarea>
           </div>
           <label class="visually-hidden" for="hp-field" aria-hidden="true">Leave this field empty</label><input type="text" id="hp-field" name="_gotcha" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <!-- Google reCAPTCHA "I'm not a robot" checkbox (site key for analogartifactwebworks.com; the secret key lives only in
+               Formspree's CAPTCHA settings). script.js loads Google's script when the form gets close, like the portfolio site. -->
+          <div class="captcha"><div class="g-recaptcha" data-sitekey="6Lct9gIuAAAAAKA_x-JYgA4fHUMa48g3fKMUhbVX"></div></div>
+          <p class="form-status form-status--error captcha-error" role="alert" hidden>Please check the "I'm not a robot" box first.</p>
           <button class="btn btn-primary" type="submit">Send it</button>
+          <!-- after sending, script.js shows "Thanks" or "Sorry" here; screen readers announce it -->
+          <p class="form-status" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
       <!-- "Send it": a rider takes the snowbank jump below the form, then sits up and says it still runs. Decoration only. -->
@@ -1116,6 +1126,6 @@
     </div>
   </section>
 
-  <script src="script.js?v=80" defer></script>
+  <script src="script.js?v=82" defer></script>
 </body>
 </html>

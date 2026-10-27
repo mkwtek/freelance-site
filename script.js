@@ -892,3 +892,64 @@
   }, { threshold: [0, 0.9] }).observe(scene);
 })();
 
+// ---- Contact form: sends through Formspree in the background so visitors stay on the page (same as Atomic Afterlife) ----
+// Shows "Thanks" in the form when it goes through, or "Sorry" with the email address if it doesn't. Like the portfolio site,
+// it also needs Google's "I'm not a robot" box checked first.
+// Without JavaScript the form still posts normally and Formspree shows its own thank-you page.
+(function () {
+  var form = document.querySelector('.contact-form');
+  if (!form || !window.fetch || !window.FormData) return;
+  var status = form.querySelector('.form-status[role="status"]');
+  var button = form.querySelector('[type="submit"]');
+  var EMAIL = 'hello@analogartifactwebworks.com';
+  var captchaError = form.querySelector('.captcha-error');
+  // Load Google's reCAPTCHA script only when the form gets close (it's about 500 KB most visitors never need), or as soon
+  // as someone clicks into a field. It draws the "I'm not a robot" box into .g-recaptcha when it arrives.
+  var captchaLoaded = false;
+  var loadCaptcha = function () {
+    if (captchaLoaded) return;
+    captchaLoaded = true;
+    var sc = document.createElement('script');
+    sc.src = 'https://www.google.com/recaptcha/api.js';
+    sc.async = true;
+    document.head.appendChild(sc);
+  };
+  form.addEventListener('focusin', loadCaptcha);
+  if ('IntersectionObserver' in window) {
+    var near = new IntersectionObserver(function (es) {
+      if (es.some(function (en) { return en.isIntersecting; })) { loadCaptcha(); near.disconnect(); }
+    }, { rootMargin: '800px' });
+    near.observe(form);
+  } else loadCaptcha();
+  var show = function (msg, ok) {
+    status.innerHTML = msg;
+    status.className = 'form-status' + (ok ? '' : ' form-status--error');
+    status.hidden = false;
+  };
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.hidden = true;
+    // Google fills this hidden field only after the box is checked
+    var token = form.querySelector('[name="g-recaptcha-response"]');
+    captchaError.hidden = !!(token && token.value);
+    if (!captchaError.hidden) return;
+    var data = new FormData(form);
+    data.append('_subject', 'Website message from ' + (form.elements.name.value || 'someone'));
+    button.disabled = true;
+    button.textContent = 'Sending...';
+    fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('send failed');
+        form.reset();
+        show('Thanks! Your message is on its way. I\'ll get back to you as soon as I can.', true);
+      })
+      .catch(function () {
+        show('Sorry, that didn\'t send. Please try again, or email <a href="mailto:' + EMAIL + '">' + EMAIL + '</a>.', false);
+      })
+      .then(function () {
+        button.disabled = false;
+        button.textContent = 'Send it';
+        if (window.grecaptcha) window.grecaptcha.reset();   // each check works once, so clear it for the next message
+      });
+  });
+})();

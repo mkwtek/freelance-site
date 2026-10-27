@@ -2426,6 +2426,22 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   border: 2px solid var(--ink); border-radius: 0.6rem;
 }
 .field textarea { resize: vertical; }
+/* Message under the Send it button after the form is sent: gold note for "Thanks", red outline for "Sorry" */
+.form-status { margin: 1rem 0 0; padding: 0.75rem 1rem; border: 2px solid var(--ink); border-radius: 0.6rem; background: #fcf0c4; font-weight: 600; }
+.form-status--error { background: #fffaf1; border-color: var(--red-text); color: var(--red-text); }
+.form-status a { color: inherit; }
+/* Google's "I'm not a robot" box is a fixed 304 x 78px frame that can't be resized, so on narrow phones it is shrunk with
+   scale(), and the negative margins give back the space the shrink frees up (scale alone keeps the full 304px). */
+.captcha { margin: 0.25rem 0 1.1rem; min-height: 78px; }
+.captcha-error { margin: 0 0 1rem; }
+@media (max-width: 24em) {
+  .captcha { min-height: 66px; }
+  .captcha .g-recaptcha { transform: scale(0.85); transform-origin: 0 0; margin-right: -45.6px; margin-bottom: -11.7px; }   /* 304 x 0.15, 78 x 0.15 */
+}
+@media (max-width: 21.5em) {   /* 320px phones: the form is only about 248px wide inside */
+  .captcha { min-height: 63px; }
+  .captcha .g-recaptcha { transform: scale(0.8); margin-right: -60.8px; margin-bottom: -15.6px; }   /* 304 x 0.2, 78 x 0.2 */
+}
 @media (max-width: 52em) { .contact-grid { grid-template-columns: 1fr; } }
 /* Contact: the moon and stars sit up in the open space under the typewriter, clear of the snowmobile scene along the
    bottom. One column (tablets and phones): smaller, low in the sky above the snow, just below the form. */

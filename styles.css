@@ -2425,6 +2425,13 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   font: inherit; color: var(--ink); background: #fffaf1;
   border: 2px solid var(--ink); border-radius: 0.6rem;
 }
+/* Dropdown: the browser's small arrow is replaced with a bigger ink chevron, set in from the right edge so it doesn't
+   crowd the border; the right padding keeps long choices from running under it */
+.field select {
+  appearance: none; -webkit-appearance: none; padding-right: 3rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12'%3E%3Cpath d='M2 2l8 8 8-8' fill='none' stroke='%23221f1b' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1.1rem center; background-size: 1.1rem auto;
+}
 .field textarea { resize: vertical; }
 /* Message under the Send it button after the form is sent: gold note for "Thanks", red outline for "Sorry" */
 .form-status { margin: 1rem 0 0; padding: 0.75rem 1rem; border: 2px solid var(--ink); border-radius: 0.6rem; background: #fcf0c4; font-weight: 600; }

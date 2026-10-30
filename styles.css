@@ -2690,6 +2690,10 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
 
 .footer-more { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 1.1rem; margin: 0 0 0.9rem; font-size: 0.9rem; }
 .footer-more a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--cyan-on-ink); }   /* 44px tall tap targets; the extra height replaces the row gap */
+/* 4 links on the first row, the rest below: an empty full-width item sits after the 4th link (order 1) and pushes
+   links 5 and up (order 2) onto the next row. Narrow screens still wrap inside each row as needed. */
+.footer-more::after { content: ""; flex-basis: 100%; order: 1; }
+.footer-more a:nth-child(n+5) { order: 2; }
 .seo-body h3 { margin-top: 0.4rem; }
 .seo-close { font-weight: 700; }
 @media (max-width: 30em) { .seo-callout { grid-template-columns: 1fr; } }

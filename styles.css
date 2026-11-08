@@ -2640,6 +2640,9 @@ a, button, summary, input, select, textarea, label { -webkit-tap-highlight-color
   grid-template-columns: auto 1fr; gap: 1.25rem; align-items: start;
 }
 .seo-callout h3 { margin: 0 0 0.5rem; }
+/* AI art callout (Services): same box as the SEO myth callout, with a gold copyright-question stamp instead of the myth stamp */
+.ai-callout { margin: 3rem 0 0; }
+.ai-stamp { width: 4.5rem; height: auto; }
 .seo-callout p { margin: 0.5rem 0 0; }
 .hl-gold { background: linear-gradient(transparent 45%, var(--gold) 45%); color: inherit; font-weight: 800; padding: 0 0.1em; }
 .deadline-board { margin: 0 0 1.25rem; padding: 1rem 1.25rem; background: var(--ink); color: var(--paper); border-radius: var(--radius); }
